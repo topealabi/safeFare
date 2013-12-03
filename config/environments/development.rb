@@ -19,8 +19,8 @@ SafeFare::Application.configure do
     :port => 587,
     :domain => "mydomain.com",
     :authentication => :login,
-    :user_name => "dhruv.mehrotra3@gmail.com",
-    :password => "linux*123"
+    :user_name => "safeFareTesting@gmail.com",
+    :password => "linux*1989"
   }
 
   # Don't care if the mailer can't send.
