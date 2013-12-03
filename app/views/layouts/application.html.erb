@@ -2,15 +2,16 @@
 <html>
 <head>
   <title>SafeFare</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-<div id="container">
-	<div id="usernav">
+
+<nav class="navbar navbar-default" role="navigation">
+	<div class="navbar-header">
 		<% if user_signed_in? %>
 		  Logged in as <strong><%= current_user.email %></strong>.
 		  <%= link_to 'Edit profile', edit_user_registration_path %> |
@@ -20,9 +21,13 @@
 		  <%= link_to "Login", new_user_session_path %>
 		<% end %>
 	</div>
+</nav>
+<div class="container">
+	<div class="wrapper">
+		<%= yield %>
+		<p class="notice"><%= notice %></p>
+		<p class="alert"><%= alert %></p>
+	</div>
 </div>
-
-<%= yield %>
-
 </body>
 </html>
