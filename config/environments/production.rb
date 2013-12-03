@@ -34,6 +34,14 @@ SafeFare::Application.configure do
 
   # Version of your assets, change this if you want to expire all your assets.
   config.assets.version = '1.0'
+ 
+  # /////////////\\\\\\\\\\\\\\\\
+  # ////////THIS IS A NOTE TO FUTURE DHRUV AND FUTURE TOPE\\\\\\\\
+  # FOR PRODUCTION THE MAILER WILL NOT WORK WITHOUT FIXING THIS CONFIG FILE
+  # config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+ 
+
+
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
