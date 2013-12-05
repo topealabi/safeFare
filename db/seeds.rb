@@ -4,4 +4,14 @@
 # Examples:
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+#   Mayor.create(name: 'Emanuel', city: cities.first)require 'csv'
+require 'csv'
+CSV.foreach('db/states.csv', headers: true) do |row|
+	state = State.where({state: row[0]})
+	if state.length >= 1
+		puts 'exists'
+	else
+		State.create(state: row[0], abbreviation: row[1])
+		puts row
+	end
+end

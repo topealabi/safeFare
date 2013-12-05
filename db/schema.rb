@@ -11,10 +11,55 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131203154152) do
+ActiveRecord::Schema.define(version: 20131205192033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "aware_employees", force: true do |t|
+    t.string   "verification",                  null: false
+    t.string   "name",                          null: false
+    t.boolean  "approved?",     default: false
+    t.datetime "expiration",                    null: false
+    t.integer  "restaurant_id",                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "restaurant_roles", force: true do |t|
+    t.string   "role",              null: false
+    t.integer  "aware_employee_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "restaurants", force: true do |t|
+    t.string   "name",                             null: false
+    t.string   "address",                          null: false
+    t.string   "city",                             null: false
+    t.string   "state",                            null: false
+    t.string   "email",                            null: false
+    t.string   "phone"
+    t.string   "hours"
+    t.string   "website"
+    t.string   "faceboook_url"
+    t.string   "twitter_url"
+    t.string   "allergy_eats_url"
+    t.integer  "zip",                              null: false
+    t.integer  "total_employees",                  null: false
+    t.integer  "percent_aware"
+    t.text     "description"
+    t.boolean  "is_visible?",      default: true
+    t.boolean  "approved?",        default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id",                          null: false
+  end
+
+  create_table "states", force: true do |t|
+    t.string "state",        null: false
+    t.string "abbreviation", null: false
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
