@@ -6,18 +6,17 @@ class Restaurant < ActiveRecord::Base
   	end
   	
 	validates_presence_of :name, :address, :city, :zip
-  	validates_inclusion_of :state,
-    	in: VALID_STATES
+  validates_inclusion_of :state,
+    in: VALID_STATES
   validates_numericality_of :total_employees
  	validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
 
  	belongs_to :user,
- 		inverse_of: :restaurants
-	has_many :cuisines,
-   		inverse_of: :restaurant
-   	has_many :aware_employees,
-   		inverse_of: :restaurant
-   	has_many :change_orders,
-   		inverse_of: :restaurant
-
+ 	  inverse_of: :restaurants
+	has_many :cuisines, through: :type_of_cuisines
+  has_many :type_of_cuisines
+  has_many :aware_employees,
+   	inverse_of: :restaurant
+  has_many :changeorders,
+   	inverse_of: :restaurant
 end

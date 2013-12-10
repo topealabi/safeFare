@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131205192033) do
+ActiveRecord::Schema.define(version: 20131210191347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,8 +26,23 @@ ActiveRecord::Schema.define(version: 20131205192033) do
     t.datetime "updated_at"
   end
 
+  create_table "changeorders", force: true do |t|
+    t.integer  "user_id",                       null: false
+    t.integer  "restaurant_id",                 null: false
+    t.string   "type",                          null: false
+    t.boolean  "status?",       default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cuisines", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "restaurant_roles", force: true do |t|
-    t.string   "role",              null: false
+    t.integer  "role_id",           null: false
     t.integer  "aware_employee_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -56,9 +71,22 @@ ActiveRecord::Schema.define(version: 20131205192033) do
     t.integer  "user_id",                          null: false
   end
 
+  create_table "roles", force: true do |t|
+    t.string   "role",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "states", force: true do |t|
     t.string "state",        null: false
     t.string "abbreviation", null: false
+  end
+
+  create_table "type_of_cuisines", force: true do |t|
+    t.integer  "restaurant_id", null: false
+    t.integer  "cuisine_id",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
