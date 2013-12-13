@@ -25,6 +25,6 @@ class Restaurant < ActiveRecord::Base
 
   accepts_nested_attributes_for :aware_employees
 
-  accepts_nested_attributes_for :type_of_cuisinesw
+  accepts_nested_attributes_for :type_of_cuisines
 
 end
