@@ -1,0 +1,31 @@
+<%= simple_form_for [ @user,@restaurant ] do |f| %>
+	<%= f.input :name %>
+	<%= f.input :address %>
+	<%= f.input :city %>
+	<%= f.input :state, collection: @states %>
+	<%= f.input :description, as: :text %>
+	<%= f.input :email %>
+	<%= f.input :phone %>
+	<%= f.input :hours %>
+	<%= f.input :zip %>
+	<%= f.input :website %>
+	<%= f.input :total_employees %>
+	<%= f.input :facebook_url %>
+	<%= f.input :twitter_url %>
+	<%= f.input :allergy_eats_url %>
+	
+	<h1>employee form</h1>
+		<%= f.simple_fields_for :aware_employees do |h| %>
+			<%= h.input :name %>
+			<%= h.input :verification %>
+			<%= h.input :expiration %>
+		<% end %>
+	<h1>Cuisine</h1>
+		<%= f.simple_fields_for :type_of_cuisines do |i| %>
+			<!-- cuisine id -->
+		<% end %>
+		<%= f.button :submit %>
+
+
+
+<% end %>

@@ -2,7 +2,6 @@
 
 FactoryGirl.define do
   factory :restaurant do
-
   	name 'restaurant'
   	address '1234 mott street'
   	city 'NewYork'
