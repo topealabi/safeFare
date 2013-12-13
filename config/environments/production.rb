@@ -40,7 +40,16 @@ SafeFare::Application.configure do
   # FOR PRODUCTION THE MAILER WILL NOT WORK WITHOUT FIXING THIS CONFIG FILE
   # config.action_mailer.default_url_options = { :host => 'localhost:3000' }
  
-
+  config.action_mailer.smtp_settings = {
+    :enable_starttls_auto => true,
+    :address => "smtp.gmail.com",
+    :port => 587,
+    :domain => "mydomain.com",
+    :authentication => :login,
+    :user_name => "safeFareTesting@gmail.com",
+    :password => "linux*1989"
+  }
+   config.action_mailer.default_url_options = { :host => '77km-pwgn.accessdomain.com:3000' }
 
 
   # Specifies the header that your server uses for sending files.
