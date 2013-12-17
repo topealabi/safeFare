@@ -4,7 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 	def after_sign_in_path_for(resource)
 	 #Redirect to the user's page after log in.
-	  current_user
+	  if resource.is_a?(AdminUser)
+		admin_dashboard_path(resource)
+	  end
 	end
 
 end
