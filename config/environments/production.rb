@@ -49,7 +49,7 @@ SafeFare::Application.configure do
     :user_name => "safeFareTesting@gmail.com",
     :password => "linux*1989"
   }
-   config.action_mailer.default_url_options = { :host => '77km-pwgn.accessdomain.com:3000' }
+   config.action_mailer.default_url_options = { :host => 'safefare.77km-pwgn.accessdomain.com' }
 
 
   # Specifies the header that your server uses for sending files.
