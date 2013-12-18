@@ -2,7 +2,7 @@ class Restaurant < ActiveRecord::Base
 	VALID_STATES = ['CA']
   	
   	State.all.each do |state| 
-  		VALID_STATES << state.abbreviation
+  		VALID_STATES << state.state
   	end
   	
 	validates_presence_of :name, :address, :city, :zip

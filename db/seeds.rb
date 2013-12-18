@@ -15,3 +15,14 @@ CSV.foreach('db/states.csv', headers: true) do |row|
 		puts row
 	end
 end
+
+['Chinese', 'Thai', 'Mexican', 'American'].each do |cuisine|
+	cuisine_exist = Cuisine.where({name: cuisine})
+	
+	if cuisine_exist.length >= 1
+		puts 'exist'
+	else
+		Cuisine.create(name: cuisine)
+		puts cuisine
+	end
+end

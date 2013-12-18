@@ -1,31 +1,123 @@
+<h3> Add a Restaurant </h3>
 <%= simple_form_for [ @user,@restaurant ] do |f| %>
-	<%= f.input :name %>
-	<%= f.input :address %>
-	<%= f.input :city %>
-	<%= f.input :state, collection: @states %>
-	<%= f.input :description, as: :text %>
-	<%= f.input :email %>
-	<%= f.input :phone %>
-	<%= f.input :hours %>
-	<%= f.input :zip %>
-	<%= f.input :website %>
-	<%= f.input :total_employees %>
-	<%= f.input :facebook_url %>
-	<%= f.input :twitter_url %>
-	<%= f.input :allergy_eats_url %>
-	
-	<h1>employee form</h1>
+	<div class="row">
+		<div class="col-xs-6 ">
+			<p>Name</p>
+			<%= f.input :name, label: false  %>
+		</div>
+		<div class="col-xs-6">
+			<p>Email</p>
+			<%= f.input :email, label: false  %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6">
+			<p>Address</p>
+			<%= f.input :address, label: false %>
+		</div>
+		<div class="col-xs-6">
+			<p>City</p>
+			<%= f.input :city, label: false %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6">
+			<p>State</p>
+			<%= f.input :state, collection: @states, include_blank: 'Select...',required: true, label: false, input_html: { class: "chosen-select" } %>
+		</div>
+		<div class="col-xs-6">
+			<p>Zip Code</p>
+			<%= f.input :zip, label: false %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6">
+			<p>Hours</p>
+			<%= f.input :hours, label: false %>
+		</div>
+		<div class="col-xs-6">
+			<p>Phone</p>
+			<%= f.input :phone, label: false %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6">
+			<p>Website</p>
+			<%= f.input :website, label: false %>
+		</div>
+		<div class="col-xs-6">
+			<p>Number of Employees</p>
+			<%= f.input :total_employees, label: false %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6">
+			<p>Description</p>
+			<%= f.input :description, label: false %>
+		</div>
+		<div class="col-xs-6">
+			<p>Facebook</p>
+			<%= f.input :facebook_url, label: false %>
+		</div>
+	</div>
+	<%= f.simple_fields_for :type_of_cuisines do |h| %>
+		<div class="row">
+			<div class="col-xs-6 ">
+				<p>Cuisine</p>
+				<%= h.input :cuisine_id, collection: Cuisine.all, value: :id, label: false, input_html: { class: "chosen-select", multiple: true, style: 'width:255px; height:200px;'} %>
+			</div>
+		</div>
+	<% end %>
+	<div class="row ">
+		<div class="col-xs-6">
+			<p>Twitter</p>
+			<%= f.input :twitter_url, label: false %>
+		</div>
+		<div class="col-xs-6">
+			<p>Allergy Eats</p>
+			<%= f.input :allergy_eats_url, label: false %>
+		</div>
+	</div>
+	<div class="row margin-top">
+		<div class="col-xs-12 clear infobox">
+			<- Add Employees ->
+		</div>
+	</div>
+
+	<div class="row margin-top">
 		<%= f.simple_fields_for :aware_employees do |h| %>
-			<%= h.input :name %>
-			<%= h.input :verification %>
-			<%= h.input :expiration %>
+			<div class="row">
+				<div class="col-xs-6 ">
+					<p>Employee Name</p>
+					<%= h.input :name, label: false %>
+				</div>
+				<div class="col-xs-6 ">
+					<p>Employee Verification Code</p>
+					<%= h.input :verification, label: false %>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<p>Expiration</p>
+					<%= h.input :expiration, label: false %>
+				</div>
+			</div>	
 		<% end %>
-	<h1>Cuisine</h1>
-		<%= f.simple_fields_for :type_of_cuisines do |i| %>
-			<!-- cuisine id -->
-		<% end %>
-		<%= f.button :submit %>
+	</div>
+	<div class="row margin-top">
+		<div class="col-xs-6 clear">
+			<a class='add_an_employee' href= '#' > + Add Another Employee with Verifications</a>
+		</div>
+		<div class="col-xs-10 margin-top">
+			<%= f.button :submit %>
+		</div>
+	</div>
+
 
 
 
 <% end %>
+
+<script>
+$('.chosen-select').chosen();
+</script>
