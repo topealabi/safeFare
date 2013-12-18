@@ -64,7 +64,7 @@
 		<div class="row">
 			<div class="col-xs-6 ">
 				<p>Cuisine</p>
-				<%= h.input :cuisine_id, collection: Cuisine.all, value: :id, label: false, input_html: { class: "chosen-select", multiple: true, style: 'width:255px; height:200px;'} %>
+				<%= h.input :cuisine_id, collection: Cuisine.all, multiple: true, value: :id, label: false, input_html: { class: "chosen-select", multiple: true, style: 'width:255px; height:200px;'} %>
 			</div>
 		</div>
 	<% end %>
@@ -120,4 +120,5 @@
 
 <script>
 $('.chosen-select').chosen();
+$('select option:empty').remove(); 
 </script>

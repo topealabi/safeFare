@@ -117,9 +117,9 @@ ActiveRecord::Schema.define(version: 20131217144012) do
 
   create_table "type_of_cuisines", force: true do |t|
     t.integer  "restaurant_id", null: false
-    t.integer  "cuisine_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "cuisine_id"
   end
 
   create_table "users", force: true do |t|
