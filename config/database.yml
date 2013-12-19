@@ -20,8 +20,8 @@ development:
   database: safeFare_development
   pool: 5
   host: localhost
-  username: admin
-  password: 4nH6az7fL40W!
+  # username: admin
+  # password: 4nH6az7fL40W!
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -50,8 +50,8 @@ test:
   database: safeFare_test
   pool: 5
   host: localhost
-  username: admin
-  password: 4nH6az7fL40W!
+  # username: admin
+  # password: 4nH6az7fL40W!
 
 production:
   adapter: postgresql
@@ -59,5 +59,5 @@ production:
   database: safeFare_production
   pool: 5
   host: localhost
-  username: admin
-  password: 4nH6az7fL40W!
+  # username: admin
+  # password: 4nH6az7fL40W!

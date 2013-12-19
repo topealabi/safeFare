@@ -26,3 +26,13 @@ end
 		puts cuisine
 	end
 end
+['Chef', 'Server', 'Front of House', 'Back of House'].each do |role|
+	role_exist = Role.where({role: role})
+	
+	if role_exist.length >= 1
+		puts 'exist'
+	else
+		Role.create(role: role)
+		puts role
+	end
+end

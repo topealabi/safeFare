@@ -1,0 +1,114 @@
+<%= simple_form_for [current_user,@restaurant] do |f| %>
+<div class='wrapper col-md-12' style='border:1px solid black; clear:both'>
+		<div class="row" id='name'>
+			<p class='val'><%= @restaurant.name %></p>
+			<div style='' class='edit'>
+				<a href='#'>| edit |</a>
+			</div>
+			<div class="form"><%= f.input :name, label: false, input_html: { class: "req" }   %></div>	
+		</div>
+		<div class="row" id='address'>
+			<p class='val'><%= @restaurant.address %></p>
+			<div style='' class='edit'>
+				<a href='#'>| edit |</a>
+			</div>	
+		</div>
+		<div class="row" id='city'>
+			<p class='val'><%= @restaurant.city %></p>
+			<div style='' class='edit'>
+				<a href='#'>| edit |</a>
+			</div>	
+		</div>
+		<div class="row" id='state'>
+			<p class='val'><%= @restaurant.state %></p>
+			<div style='' class='edit'>
+				<a href='#'>| edit |</a>
+			</div>	
+		</div>
+		<div class="row" id='zip'>
+			<p class='val'><%= @restaurant.zip %></p>
+			<div style='' class='edit'>
+				<a href='#'>| edit |</a>
+			</div>	
+		</div>
+		<div class="row" id='email'>
+			<p class='val'><%= @restaurant.email %></p>
+			<div style='' class='edit'>
+				<a href='#'>| edit |</a>
+			</div>
+		</div>
+		<div class="row" id='phone'>
+			<p class='val'><%= @restaurant.phone %></p>
+			<div style='' class='edit'>
+				<a href='#'>| edit |</a>
+			</div>	
+		</div>
+		<div class="row" id='hours'>
+			<p class='val'><%= @restaurant.hours %></p>
+			<div style='' class='edit'>
+				<a href='#'>| edit |</a>
+			</div>	
+		</div>
+		<div class="row" id='website'>
+			<p class='val'><%= @restaurant.website %></p>
+			<div style='' class='edit'>
+				<a href='#'>| edit |</a>
+			</div>	
+		</div>
+		<div class="row" id='fb_url'>
+			<p class='val'><%= @restaurant.facebook_url %></p>
+			<div style='' class='edit'>
+				<a href='#'>| edit |</a>
+			</div>	
+		</div>
+		<div class="row" id='tw_url'>
+			<p class='val'><%= @restaurant.twitter_url %></p>
+			<div style='' class='edit'>
+				<a href='#'>| edit |</a>
+			</div>	
+		</div>
+		<div class="row" id='ae_url'>
+			<p class='val'><%= @restaurant.allergy_eats_url %></p>
+			<div style='' class='edit'>
+				<a href='#'>| edit |</a>
+			</div>	
+		</div>
+		<div class="row" id='total_employees'>
+			<p class='val'><%= @restaurant.total_employees %></p>
+			<div style='' class='edit'>
+				<a href='#'>| edit |</a>
+			</div>	
+		</div>
+		<div class="row" id='percent_aware'>
+			<p class='val'><%= @restaurant.percent_aware %></p>
+			
+		</div>
+		<div class="row" id='description'>
+			<p class='val'><%= @restaurant.description %></p>
+			<div style='' class='edit'>
+				<a href='#'>| edit |</a>
+			</div>	
+		</div>
+		<div class="row" id='visible'>
+			<p class='val'><%= @restaurant.is_visible? %></p>
+			<div style='' class='edit'>
+				<a href='#'>| edit |</a>
+			</div>	
+		</div>
+	</div>
+</div>
+<%= f.button :submit %>
+<% end %>
+<script>
+// var submit_pic_upvote = function(id){
+//   $.ajax({
+//     type: "POST",
+//     url: '/pictures/' + id + '/upvote.json',
+//     dataType: 'json',
+//     success: function(msg) {
+//       alert('upvoted');
+//     }
+//   });
+//   return false;
+};
+</script>

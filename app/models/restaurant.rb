@@ -24,7 +24,7 @@ class Restaurant < ActiveRecord::Base
     dependent: :destroy 
 
   accepts_nested_attributes_for :aware_employees
+  accepts_nested_attributes_for :type_of_cuisines, :reject_if => lambda { |a| a[:cuisine_id].blank? }, :allow_destroy => true
 
-  accepts_nested_attributes_for :type_of_cuisines
 
 end

@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/gregbell/active_admin.git
-  revision: 51792c7924372fc0c8789bc849f82e09041e1218
+  revision: 7d86ea9a6ec55fcb0203f87972f6fb6a10cc9800
   specs:
     activeadmin (1.0.0.pre)
       arbre (~> 1.0)
@@ -138,7 +138,7 @@ GEM
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     orm_adapter (0.5.0)
-    pg (0.17.0)
+    pg (0.17.1)
     polyamorous (0.6.4)
       activerecord (>= 3.0)
     polyglot (0.3.3)
@@ -224,7 +224,7 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (2.0.0)
+    turbolinks (2.1.0)
       coffee-rails
     tzinfo (0.3.38)
     uglifier (2.3.3)
