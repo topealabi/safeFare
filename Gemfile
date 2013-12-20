@@ -7,7 +7,7 @@ gem 'chosen-rails'
 # Use postgresql as the database for Active Record
 gem 'pg'
 gem 'simple_form'
-
+gem "carrierwave"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',

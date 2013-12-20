@@ -1,4 +1,4 @@
-<%= simple_form_for [current_user,@restaurant] do |f| %>
+<%= simple_form_for [current_user,@restaurant], :remote => true,  html: {multipart: true} do |f| %>
 <div class='wrapper col-md-12' style='border:1px solid black; clear:both'>
 		<div class="row" id='name'>
 			<p class='val'><%= @restaurant.name %></p>
@@ -34,6 +34,7 @@
 		<div class="row" id='email'>
 			<p class='val'><%= @restaurant.email %></p>
 			<div style='' class='edit'>
+					<div class="form"><%= f.input :email, label: false, input_html: { class: "req" }   %></div>	s
 				<a href='#'>| edit |</a>
 			</div>
 		</div>
@@ -95,20 +96,31 @@
 				<a href='#'>| edit |</a>
 			</div>	
 		</div>
+		<div class="row" id='logo'>
+			<p class='val'><%= @restaurant.logo %>
+			</p>
+			<%= f.file_field :logo, label: false, input_html: { class: "req" }   %>
+			<div style='' class='edit'>
+				<a href='#'>| edit |</a>
+			</div>	
+		</div>
+	<%= f.button :submit %>
 	</div>
 </div>
-<%= f.button :submit %>
 <% end %>
 <script>
-// var submit_pic_upvote = function(id){
-//   $.ajax({
-//     type: "POST",
-//     url: '/pictures/' + id + '/upvote.json',
-//     dataType: 'json',
-//     success: function(msg) {
-//       alert('upvoted');
-//     }
-//   });
-//   return false;
-};
+$('input, textarea, .select').keyup(function(){ 
+	var id = $(this).attr('id');
+	if ( validate_element(this) == true ){
+		$("#" + id).css('border', '1px solid green');
+	}else{
+		$("#" + id).css('border', '1px solid red');
+	}
+});
+
+$( document ).ajaxComplete(function( event, xhr, settings ) {
+
+    // to do edit form validations. 
+})
+
 </script>

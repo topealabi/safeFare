@@ -30,17 +30,15 @@ class RestaurantsController < ApplicationController
 
   end
   def update
-    binding.pry
+  binding.pry
     @restaurant = Restaurant.find(params[:id])
     if @restaurant.update_attributes(restaurant_params)
-         redirect_to :action => 'show', :id => @restaurant
+         render json: @restaurant
       else
-         render :action => 'edit'
+         render json: @restaurant.errors
       end
     end
-  
   def show
-
       @restaurant = Restaurant.find(params[:id])
   end
 	private	
@@ -49,7 +47,7 @@ class RestaurantsController < ApplicationController
   				:name, :address, :city, 
   				:state, :email, :phone,
   				:hours, :website, :facebook_url,
-  				:twitter_url, :allergy_eats_url, :zip,
+  				:twitter_url, :allergy_eats_url, :zip, :logo,
   				:total_employees, :description, :is_visible?,
   				aware_employees_attributes:[:verification, :name, :expiration, restaurant_roles_attributes:[role_id:[]]],
           type_of_cuisines_attributes:[cuisine_id:[]],
