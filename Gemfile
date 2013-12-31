@@ -8,6 +8,7 @@ gem 'chosen-rails'
 gem 'pg'
 gem 'simple_form'
 gem "carrierwave"
+gem "mini_magick"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
@@ -36,8 +37,6 @@ group :doc do
 end
 
 gem 'activeadmin', github: 'gregbell/active_admin'
-
-
 
 group :development, :test do
   gem 'valid_attribute'

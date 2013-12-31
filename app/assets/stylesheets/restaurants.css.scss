@@ -16,3 +16,13 @@ a.add_an_employee{
 a.add_an_employee:hover{
 	text-decoration:underline;
 }
+.image{
+	width:200px;
+	margin:auto;
+	img{
+	max-width:100%;
+	}
+}
+.hide_form{
+	display:none;
+}

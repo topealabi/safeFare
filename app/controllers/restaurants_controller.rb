@@ -26,14 +26,37 @@ class RestaurantsController < ApplicationController
     end
   end
   def edit
-       @restaurant = Restaurant.find(params[:id])
-
-  end
-  def update
-  binding.pry
+    @cuisines = []
+    @type_of_cuisines = TypeOfCuisine.new
+    @states = []  
     @restaurant = Restaurant.find(params[:id])
+    Cuisine.all.each do |x|
+      if @restaurant.cuisines.include?(x)
+      puts x
+      else
+      @cuisines << x
+      end 
+    end
+    State.all.each do |state|
+      @states << state.state
+    end
+  end
+
+  def update
+    
+    @restaurant = Restaurant.find(params[:id])
+    nested_cuisines = params[:type_of_cuisine][:cuisine_id]
+    binding.pry
+    if nested_cuisines.length > 1
+      nested_cuisines.each do |x|
+        if x !=''
+          TypeOfCuisine.create(restaurant_id: @restaurant.id, cuisine_id: x)
+        end
+      end
+    end
+
     if @restaurant.update_attributes(restaurant_params)
-         render json: @restaurant
+         redirect_to edit_user_restaurant_path, notice: 'Sweet Edit Bro'
       else
          render json: @restaurant.errors
       end
@@ -49,10 +72,18 @@ class RestaurantsController < ApplicationController
   				:hours, :website, :facebook_url,
   				:twitter_url, :allergy_eats_url, :zip, :logo,
   				:total_employees, :description, :is_visible?,
-  				aware_employees_attributes:[:verification, :name, :expiration, restaurant_roles_attributes:[role_id:[]]],
-          type_of_cuisines_attributes:[cuisine_id:[]],
+  				aware_employees_attributes:[:delete?,:verification, :id,:name, :expiration, restaurant_roles_attributes:[:id,:restaurant_id,role_id:[]]],
+          type_of_cuisines_attributes:[:id,:restaurant_id,cuisine_id:[]],
         )
 		end
+    # def update_restaurants(this_restaurant)
+    #   params[:restaurant][:aware_employees_attributes].each do |employee|
+    #     if AwareEmployee.exists?(employee[1][:id])
+    #       binding.pry
+    #     end
+    #   end
+    # end
+    
     def save_nests(this_restaurant)
       params[:restaurant][:type_of_cuisines_attributes].first[1][:cuisine_id].each do |cuisine|
         if cuisine != ''

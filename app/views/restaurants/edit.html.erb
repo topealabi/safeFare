@@ -1,114 +1,142 @@
-<%= simple_form_for [current_user,@restaurant], :remote => true,  html: {multipart: true} do |f| %>
-<div class='wrapper col-md-12' style='border:1px solid black; clear:both'>
+<% if @restaurant.approved? != true %>
+	<h5> This Restaurant has <span style='color:red'> Not Yet </span> Been Approved by The SafeFARE Staff </h5>
+<% end %> 
+<%= simple_form_for [current_user,@restaurant] do |f| %>
+
+<div class='wrapper col-md-12' style='clear:both'>
+	<div class="col-sm-6 ">
 		<div class="row" id='name'>
-			<p class='val'><%= @restaurant.name %></p>
-			<div style='' class='edit'>
-				<a href='#'>| edit |</a>
-			</div>
+			<p> Name </p>
 			<div class="form"><%= f.input :name, label: false, input_html: { class: "req" }   %></div>	
 		</div>
 		<div class="row" id='address'>
-			<p class='val'><%= @restaurant.address %></p>
-			<div style='' class='edit'>
-				<a href='#'>| edit |</a>
-			</div>	
+			<p>Address</p>
+			<div class="form"><%= f.input :address, label: false, input_html: { class: "req" }   %></div>
 		</div>
 		<div class="row" id='city'>
-			<p class='val'><%= @restaurant.city %></p>
-			<div style='' class='edit'>
-				<a href='#'>| edit |</a>
-			</div>	
+			<p>City</p>
+			<div class="form"><%= f.input :city, label: false, input_html: { class: "req" }   %></div>
 		</div>
 		<div class="row" id='state'>
-			<p class='val'><%= @restaurant.state %></p>
-			<div style='' class='edit'>
-				<a href='#'>| edit |</a>
-			</div>	
+			<p>State</p>
+			<div class="form"><%= f.input :state, collection: @states, include_blank: 'Select...',required: true, label: false, input_html: { class: "chosen-select req" } %></div>
 		</div>
 		<div class="row" id='zip'>
-			<p class='val'><%= @restaurant.zip %></p>
-			<div style='' class='edit'>
-				<a href='#'>| edit |</a>
-			</div>	
+			<p>Zip</p>
+			<div class="form"><%= f.input :zip, label: false, input_html: { class: "req" }   %></div>
 		</div>
 		<div class="row" id='email'>
-			<p class='val'><%= @restaurant.email %></p>
-			<div style='' class='edit'>
-					<div class="form"><%= f.input :email, label: false, input_html: { class: "req" }   %></div>	s
-				<a href='#'>| edit |</a>
-			</div>
+			<p>Email</p>
+			<div class="form"><%= f.input :email, label: false, input_html: { class: "req" }   %></div>
 		</div>
 		<div class="row" id='phone'>
-			<p class='val'><%= @restaurant.phone %></p>
-			<div style='' class='edit'>
-				<a href='#'>| edit |</a>
-			</div>	
+			<p>Phone</p>
+			<div class="form"><%= f.input :phone, label: false, input_html: { class: "req" }   %></div>
 		</div>
 		<div class="row" id='hours'>
-			<p class='val'><%= @restaurant.hours %></p>
-			<div style='' class='edit'>
-				<a href='#'>| edit |</a>
-			</div>	
+			<p>Hours</p>
+			<div class="form"><%= f.input :hours, label: false, input_html: { class: "req" }   %></div>
 		</div>
 		<div class="row" id='website'>
-			<p class='val'><%= @restaurant.website %></p>
-			<div style='' class='edit'>
-				<a href='#'>| edit |</a>
-			</div>	
+			<p>Website</p>
+			<div class="form"><%= f.input :website, label: false, input_html: { class: "req" }   %></div>
 		</div>
 		<div class="row" id='fb_url'>
-			<p class='val'><%= @restaurant.facebook_url %></p>
-			<div style='' class='edit'>
-				<a href='#'>| edit |</a>
-			</div>	
+			<p>Facebook</p>
+			<div class="form"><%= f.input :facebook_url, label: false, input_html: { class: "req" }   %></div>
 		</div>
 		<div class="row" id='tw_url'>
-			<p class='val'><%= @restaurant.twitter_url %></p>
-			<div style='' class='edit'>
-				<a href='#'>| edit |</a>
-			</div>	
+			<p>Twitter</p>
+			<div class="form"><%= f.input :twitter_url, label: false, input_html: { class: "req" }   %></div>
 		</div>
 		<div class="row" id='ae_url'>
-			<p class='val'><%= @restaurant.allergy_eats_url %></p>
-			<div style='' class='edit'>
-				<a href='#'>| edit |</a>
-			</div>	
+			<p>Alergy Eats</p>
+			<div class="form"><%= f.input :allergy_eats_url, label: false, input_html: { class: "req" }   %></div>
 		</div>
 		<div class="row" id='total_employees'>
-			<p class='val'><%= @restaurant.total_employees %></p>
-			<div style='' class='edit'>
-				<a href='#'>| edit |</a>
-			</div>	
+			<p>Total Employees</p>
+			<div class="form"><%= f.input :total_employees, label: false, input_html: { class: "req" }   %></div>
 		</div>
 		<div class="row" id='percent_aware'>
 			<p class='val'><%= @restaurant.percent_aware %></p>
 			
 		</div>
-		<div class="row" id='description'>
-			<p class='val'><%= @restaurant.description %></p>
-			<div style='' class='edit'>
-				<a href='#'>| edit |</a>
-			</div>	
+	</div>
+	<div class="col-sm-6">
+		<div class="row" id='logo'>
+			<div class="image"><%= image_tag @restaurant.logo_url %></div>
+
+			<%= f.file_field :logo, label: false, input_html: { class: "req" }   %>
+		
 		</div>
 		<div class="row" id='visible'>
-			<p class='val'><%= @restaurant.is_visible? %></p>
-			<div style='' class='edit'>
-				<a href='#'>| edit |</a>
-			</div>	
+			<p>Visible:
+			<%= f.input :is_visible?, label: false, input_html: { class: "req" }   %>
+		</p>
 		</div>
-		<div class="row" id='logo'>
-			<p class='val'><%= @restaurant.logo %>
-			</p>
-			<%= f.file_field :logo, label: false, input_html: { class: "req" }   %>
-			<div style='' class='edit'>
-				<a href='#'>| edit |</a>
-			</div>	
+		<div class="row" id='description'>
+			<p>Description</p>
+			<div class="form"><%= f.input :description, label: false, input_html: { class: "req" }   %></div>
+		</div>	
+		<div class="row" id='cuisine'>
+			
+			<p> Cuisine: 
+			<% @restaurant.cuisines.each do |cuisine| %>
+				<% new_id = @restaurant.type_of_cuisines.where(cuisine_id: cuisine.id).first.id %>
+				<%= cuisine.name %> 
+				<%= link_to "Delete", user_restaurant_type_of_cuisine_path(current_user, @restaurant, new_id ), :method => :delete, :class => 'action' %>
+			<% end %></p>
+		</div>	
+		<div class="row" id='add_new_cuisine'>
+			<%= simple_form_for [current_user, @restaurant, @type_of_cuisines] do |h| %>
+				<p>Cuisine</p>
+				<%= h.input :cuisine_id, collection: @cuisines, multiple: true, value: :id, label: false, input_html: { class: "chosen-select req", multiple: true, style: 'width:255px; height:200px;'} %>
+			<% end %>
 		</div>
-	<%= f.button :submit %>
+
+		<div class="row" style='margin-top:20px;'id='employee'>
+			<h2> Aware Employees </h2>
+		
+			<% @restaurant.aware_employees.each_with_index do |employee, index| %>
+				<div class="col-sm-4 col-xs-8"> <%= employee.name %></div> 
+				<a href='#' style='cursor:pounter;'class="col-sm-4 col-xs-2 edit <%= index %> " id = '<%= employee.id %>'>| edit |</a> 
+				<div class="col-sm-4 col-xs-2 "> <%= link_to "Delete", user_restaurant_aware_employee_path(current_user, @restaurant, employee), :method => :delete, :class => 'action' %></div> 
+			<% end %> 
+		</div>
+		<div class="row" style='margin:20px 0px;'  id='edit_employee'>
+			<h4> Add Aware Employees </h4>
+				<%= f.simple_fields_for :aware_employees do |h| %>
+			<div class="edit_form">
+				<div class="col-xs-12 ">
+					<p>Employee Name</p>
+					<%= h.input :name, label: false, input_html: { class: "req" } %>
+				</div>
+				<div class="col-xs-12 ">
+					<p>Employee Verification Code</p>
+					<%= h.input :verification, label: false, input_html: { class: "req" } %>
+				</div>
+			
+				<div class="col-xs-12">
+					<p>Expiration</p>
+					<%= h.input :expiration, label: false %>
+				</div>
+			</div>
+		<% end %>
+		</div>
 	</div>
+	<%= f.button :submit %>
 </div>
 <% end %>
 <script>
+$('.edit_form').toggle();
+$('.edit_form').each(function(index){
+	$(this).addClass(''+index+'');
+});
+$('.edit').click(function(){
+	var index = $(this).attr('class').split(' ')[3];
+	$('.edit_form.'+index).fadeToggle();
+})
+$('.chosen-select').chosen();
 $('input, textarea, .select').keyup(function(){ 
 	var id = $(this).attr('id');
 	if ( validate_element(this) == true ){
@@ -118,9 +146,5 @@ $('input, textarea, .select').keyup(function(){
 	}
 });
 
-$( document ).ajaxComplete(function( event, xhr, settings ) {
-
-    // to do edit form validations. 
-})
-
+ 
 </script>

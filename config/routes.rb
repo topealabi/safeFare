@@ -4,7 +4,10 @@ SafeFare::Application.routes.draw do
   devise_for :users
 #  ActiveAdmin.routes(self)
   resources :users do
-    resources :restaurants 
+    resources :restaurants do
+      resources :type_of_cuisines
+      resources :aware_employees
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
