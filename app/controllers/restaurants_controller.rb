@@ -48,7 +48,6 @@ class RestaurantsController < ApplicationController
     binding.pry 
     @restaurant = Restaurant.find(params[:id])
     nested_cuisines = params[:type_of_cuisine][:cuisine_id]
-    
     if nested_cuisines.length > 1
       nested_cuisines.each do |x|
         if x !=''
@@ -56,7 +55,6 @@ class RestaurantsController < ApplicationController
         end
       end
     end
-
     if @restaurant.update_attributes(restaurant_params)
          redirect_to edit_user_restaurant_path, notice: 'Sweet Edit Bro'
       else
@@ -71,9 +69,9 @@ class RestaurantsController < ApplicationController
       	params.require(:restaurant).permit(
   				:name, :address, :city, 
   				:state, :email, :phone,
-  				:hours, :website, :facebook_url,
+  				:hours, :approved, :website, :facebook_url,
   				:twitter_url, :allergy_eats_url, :zip, :logo,
-  				:total_employees, :description, :is_visible?,
+  				:total_employees, :description, :is_visible,
   				aware_employees_attributes:[:delete?,:verification, :id,:name, :expiration, restaurant_roles_attributes:[:id,:restaurant_id,role_id:[]]],
           type_of_cuisines_attributes:[:id,:restaurant_id,cuisine_id:[]],
         )

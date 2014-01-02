@@ -1,4 +1,4 @@
-<% if @restaurant.approved? != true %>
+<% if @restaurant.approved != true %>
 	<h5> This Restaurant has <span style='color:red'> Not Yet </span> Been Approved by The SafeFARE Staff </h5>
 <% end %> 
 <%= simple_form_for [current_user,@restaurant] do |f| %>
@@ -71,7 +71,7 @@
 		</div>
 		<div class="row" id='visible'>
 			<p>Visible:
-			<%= f.input :is_visible?, label: false, input_html: { class: "req" }   %>
+			<%= f.input :is_visible, label: false, input_html: { class: "req" },  as: :radio_buttons   %>
 		</p>
 		</div>
 		<div class="row" id='description'>
@@ -124,33 +124,7 @@
 		<% end %>
 		</div>
 		<div class="row margin-top" id='new'>
-		<%= simple_form_for [current_user, @restaurant, AwareEmployee.new] do |h| %>
-			<div class="row">
-				<div class="col-xs-6 ">
-					<p>Employee Name</p>
-					<%= h.input :name, label: false, input_html: { class: "req" } %>
-				</div>
-				<div class="col-xs-6 ">
-					<p>Employee Verification Code</p>
-					<%= h.input :verification, label: false, input_html: { class: "req" } %>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-6">
-					<p>Expiration</p>
-					<%= h.input :expiration, label: false %>
-				</div>
-			
-				<%= h.simple_fields_for :restaurant_roles do |i| %>
-					<div class="row">
-						<div class="col-xs-6 ">
-							<p>Role</p>
-							<%= i.input :role_id, collection: Role.all, label_method: :role, multiple: true, value: :id, label: false, input_html: { class: "chosen-select req", multiple: true, style: 'width:255px; height:200px;'} %>
-						</div>
-					</div>
-				<% end %>
-			</div>
-		<% end %>	
+		
 	</div>
 	</div>
 	<%= f.button :submit %>
