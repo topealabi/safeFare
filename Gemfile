@@ -28,6 +28,10 @@ gem "devise", "~> 3.2.2"
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
+#search
+gem 'sunspot_rails'
+gem 'sunspot_solr'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
