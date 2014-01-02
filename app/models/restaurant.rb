@@ -27,5 +27,20 @@ class Restaurant < ActiveRecord::Base
   accepts_nested_attributes_for :aware_employees
   accepts_nested_attributes_for :type_of_cuisines, :reject_if => lambda { |a| a[:cuisine_id].blank? }, :allow_destroy => true
 
+  searchable do
+    text :name, :as => :name_textp, :boost => 5 
+    text :address, :as => :name_textp                          
+    text :city, :as => :name_textp                             
+    text :state, :as => :name_textp                            
+    text :email, :as => :name_textp                            
+    text :phone, :as => :name_textp
+    text :hours, :as => :name_textp
+    text :website, :as => :name_textp
+    text :facebook_url, :as => :name_textp
+    text :twitter_url, :as => :name_textp
+    text :allergy_eats_url, :as => :name_textp
+    text :description, :as => :name_textp
+
+  end
 
 end

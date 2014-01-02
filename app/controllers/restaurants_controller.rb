@@ -1,4 +1,11 @@
 class RestaurantsController < ApplicationController
+  def index
+    @search  = Restaurant.solr_search do
+      fulltext params[:search]
+    end
+    @restaurants = @search.results
+  end
+
 	def new
 		  @states = []
     	@user = current_user

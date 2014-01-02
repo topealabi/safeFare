@@ -1,0 +1,60 @@
+<h1>Listing restaurants</h1>
+
+<%= form_tag user_restaurants_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Location</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @restaurants.each do |restaurant| %>
+      <tr>
+        <td><%= restaurant.name %></td>
+
+        <td><%= restaurant.address %></td>
+        <td><%= restaurant.city %></td>
+        <td><%= restaurant.state %></td>
+        <td><%= restaurant.zip %></td>
+        <td><%= restaurant.email %></td>
+        <td><%= restaurant.phone %></td>
+        <td><%= restaurant.hours %></td>
+        <td><%= restaurant.website %></td>
+        <td><%= restaurant.facebook_url %></td>
+        <td><%= restaurant.twitter_url %></td>
+        <td><%= restaurant.allergy_eats_url %></td>
+        <td><%= restaurant.total_employees %></td>
+        <td><%= restaurant.percent_aware %></td>
+        <td><%= restaurant.description %></td>
+        <td><%= restaurant.is_visible? %></td>
+        <td><%= link_to 'Show', user_restaurants_path %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Restaurant', new_user_restaurant_path %>
