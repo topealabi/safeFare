@@ -26,10 +26,12 @@ class RestaurantsController < ApplicationController
     end
   end
   def edit
+
     @cuisines = []
     @type_of_cuisines = TypeOfCuisine.new
     @states = []  
     @restaurant = Restaurant.find(params[:id])
+   
     Cuisine.all.each do |x|
       if @restaurant.cuisines.include?(x)
       puts x
@@ -43,10 +45,10 @@ class RestaurantsController < ApplicationController
   end
 
   def update
-    
+    binding.pry 
     @restaurant = Restaurant.find(params[:id])
     nested_cuisines = params[:type_of_cuisine][:cuisine_id]
-    binding.pry
+    
     if nested_cuisines.length > 1
       nested_cuisines.each do |x|
         if x !=''
