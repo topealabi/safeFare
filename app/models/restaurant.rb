@@ -39,7 +39,7 @@ class Restaurant < ActiveRecord::Base
     text :facebook_url, :as => :name_textp
     text :twitter_url, :as => :name_textp
     text :allergy_eats_url, :as => :name_textp
-    text :description, :as => :name_textp
+    text :description
 
   end
 
