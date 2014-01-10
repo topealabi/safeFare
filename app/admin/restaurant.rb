@@ -17,6 +17,16 @@ ActiveAdmin.register Restaurant do
   #  permitted << :other if resource.something?
   #  permitted
   # end
-
+  
+  index do
+    column :name
+    column :email
+    column :is_visible
+    column :approved
+    
+    default_actions
+  end
 
 end
+  
+

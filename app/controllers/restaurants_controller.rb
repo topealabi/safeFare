@@ -1,4 +1,7 @@
 class RestaurantsController < ApplicationController
+  before_filter :authenticate_user!, 
+              :only => [:new, :edit, :create, :update, :delete]
+
   def index
     @search  = Restaurant.solr_search do
       fulltext params[:search]
@@ -6,7 +9,7 @@ class RestaurantsController < ApplicationController
     @restaurants = @search.results
   end
 
-	def new
+  def new
 		  @states = []
     	@user = current_user
     	@restaurant = Restaurant.new
@@ -36,9 +39,11 @@ class RestaurantsController < ApplicationController
 
     @cuisines = []
     @type_of_cuisines = TypeOfCuisine.new
+
     @states = []  
     @restaurant = Restaurant.find(params[:id])
-   
+  
+ 
     Cuisine.all.each do |x|
       if @restaurant.cuisines.include?(x)
       puts x
@@ -52,9 +57,11 @@ class RestaurantsController < ApplicationController
   end
 
   def update
-    binding.pry 
+   
     @restaurant = Restaurant.find(params[:id])
     nested_cuisines = params[:type_of_cuisine][:cuisine_id]
+    new_employees = [params[:restaurant][:employee_1],params[:restaurant][:employee_2],params[:restaurant][:employee_3]]
+    add_new_employees(new_employees)
     if nested_cuisines.length > 1
       nested_cuisines.each do |x|
         if x !=''
@@ -68,6 +75,7 @@ class RestaurantsController < ApplicationController
          render json: @restaurant.errors
       end
     end
+  
   def show
       @restaurant = Restaurant.find(params[:id])
   end
@@ -78,8 +86,8 @@ class RestaurantsController < ApplicationController
   				:state, :email, :phone,
   				:hours, :approved, :website, :facebook_url,
   				:twitter_url, :allergy_eats_url, :zip, :logo,
-  				:total_employees, :description, :is_visible,
-  				aware_employees_attributes:[:delete?,:verification, :id,:name, :expiration, restaurant_roles_attributes:[:id,:restaurant_id,role_id:[]]],
+  				:total_employees, :description, :is_visible, employees_attributes:[:verification, :id,:name, :expiration, restaurant_roles_attributes:[:id,:restaurant_id,role_id:[]]],
+  				aware_employees_attributes:[:verification, :id,:name, :expiration, restaurant_roles_attributes:[:id,:restaurant_id,role_id:[]]],
           type_of_cuisines_attributes:[:id,:restaurant_id,cuisine_id:[]],
         )
 		end
@@ -90,7 +98,32 @@ class RestaurantsController < ApplicationController
     #     end
     #   end
     # end
-    
+    def add_new_employees(new_employees)
+      new_employees.each do |employee|
+       
+        if employee[:name] != ''
+            
+          current_employee = AwareEmployee.new(
+            name: employee[:name],
+            restaurant_id: params[:id],
+            verification: employee[:verification],
+            expiration: [employee["expiration(1i)"],  employee["expiration(2i)"],  employee["expiration(3i)"]].reject(&:empty?).join('-') )         
+          if current_employee.save
+            if employee[:restaurant_roles][:role_id].length > 1
+                employee[:restaurant_roles][:role_id].each do |role|
+                  if role !=''
+                    RestaurantRole.create(aware_employee_id: current_employee.id, role_id: role )
+                  end
+                end
+           binding.pry
+            end
+          else
+          #to do
+          end
+        end
+      end
+    end
+
     def save_nests(this_restaurant)
       params[:restaurant][:type_of_cuisines_attributes].first[1][:cuisine_id].each do |cuisine|
         if cuisine != ''
