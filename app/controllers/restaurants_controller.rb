@@ -42,7 +42,7 @@ class RestaurantsController < ApplicationController
 
     @states = []  
     @restaurant = Restaurant.find(params[:id])
-  
+   
  
     Cuisine.all.each do |x|
       if @restaurant.cuisines.include?(x)
@@ -62,6 +62,7 @@ class RestaurantsController < ApplicationController
     nested_cuisines = params[:type_of_cuisine][:cuisine_id]
     new_employees = [params[:restaurant][:employee_1],params[:restaurant][:employee_2],params[:restaurant][:employee_3]]
     add_new_employees(new_employees)
+     binding.pry
     if nested_cuisines.length > 1
       nested_cuisines.each do |x|
         if x !=''

@@ -1,5 +1,20 @@
 ActiveAdmin.register Restaurant do
 
+  index do
+    column :name
+    column :address
+    bool_column :is_visible
+    bool_column :approved
+    actions
+  end
+  show do
+    attributes_table do
+      row :name
+      row :email
+      bool_row :approved
+      bool_row :is_visible
+    end
+  end  
   
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -17,16 +32,6 @@ ActiveAdmin.register Restaurant do
   #  permitted << :other if resource.something?
   #  permitted
   # end
-  
-  index do
-    column :name
-    column :email
-    column :is_visible
-    column :approved
-    
-    default_actions
-  end
-
 end
   
 
