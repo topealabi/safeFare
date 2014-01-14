@@ -84,26 +84,18 @@
 					<p>Description</p>
 					<div class="form"><%= f.input :description, label: false, input_html: { class: "req" }   %></div>
 				</div>	
-				<div class="row" id='cuisine'>
-					<p> Cuisine: 
-					<% @restaurant.cuisines.each do |cuisine| %>
-						<% new_id = @restaurant.type_of_cuisines.where(cuisine_id: cuisine.id).first.id %>
-						<%= cuisine.name %> 
-						<%= link_to "Delete", user_restaurant_type_of_cuisine_path(current_user, @restaurant, new_id ), :method => :delete, :class => 'action' %>
-					<% end %></p>
-				</div>	
+			
 				<div class="row" id='add_new_cuisine'>
-					<%= simple_form_for [current_user, @restaurant, @type_of_cuisines] do |h| %>
-						<p>Cuisine</p>
-						<%= h.input :cuisine_id, collection: @cuisines, multiple: true, value: :id, label: false, input_html: { class: "chosen-select req", multiple: true, style: 'width:255px; height:200px;'} %>
-					<% end %>
+					<%= f.association :cuisines, multiple: true, collection: Cuisine.all, label_method: :name, value: :id, input_html: { class: "chosen-select req", multiple: true, style: 'width:255px; height:200px;'}  %>
 				</div>
 
 				<div class="row" style='margin-top:20px;'id='employee'>
 					<h2> Aware Employees </h2>
 				
 					<% @restaurant.aware_employees.each_with_index do |employee, index| %>
-						<div class="col-sm-4 col-xs-8"> <%= employee.name %></div> 
+						<div class="col-sm-4 col-xs-8"> 
+							<%= employee.name %>
+						</div> 
 						<a style='cursor:pounter;'class="col-sm-4 col-xs-2 edit <%= index %> " id = '<%= employee.id %>'>| edit |</a> 
 						<div class="col-sm-4 col-xs-2 "> <%= link_to "Delete", user_restaurant_aware_employee_path(current_user, @restaurant, employee), :method => :delete, :class => 'action' %></div> 
 					<% end %> 
@@ -124,6 +116,7 @@
 								<p>Expiration</p>
 								<%= h.input :expiration, label: false %>
 							</div>
+							<%= h.association :roles, multiple: true, collection: Role.all, label_method: :role, value: :id, input_html: { class: "chosen-select req", multiple: true, style: 'width:255px; height:200px;'}  %>
 						</div>
 					<% end %>
 				</div>

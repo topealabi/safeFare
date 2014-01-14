@@ -6,7 +6,9 @@ SafeFare::Application.routes.draw do
   resources :users do
     resources :restaurants do
       resources :type_of_cuisines
-      resources :aware_employees
+      resources :aware_employees do
+        resources :restaurant_roles
+      end
     end
   end
 
