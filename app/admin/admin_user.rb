@@ -1,4 +1,5 @@
 ActiveAdmin.register AdminUser do
+  #menu :if => proc{ current_admin_user.can_edit_admin_users?}
   permit_params :email, :password, :password_confirmation, :role
 
   #ROLES = %w(editor moderator manager)
@@ -30,6 +31,7 @@ ActiveAdmin.register AdminUser do
     f.actions
   end
 
+#allows you to update user without forcing you to fill in password
   controller do
     def update_resource object, attributes
       attributes.each do |attr|
