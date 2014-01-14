@@ -4,8 +4,22 @@
 class AdminAbility
 	include CanCan::Ability
 	 
-	def initialize(user)
-		user ||= User.new
+	def initialize(admin_user)
+		admin_user ||= AdminUser.new
+			can :read, :all
+
+		if admin_user.role == "Content Editor"
+			can :manage, Post
+		end
+
+		if admin_user.role == "SafeFare Admin"
+			can :manage, Restaurant
+			can :manage, Post
+		end
+
+		if admin_user.role == "Super Admin"
+			can :manage, :all
+		end
 	 
 		# We operate with three role levels:
 		# - Editor
@@ -13,6 +27,8 @@ class AdminAbility
 		# - Manager
 		 
 		# An editor can do the following:
-		can :manage, :all
+		
 	end
 end
+
+

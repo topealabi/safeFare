@@ -83,10 +83,11 @@ ActiveAdmin.setup do |config|
   # method in a before filter of all controller actions to
   # ensure that there is a user with proper rights. You can use
   # CanCanAdapter or make your own. Please refer to documentation.
-  #config.authorization_adapter = ActiveAdmin::CanCanAdapter
+  config.authorization_adapter = ActiveAdmin::CanCanAdapter
 
   # You can customize your CanCan Ability class name here.
-  #config.cancan_ability_class = "AdminAbility"
+  config.cancan_ability_class = "AdminAbility"
+  config.on_unauthorized_access = :access_denied
 
    
 
