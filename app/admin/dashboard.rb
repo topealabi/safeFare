@@ -10,6 +10,17 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
+    section "Pending Restaurants" do
+    table_for Restaurant.where(approved:!true) do 
+      column :name do |restaurant|
+        link_to restaurant.name, edit_admin_restaurant_path(restaurant)
+        end
+      column :address
+      bool_column :approved
+    end
+    strong { link_to "View All Restaurants", admin_restaurants_path }
+  end
+
     # Here is an example of a simple dashboard with columns and panels.
     #
     # columns do

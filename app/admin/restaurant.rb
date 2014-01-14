@@ -1,4 +1,5 @@
 ActiveAdmin.register Restaurant do
+  
 
   index do
     column :name

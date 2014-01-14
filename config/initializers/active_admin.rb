@@ -1,24 +1,24 @@
 ActiveAdmin.setup do |config|
 
   module ActiveAdmin
-  module Views
-    class TableFor
-      def bool_column(appr)
-        column(appr){ |restaurant| restaurant[appr] ? '&#x2714;'.html_safe : '&#x2717;'.html_safe }
+    module Views
+      class TableFor
+        def bool_column(appr)
+          column(appr){ |restaurant| restaurant[appr] ? '&#x2714;'.html_safe : '&#x2717;'.html_safe }
+        end
       end
-    end
-    class AttributesTable
-      def bool_row(appr)
-        row(appr){ |restaurant| restaurant[appr] ? '&#x2714;'.html_safe : '&#x2717;'.html_safe }
+      class AttributesTable
+        def bool_row(appr)
+          row(appr){ |restaurant| restaurant[appr] ? '&#x2714;'.html_safe : '&#x2717;'.html_safe }
+        end
       end
-    end
-    class IndexAsTable
-      def bool_column(appr)
-        column(appr){ |restaurant| restaurant[appr] ? '&#x2714;'.html_safe : '&#x2717;'.html_safe }
+      class IndexAsTable
+        def bool_column(appr)
+          column(appr){ |restaurant| restaurant[appr] ? '&#x2714;'.html_safe : '&#x2717;'.html_safe }
+        end
       end
     end
   end
-end
 
   # == Site Title
   #
@@ -83,10 +83,12 @@ end
   # method in a before filter of all controller actions to
   # ensure that there is a user with proper rights. You can use
   # CanCanAdapter or make your own. Please refer to documentation.
-  # config.authorization_adapter = ActiveAdmin::CanCanAdapter
+  #config.authorization_adapter = ActiveAdmin::CanCanAdapter
 
   # You can customize your CanCan Ability class name here.
-  # config.cancan_ability_class = "Ability"
+  #config.cancan_ability_class = "AdminAbility"
+
+   
 
   # You can specify a method to be called on unauthorized access.
   # This is necessary in order to prevent a redirect loop which happens
@@ -251,7 +253,6 @@ end
   # You can enable or disable them for all resources here.
   #
   # config.filters = true
-
-  
-
 end
+
+

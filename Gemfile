@@ -41,6 +41,7 @@ group :doc do
 end
 
 gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'cancan'
 
 group :development, :test do
   gem 'valid_attribute'
