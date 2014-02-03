@@ -11,7 +11,7 @@ $blue:#243772;
 		
 	}
 	.mobile-menu { display: block; margin-bottom: 9px;}
-	nav#main-nav .nav, .nav-link, .nav-full-bar, .for-restaurant,.footer-section { display: none; }
+	nav#main-nav .nav, #main-nav .nav-link, .nav-full-bar, .for-restaurant,.footer-section { display: none; }
 	nav#main-nav.navbar .nav>li { width: 100%; }
 	.info-section{
 	height:auto;

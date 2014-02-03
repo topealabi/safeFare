@@ -14,27 +14,34 @@ $blue:#243772;
 	input{
 		border:0px solid white;
 		height:45px;
-		width:40%;
+		width:44%;
+
 	}
 	input#cuisine{
 	background:white;
 	background-image: image-url("find.png");
 	background-repeat:no-repeat;
     padding-left:60px;
+    min-width:188px;
 	}
 	input#free-text{
 	background:white;
 	background-image: image-url("near.png");
 	background-repeat:no-repeat;
     padding-left:60px;
+    min-width:188px;
 	}
 	input#submit-search{
 		float:right;
-		width:15%;
-		height:45px;
-		background: white;
+		width:44px;
+		height:44px;
+		margin:0px;
 		border-radius: 0;
-
+		background-image: image-url("search.gif");
+		background-position: 0px 0px;
+	}
+	input#submit-search:hover{
+		background-position: 0px 44px;
 	}
 }
 .nav-full-bar{
@@ -44,8 +51,9 @@ $blue:#243772;
 	ul{
 		width:100%;
 		margin:auto;
+		padding:0px;
 		li{
-			width:25%;
+			width:20%;
 			float:left;
 			text-align: center;
 			color:white;
@@ -64,7 +72,8 @@ $blue:#243772;
 		
 		height:100%;
 		position:relative;
-		background-image: url(http://placekitten.com/970/595);
+		background-image: image-url("safe-fare-family.png");
+		
 	}
 	.info-box{
 
@@ -73,15 +82,28 @@ $blue:#243772;
 		padding:0px;
 		height:235px;
 		width:100%;
-		opacity:.8;
+		opacity:.9;
 		background:white;
 		
 		.for-restaurant,.vid,.about{
-			border-right:1px solid black;
+			
 			height:235px;
 		}
+		.for-restaurant{
+			.nav-link{
+				width:100%;
+				padding:10px 0px !important;				
+				a{
+
+				font-weight:400;
+				font-family:'proxima-nova-condensed';
+				}
+			}
+		}
 		.vid{
-			background-image: url(http://placekitten.com/320/235);
+			img{
+				margin-top:33px;
+			}
 		}
 
 	}

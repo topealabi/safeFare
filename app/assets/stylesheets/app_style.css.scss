@@ -14,7 +14,7 @@ h2.small-thick{
 }
 p{
 margin: 0px;
-color: white;
+color: inherit;
 font-size: 15px;
 	}
 a{text-decoration:none;color:inherit}
@@ -25,11 +25,27 @@ ul.nav a:hover { background: $orange !important; }
 nav#main-nav{margin-bottom:0px;}
 
 .section-wrapper{
-	max-width:960px;
+	max-width:970px;
 	margin:auto;
 }
 .left{ float:left; }
 .right{ float:right; }
-.cont{padding:20px}
-.thin{font-weight:100;}
+.cont{padding:15px}
+
 .text-center{ text-align:center;}
+.orange-header{color:$orange;font-weight:300;font-family:'proxima-nova'; font-size:28px;}
+.nav-link{
+	background:$blue;
+	width:180px;
+	text-align: center;
+	font-size:17px;
+	padding:7px 0px;
+	margin-top:15px;
+	letter-spacing: 0.05em;
+	a{
+		text-decoration: none;
+		color:white;
+		font-weight: 600;
+		letter-spacing: 0.05em;
+	}
+}
