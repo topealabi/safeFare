@@ -1,0 +1,35 @@
+// Variables
+$orange: #EC4423;
+$border:#243772;
+$blue:#243772;
+
+//Globals
+p,a,h1,h2,li{font-family:'proxima-nova-condensed';}
+h2.small-thick{
+	font-weight:500;
+		color:white;
+		font-size:20px;
+		letter-spacing:.05em;
+		font-family:'proxima-nova';
+}
+p{
+margin: 0px;
+color: white;
+font-size: 15px;
+	}
+a{text-decoration:none;color:inherit}
+.notice{float:left;position:absolute;}
+.alert{float:right; position:absolute;padding:0px; border:0px solid white;}
+// Nav
+ul.nav a:hover { background: $orange !important; }
+nav#main-nav{margin-bottom:0px;}
+
+.section-wrapper{
+	max-width:960px;
+	margin:auto;
+}
+.left{ float:left; }
+.right{ float:right; }
+.cont{padding:20px}
+.thin{font-weight:100;}
+.text-center{ text-align:center;}

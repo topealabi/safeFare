@@ -16,7 +16,7 @@ class RestaurantsController < ApplicationController
       @restaurant.type_of_cuisines.build
       @role = Role.all
     	State.all.each do |state|
-    	 @states << state.state
+    	 @states << state.abbreviation
     	end
   end
 	def create
@@ -28,6 +28,7 @@ class RestaurantsController < ApplicationController
         format.html { redirect_to current_user, notice: 'Restaurant was successfully created.' }
         format.json { render action: 'show', status: :created, location: @restaurant }
       else
+        binding.pry
         format.html { redirect_to root_path, notice: 'There was an error on your form' }
         format.json { render json: @restaurant.errors, status: :unprocessable_entity }
       end
@@ -42,7 +43,7 @@ class RestaurantsController < ApplicationController
       if @restaurant.cuisines.include?(x) then puts x else @cuisines << x end 
     end
     State.all.each do |state|
-      @states << state.state
+      @states << state.abbreviation
     end
   end
   def update   
@@ -78,6 +79,7 @@ class RestaurantsController < ApplicationController
       	params.require(:restaurant).permit(
   				:name, :address, :city, 
   				:state, :email, :phone,
+          :repos, :aware_employee,
   				:hours, :approved, :website, :facebook_url,
   				:twitter_url, :allergy_eats_url, :zip, :logo,
   				:total_employees, :description, :is_visible, employees_attributes:[:verification, :id,:name, :expiration, restaurant_roles_attributes:[:id,:restaurant_id,role_id:[]]],
@@ -114,7 +116,6 @@ class RestaurantsController < ApplicationController
         end
       end
     end
-
     def save_nests(this_restaurant)
       params[:restaurant][:type_of_cuisines_attributes].first[1][:cuisine_id].each do |cuisine|
         if cuisine != ''

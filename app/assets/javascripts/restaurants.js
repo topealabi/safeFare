@@ -1,3 +1,76 @@
+var marker;
+var map;
+
+function initialize(lat, lng) {
+ 	center = (typeof lat != 'number') ? new google.maps.LatLng(-34.397, 150.644) : new google.maps.LatLng(lat, lng)
+ 	
+  	var mapOptions = {
+    	zoom: 13,
+    	center: center
+  	};
+
+  	map = new google.maps.Map(document.getElementById('map-canvas'),
+          mapOptions);
+
+  	marker = new google.maps.Marker({
+	    map:map,
+	    draggable:true,
+	    animation: google.maps.Animation.DROP,
+	    position: center
+  	});
+  	google.maps.event.addListener(marker, 'mouseup', setpos);
+}
+function setpos(){
+
+	var val = marker.position.toString().substr(1, marker.position.toString().length-2);
+	$('#restaurant_repos').val(val);
+	
+}
+function resetCenter(latlng){
+	center = latlng;
+	map.setCenter(latlng);
+	marker = new google.maps.Marker({
+	    map:map,
+	    draggable:true,
+	    animation: google.maps.Animation.DROP,
+	    position: center
+  	});
+  	google.maps.event.addListener(marker, 'mouseup', setpos);
+}
+
+
+function geocode(params){
+	$(function(){
+        $.ajax({
+        url:'http://maps.googleapis.com/maps/api/geocode/json?address='+params+'&sensor=true',
+        type:"GET",
+        dataType: 'json',
+        
+        async:'true',
+        success:function (data) {
+            resetCenter(data.results[0].geometry.location)
+          }
+        });
+      });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var validate_element = function(input){
 	var element = $(input).attr('id');
 	var value = $(input).val();
@@ -13,6 +86,8 @@ var validate_element = function(input){
 	}else {
 		return true;
 	}
+
+
 }
 var checkEmail = function(value) {
     var email = value;
@@ -21,6 +96,7 @@ var checkEmail = function(value) {
 	if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length){	
  		return false;
   	}else{
+  		
   		return true;
   	}
 }
@@ -49,3 +125,4 @@ var checkLength = function(value) {
 		return false;
 	}
 }
+

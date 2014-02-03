@@ -10,6 +10,7 @@
 		<h5> This Restaurant has <span style='color:red'> Not Yet </span> Been Approved by The SafeFARE Staff </h5>
 	<% end %> 
 	<%= simple_form_for [current_user,@restaurant] do |f| %>
+	
 		<div class='wrapper col-md-12' style='clear:both'>
 			<!-- left side -->
 			<div class="col-sm-6 ">
@@ -215,7 +216,9 @@
 		</div>
 	<% end %>
 <% end %>
+	 <div id="map-canvas"/>
 <script>
+	
 $('.chosen-select').chosen();
 $('.edit_form, .new_emp').toggle();
 $('.edit_form').each(function(index){

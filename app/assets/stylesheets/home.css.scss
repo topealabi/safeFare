@@ -1,0 +1,92 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+$orange: #EC4423;
+$border:#243772;
+$blue:#243772;
+
+.search{
+	height:175px;
+	background:$orange;
+	.safeFare-icon{margin-top:40px;}
+	h2{margin:37px 0 0px;}
+	p{font-weight: 300; margin:5px 0px 10px;}
+	input{
+		border:0px solid white;
+		height:45px;
+		width:40%;
+	}
+	input#cuisine{
+	background:white;
+	background-image: image-url("find.png");
+	background-repeat:no-repeat;
+    padding-left:60px;
+	}
+	input#free-text{
+	background:white;
+	background-image: image-url("near.png");
+	background-repeat:no-repeat;
+    padding-left:60px;
+	}
+	input#submit-search{
+		float:right;
+		width:15%;
+		height:45px;
+		background: white;
+		border-radius: 0;
+
+	}
+}
+.nav-full-bar{
+	
+	height:50px;
+	background:$blue;
+	ul{
+		width:100%;
+		margin:auto;
+		li{
+			width:25%;
+			float:left;
+			text-align: center;
+			color:white;
+			list-style: none;
+			font-weight: 700;
+			padding-top:10px;
+			font-size:15px;
+		}
+	}
+}
+.info-section{
+	height:595px;
+	
+
+	.section-wrapper{
+		
+		height:100%;
+		position:relative;
+		background-image: url(http://placekitten.com/970/595);
+	}
+	.info-box{
+
+		position:absolute;
+		bottom:0px;
+		padding:0px;
+		height:235px;
+		width:100%;
+		opacity:.8;
+		background:white;
+		
+		.for-restaurant,.vid,.about{
+			border-right:1px solid black;
+			height:235px;
+		}
+		.vid{
+			background-image: url(http://placekitten.com/320/235);
+		}
+
+	}
+}
+.footer-section{
+	height:134px;
+	background:$orange;
+}
