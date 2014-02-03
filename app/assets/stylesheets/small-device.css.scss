@@ -1,0 +1,36 @@
+$orange: #EC4423;
+$border:#243772;
+$blue:#243772;
+
+@media screen and (max-width: 767px){ /* Insert your own breakpoint as needed */
+	nav#main-nav{
+		width:100%;
+		background:$blue;
+		border-radius:0px;
+		height:50px;
+		
+	}
+	.mobile-menu { display: block; margin-bottom: 9px;}
+	nav#main-nav .nav, .nav-link, .nav-full-bar, .for-restaurant,.footer-section { display: none; }
+	nav#main-nav.navbar .nav>li { width: 100%; }
+	.info-section{
+	height:auto;
+	background:wheat;
+}
+.info-box{
+		position:relative !important;
+		bottom:0px;
+		padding:0px;
+		height:auto !important;
+		width:100%;
+		background:white;
+	}
+	.about{
+		height:auto !important;
+
+	}
+	.vid{
+		height:240px !important;
+		background-image: url(http://placekitten.com/970/240) !important;
+	}
+}

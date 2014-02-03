@@ -6,7 +6,9 @@ SafeFare::Application.routes.draw do
   resources :users do
     resources :restaurants do
       resources :type_of_cuisines
-      resources :aware_employees
+      resources :aware_employees do
+        resources :restaurant_roles
+      end
     end
   end
 
@@ -15,7 +17,7 @@ SafeFare::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+  root 'home#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

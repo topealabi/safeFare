@@ -7,27 +7,33 @@
 	
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbqyE_ATNzMEVS_S-79LoBo6peBwoVa-o&sensor=true"></script>
+  <script type="text/javascript" src="//use.typekit.net/vmz8fhp.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 </head>
 <body>
-
-<nav class="navbar navbar-default" role="navigation">
-	<div class="navbar-header">
-		<% if user_signed_in? %>
-		  Logged in as <strong><%= current_user.email %></strong>.
-		  <%= link_to 'Edit profile', edit_user_registration_path %> |
-		  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-		<% else %>
-		  <%= link_to "Sign up", new_user_registration_path %> |
-		  <%= link_to "Login", new_user_session_path %>
-		<% end %>
+<nav id="main-nav" class="navbar">
+	<div class="navbar-inner">
+		<div class="mobile-menu">
+			<a href="#">Nav</a>
+		</div>
+		<div class="sign-in">
+			<div class="nav-link">
+				<% if user_signed_in? %>
+		 		  <%= link_to 'Edit Restaurant', edit_user_registration_path %> 
+		 		<% else %>
+		 		  <%= link_to "RESTAURANT LOGIN", new_user_registration_path %> 
+		 		 
+		 		<% end %> 
+	 		</div>
+		</div>
 	</div>
 </nav>
-<div class="container">
-	<div class="wrapper">
+<div class="container-fluid">
 		<%= yield %>
 		<p class="notice"><%= notice %></p>
 		<p class="alert"><%= alert %></p>
-	</div>
 </div>
+	
 </body>
 </html>
