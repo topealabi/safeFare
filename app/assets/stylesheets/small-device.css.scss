@@ -1,6 +1,7 @@
 $orange: #EC4423;
-$border:#243772;
+$border:#AD2D0A;
 $blue:#243772;
+$hover:#3a5ad8;
 
 @media screen and (max-width: 767px){ /* Insert your own breakpoint as needed */
 	nav#main-nav{
@@ -8,29 +9,132 @@ $blue:#243772;
 		background:$blue;
 		border-radius:0px;
 		height:50px;
+		overflow:hidden;
+		transition: height 0.5s ease;
 		
 	}
-	.mobile-menu { display: block; margin-bottom: 9px;}
-	nav#main-nav .nav, #main-nav .nav-link, .nav-full-bar, .for-restaurant,.footer-section { display: none; }
+	nav#main-nav.open{
+		height:200px;
+	}
+	.mobile-menu { 
+		display: block; 
+		padding-top: 15px;
+		text-align: center;
+		#mobile-nav{
+			color:white;
+			text-decoration: none;
+			font-weight:600;
+			font-family:'proxima-nova-condensed';
+			font-size:18px;
+			letter-spacing: .03em;
+			cursor:pointer;
+		
+			}
+			.mobile-nav-items {
+				padding-top:15px;
+				li{
+					padding: 4px;
+					height: 25px;
+					border-bottom: 1px solid white;
+				}
+				li:hover{
+					background:$hover;
+				}
+				a{
+				text-align: left;
+				color:white;
+				text-decoration: none;
+				font-weight:600;
+				font-family:'proxima-nova-condensed';
+				font-size:18px;
+				letter-spacing: .03em;
+			}
+			}
+		}
+	
+	nav#main-nav .nav, #main-nav .nav-link, .nav-full-bar, .top, .vid img, .grad-a,.grad-b, .home-background { display: none; }
 	nav#main-nav.navbar .nav>li { width: 100%; }
+
 	.info-section{
-	height:auto;
-	background:wheat;
-}
-.info-box{
-		position:relative !important;
-		bottom:0px;
-		padding:0px;
-		height:auto !important;
-		width:100%;
+		height:auto;
 		background:white;
 	}
-	.about{
-		height:auto !important;
+	.safeFare-icon{
+		text-align:center;
+		margin-bottom:10px;
+	}
+	.safeFare-search.right{
+		float:none !important;
+		width:95%;
+		margin:auto;
+		text-align:center;
+		h2,p{
+			text-align:left;
+			margin-top:0px;
+
+		}
+		input{
+			width:100%;
+			margin-bottom:10px;
+		}
+		input#submit-search{
+			float:none !important;
+			max-width:100%;
+		}
+	}
+	.info-box{
+			position:relative !important;
+			bottom:0px;
+			padding:0px;
+			height:auto !important;
+			width:100%;
+			background:white;
+		}
+		.about{
+			height:auto !important;
+			.cont{
+				padding:30px;
+			}
+
+		}
+		.vid{
+			height:240px !important;
+			background-image: image-url("family.jpg");
+			background-position:top center;
+		}
+		.for-restaurant{
+			.cont{
+				padding:30px;
+			}
+		}
+	
+
+	
+		.footer-section{
+			height:100%;
+		}
+
 
 	}
-	.vid{
-		height:240px !important;
-		background-image: url(http://placekitten.com/970/240) !important;
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	@media screen and (max-width: 1060px){
+		.info-section .section-wrapper{
+			overflow:hidden;
+		}
 	}
-}

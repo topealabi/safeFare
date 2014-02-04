@@ -1,8 +1,15 @@
 // Variables
 $orange: #EC4423;
-$border:#243772;
+$border:#AD2D0A;
 $blue:#243772;
-
+$hover:#3a5ad8;
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+       -o-border-radius: $radius;
+          border-radius: $radius;
+}
 //Globals
 p,a,h1,h2,li{font-family:'proxima-nova-condensed';}
 h2.small-thick{
@@ -12,6 +19,9 @@ h2.small-thick{
 		letter-spacing:.05em;
 		font-family:'proxima-nova';
 }
+ul{margin:0px; padding:0px;}
+ul li{list-style:none;margin:0px; padding:0px;}
+input{@include border-radius(0px);}
 p{
 margin: 0px;
 color: inherit;
@@ -20,10 +30,6 @@ font-size: 15px;
 a{text-decoration:none;color:inherit}
 .notice{float:left;position:absolute;}
 .alert{float:right; position:absolute;padding:0px; border:0px solid white;}
-// Nav
-ul.nav a:hover { background: $orange !important; }
-nav#main-nav{margin-bottom:0px;}
-
 .section-wrapper{
 	max-width:970px;
 	margin:auto;
@@ -41,6 +47,7 @@ nav#main-nav{margin-bottom:0px;}
 	font-size:17px;
 	padding:7px 0px;
 	margin-top:15px;
+	transition: background 0.5s ease;
 	letter-spacing: 0.05em;
 	a{
 		text-decoration: none;
@@ -48,4 +55,137 @@ nav#main-nav{margin-bottom:0px;}
 		font-weight: 600;
 		letter-spacing: 0.05em;
 	}
+}
+.nav-link:hover{background:$hover;}
+// Nav
+.search{
+	height:100%;
+	background:$orange;
+	color:white;
+	padding-bottom:33px;
+	.safeFare-icon{
+		margin-top:40px;
+		img{
+			width:100%;
+			max-width:368px;
+		}
+	}
+
+	h2{margin:37px 0 0px;}
+	p{font-weight: 300; margin:5px 0px 10px;}
+	input{
+		border:0px solid white;
+		height:45px;
+		width:42%;
+
+	}
+	input#cuisine{
+	background:white;
+	background-image: image-url("find.png");
+	background-repeat:no-repeat;
+    padding-left:60px;
+    
+	}
+	input#free-text{
+	background:white;
+	background-image: image-url("near.png");
+	background-repeat:no-repeat;
+    padding-left:65px;
+    
+	}
+	input#submit-search{
+		float:right;
+		width:44px;
+		height:44px;
+	
+		margin:0px;
+
+		@include border-radius(0px);
+		background-image: image-url("search.gif");
+		background-position: 0px 0px;
+	}
+	input#submit-search:hover{
+		background-position: 0px 44px;
+	}
+}
+.nav-full-bar{
+	height:50px;
+	background:$blue;
+	ul{
+		width:100%;
+		margin:auto;
+		padding:0px;
+		li{
+			width:20%;
+			float:left;
+			transition: background 0.5s ease;
+			text-align: center;
+			color:white;
+			list-style: none;
+			padding-top:17px;
+			height:50px;
+			a{
+			text-decoration: none;
+			color:white;
+			font-family: 'proxima-nova-condensed';
+			font-weight: 500;
+			height:100%;
+			
+			font-size:18px;
+			}
+		}
+		li:hover{
+			background:$hover;
+		}
+	}
+}
+ul.nav a:hover { background: $orange !important; }
+nav#main-nav{margin-bottom:0px;}
+// footer
+.footer-section{
+	min-height:134px;
+	position:relative;
+	background:$orange;
+	.contact-links{
+		li{
+			float:left;
+			padding:10px 5px;
+			a{
+				font-size:13px;
+				color:white;
+				font-weight:100;
+				font-family:'proxima-nova-condensed';
+				letter-spacing: .03em;
+			}
+		}
+	}
+	.copyright{
+		padding:5px;
+		color:white;
+		margin-top:20px;
+		p{
+			font-size:13px;
+			font-weight:100;
+		}
+	}
+
+	.nav-link{
+				width:100%;
+				padding:10px 0px !important;
+				margin-top:0px;	
+				margin-bottom:15px;			
+				a{
+				font-weight:400;
+				font-family:'proxima-nova-condensed';
+				}
+			}
+	.food-allergy-links{
+		.cont p{
+			color:white;
+			padding-top:2.5px;
+			font-size:13px;
+			font-weight:100;
+		}
+	}
+
 }

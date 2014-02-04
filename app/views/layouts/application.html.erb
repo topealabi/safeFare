@@ -15,7 +15,14 @@
 <nav id="main-nav" class="navbar">
 	<div class="navbar-inner">
 		<div class="mobile-menu">
-			<a href="#">Nav</a>
+			<div id='mobile-nav'>Nav</div>
+			<ul class='mobile-nav-items'>
+				<li><a href="">Home</a></li>
+				<li><a href="">About SafeFARE</a></li>
+				<li><a href="">Find a Restaurant</a></li>
+				<li><a href="">For Diners</a></li>
+				<li><a href="">For Restaurants</a></li>			
+			</ul>
 		</div>
 		<div class="sign-in">
 			<div class="nav-link">
@@ -29,11 +36,69 @@
 		</div>
 	</div>
 </nav>
+<div class="search">
+		<div class="section-wrapper">
+			<div class="safeFare-icon left col-sm-6 col-xs-12"><%= image_tag("logo.gif", :alt => "temp logo") %></div>
+			<div class="safeFare-search right col-sm-6 col-xs-12">
+				<h2 class='small-thick'>Find a Restaurant</h2>
+				<p>Locate a food allergy aware restaurant near you.</p>
+				<input type="text" name="fname" id='cuisine'>
+				<input type="text" name="fname" id='free-text' >
+				<input type="submit" name="fname" data-role='none'id='submit-search' value=''>
+			</div>
+		</div>
+		<div style='clear:both'></div>
+	</div>
+	<div class="nav-full-bar">
+		<div class="section-wrapper">
+			<ul>
+				<li><a href="">Home</a></li>
+				<li><a href="">About SafeFARE</a></li>
+				<li><a href="">Find a Restaurant</a></li>
+				<li><a href="">For Diners</a></li>
+				<li><a href="">For Restaurants</a></li>			
+			</ul>
+		</div>
+	</div>
+
 <div class="container-fluid">
 		<%= yield %>
 		<p class="notice"><%= notice %></p>
 		<p class="alert"><%= alert %></p>
 </div>
-	
+	<div class="footer-section">
+		<div class="section-wrapper">
+			<div class="contact-links col-sm-8 col-xs-12 ">
+				<ul>
+					<li><a href="">Contact Us</a></li>
+					<li><a href="">Sitemap</a></li>
+					<li><a href="">Privacy Policy</a></li>
+					<li><a href="">Disclaimer</a></li>
+					<li><a href="">Learn about FARE</a></li>
+					<div style='clear:both;'></div>
+				</ul>
+				<div class="copyright">
+					<p>2014, Food Allergy Research and Education, Inc.</p>
+					<p>7925 Jones Branch Dr., Suite 1100, McLean, VA 22102</p>
+					<p>Phone: (800) 929-4040 | Fax: (703) 691-2713 </p>
+				</div>
+			</div>
+			<div class="food-allergy-links col-sm-4 col-xs-12">
+				<div class="cont">
+					<div class="nav-link"><%= link_to "Visit FoodAllergy.org", new_user_registration_path %></div>
+					<p style='text-align:right'>Find more information and resources for</p>
+					<p style='text-align:right'>managing food allergies on FARE's website.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+$(document).ready(function(){
+	$('#mobile-nav').on("click",function(){
+		$('#main-nav').toggleClass('open');
+	})
+})
+</script>
 </body>
 </html>

@@ -1,100 +1,73 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+       -o-border-radius: $radius;
+          border-radius: $radius;
+}
 $orange: #EC4423;
 $border:#243772;
 $blue:#243772;
+$hover:#3a5ad8;
 
-.search{
-	height:175px;
-	background:$orange;
-	.safeFare-icon{margin-top:40px;}
-	h2{margin:37px 0 0px;}
-	p{font-weight: 300; margin:5px 0px 10px;}
-	input{
-		border:0px solid white;
-		height:45px;
-		width:44%;
-
-	}
-	input#cuisine{
-	background:white;
-	background-image: image-url("find.png");
-	background-repeat:no-repeat;
-    padding-left:60px;
-    min-width:188px;
-	}
-	input#free-text{
-	background:white;
-	background-image: image-url("near.png");
-	background-repeat:no-repeat;
-    padding-left:60px;
-    min-width:188px;
-	}
-	input#submit-search{
-		float:right;
-		width:44px;
-		height:44px;
-		margin:0px;
-		border-radius: 0;
-		background-image: image-url("search.gif");
-		background-position: 0px 0px;
-	}
-	input#submit-search:hover{
-		background-position: 0px 44px;
-	}
-}
-.nav-full-bar{
-	
-	height:50px;
-	background:$blue;
-	ul{
-		width:100%;
-		margin:auto;
-		padding:0px;
-		li{
-			width:20%;
-			float:left;
-			text-align: center;
-			color:white;
-			list-style: none;
-			font-weight: 700;
-			padding-top:10px;
-			font-size:15px;
-		}
-	}
-}
 .info-section{
 	height:595px;
 	
-
+	
 	.section-wrapper{
-		
 		height:100%;
 		position:relative;
-		background-image: image-url("safe-fare-family.png");
+		.grad-a{
+			height:100%;
+			width:150px;
+			position:absolute;
 		
+			z-index:1;
+			left:-50px;
+			background-image: image-url("gradient_a.png");
+			background-repeat:repeat-y;
+
+		}
+		.grad-b{
+			height:100%;
+			width:150px;
+			position:absolute;
+			z-index:1;
+			right:-50px;
+			top:0px;
+			background-image: image-url("gradient_b.png");
+			background-repeat:repeat-y;
+
+		}
+		.home-background{
+			background-image: image-url("safe-fare-family.jpg");
+			background-position: top center;
+			position:absolute;
+			top:0px;
+			left:-50px;
+			right:-50px;
+			bottom:0px;
+			visibility: static;
+		}
 	}
 	.info-box{
 
 		position:absolute;
 		bottom:0px;
 		padding:0px;
-		height:235px;
 		width:100%;
 		opacity:.9;
+		z-index:2;
 		background:white;
-		
-		.for-restaurant,.vid,.about{
-			
-			height:235px;
-		}
+	
 		.for-restaurant{
 			.nav-link{
 				width:100%;
 				padding:10px 0px !important;				
 				a{
-
 				font-weight:400;
 				font-family:'proxima-nova-condensed';
 				}
@@ -103,12 +76,9 @@ $blue:#243772;
 		.vid{
 			img{
 				margin-top:33px;
+				width:100%;
 			}
 		}
 
 	}
-}
-.footer-section{
-	height:134px;
-	background:$orange;
 }

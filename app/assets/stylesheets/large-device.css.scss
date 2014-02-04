@@ -1,9 +1,10 @@
 $orange: #EC4423;
 $border:#AD2D0A;
 $blue:#243772;
+$hover:#3a5ad8;
 
 @media screen and (min-width: 768px) { /* Insert all styles should go inside this */
- 
+
  .mobile-menu { display: none; }
 
 	nav#main-nav{
@@ -23,6 +24,4 @@ $blue:#243772;
 		}
 		
 	}
-
-
 }
