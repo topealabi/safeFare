@@ -12,7 +12,7 @@ $orange: #EC4423;
 $border:#243772;
 $blue:#243772;
 $hover:#3a5ad8;
-
+// home-info-section
 .info-section{
 	height:595px;
 	
@@ -22,9 +22,8 @@ $hover:#3a5ad8;
 		position:relative;
 		.grad-a{
 			height:100%;
-			width:150px;
+			width:225px;
 			position:absolute;
-		
 			z-index:1;
 			left:-50px;
 			background-image: image-url("gradient_a.png");
@@ -33,7 +32,7 @@ $hover:#3a5ad8;
 		}
 		.grad-b{
 			height:100%;
-			width:150px;
+			width:225px;
 			position:absolute;
 			z-index:1;
 			right:-50px;
@@ -50,7 +49,7 @@ $hover:#3a5ad8;
 			left:-50px;
 			right:-50px;
 			bottom:0px;
-			visibility: static;
+			
 		}
 	}
 	.info-box{
@@ -81,4 +80,8 @@ $hover:#3a5ad8;
 		}
 
 	}
+}
+// about
+.about-section{
+
 }

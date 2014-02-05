@@ -14,5 +14,4 @@ class ApplicationController < ActionController::Base
 		admin_dashboard_path(resource)
 	  end
 	end
-
 end

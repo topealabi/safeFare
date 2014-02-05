@@ -12,11 +12,14 @@
 <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 </head>
 <body>
+
+<%  current_uri = request.env['PATH_INFO'] %>
 <nav id="main-nav" class="navbar">
 	<div class="navbar-inner">
 		<div class="mobile-menu">
 			<div id='mobile-nav'>Nav</div>
 			<ul class='mobile-nav-items'>
+				
 				<li><a href="">Home</a></li>
 				<li><a href="">About SafeFARE</a></li>
 				<li><a href="">Find a Restaurant</a></li>
@@ -36,6 +39,7 @@
 		</div>
 	</div>
 </nav>
+
 <div class="search">
 		<div class="section-wrapper">
 			<div class="safeFare-icon left col-sm-6 col-xs-12"><%= image_tag("logo.gif", :alt => "temp logo") %></div>
@@ -52,8 +56,8 @@
 	<div class="nav-full-bar">
 		<div class="section-wrapper">
 			<ul>
-				<li><a href="">Home</a></li>
-				<li><a href="">About SafeFARE</a></li>
+				<li <% if current_uri == "/"%> class="active"<%end%>><a href="/">Home</a></li>
+				<li <% if current_uri == "/about"%> class="active"<%end%>><a href="/about">About SafeFARE</a></li>
 				<li><a href="">Find a Restaurant</a></li>
 				<li><a href="">For Diners</a></li>
 				<li><a href="">For Restaurants</a></li>			
@@ -65,12 +69,14 @@
 		<%= yield %>
 		<p class="notice"><%= notice %></p>
 		<p class="alert"><%= alert %></p>
+
 </div>
+
 	<div class="footer-section">
 		<div class="section-wrapper">
 			<div class="contact-links col-sm-8 col-xs-12 ">
 				<ul>
-					<li><a href="">Contact Us</a></li>
+					<li><a href="/contact">Contact Us</a></li>
 					<li><a href="">Sitemap</a></li>
 					<li><a href="">Privacy Policy</a></li>
 					<li><a href="">Disclaimer</a></li>

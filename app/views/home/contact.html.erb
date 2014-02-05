@@ -1,0 +1,29 @@
+<div class="contact-section">
+	<div class="section-wrapper">
+		<ul class="safe-fare-breadcrumb">
+			  <li><a href="/">Home > </a></li>
+			  <li><a href="" class='active'> Contact Us</a></li>
+		</ul>
+		<div class="col-sm-8" style='padding:0px;'>
+			<h2 class="orange-header">Contact Us</h2>
+			<%= simple_form_for @contactform, url: "/submit", method: :post do |f| %>
+					<div class="col-sm-12" style='padding:0px;'>
+						<p>Name</p>
+						<%= f.input :name, label: false, input_html: { class: "req" }   %>
+					</div>
+					<div class="col-sm-12" style='padding:0px;'>
+						<p>Email</p>
+						<%= f.input :email, label: false, input_html: { class: "req" }  %>
+					</div>
+					<div class="col-sm-12" style='padding:0px;'>
+						<p>Message</p>
+						<%= f.input :message, label: false, input_html: { class: "req" }  %>
+					</div>
+					<%= f.submit  %>
+				<%end%>
+		</div>
+		<div class="col-sm-4">
+			
+		</div>
+	</div>
+</div>
