@@ -38,7 +38,8 @@ a{text-decoration:none;color:inherit}
 .left{ float:left; }
 .right{ float:right; }
 .cont{padding:15px}
-
+.padding{padding:30px;}
+.no-padding{padding:0px;}
 .text-center{ text-align:center;}
 .orange-header{color:$orange;font-weight:300;font-family:'proxima-nova'; font-size:28px;}
 .nav-link{
@@ -184,7 +185,7 @@ nav#main-nav{margin-bottom:0px;}
 		}
 	}
 	.copyright{
-		padding:5px;
+	
 		color:white;
 		margin-top:20px;
 		p{
@@ -230,5 +231,5 @@ nav#main-nav{
 		}
 		
 	}
-	
+
 
