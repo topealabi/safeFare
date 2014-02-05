@@ -6,7 +6,7 @@ $hover:#3a5ad8;
 @media screen and (max-width: 767px){ /* Insert your own breakpoint as needed */
 	nav#main-nav{
 		width:100%;
-		background:$blue;
+		background:$blue !important;
 		border-radius:0px;
 		height:50px;
 		overflow:hidden;
@@ -31,7 +31,7 @@ $hover:#3a5ad8;
 		
 			}
 			.mobile-nav-items {
-				padding-top:15px;
+				padding-top:35px;
 				li{
 					padding: 4px;
 					height: 25px;
@@ -109,19 +109,6 @@ $hover:#3a5ad8;
 		}
 	}
 	
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

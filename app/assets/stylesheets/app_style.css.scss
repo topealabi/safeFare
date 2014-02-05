@@ -95,7 +95,7 @@ a{text-decoration:none;color:inherit}
 	input{
 		border:0px solid white;
 		height:45px;
-		width:42%;
+		width:43%;
 
 	}
 	input#cuisine{
@@ -213,4 +213,22 @@ nav#main-nav{margin-bottom:0px;}
 	}
 
 }
+nav#main-nav{
+		width:100%;
+		background:$orange;
+		border-radius:0px;
+		height:65px;
+		
+		border-bottom:1.5px solid $border;
+		.navbar-inner{
+			max-width:970px;
+			margin:auto;
+		}
+		.nav{float:left;}
+		.sign-in{
+			float:right;
+		}
+		
+	}
+	
 

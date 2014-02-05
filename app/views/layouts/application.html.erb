@@ -8,6 +8,7 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbqyE_ATNzMEVS_S-79LoBo6peBwoVa-o&sensor=true"></script>
+  	
   <script type="text/javascript" src="//use.typekit.net/vmz8fhp.js"></script>
 <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 </head>
@@ -43,7 +44,7 @@
 <div class="search">
 		<div class="section-wrapper">
 			<div class="safeFare-icon left col-sm-6 col-xs-12"><%= image_tag("logo.gif", :alt => "temp logo") %></div>
-			<div class="safeFare-search right col-sm-6 col-xs-12">
+			<div class="safeFare-search right col-sm-6 col-xs-12" style='padding:0px;'>
 				<h2 class='small-thick'>Find a Restaurant</h2>
 				<p>Locate a food allergy aware restaurant near you.</p>
 				<input type="text" name="fname" id='cuisine'>
