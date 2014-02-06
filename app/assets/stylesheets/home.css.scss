@@ -22,7 +22,7 @@ $hover:#3a5ad8;
 		position:relative;
 		.grad-a{
 			height:100%;
-			width:225px;
+			width:596px;
 			position:absolute;
 			z-index:1;
 			left:-50px;
@@ -32,7 +32,7 @@ $hover:#3a5ad8;
 		}
 		.grad-b{
 			height:100%;
-			width:225px;
+			width:596px;
 			position:absolute;
 			z-index:1;
 			right:-50px;
@@ -58,9 +58,9 @@ $hover:#3a5ad8;
 		bottom:0px;
 		padding:0px;
 		width:100%;
-		opacity:.9;
+	
 		z-index:2;
-		background:white;
+		background-image:image-url('white.png');
 	
 		.for-restaurant{
 			.nav-link{
@@ -84,4 +84,30 @@ $hover:#3a5ad8;
 // about
 .about-section{
 
+}
+
+
+// contact
+#new_contact_form{
+	p{
+		float:left;
+		color:$blue;
+		padding-top:10px;
+		font-family: 'proxima-nova';
+		font-weight: 600;
+	}
+
+	.form-row{
+		clear:both;
+		padding:10px 0px;
+	}
+	.i-am-cat{
+		width: 76%;
+		label{
+			color:$blue;
+			padding:10px;
+			font-family: 'proxima-nova';
+			font-weight: 600;
+		}
+	}
 }

@@ -49,7 +49,11 @@ a{text-decoration:none;color:inherit}
 	font-size:17px;
 	padding:7px 0px;
 	margin-top:15px;
-	transition: background 0.5s ease;
+	 -webkit-transition: all .5s ease;  /* Chrome 1-25, Safari 3.2+ */
+     -moz-transition: all .5 ease;  /* Firefox 4-15 */
+       -o-transition: all .5 ease;  /* Opera 10.50–12.00 */
+          transition: all .5 ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+	
 	letter-spacing: 0.05em;
 	a{
 		text-decoration: none;
@@ -102,22 +106,38 @@ a{text-decoration:none;color:inherit}
 	input#cuisine{
 	background:white;
 	background-image: image-url("find.png");
+	background-position:0px 0px;
 	background-repeat:no-repeat;
     padding-left:60px;
+     -webkit-transition: all 1s ease;  /* Chrome 1-25, Safari 3.2+ */
+     -moz-transition: all 1s ease;  /* Firefox 4-15 */
+       -o-transition: all 1 ease;  /* Opera 10.50–12.00 */
+          transition: all 1s ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
     
 	}
 	input#free-text{
 	background:white;
 	background-image: image-url("near.png");
+	background-position:0px 0px;
 	background-repeat:no-repeat;
     padding-left:65px;
+     -webkit-transition: all 1s ease;  /* Chrome 1-25, Safari 3.2+ */
+     -moz-transition: all 1s ease;  /* Firefox 4-15 */
+       -o-transition: all 1 ease;  /* Opera 10.50–12.00 */
+          transition: all 1s ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+   
     
+	}
+	input#free-text.click, input#cuisine.click{
+		background-position:-100px 0px;
+		padding: 10px;
+
 	}
 	input#submit-search{
 		float:right;
 		width:44px;
 		height:44px;
-	
+	-webkit-transition: all .3s ease;
 		margin:0px;
 
 		@include border-radius(0px);
@@ -198,14 +218,16 @@ nav#main-nav{margin-bottom:0px;}
 				width:100%;
 				padding:10px 0px !important;
 				margin-top:0px;	
-				margin-bottom:15px;			
+				margin-bottom:15px;	
+				cursor:pointer;		
 				a{
 				font-weight:400;
 				font-family:'proxima-nova-condensed';
 				}
 			}
-	.food-allergy-links{
-		.cont p{
+	.food-allergy-links.padding{
+		padding: 30px 15px;
+		p{
 			color:white;
 			padding-top:2.5px;
 			font-size:13px;

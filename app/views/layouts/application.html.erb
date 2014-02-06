@@ -20,7 +20,6 @@
 		<div class="mobile-menu">
 			<div id='mobile-nav'>Nav</div>
 			<ul class='mobile-nav-items'>
-				
 				<li><a href="">Home</a></li>
 				<li><a href="">About SafeFARE</a></li>
 				<li><a href="">Find a Restaurant</a></li>
@@ -47,9 +46,9 @@
 			<div class="safeFare-search right col-sm-6 col-xs-12" style='padding:0px;'>
 				<h2 class='small-thick'>Find a Restaurant</h2>
 				<p>Locate a food allergy aware restaurant near you.</p>
-				<input type="text" name="fname" id='cuisine'>
-				<input type="text" name="fname" id='free-text' >
-				<input type="submit" name="fname" data-role='none'id='submit-search' value=''>
+				<input type="text" name="fname" id='cuisine' placeholder='Restaurant, Cuisine, etc.'>
+				<input type="text" name="fname" id='free-text' placeholder='Address, Zip, etc.'>
+				<input type="submit" name="fname" data-role='none'id='submit-search' value='' >
 			</div>
 		</div>
 		<div style='clear:both'></div>
@@ -105,6 +104,13 @@ $(document).ready(function(){
 	$('#mobile-nav').on("click",function(){
 		$('#main-nav').toggleClass('open');
 	})
+	$('input#free-text,input#cuisine').focus(function(){
+		$(this).toggleClass('click');
+	})
+	$('input#free-text,input#cuisine').blur(function(){
+		$(this).toggleClass('click');
+	})
+
 })
 </script>
 </body>

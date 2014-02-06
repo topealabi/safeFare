@@ -4,21 +4,44 @@
 			  <li><a href="/">Home > </a></li>
 			  <li><a href="" class='active'> Contact Us</a></li>
 		</ul>
-		<div class="col-sm-8" style='padding:0px;'>
+		<div class="col-sm-7">
 			<h2 class="orange-header">Contact Us</h2>
 			<%= simple_form_for @contactform, url: "/submit", method: :post do |f| %>
-					<div class="col-sm-12" style='padding:0px;'>
+					<div class="col-sm-12 form-row">
+						
 						<p>Name</p>
-						<%= f.input :name, label: false, input_html: { class: "req" }   %>
+						<%= f.input :name, label: false, input_html: { class: "right" }   %>
 					</div>
-					<div class="col-sm-12" style='padding:0px;'>
+					<div class="col-sm-12 form-row">
+						<p>I Am</p>
+						<div class="i-am-cat right">
+						<%= f.input :parent, label: "A Parent" ,as: :boolean%>
+						<%= f.input :restaurant_owner, label: "A Restaurant Owner" ,as: :boolean%>
+						<%= f.input :employee, label: "A Restaurant Employee" ,as: :boolean%>
+						<%= f.input :member, label: "A SafeFARE Member" ,as: :boolean%>
+						<%= f.input :other, label: "Other" ,as: :boolean%>
+						</div>
+					</div> 
+					<div class="col-sm-12 form-row">
 						<p>Email</p>
-						<%= f.input :email, label: false, input_html: { class: "req" }  %>
+						<%= f.input :email, label: false, input_html: { class: "right" }  %>
 					</div>
-					<div class="col-sm-12" style='padding:0px;'>
+					<div class="col-sm-12 form-row">
+						<p>Zip Code</p>
+						<%= f.input :zip, label: false, input_html: { class: "right" }  %>
+					</div>
+
+					<div class="col-sm-12 form-row">
+						<p>Subject</p>
+						<%= f.input :subject, label: false, input_html: { class: "right" }  %>
+					</div>
+		
+					<div class="col-sm-12 form-row">
 						<p>Message</p>
-						<%= f.input :message, label: false, input_html: { class: "req" }  %>
+						<%= f.input :message, label: false, input_html: { class: "right" }  %>
 					</div>
+					
+
 					<%= f.submit  %>
 				<%end%>
 		</div>
