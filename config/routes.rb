@@ -22,6 +22,7 @@ SafeFare::Application.routes.draw do
   match "/contact" => "home#contact", via: [:get]
   match "/submit" => "home#submit", via: [:post]
 
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

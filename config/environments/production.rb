@@ -11,7 +11,7 @@ SafeFare::Application.configure do
   config.eager_load = true
   #precompile assets
   config.assets.precompile = true
-
+ 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
@@ -90,7 +90,7 @@ SafeFare::Application.configure do
 
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
-
+  
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
 

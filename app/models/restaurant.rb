@@ -14,17 +14,27 @@ class Restaurant < ActiveRecord::Base
   validates :name, uniqueness: true
  	belongs_to :user,
  	  inverse_of: :restaurants
-	has_many :cuisines, through: :type_of_cuisines
+	
+  has_many :cuisines, through: :type_of_cuisines
   has_many :type_of_cuisines,
     dependent: :destroy
+  
+  has_many :neighborhoods, through: :areas
+  has_many :areas,
+    dependent: :destroy
+
   has_many :aware_employees,
    	inverse_of: :restaurant,
     dependent: :destroy 
+  
   has_many :changeorders,
    	inverse_of: :restaurant,
     dependent: :destroy 
 
   accepts_nested_attributes_for :aware_employees
+
+  accepts_nested_attributes_for :areas, :reject_if => lambda { |a| a[:neighborhood_id].blank? }, :allow_destroy => true
+
   accepts_nested_attributes_for :type_of_cuisines, :reject_if => lambda { |a| a[:cuisine_id].blank? }, :allow_destroy => true
 
   searchable do

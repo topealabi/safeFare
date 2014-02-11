@@ -1,5 +1,5 @@
 
-<h3> Add a Restaurant </h3>
+<h2 class="orange-header">About SafeFARE</h2>
 <%= simple_form_for [ @user,@restaurant ] do |f| %>
 	<div class="row">
 		<div class="col-xs-6 ">
@@ -25,7 +25,7 @@
 		<div class="col-xs-6">
 			<p>State</p>
 			<%= f.input :state, collection: @states, include_blank: 'Select...',required: true, label: false, input_html: { class: "chosen-select req" } %>
-			<a href='' style='float:left' id='check'>Check Address </a>
+			<a href='' style='float:left' id='check'>Check Address</a>
 		</div>
 		<div class="col-xs-6">
 			<p>Zip Code</p>
@@ -63,14 +63,21 @@
 			<%= f.input :facebook_url, label: false %>
 		</div>
 	</div>
-	<%= f.simple_fields_for :type_of_cuisines do |h| %>
-		<div class="row">
+	
+	<div class="row">
+		<%= f.simple_fields_for :type_of_cuisines do |h| %>
 			<div class="col-xs-6 ">
 				<p>Cuisine</p>
 				<%= h.input :cuisine_id, collection: Cuisine.all, multiple: true, value: :id, label: false, input_html: { class: "chosen-select req", multiple: true, style: 'width:255px; height:200px;'} %>
 			</div>
-		</div>
-	<% end %>
+		<% end %>
+		<%= f.simple_fields_for :areas do |h| %>
+			<div class="col-xs-6 ">
+				<p>Neighborhood</p>
+				<%= h.input :neighborhood_id, collection: Neighborhood.all, multiple: true, value: :id, label: false, input_html: { class: "chosen-select req", multiple: true, style: 'width:255px; height:200px;'} %>
+			</div>
+		<% end %>
+	</div>
 	<div class="row ">
 		<div class="col-xs-6">
 			<p>Twitter</p>
@@ -88,7 +95,7 @@
 	</div>
 	<div class="row margin-top">
 
-		<%= f.simple_fields_for :aware_employee do |h| %>
+		<%= f.simple_fields_for :aware_employees do |h| %>
 			<div class="row">
 				<div class="col-xs-6 ">
 					<p>Employee Name</p>
@@ -128,9 +135,9 @@
 <% end %>
 
 <script>
-
 $('.req').css('border','1px solid #D6BF18');
 $('.chosen-select').chosen();
+
 $('input, textarea, .select').keyup(function(){ 
 	var id = $(this).attr('id');
 	if ( validate_element(this) == true ){
@@ -139,17 +146,6 @@ $('input, textarea, .select').keyup(function(){
 		$("#" + id).css('border', '1px solid red');
 	}
 });
-$( "#check" ).click(function() {
-  event.preventDefault();
-  var address = $('#restaurant_address')[0];
-  var city = $('#restaurant_city')[0];
-  var state = $('#restaurant_state')[0];
-  var params = $(address).val() + ',' + $(city).val() + ',' + $(state).val() ;
-  params = params.replace(/\s+/g, '+')
-  if (params.length < 5) {
-  	alert('please provide a valid address');
-  }else{
-  	geocode(params);
-	}
-});
+
+
 </script>

@@ -56,7 +56,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: safeFare_production
+  database: safeFare_development
   pool: 5
   host: localhost
   username: admin

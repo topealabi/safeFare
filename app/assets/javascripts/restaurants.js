@@ -5,7 +5,7 @@ function initialize(lat, lng) {
  	center = (typeof lat != 'number') ? new google.maps.LatLng(-34.397, 150.644) : new google.maps.LatLng(lat, lng)
  	
   	var mapOptions = {
-    	zoom: 13,
+    	zoom: 17,
     	center: center
   	};
 
@@ -27,6 +27,7 @@ function setpos(){
 	
 }
 function resetCenter(latlng){
+
 	center = latlng;
 	map.setCenter(latlng);
 	marker = new google.maps.Marker({
@@ -53,22 +54,6 @@ function geocode(params){
         });
       });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 var validate_element = function(input){
@@ -125,4 +110,19 @@ var checkLength = function(value) {
 		return false;
 	}
 }
+$(document).ready(function(){
+	$( "#check" ).click(function() {
+  event.preventDefault();
+  var address = $('#restaurant_address')[0];
+  var city = $('#restaurant_city')[0];
+  var state = $('#restaurant_state')[0];
+  var params = $(address).val() + ',' + $(city).val() + ',' + $(state).val() ;
+  params = params.replace(/\s+/g, '+')
+  if (params.length < 5) {
+  	alert('please provide a valid address');
+  }else{
+  	geocode(params);
+	}
+});
 
+})

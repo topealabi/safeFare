@@ -1,7 +1,11 @@
-<%= render 'new_restaurant_form' %>
+<div class="new-restaurant-section">
+	<div class="section-wrapper">
+		<%= render 'new_restaurant_form' %>
+		<div id="map-canvas"/>
+	</div>
+</div>
 
- <div id="map-canvas"/>
-
+ 
  <script type="text/javascript">
 	$(document).ready(function(){
 		initialize();
