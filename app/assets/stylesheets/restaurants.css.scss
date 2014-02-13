@@ -1,6 +1,10 @@
 // Place all the styles related to the restaurants controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$orange: #EC4423;
+$border:#AD2D0A;
+$blue:#243772;
+$hover:#3a5ad8;
 .center{
 	text-align:center;
 }
@@ -26,10 +30,35 @@ a.add_an_employee:hover{
 .hide_form{
 	display:none;
 }
-#map-canvas{
-	width:400px;
-	height:400px;
-}
+
 #restaurant_neighborhood_chosen.chosen-container .chosen-results li.no-results{
 	display:none !important;
+}
+#check{
+	width:100%;
+}
+
+.add_fields{
+	background:$blue;
+	width:180px;
+	text-align: center;
+	font-size:17px;
+	padding:7px 15px;
+	display:block;
+	width:70%;
+	margin:auto;
+	margin-top:15px;
+	 -webkit-transition: all .5s ease;  /* Chrome 1-25, Safari 3.2+ */
+     -moz-transition: all .5 ease;  /* Firefox 4-15 */
+       -o-transition: all .5 ease;  /* Opera 10.50–12.00 */
+          transition: all .5 ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+	
+		letter-spacing: 0.05em;
+		text-decoration: none !important;
+		color:white !important;
+		font-weight: 600;
+		letter-spacing: 0.05em;
+	}
+.add_fields:hover{
+	background:$hover;
 }

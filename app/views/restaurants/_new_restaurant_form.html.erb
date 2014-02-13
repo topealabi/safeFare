@@ -1,144 +1,119 @@
-
-<h2 class="orange-header">About SafeFARE</h2>
 <%= simple_form_for [ @user,@restaurant ] do |f| %>
-	<div class="row">
-		<div class="col-xs-6 ">
-			<p>Name</p>
+	<div class="col-sm-6 col-xs-12">
+		<div class="col-xs-12 form-row">
+			<p class='form-label'>Name</p>
 			<%= f.input :name, label: false, input_html: { class: "req" }   %>
+			<span class='feedback'></span>
 		</div>
-		<div class="col-xs-6">
-			<p>Email</p>
+		<div class="col-xs-12 form-row">
+			<p class='form-label'>Email</p>
 			<%= f.input :email, label: false, input_html: { class: "req" }  %>
+			<span class='feedback'></span>
+		</div>		
+		<div class="col-xs-12 form-row">
+			<p class='form-label'>Hours</p>
+			<%= f.input :hours, label: false %>
+			<span class='feedback'></span>
+		</div>
+		<div class="col-xs-12 form-row">
+			<p class='form-label'>Phone</p>
+			<%= f.input :phone, label: false %>
+			<span class='feedback'></span>
+		</div>
+		
+		<%= f.input :repos, label: false, as: :hidden %>
+		<div class="col-xs-12 form-row">
+			<p class='form-label'>Website</p>
+			<%= f.input :website, label: false %>
+			<span class='feedback'></span>
+		</div>
+		<div class="col-xs-12 form-row">
+			<p class='form-label'>Number of Employees</p>
+			<%= f.input :total_employees, label: false, input_html: { class: "req" } %>
+			<span class='feedback'></span>
+		</div>
+
+		<div class="col-xs-12 form-row">
+			<p class='form-label'>Description</p>
+			<%= f.input :description, label: false %>
+			<span class='feedback'></span>
+		</div>
+		<div class="col-xs-12 form-row">
+			<p class='form-label'>Facebook</p>
+			<%= f.input :facebook_url, label: false %>
+			<span class='feedback'></span>
+		</div>
+
+		<div class="col-xs-12 form-row">
+			<%= f.simple_fields_for :type_of_cuisines do |h| %>
+				<p class='form-label'>Cuisine</p>
+				<%= h.input :cuisine_id, collection: Cuisine.all, multiple: true, value: :id, label: false, input_html: { class: "chosen-select req", multiple: true, style: 'width:255px; height:200px;'} %>
+			<% end %>
+			<span class='feedback'></span>
+		</div>
+		<div class="col-xs-12 form-row">
+			<p class='form-label'>Twitter</p>
+			<%= f.input :twitter_url, label: false %>
+			<span class='feedback'></span>
+		</div>
+		<div class="col-xs-12 form-row">
+			<p class='form-label'>Allergy Eats</p>
+			<%= f.input :allergy_eats_url, label: false %>
+			<span class='feedback'></span>
+		</div>
+		<div class="col-xs-12 form-row">
+			<%= f.simple_fields_for :aware_employees do |builder| %>
+				 <%= render "aware_employee_fields", :f => builder %>
+				
+			<% end %>
+			<%= link_to_add_fields "Add An Employee", f, :aware_employees %>
+
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-xs-6">
-			<p>Address</p>
+	<div class="col-sm-6 col-xs-12">
+		<div class="col-xs-12 form-row">
+			<p class='form-label text-left'>Address</p>
 			<%= f.input :address, label: false, input_html: { class: "req" } %>
+			<span class='feedback'></span>
 		</div>
-		<div class="col-xs-6">
-			<p>City</p>
+		<div class="col-xs-12 form-row">
+			<p class='form-label text-left'>City</p>
 			<%= f.input :city, label: false, input_html: { class: "req" } %>
+			<span class='feedback'></span>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6">
-			<p>State</p>
+		<div class="col-xs-12 form-row">
+			<p class='form-label text-left'>State</p>
 			<%= f.input :state, collection: @states, include_blank: 'Select...',required: true, label: false, input_html: { class: "chosen-select req" } %>
+			<span class='feedback'></span>
+		</div>
+		<div class="col-xs-12 form-row">
+			<p class='form-label text-left'>Zip Code</p>
+			<%= f.input :zip, label: false, input_html: { class: "req" } %>
+			<span class='feedback'></span>
+		</div>
+		<div class="col-xs-12 form-row">
+			<%= f.simple_fields_for :areas do |h| %>
+				<p class='form-label text-left'>Neighborhood</p>
+				<%= h.input :neighborhood_id, collection: Neighborhood.all, multiple: true, value: :id, label: false, input_html: { class: "chosen-select req", multiple: true, style: 'width:255px; height:200px;'} %>
+			<% end %>
+			<span class='feedback'></span><br>
 			<a href='' style='float:left' id='check'>Check Address</a>
 		</div>
-		<div class="col-xs-6">
-			<p>Zip Code</p>
-			<%= f.input :zip, label: false, input_html: { class: "req" } %>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6">
-			<p>Hours</p>
-			<%= f.input :hours, label: false %>
-		</div>
-		<div class="col-xs-6">
-			<p>Phone</p>
-			<%= f.input :phone, label: false %>
-		</div>
-	</div>
-		<%= f.input :repos, label: false, as: :hidden %>
-	<div class="row">
-		<div class="col-xs-6">
-			<p>Website</p>
-			<%= f.input :website, label: false %>
-		</div>
-		<div class="col-xs-6">
-			<p>Number of Employees</p>
-			<%= f.input :total_employees, label: false, input_html: { class: "req" } %>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6">
-			<p>Description</p>
-			<%= f.input :description, label: false %>
-		</div>
-		<div class="col-xs-6">
-			<p>Facebook</p>
-			<%= f.input :facebook_url, label: false %>
-		</div>
-	</div>
-	
-	<div class="row">
-		<%= f.simple_fields_for :type_of_cuisines do |h| %>
-			<div class="col-xs-6 ">
-				<p>Cuisine</p>
-				<%= h.input :cuisine_id, collection: Cuisine.all, multiple: true, value: :id, label: false, input_html: { class: "chosen-select req", multiple: true, style: 'width:255px; height:200px;'} %>
-			</div>
-		<% end %>
-		<%= f.simple_fields_for :areas do |h| %>
-			<div class="col-xs-6 ">
-				<p>Neighborhood</p>
-				<%= h.input :neighborhood_id, collection: Neighborhood.all, multiple: true, value: :id, label: false, input_html: { class: "chosen-select req", multiple: true, style: 'width:255px; height:200px;'} %>
-			</div>
-		<% end %>
-	</div>
-	<div class="row ">
-		<div class="col-xs-6">
-			<p>Twitter</p>
-			<%= f.input :twitter_url, label: false %>
-		</div>
-		<div class="col-xs-6">
-			<p>Allergy Eats</p>
-			<%= f.input :allergy_eats_url, label: false %>
-		</div>
-	</div>
-	<div class="row margin-top">
-		<div class="col-xs-12 clear infobox">
-			<- Add Employees ->
-		</div>
-	</div>
-	<div class="row margin-top">
-
-		<%= f.simple_fields_for :aware_employees do |h| %>
-			<div class="row">
-				<div class="col-xs-6 ">
-					<p>Employee Name</p>
-					<%= h.input :name, label: false, input_html: { class: "req" } %>
-				</div>
-				<div class="col-xs-6 ">
-					<p>Employee Verification Code</p>
-					<%= h.input :verification, label: false, input_html: { class: "req" } %>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-6">
-					<p>Expiration</p>
-					<%= h.input :expiration, label: false, as: :date %>
-				</div>
+		<div class="col-xs-12 form-row">		
+			<div id="map-canvas" ></div>
 			
-				<%= h.simple_fields_for :restaurant_roles do |i| %>
-					<div class="row">
-						<div class="col-xs-6 ">
-							<p>Role</p>
-							<%= i.input :role_id, collection: Role.all, label_method: :role, multiple: true, value: :id, label: false, input_html: { class: "chosen-select req", multiple: true, style: 'width:255px; height:200px;'} %>
-						</div>
-					</div>
-				<% end %>
-			</div>
-		<% end %>	
-	
-	</div>
-	<div class="row margin-top">
-		<div class="col-xs-6 clear">
-			<a class='add_an_employee' href= '#' > + Add Another Employee with Verifications</a>
 		</div>
-		<div class="col-xs-10 margin-top">
-			<%= f.button :submit %>
+		<div class="col-xs-12 margin-top left">
+			<%= f.button :submit, :class => "nav-link"%>
 		</div>
 	</div>
 <% end %>
 
 <script>
-$('.req').css('border','1px solid #D6BF18');
+
 $('.chosen-select').chosen();
 
-$('input, textarea, .select').keyup(function(){ 
+$('input, textarea, .select').on('blur',function(){ 
 	var id = $(this).attr('id');
 	if ( validate_element(this) == true ){
 		$("#" + id).css('border', '1px solid green');
@@ -147,5 +122,11 @@ $('input, textarea, .select').keyup(function(){
 	}
 });
 
-
+$('.add_fields').on('click', function(){
+	setTimeout(function(){
+		$('.role-click a').trigger('click');
+	}, 10)
+		$('.role-click a').css('display', 'none');
+		$('.role-click a').remove();
+})
 </script>

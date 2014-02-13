@@ -27,8 +27,8 @@ function setpos(){
 	
 }
 function resetCenter(latlng){
-
 	center = latlng;
+
 	map.setCenter(latlng);
 	marker = new google.maps.Marker({
 	    map:map,
@@ -49,12 +49,17 @@ function geocode(params){
         
         async:'true',
         success:function (data) {
+        	$('#map-canvas').animate({opacity:1},500);
             resetCenter(data.results[0].geometry.location)
           }
         });
       });
 }
 
+function parseLoc(lat,lng){
+	var center = new google.maps.LatLng(lat, lng)
+	resetCenter(center);
+}
 
 var validate_element = function(input){
 	var element = $(input).attr('id');
@@ -110,19 +115,33 @@ var checkLength = function(value) {
 		return false;
 	}
 }
+
+function remove_fields(link) {
+  $(link).previous("input[type=hidden]").value = "1";
+  $(link).up(".fields").hide();
+}
+  $(document).on('click', 'form .add_fields', function(event){
+  
+  	time = new Date().getTime();
+  	regexp = new RegExp($(this).data('id'), 'g');
+  	$(this).before($(this).data('fields').replace(regexp, time));
+  	event.preventDefault();
+  	$('.chosen-select').chosen();
+  	
+  	})
+
 $(document).ready(function(){
 	$( "#check" ).click(function() {
-  event.preventDefault();
-  var address = $('#restaurant_address')[0];
-  var city = $('#restaurant_city')[0];
-  var state = $('#restaurant_state')[0];
-  var params = $(address).val() + ',' + $(city).val() + ',' + $(state).val() ;
-  params = params.replace(/\s+/g, '+')
-  if (params.length < 5) {
-  	alert('please provide a valid address');
-  }else{
-  	geocode(params);
-	}
-});
-
+	  event.preventDefault();
+	  var address = $('#restaurant_address')[0];
+	  var city = $('#restaurant_city')[0];
+	  var state = $('#restaurant_state')[0];
+	  var params = $(address).val() + ',' + $(city).val() + ',' + $(state).val() ;
+  	  params = params.replace(/\s+/g, '+')
+	  if (params.length < 5) {
+	  	alert('please provide a valid address');
+	  }else{
+	  	geocode(params);
+		}
+	  });
 })

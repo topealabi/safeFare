@@ -93,116 +93,31 @@
 					<div class="col-sm-4 col-xs-2 "> <%= link_to "Delete", user_restaurant_aware_employee_path(current_user, @restaurant, employee), :method => :delete, :class => 'action' %></div> 
 				<% end %> 
 			</div>
-			<div class="row" style='margin:20px 0px;'  id='edit_employee'>
-				<%= f.simple_fields_for :aware_employees  do |h| %>
-					<div class="edit_form">
-						<div class="col-xs-12 ">
-							<p>Employee Name</p>
-							<%= h.input :name, label: false, input_html: { class: "req" } %>
-						</div>
-						<div class="col-xs-12 ">
-							<p>Employee Verification Code</p>
-							<%= h.input :verification, label: false, input_html: { class: "req" } %>
-						</div>
-					
-						<div class="col-xs-12">
-							<p>Expiration</p>
-							<%= h.input :expiration, label: false %>
-						</div>
-						<%= h.association :roles, multiple: true, collection: Role.all, label_method: :role, value: :id, input_html: { class: "chosen-select req", multiple: true, style: 'width:255px; height:200px;'}  %>
-					</div>
-				<% end %>
-			</div>
-			<ul id='new_employee_forms'>
-				<h4 id='add_form'> Add Aware Employees </h4>
-				<li class="row margin-top new_emp 1 inactive">
-					<%= f.simple_fields_for :employee_1 do |h| %>
-						<div class="row">
-							<div class="col-xs-6 ">
-								<p>Employee Name</p>
-								<%= h.input :name, label: false, required: false, input_html: { class: "req" } %>
-							</div>
-							<div class="col-xs-6 ">
-								<p>Employee Verification Code</p>
-								<%= h.input :verification, label: false, required: false, input_html: { class: "req" } %>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-6">
-								<p>Expiration</p>
-								<%= h.input :expiration, required: false, as: :date, label: false %>
-							</div>
-						
-							<%= h.simple_fields_for :restaurant_roles do |i| %>
-								<div class="row">
-									<div class="col-xs-6 ">
-										<p>Role</p>
-										<%= i.input :role_id, collection: Role.all, required: false, label_method: :role, multiple: true, value: :id, label: false, input_html: { class: "chosen-select req", multiple: true, style: 'width:255px; height:200px;'} %>
-									</div>
-								</div>
-							<% end %>
-						</div>
-					<% end %>	
-				</li>
-				<li class="row margin-top new_emp 2 inactive">
-					<%= f.simple_fields_for :employee_2 do |h| %>
-						<div class="row">
-							<div class="col-xs-6 ">
-								<p>Employee Name</p>
-								<%= h.input :name, label: false, required: false, input_html: { class: "req" } %>
-							</div>
-							<div class="col-xs-6 ">
-								<p>Employee Verification Code</p>
-								<%= h.input :verification, label: false, required: false, input_html: { class: "req" } %>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-6">
-								<p>Expiration</p>
-								<%= h.input :expiration, required: false, as: :date, label: false %>
-							</div>
-						
-							<%= h.simple_fields_for :restaurant_roles do |i| %>
-								<div class="row">
-									<div class="col-xs-6 ">
-										<p>Role</p>
-										<%= i.input :role_id, collection: Role.all, required: false, label_method: :role, multiple: true, value: :id, label: false, input_html: { class: "chosen-select req", multiple: true, style: 'width:255px; height:200px;'} %>
-									</div>
-								</div>
-							<% end %>
-						</div>
-					<% end %>	
-				</li>
-				<li class="row margin-top new_emp 3 inactive">
-					<%= f.simple_fields_for :employee_3 do |h| %>
-						<div class="row">
-							<div class="col-xs-6 ">
-								<p>Employee Name</p>
-								<%= h.input :name, label: false, required: false, input_html: { class: "req" } %>
-							</div>
-							<div class="col-xs-6 ">
-								<p>Employee Verification Code</p>
-								<%= h.input :verification, required: false, label: false, input_html: { class: "req" } %>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-6">
-								<p>Expiration</p>
-								<%= h.input :expiration, required: false, as: :date, label: false %>
-							</div>
-						
-							<%= h.simple_fields_for :restaurant_roles do |i| %>
-								<div class="row">
-									<div class="col-xs-6 ">
-										<p>Role</p>
-										<%= i.input :role_id, required: false, collection: Role.all, label_method: :role, multiple: true, value: :id, label: false, input_html: { class: "chosen-select req", multiple: true, style: 'width:255px; height:200px;'} %>
-									</div>
-								</div>
-							<% end %>
-						</div>
-					<% end %>	
-				</li>
-			</ul>		
+
+			<div class="col-xs-12 form-row">
+			<%= f.simple_fields_for :aware_employees do |h| %>
+				<div class="col-xs-12 form-row">
+					<p class='form-label'>Name</p>
+						<%= h.input :name, label: false, input_html: { class: "req" }   %>
+					<span class='feedback'></span>
+				</div>
+				<div class="col-xs-12 form-row">
+					<p class='form-label'>Verifcation</p>
+					<%= h.input :verification, label: false, input_html: { class: "req" }  %>
+					<span class='feedback'></span>
+				</div>		
+				<div class="col-xs-12 form-row">
+					<p class='form-label'>Hours</p>
+					<%= h.input :expiration, label: false, as: :date %>
+					<span class='feedback'></span>
+				</div>
+				<div class="col-xs-12 form-row">
+	<p class='form-label'>Role</p>
+<%= h.association :restaurant_roles, label: false, multiple: true, collection: Role.all, label_method: :role, value: :id, input_html: { class: "chosen-select req", multiple: true, style: 'width:255px; height:200px;'}  %>
+</div>
+			<% end %>
+		</div>
+			
 	<%= f.button :submit %>
 
 		</div>
@@ -213,7 +128,8 @@
 <!-- scripts -->
 <% if @restaurant.repos == '' %>
 	<script>
-		$(document).ready(function(){
+		initialize();
+		
 			var address = $('#restaurant_address')[0];
 			var city = $('#restaurant_city')[0];
 			var state = $('#restaurant_state')[0];
@@ -224,11 +140,13 @@
 				}else{
 					geocode(params);
 				}
-		})
+		
 	</script>
 <%else%>
 	<script>
-		initialize(<%= @restaurant.repos %>);
+			initialize();
+			console.log(<%= @restaurant.repos %>)
+			parseLoc(<%= @restaurant.repos %>);		
 	</script>
 <%end%>
 

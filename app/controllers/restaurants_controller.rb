@@ -12,23 +12,22 @@ class RestaurantsController < ApplicationController
 		  @states = []
     	@user = current_user
     	@restaurant = Restaurant.new
-    	@employee = @restaurant.aware_employees.build
-      @employee.restaurant_roles.build
       @restaurant.areas.build
       @restaurant.type_of_cuisines.build
       @role = Role.all
     	State.all.each do |state|
     	 @states << state.abbreviation
     	end
+      
   end
 	def create
-	 @restaurant = Restaurant.new(restaurant_params)
+	 binding.pry
+   @restaurant = Restaurant.new(restaurant_params)
    @restaurant.user_id = current_user.id
- 
     respond_to do |format|
       if @restaurant.save
         save_nests(@restaurant)
-        format.html { redirect_to current_user, notice: 'Restaurant was successfully created.' }
+        format.html { redirect_to "/users/#{current_user.id}/restaurants/#{@restaurant.id}/aware_employees/new", notice: 'Restaurant was successfully created.' }
         format.json { render action: 'show', status: :created, location: @restaurant }
       else
         format.html { redirect_to root_path, notice: 'There was an error on your form' }
@@ -52,13 +51,8 @@ class RestaurantsController < ApplicationController
   end
   def update   
     @restaurant = Restaurant.find(params[:id])
-    new_employees = [ 
-      params[:restaurant][:employee_1],
-      params[:restaurant][:employee_2],
-      params[:restaurant][:employee_3]
-    ]
     edit_nests
-    add_employees(new_employees)
+
     if @restaurant.update_attributes(restaurant_params) then redirect_to edit_user_restaurant_path, notice: 'Sweet Edit Bro' else render json: @restaurant.errors end
   end
   
@@ -68,43 +62,14 @@ class RestaurantsController < ApplicationController
 	private	
 		def restaurant_params
       	params.require(:restaurant).permit(:name,:address,:city,:state, :email, :phone,:repos,
-          :hours,:approved,:website,:facebook_url,:twitter_url,:allergy_eats_url,:zip,:logo,:total_employees,:description,:is_visible,
-          employees_attributes:[:verification,:id,:name,:expiration,restaurant_roles_attributes:[:id,:restaurant_id,role_id:[]]],
-          aware_employees_attributes:[:verification,:id,:name,:expiration,restaurant_roles_attributes:[:id,:restaurant_id,role_id:[]]],
-          restaurant_roles_attributes:[:id,:restaurant_id,:employee_id,role_id:[]],
+          :hours,:approved,:website,:facebook_url,:twitter_url,:allergy_eats_url,:role_id,
+          :zip,:logo,:total_employees,:description,:is_visible,
+          aware_employees_attributes:[:name, :verification,:expiration, restaurant_roles_attributes:[role_id:[]]],
           type_of_cuisines_attributes:[:id,:restaurant_id,cuisine_id:[]],
           areas_attributes:[:id,:restaurant_id,neighborhood_id:[]]
         )
 		end
-    def update_employees_roles(employee)
-      employee[1][:role_ids].each do |role|
-        if role == ''
-          RestaurantRole.where(aware_employee_id: employee[1][:id]).each do |record|
-            record.destroy
-          end
-        else
-          RestaurantRole.create(aware_employee_id: employee[1][:id], role_id: role )
-        end
-      end
-    end
-    def add_employees(new_employees)
-      new_employees.each do |employee|
-        if employee[:name] != ''
-          current_employee = AwareEmployee.new(
-            name: employee[:name],
-            restaurant_id: params[:id],
-            verification: employee[:verification],
-            expiration: [employee["expiration(1i)"],  employee["expiration(2i)"],  employee["expiration(3i)"]].reject(&:empty?).join('-') )         
-          if current_employee.save
-            if employee[:restaurant_roles][:role_id].length > 1
-                employee[:restaurant_roles][:role_id].each do |role|
-                  if role !='' then RestaurantRole.create(aware_employee_id: current_employee.id, role_id: role ) end
-                end
-            end
-          end
-        end
-      end
-    end
+  
     def edit_nests
       # edit employee attributes
         if params[:restaurant][:aware_employees_attributes] != nil
@@ -145,12 +110,20 @@ class RestaurantsController < ApplicationController
         params[:restaurant][:areas_attributes].first[1][:neighborhood_id].each do |hood|
           if hood != '' then Area.create(restaurant_id: this_restaurant.id, neighborhood_id: hood )end
         end
+
       # End Neighborhood  
+     
+      # Save Employee Roles
+      #   iterate through aware_employees
       binding.pry
-      # Save Employee
-        employee_hash = params[:restaurant][:aware_employees_attributes].first[1]
-        employee_hash[:restaurant_roles_attributes].first[1][:role_id].each do |role|
-          if role != '' then RestaurantRole.create(aware_employee_id: this_restaurant.aware_employees.first.id, role_id: role ) end
+         params[:restaurant][:aware_employees_attributes].each do |employee|
+          #find saved emplpyee with the correct name AT the current restaurant
+           saved_employee = AwareEmployee.where(name: employee[1][:name], restaurant_id: this_restaurant.id).first
+        #   #iterate through restaurant roles and save 
+          binding.pry
+           employee[1][:restaurant_roles_attributes].first[1][:role_id].each do |role|
+             if role != '' then RestaurantRole.create(aware_employee_id: saved_employee.id, role_id: role ) end
+          end 
         end
     end  
   end
