@@ -1,7 +1,7 @@
 class Restaurant < ActiveRecord::Base
 	mount_uploader :logo, ImageUploader
   VALID_STATES = ['CA']
-  	
+
   	State.all.each do |state| 
   		VALID_STATES << state.abbreviation
   	end

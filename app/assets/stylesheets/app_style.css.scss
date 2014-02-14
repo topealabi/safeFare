@@ -286,6 +286,15 @@ nav#main-nav{
 		opacity:0;
 	}
 }
+.employee{
+	.form-label{
+		width:10%;
+	}
+}
 .role-click a{
-	opacity:0;
+	opacity: 0;
+display: inline;
+width: 1px;
+height: 1px;
+padding: 0px;
 }

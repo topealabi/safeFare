@@ -36,6 +36,7 @@ function resetCenter(latlng){
 	    animation: google.maps.Animation.DROP,
 	    position: center
   	});
+  	setpos();
   	google.maps.event.addListener(marker, 'mouseup', setpos);
 }
 
@@ -116,10 +117,7 @@ var checkLength = function(value) {
 	}
 }
 
-function remove_fields(link) {
-  $(link).previous("input[type=hidden]").value = "1";
-  $(link).up(".fields").hide();
-}
+
   $(document).on('click', 'form .add_fields', function(event){
   
   	time = new Date().getTime();
@@ -129,7 +127,11 @@ function remove_fields(link) {
   	$('.chosen-select').chosen();
   	
   	})
-
+  $('form').on('click', '.remove_fields', function(event){
+    $(this).prev('input[type=hidden]').val('1');
+    $(this).closest('fieldset').hide();
+    event.preventDefault();
+	})
 $(document).ready(function(){
 	$( "#check" ).click(function() {
 	  event.preventDefault();
@@ -141,7 +143,9 @@ $(document).ready(function(){
 	  if (params.length < 5) {
 	  	alert('please provide a valid address');
 	  }else{
+
 	  	geocode(params);
+		
 		}
 	  });
 })

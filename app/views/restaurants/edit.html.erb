@@ -11,8 +11,10 @@
 			<% if @restaurant.approved != true %>
 				<h5> This Restaurant has <span style='color:red'> Not Yet </span> Been Approved by The SafeFARE Staff </h5>
 			<% end %> 
+			<h2 class="orange-header"><%=@restaurant.name%></h2>
+			<span> <%= link_to "Delete", user_restaurant_path(current_user, @restaurant), :method => :delete, :class => 'action' %>
 			<%= render 'edit_restaurant_form' %>
-		<% end %>
+		<%end%>
 		<div style='clear:both'></div>	
 	</div>
 </div>
