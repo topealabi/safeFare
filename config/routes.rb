@@ -5,7 +5,7 @@ SafeFare::Application.routes.draw do
 #  ActiveAdmin.routes(self)
   resources :users do
     resources :restaurants do
-      resources :type_of_cuisines
+#      resources :type_of_cuisines
       resources :aware_employees do
         resources :restaurant_roles
       end
@@ -13,11 +13,20 @@ SafeFare::Application.routes.draw do
   end
 
   resources :posts
+  resources :cuisines
+  resources :type_of_cuisines 
+  resources :roles
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'home#index'
+  match "/about" => "home#about", via: [:get, :post]
+  match "/contact" => "home#contact", via: [:get]
+  match "/submit" => "home#submit", via: [:post]
+  match "/search" => "search#index", via: [:get]
+  match "/results" => "search#results", via: [:post]
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

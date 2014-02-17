@@ -1,0 +1,26 @@
+<h1>Listing cuisines</h1>
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Restaurant</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @type_of_cuisine.each do |tocuisine| %>
+      <tr>
+        <td><%= tocuisine.id  %></td>
+        <td><%= tocuisine.where(restaurant_id) %></td>
+        
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

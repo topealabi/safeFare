@@ -1,0 +1,25 @@
+$orange: #EC4423;
+$border:#AD2D0A;
+$blue:#243772;
+$hover:#3a5ad8;
+@media screen and (max-width: 920px){
+input#submit-search{
+		float:right;
+		width:44px;
+		height:44px;
+		background:$blue;
+	-webkit-transition: all .3s ease;
+		width: 90% !important;
+		margin-top: 10px !important;
+		float:none !important;
+		background-image: image-url("search.png") !important;
+		background-repeat:no-repeat;
+		background-position:top center !important;
+	}
+	input#submit-search:hover{
+		background:$hover;
+
+		background-repeat:no-repeat !important;
+		background-position:top center !important;
+	}
+}

@@ -36,3 +36,13 @@ end
 		puts role
 	end
 end
+['Bushwick', 'Allston', 'Bed Stuy', 'East Village'].each do |hood|
+	hood_exist = Neighborhood.where({name: hood})
+	
+	if hood_exist.length >= 1
+		puts 'This hood exists yo'
+	else
+		Neighborhood.create(name: hood)
+		puts hood
+	end
+end

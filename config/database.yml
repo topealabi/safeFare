@@ -50,13 +50,13 @@ test:
   database: safeFare_test
   pool: 5
   host: localhost
-  # username: admin
-  # password: 4nH6az7fL40W!
+  username: admin
+  password: 4nH6az7fL40W!
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: safeFare_production
+  database: safeFare_development
   pool: 5
   host: localhost
   #username: admin

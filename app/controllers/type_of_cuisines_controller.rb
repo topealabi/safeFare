@@ -1,9 +1,14 @@
 class TypeOfCuisinesController < ApplicationController
+
+def index
+    @type_of_cuisine = TypeOfCuisine.all
+end
+
 def destroy
 
-  @cuisine =  TypeOfCuisine.find(params[:id])
+  @type_of_cuisine =  TypeOfCuisine.find(params[:id])
     respond_to do |format|
-      if @cuisine.delete
+      if @type_of_cuisine.delete
        
         format.html { redirect_to :back, notice: 'Successfully Deleted' }
        

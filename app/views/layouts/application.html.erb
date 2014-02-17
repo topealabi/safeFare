@@ -8,14 +8,24 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbqyE_ATNzMEVS_S-79LoBo6peBwoVa-o&sensor=true"></script>
+  	
   <script type="text/javascript" src="//use.typekit.net/vmz8fhp.js"></script>
 <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 </head>
 <body>
+
+<%  current_uri = request.env['PATH_INFO'] %>
 <nav id="main-nav" class="navbar">
 	<div class="navbar-inner">
 		<div class="mobile-menu">
-			<a href="#">Nav</a>
+			<div id='mobile-nav'>Nav</div>
+			<ul class='mobile-nav-items'>
+				<li><a href="">Home</a></li>
+				<li><a href="">About SafeFARE</a></li>
+				<li><a href="">Find a Restaurant</a></li>
+				<li><a href="">For Diners</a></li>
+				<li><a href="">For Restaurants</a></li>			
+			</ul>
 		</div>
 		<div class="sign-in">
 			<div class="nav-link">
@@ -29,11 +39,81 @@
 		</div>
 	</div>
 </nav>
+
+<div class="search">
+		<div class="section-wrapper">
+			<div class="safeFare-icon left col-sm-6 col-xs-12"><%= image_tag("logo.gif", :alt => "temp logo") %></div>
+			<div class="safeFare-search right col-sm-6 col-xs-12" style='padding:0px;'>
+				<h2 class='small-thick'>Find a Restaurant</h2>
+				<p>Locate a food allergy aware restaurant near you.</p>
+				<form name="search" action="/search" method="get">
+					<input type="text" name="search" id='cuisine' placeholder='Restaurant, Cuisine, etc.'>
+					<input type="text" name="location" id='free-text' placeholder='Address, Zip, etc.'>
+					<input type="submit" name="nil" data-role='none'id='submit-search' value='Search' >
+				</form>
+			</div>
+		</div>
+		<div style='clear:both'></div>
+	</div>
+	<div class="nav-full-bar">
+		<div class="section-wrapper">
+			<ul>
+				<li <% if current_uri == "/"%> class="active"<%end%>><a href="/">Home</a></li>
+				<li <% if current_uri == "/about"%> class="active"<%end%>><a href="#">About SafeFARE</a></li>
+				<li><a href="">Find a Restaurant</a></li>
+				<li><a href="">For Diners</a></li>
+				<li><a href="">For Restaurants</a></li>			
+			</ul>
+		</div>
+	</div>
+
 <div class="container-fluid">
 		<%= yield %>
 		<p class="notice"><%= notice %></p>
 		<p class="alert"><%= alert %></p>
+
 </div>
-	
+
+	<div class="footer-section">
+		<div class="section-wrapper">
+			<div class="contact-links col-sm-8 col-xs-12 padding">
+				<ul>
+					<li style='padding-left:0px;'><a href="/contact">Contact Us</a></li>
+					<li><a href="">Sitemap</a></li>
+					<li><a href="">Privacy Policy</a></li>
+					<li><a href="">Disclaimer</a></li>
+					<li><a href="">Learn about FARE</a></li>
+					<div style='clear:both;'></div>
+				</ul>
+				<div class="copyright">
+					<p>2014, Food Allergy Research and Education, Inc.</p>
+					<p>7925 Jones Branch Dr., Suite 1100, McLean, VA 22102</p>
+					<p>Phone: (800) 929-4040 | Fax: (703) 691-2713 </p>
+				</div>
+			</div>
+			<div class="food-allergy-links col-sm-4 col-xs-12 padding">
+			
+					<div class="nav-link"><%= link_to "Visit FoodAllergy.org", new_user_registration_path %></div>
+					<p style='text-align:right'>Find more information and resources for</p>
+					<p style='text-align:right'>managing food allergies on FARE's website.</p>
+				
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+$(document).ready(function(){
+	$('#mobile-nav').on("click",function(){
+		$('#main-nav').toggleClass('open');
+	})
+	$('input#free-text,input#cuisine').focus(function(){
+		$(this).toggleClass('click');
+	})
+	$('input#free-text,input#cuisine').blur(function(){
+		$(this).toggleClass('click');
+	})
+
+})
+</script>
 </body>
 </html>

@@ -30,3 +30,6 @@ a.add_an_employee:hover{
 	width:400px;
 	height:400px;
 }
+#restaurant_neighborhood_chosen.chosen-container .chosen-results li.no-results{
+	display:none !important;
+}
