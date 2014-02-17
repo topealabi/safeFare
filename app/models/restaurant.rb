@@ -1,7 +1,7 @@
 class Restaurant < ActiveRecord::Base
 	mount_uploader :logo, ImageUploader
   VALID_STATES = ['CA']
-  	
+
   	State.all.each do |state| 
   		VALID_STATES << state.abbreviation
   	end
@@ -31,10 +31,9 @@ class Restaurant < ActiveRecord::Base
    	inverse_of: :restaurant,
     dependent: :destroy 
 
-  accepts_nested_attributes_for :aware_employees
 
   accepts_nested_attributes_for :areas, :reject_if => lambda { |a| a[:neighborhood_id].blank? }, :allow_destroy => true
-
+  accepts_nested_attributes_for :aware_employees, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :type_of_cuisines, :reject_if => lambda { |a| a[:cuisine_id].blank? }, :allow_destroy => true
 
   searchable do

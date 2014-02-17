@@ -28,8 +28,7 @@ color: inherit;
 font-size: 15px;
 	}
 a{text-decoration:none;color:inherit}
-.notice{float:left;position:absolute;}
-.alert{float:right; position:absolute;padding:0px; border:0px solid white;}
+
 .section-wrapper{
 	max-width:970px;
 	margin:auto;
@@ -254,4 +253,61 @@ nav#main-nav{
 		
 	}
 
+.form-row{
+	clear:both;
+	padding:10px 0px;
+	.form-label{
+		float:left;
+		color:$blue;
+		padding:10px 20px 10px 0px;
+		width:25%;
+		text-align: right;
+		font-family: 'proxima-nova';
+		font-weight: 600;
+	}
+	.form-label.text-left{
+		text-align: left;
+	}
+	.feedback{
+		float:right;
+		max-width: 15%;
+	}
+	.input{
+		float:left;
+		width:60%;
+		input{
+			width:100%;
+		}
+	}
+	#map-canvas{
+		width:100%;
+		height:200px;
+		opacity:0;
+	}
+}
+.employee{
+	.form-label{
+		width:10%;
+	}
+}
+.role-click a{
+	opacity: 0;
+display: inline;
+width: 1px;
+height: 1px;
+padding: 0px;
+}
+div.alert{
+	text-align:center;
+	padding:0px;
+	border-radius:0px;
+	border:0px solid white;
+	width:100%;
+	background:#F2D571;
+	background-image: image-url("flag.png");
+	background-position: 0px 0px;
+	background-size: 16px;
+	background-position: 15px 0px;
+	background-repeat: no-repeat;
 
+}

@@ -1,12 +1,19 @@
-<div class="new-restaurant-section">
+
+<div class="new-restaurant-section" style='padding:20px 0px;'>
 	<div class="section-wrapper">
+		<h2 class="orange-header">Add Your Restaurant</h2>
 		<%= render 'new_restaurant_form' %>
-		<div id="map-canvas"/>
 	</div>
+	<div style='clear:both'></div>
 </div>
 
  
  <script type="text/javascript">
+ $('input.inactive').click(function(){
+	elements = $('.validate')
+	debugger;
+	return false;
+})
 	$(document).ready(function(){
 		initialize();
 	})

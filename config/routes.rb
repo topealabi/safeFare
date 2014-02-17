@@ -5,7 +5,7 @@ SafeFare::Application.routes.draw do
 #  ActiveAdmin.routes(self)
   resources :users do
     resources :restaurants do
-#      resources :type_of_cuisines
+     resources :type_of_cuisines
       resources :aware_employees do
         resources :restaurant_roles
       end
@@ -13,9 +13,7 @@ SafeFare::Application.routes.draw do
   end
 
   resources :posts
-  resources :cuisines
-  resources :type_of_cuisines 
-  resources :roles
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
