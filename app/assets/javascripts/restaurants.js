@@ -118,7 +118,7 @@ var checkLength = function(value) {
 }
 
 
-  $(document).on('click', 'form .add_fields', function(event){
+ $(document).on('click', 'form .add_fields', function(event){
   
   	time = new Date().getTime();
   	regexp = new RegExp($(this).data('id'), 'g');

@@ -25,15 +25,15 @@ class RestaurantsController < ApplicationController
 	
    @restaurant = Restaurant.new(restaurant_params)
    @restaurant.user_id = current_user.id
-   binding.pry
+ 
     respond_to do |format|
       if @restaurant.save
         save_nests(@restaurant)
         format.html { redirect_to current_user, notice: 'Restaurant was successfully created.' }
         format.json { render action: 'show', status: :created, location: @restaurant }
       else
-       
-        format.html { redirect_to root_path, notice: 'There was an error on your form' }
+   
+        format.html { redirect_to new_user_restaurant_path(current_user), notice: @restaurant.errors.full_messages }
         format.json { render json: @restaurant.errors, status: :unprocessable_entity }
       end
     end
@@ -81,7 +81,7 @@ class RestaurantsController < ApplicationController
       	params.require(:restaurant).permit(:name,:address,:city,:state, :email, :phone,:repos,
           :hours,:approved,:website,:facebook_url,:twitter_url,:allergy_eats_url,:role_id,
           :zip,:logo,:total_employees,:description,:is_visible,cuisine_ids:[],neighborhood_ids:[],
-          aware_employees_attributes:[:name, :verification,:expiration, :cert_type,role_ids:[],restaurant_roles_attributes:[role_id:[]]],
+          aware_employees_attributes:[:name,:id, :verification,:expiration, :cert_type,role_ids:[],restaurant_roles_attributes:[role_id:[]]],
           type_of_cuisines_attributes:[:id,:restaurant_id,cuisine_id:[]],
           areas_attributes:[:id,:restaurant_id,neighborhood_id:[]]
         )
@@ -109,9 +109,9 @@ class RestaurantsController < ApplicationController
           end
         end
         #edit employee roles
-
         params[:restaurant][:aware_employees_attributes].each do |employee|
           this_emp = AwareEmployee.where(name:employee[1][:name], restaurant_id: @restaurant.id).first
+          next if this_emp == nil
           if employee[1][:role_ids] != nil
              employee[1][:role_ids].each do |role|  
                if role == ''

@@ -1,4 +1,4 @@
-<%= simple_form_for [ current_user,@restaurant ] do |f| %>
+<%= simple_form_for [ current_user,@restaurant ], html: {novalidate: true} do |f| %>
 
 	<div class="col-sm-6 col-xs-12">
 		<div class="col-xs-12 form-row">
@@ -98,7 +98,7 @@
 			<p class='form-label'>Neighborhood</p>
 			<%= f.association :neighborhoods, label:false, multiple: true, collection: Neighborhood.all, label_method: :name, value: :id, input_html: { class: "chosen-select req", multiple: true, style: 'width:255px; height:200px;'}  %>
 			<span class='feedback'></span><br>
-			<a href='' style='float:left' id='check'>Check Address</a>
+			<p style='float:left; text-decoration:underline' id='check'>Check Address</p>
 		</div>
 		<div class="col-xs-12 form-row">		
 			<div id="map-canvas" ></div>

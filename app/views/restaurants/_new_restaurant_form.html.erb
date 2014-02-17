@@ -1,11 +1,11 @@
-<%= simple_form_for [ @user,@restaurant ] do |f| %>
+<%= simple_form_for [ @user,@restaurant ], html: {novalidate: true} do |f| %>
 	<div class="col-sm-6 col-xs-12">
-		<div class="col-xs-12 form-row">
+		<div class="col-xs-12 form-row name validate">
 			<p class='form-label'>Name</p>
 			<%= f.input :name, label: false, input_html: { class: "req" }   %>
 			<span class='feedback'></span>
 		</div>
-		<div class="col-xs-12 form-row">
+		<div class="col-xs-12 form-row email validate">
 			<p class='form-label'>Email</p>
 			<%= f.input :email, label: false, input_html: { class: "req" }  %>
 			<span class='feedback'></span>
@@ -27,7 +27,7 @@
 			<%= f.input :website, label: false %>
 			<span class='feedback'></span>
 		</div>
-		<div class="col-xs-12 form-row">
+		<div class="col-xs-12 form-row number_of_employees validate">
 			<p class='form-label'>Number of Employees</p>
 			<%= f.input :total_employees, label: false, input_html: { class: "req" } %>
 			<span class='feedback'></span>
@@ -44,7 +44,7 @@
 			<span class='feedback'></span>
 		</div>
 
-		<div class="col-xs-12 form-row">
+		<div class="col-xs-12 form-row cuisine validate">
 			<%= f.simple_fields_for :type_of_cuisines do |h| %>
 				<p class='form-label'>Cuisine</p>
 				<%= h.input :cuisine_id, collection: Cuisine.all, multiple: true, value: :id, label: false, input_html: { class: "chosen-select req", multiple: true, style: 'width:255px; height:200px;'} %>
@@ -109,7 +109,7 @@
 			
 		</div>
 		<div class="col-xs-12 margin-top left">
-			<%= f.button :submit, :class => "nav-link"%>
+			<%= f.button :submit, :class => "nav-link", class: 'inactive'%>
 		</div>
 	</div>
 <% end %>
