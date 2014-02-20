@@ -30,7 +30,7 @@
 		<div class="sign-in">
 			<div class="nav-link">
 				<% if user_signed_in? %>
-		 		  <%= link_to 'Edit Restaurant', edit_user_registration_path %> 
+		 		  <%= link_to 'Edit Restaurant', user_restaurants_path(current_user) %> 
 		 		<% else %>
 		 		  <%= link_to "RESTAURANT LOGIN", new_user_registration_path %> 
 		 		 
@@ -50,7 +50,7 @@
 				<form name="search" action="/search" method="get">
 					<input type="text" name="search" id='cuisine' placeholder='Restaurant, Cuisine, etc.'>
 					<input type="text" name="location" id='free-text' placeholder='Address, Zip, etc.'>
-					<input type="submit" name="nil" data-role='none'id='submit-search' value='Search' >
+					<input type="submit" name="nil" data-role='none'id='submit-search' value='' >
 				</form>
 			</div>
 		</div>
@@ -59,8 +59,8 @@
 	<div class="nav-full-bar">
 		<div class="section-wrapper">
 			<ul>
-				<li <% if current_uri == "/"%> class="active"<%end%>><a href="/">Home</a></li>
-				<li <% if current_uri == "/about"%> class="active"<%end%>><a href="#">About SafeFARE</a></li>
+				<li><a href="/">Home</a></li>
+				<li <% if current_uri == "/about"%> class="active"<%end%>><a href="/about">About SafeFARE</a></li>
 				<li><a href="">Find a Restaurant</a></li>
 				<li><a href="">For Diners</a></li>
 				<li><a href="">For Restaurants</a></li>			

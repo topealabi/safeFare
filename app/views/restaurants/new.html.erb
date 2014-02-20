@@ -1,7 +1,7 @@
 
 <div class="new-restaurant-section" style='padding:20px 0px;'>
 	<div class="section-wrapper">
-		<h2 class="orange-header">Add Your Restaurant</h2>
+		<h2 class="orange-header padding-left">Add Your Restaurant</h2>
 		<%= render 'new_restaurant_form' %>
 	</div>
 	<div style='clear:both'></div>
@@ -9,10 +9,22 @@
 
  
  <script type="text/javascript">
- $('input.inactive').click(function(){
-	elements = $('.validate')
-	debugger;
-	return false;
+ $('input.inactive').click(function(e){
+	elements = $('.validate');
+	var counter = 0; 
+	$.each(elements,function(index,value){ 
+		if ( $("."+value.className.split(' ')[3]+" input").val() == '' ){
+			$("."+value.className.split(' ')[3]+" .feedback").html('&otimes;'); 
+			$("."+value.className.split(' ')[3]+" .feedback").css('color', 'red');
+			counter ++;	
+		}else{
+			$("."+value.className.split(' ')[3]+" .feedback").html('&#10003;'); 
+			$("."+value.className.split(' ')[3]+" .feedback").css('color', 'green');
+		}
+	})
+	if ($('.emp_name').length == 0) { alert('Please provide at least one valid employee'); counter ++}
+	if (counter > 0) {  e.preventDefault(); }
+
 })
 	$(document).ready(function(){
 		initialize();

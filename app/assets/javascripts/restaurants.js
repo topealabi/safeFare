@@ -87,7 +87,6 @@ var checkEmail = function(value) {
 	if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length){	
  		return false;
   	}else{
-  		
   		return true;
   	}
 }
@@ -148,4 +147,9 @@ $(document).ready(function(){
 		
 		}
 	  });
+
+	$('.sub.add_fields').on('click', function(){
+		$('.submit.inactive').trigger('click');
+	})
+
 })

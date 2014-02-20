@@ -7,7 +7,7 @@
 // For example, to change the sidebar width:
 // $sidebar-width: 242px;
 
-// Active Admin's got SASS!
+// // Active Admin's got SASS!
 @import "active_admin/mixins";
 @import "active_admin/base";
 
@@ -32,3 +32,82 @@ body.logged_out h2 {
     padding: 5px 10px 3px;
     text-shadow: 0 1px 0 #000000;
 }
+#header{
+    background:#EC4423;
+    text-shadow: none;
+    height:50px;
+}
+#header h1{
+    font-weight:500;
+        color:white;
+        font-size:20px;
+        letter-spacing:.05em;
+     
+    img{
+        width:200px;
+    }
+}
+#title_bar{
+    background: transparent;
+text-shadow: white 0 0px 0;
+border: solid 0px #cdcdcd;
+
+box-shadow: 0px;
+font-size: 1.0em;
+font-weight: bold;
+line-height: 18px;
+margin-bottom: 0.5em;
+
+padding: 5px 10px 3px 10px;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+box-shadow: none;
+display: table;
+
+width: 100%;
+position: relative;
+margin: 0;
+z-index: 800;
+
+}
+#title_bar h2{
+    color:#EC4423;font-weight:300;font-size:28px;
+}
+#header ul.tabs > li > a {
+background:none;
+color:white;
+}
+#header ul.tabs > li > a:hover {
+background:none;
+color:white;
+}
+#header ul.tabs > li.current > a {
+background:none;
+color:white;
+font-weight:600;
+}
+thead th {
+background: #243772;
+color:white;
+}
+form input[type=submit] {
+    background:#243772;
+    width:180px;
+    text-align: center;
+    font-size:17px;
+    border:0px solid white;
+    border-radius:0px;
+    padding:7px 0px;
+    margin-top:15px;
+     -webkit-transition: all .5s ease;  /* Chrome 1-25, Safari 3.2+ */
+     -moz-transition: all .5 ease;  /* Firefox 4-15 */
+       -o-transition: all .5 ease;  /* Opera 10.50–12.00 */
+          transition: all .5 ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+    
+    letter-spacing: 0.05em;
+}
+form input[type=submit]:hover{
+    background:#3a5ad8;
+}
+.padding-left{padding-left:15px;}

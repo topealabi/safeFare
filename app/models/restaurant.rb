@@ -5,7 +5,7 @@ class Restaurant < ActiveRecord::Base
   	State.all.each do |state| 
   		VALID_STATES << state.abbreviation
   	end
-  	
+  scope :pending, where(approved:false)
 	validates_presence_of :name, :address, :city, :zip
   validates_inclusion_of :state,
     in: VALID_STATES
