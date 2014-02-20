@@ -36,12 +36,23 @@ class Restaurant < ActiveRecord::Base
   accepts_nested_attributes_for :aware_employees, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :type_of_cuisines, :reject_if => lambda { |a| a[:cuisine_id].blank? }, :allow_destroy => true
 
+  geocoded_by :restaurant_location
+  after_validation :geocode
+  
+
+  def restaurant_location 
+    [address, city, state, zip].compact.join(', ')
+  end
+
   searchable do
     text :name 
     text :address                        
     string :city                              
     text :state                       
     text :description
+    double :latitude
+    double :longitude
+    latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
     string :cuisines_name, :multiple => true do
       cuisines.map { |cuisine| cuisine.name}
     end

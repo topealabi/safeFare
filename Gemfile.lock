@@ -109,6 +109,7 @@ GEM
     formtastic (2.3.0.rc2)
       actionpack (>= 3.0)
     fssm (0.2.10)
+    geocoder (1.1.9)
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
@@ -272,6 +273,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise (~> 3.2.2)
   factory_girl_rails
+  geocoder
   jbuilder (~> 1.2)
   jquery-rails
   launchy

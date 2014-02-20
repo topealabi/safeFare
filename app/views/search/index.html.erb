@@ -12,8 +12,12 @@
     
 
     <p>
-    <%= label_tag(:hood, "Neighborhood:") %>
-    <%= text_field_tag :hood, params[:hood] %>
+    <%= label_tag(:addy, "address:") %>
+    <%= text_field_tag :address, params[:address] %>
+    </p>
+    <p>
+   <%= label_tag(:hood_search, "Neighborhood:") %>
+    <%= select_tag(:hood_search, options_from_collection_for_select(Neighborhood.all, :name, :name), multiple: true) %>
     </p>
     <p>
     <%= label_tag(:city, "City:") %>
@@ -28,7 +32,7 @@
     </p>
     <p>
       <%= label_tag(:within, "Within:") %>
-      <%= select_tag(:within, "<option>5 miles</option><option>10 miles</option><option>15 miles</option>".html_safe, multiple: true) %>
+      <%= select_tag(:within, "<option>5 miles</option><option>10 miles</option><option>15 miles</option>".html_safe) %>
     </p>
 
   

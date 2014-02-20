@@ -2,8 +2,29 @@
 
 <%= form_tag user_restaurants_path, :method => :get do %>
   <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
+  <%= label_tag(:addy, "address:") %>
+  <%= text_field_tag :addy, params[:addy] %>
+  </p>
+  <p>
+ <%= label_tag(:hood_search, "Neighborhood:") %>
+  <%= select_tag(:hood_search, options_from_collection_for_select(Neighborhood.all, :name, :name), multiple: true) %>
+  </p>
+  <p>
+  <%= label_tag(:city, "City:") %>
+  <%= text_field_tag :city, params[:city] %>
+  </p>
+  <%= label_tag(:state_search, "State:") %>
+    <%= select_tag(:state_search, options_from_collection_for_select(State.all, :abbreviation, :abbreviation)) %>
+  </p>
+  <p>
+    <%= label_tag(:zip, "Zip:") %>
+    <%= text_field_tag :zip, params[:zip] %>
+  </p>
+  <p>
+    <%= label_tag(:within, "Within:") %>
+    <%= select_tag(:within, "<option>5 miles</option><option>10 miles</option><option>15 miles</option>".html_safe) %>
+  </p>
+  <%= submit_tag "Search", :name => nil %>
 <% end %>
 
 <table>

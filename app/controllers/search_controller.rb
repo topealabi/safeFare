@@ -18,6 +18,15 @@ class SearchController < ApplicationController
 						end
 					end
 				end
+				if ( (params[:addy]).present? || (params[:city]).present? || (params[:hood_search]).present? || (params[:state_search]).present? || params[:zip].present?)
+					def whereat
+				      [params[:addy], params[:city], params[:state_search], params[:hood_search], params[:zip]].compact.join(', ')
+				    end
+				    def howfar 
+				       params[:within].to_i * 1.60934
+				    end
+				    with(:location).in_radius(*Geocoder.coordinates(whereat), howfar)
+				end
 			end
 			@restaurants = @search.results
 			
@@ -30,6 +39,16 @@ class SearchController < ApplicationController
 
 				if params[:worker_role].present?
 				with(:worker, params[:worker_role])
+				end
+
+				if ( (params[:addy]).present? || (params[:city]).present? || (params[:hood_search]).present? || (params[:state_search]).present? || params[:zip].present?)
+					def whereat
+				      [params[:addy], params[:city], params[:state_search], params[:zip]].compact.join(', ')
+				    end
+				    def howfar 
+				       params[:within].to_i * 1.60934
+				    end
+				    with(:location).in_radius(*Geocoder.coordinates(whereat), howfar)
 				end
 
 			end

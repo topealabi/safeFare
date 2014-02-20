@@ -2,12 +2,25 @@ class RestaurantsController < ApplicationController
   before_filter :authenticate_user!, 
               :only => [:new, :edit, :create, :update, :delete]
   def index
+   if (params[:city] || params[:state_search]).present? 
+     @search  = Restaurant.solr_search do
+      def whereat
+      [params[:addy], params[:city], params[:state_search], params[:zip]].compact.join(', ')
+      end
+      def howfar 
+        params[:within].to_i * 1.60934
+      end
+      with(:location).in_radius(*Geocoder.coordinates(whereat), howfar)
+     end
+     @restaurants = @search.results
+   else
     @search  = Restaurant.solr_search do
-      fulltext params[:search]
+      with(:location).in_radius(29.587359,-95.515556, 100)
+     end
+     @restaurants = @search.results
     end
-    @restaurants = @search.results
-    
   end
+
   def new
 		  @states = []
     	@user = current_user

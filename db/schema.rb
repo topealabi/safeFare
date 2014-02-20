@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20140214204851) do
-
+ActiveRecord::Schema.define(version: 20140217215322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,6 +127,8 @@ ActiveRecord::Schema.define(version: 20140214204851) do
     t.string   "logo"
     t.string   "repos"
     t.boolean  "kid_friendly"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "roles", force: true do |t|
