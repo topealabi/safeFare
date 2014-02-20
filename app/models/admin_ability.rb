@@ -6,7 +6,7 @@ class AdminAbility
 	 
 	def initialize(admin_user)
 		admin_user ||= AdminUser.new
-			can :read, :all
+			can :manage, :all
 
 		if admin_user.role == "Content Editor"
 			can :manage, Post
