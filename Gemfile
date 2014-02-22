@@ -63,6 +63,8 @@ end
 # Use Capistrano for deployment
  gem 'capistrano', group: :development
  gem 'capistrano-rails'
+ gem 'capistrano-rvm'
+ gem 'capistrano-bundler', '~> 1.1.2'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
