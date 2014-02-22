@@ -19,4 +19,4 @@
 solr/*
 
 #ignore db yml
-/config/database.yml
+
