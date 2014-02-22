@@ -65,6 +65,7 @@ group :development do
  gem 'capistrano'
  gem 'capistrano-rails' 
  gem 'capistrano-rvm'
+ gem 'rvm-capistrano'
  gem 'capistrano-bundler', '~> 1.1.2'
 
 end
