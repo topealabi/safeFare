@@ -16,4 +16,7 @@
 /tmp
 
 #ignore solr files
-/solr
+solr/*
+
+#ignore db yml
+/config/database.yml
