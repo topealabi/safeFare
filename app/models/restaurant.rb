@@ -1,10 +1,10 @@
 class Restaurant < ActiveRecord::Base
 	mount_uploader :logo, ImageUploader
-  VALID_STATES = ['CA']
+  # VALID_STATES = ['CA']
 
-  	State.all.each do |state| 
-  		VALID_STATES << state.abbreviation
-  	end
+  # 	State.all.each do |state| 
+  # 		VALID_STATES << state.abbreviation
+  # 	end
   scope :pending, where(approved:false)
 	validates_presence_of :name, :address, :city, :zip
   validates_inclusion_of :state,

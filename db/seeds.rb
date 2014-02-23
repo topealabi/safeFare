@@ -13,6 +13,11 @@ CSV.foreach('db/states.csv', headers: true) do |row|
 	else
 		State.create(state: row[0], abbreviation: row[1])
 		puts row
+		VALID_STATES = ['CA']
+
+	  	State.all.each do |state| 
+	  		VALID_STATES << state.abbreviation
+	  	end
 	end
 end
 
