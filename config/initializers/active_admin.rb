@@ -1,24 +1,34 @@
 ActiveAdmin.setup do |config|
 
-  # module ActiveAdmin
-  #   module Views
-  #     class TableFor
-  #       def bool_column(appr)
-  #         column(appr){ |restaurant| restaurant[appr] ? '&#x2714;'.html_safe : '&#x2717;'.html_safe }
-  #       end
-  #     end
-  #     class AttributesTable
-  #       def bool_row(appr)
-  #         row(appr){ |restaurant| restaurant[appr] ? '&#x2714;'.html_safe : '&#x2717;'.html_safe }
-  #       end
-  #     end
-  #     class IndexAsTable
-  #       def bool_column(appr)
-  #         column(appr){ |restaurant| restaurant[appr] ? '&#x2714;'.html_safe : '&#x2717;'.html_safe }
-  #       end
-  #     end
-  #   end
-  # end
+  module ActiveAdmin
+    module Views
+      class TableFor
+        def bool_column(appr)
+          column(appr){ |restaurant| restaurant[appr] ? '&#x2714;'.html_safe : '&#x2717;'.html_safe }
+        end
+      end
+      class AttributesTable
+        def bool_row(appr)
+          row(appr){ |restaurant| restaurant[appr] ? '&#x2714;'.html_safe : '&#x2717;'.html_safe }
+        end
+      end
+      class IndexAsTable
+        def bool_column(appr)
+          column(appr){ |restaurant| restaurant[appr] ? '&#x2714;'.html_safe : '&#x2717;'.html_safe }
+        end
+      end
+    end
+  end
+
+  module ActiveAdmin
+    class Engine < Rails::Engine 
+      if Rails.version > "3.1" 
+        initializer "ActiveAdmin precompile hook" do |app| 
+          app.config.assets.precompile += ['active_admin.js', 'active_admin.css']
+        end
+      end
+     end
+ end
 
   # == Site Title
   #
