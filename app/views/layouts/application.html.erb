@@ -47,7 +47,7 @@
 			<div class="safeFare-search right col-sm-6 col-xs-12" style='padding:0px;'>
 				<h2 class='small-thick'>Find a Restaurant</h2>
 				<p>Locate a food allergy aware restaurant near you.</p>
-				<form name="search" action="/search" method="get">
+				<form name="search" action="/find-a-restaurant" method="get">
 					<input type="text" name="search" id='cuisine' placeholder='Restaurant, Cuisine, etc.'>
 					<input type="text" name="location" id='free-text' placeholder='Address, Zip, etc.'>
 					<input type="submit" name="nil" data-role='none'id='submit-search' value='' >
@@ -61,7 +61,7 @@
 			<ul>
 				<li><a href="/">Home</a></li>
 				<li <% if current_uri == "/about"%> class="active"<%end%>><a href="/about">About SafeFARE</a></li>
-				<li><a href="">Find a Restaurant</a></li>
+				<li<% if current_uri == "/find-a-restaurant"%> class="active"<%end%>><a href="/find-a-restaurant">Find a Restaurant</a></li>
 				<li><a href="">For Diners</a></li>
 				<li><a href="">For Restaurants</a></li>			
 			</ul>
@@ -70,7 +70,22 @@
 <div class="alert notice"> <%= notice %> <%= alert %> </div>	
 <div class="container-fluid">
 		<%= yield %>
+<div class="modal fade modal-lg" id="restaurantModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+     
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      
+      <div class="modal-body col-sm-11 left">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
 	<div class="footer-section">
@@ -92,14 +107,14 @@
 			</div>
 			<div class="food-allergy-links col-sm-4 col-xs-12 padding">
 			
-					<div class="nav-link"><%= link_to "Visit FoodAllergy.org", new_user_registration_path %></div>
-					<p style='text-align:right'>Find more information and resources for</p>
-					<p style='text-align:right'>managing food allergies on FARE's website.</p>
-				
+					<div class="nav-link"><a href="http://www.foodallergy.org">Visit foodallergy.org</a></div>
+					<p style='text-align:right'>Find more information and resources for managing food allergies on FARE’s website.</p>
+					
 			</div>
 		</div>
 	</div>
 </div>
+
 <script>
 $(document).ready(function(){
 	$('#mobile-nav').on("click",function(){

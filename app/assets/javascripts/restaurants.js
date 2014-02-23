@@ -1,6 +1,91 @@
 var marker;
 var map;
+function getRestaurant(restaurant_id, restaurant_user, callback){
+	$(function(){
+        $.ajax({
+        url:'/users/'+restaurant_user+'/restaurants/'+restaurant_id+'',
+        type:"GET",
+        dataType: 'json',
+        
+        async:'true',
+        success:function (data) {
+        	callback(data);
+          }
+        });
+      });
 
+}
+function populateModal(data){
+
+   var roles = ''  
+   var cuisines = ''
+   var percent = Math.round((data[3]/data[0].total_employees) * 100);
+   $.each(data[1],function(){ cuisines += this.name + ' ' });
+   $.each(data[2],function(){ roles += this + ' ' });
+   debugger;
+   var modalContainer = '';
+   modalContainer += "<div class='col-xs-7 right'>";
+   modalContainer += 	"<div class='left'>";
+   modalContainer += 		"<h2 class='orange-header'>"+data[0].name+"</h2>";
+   modalContainer += 		"<p>"+data[0].address+"</p>";
+   modalContainer += 		"<p>"+data[0].city+', '+data[0].state+' '+data[0].zip+"</p>";
+   modalContainer += 		"<p>"+data[0].phone+"</p>";
+   modalContainer += 	"</div>";
+   modalContainer += 	"<div class='right'>"
+   modalContainer += 		"<img class='' style='margin-top:10px;' src="+data[0].logo.url+"/>";
+   modalContainer += 	"</div>";
+   modalContainer += 	"<div style='clear:both'></div>";
+   modalContainer += 	"<div class='info'>";
+   modalContainer += 		"<div class='col-xs-12 form-row'>";
+   modalContainer += 			"<p class='form-label'>Cuisine</p>";
+   modalContainer += 			"<div class='input'>"+cuisines+"</div>";
+   modalContainer += 		"</div>";
+   modalContainer += 		"<div class='col-xs-12 form-row'>";
+   modalContainer += 			"<p class='form-label'>Hours</p>";
+   modalContainer += 			"<div class='input'>"+data[0].hours+"</div>";
+   modalContainer += 		"</div>";
+   modalContainer += 		"<div class='col-xs-12 form-row'>";
+   modalContainer += 			"<p class='form-label'>Number of Employees</p>";
+   modalContainer += 			"<div class='input'>"+data[0].total_employees+"</div>";
+   modalContainer += 		"</div>";
+   modalContainer += 		"<div class='col-xs-12 form-row'>";
+   modalContainer += 			"<p class='form-label'>Percent Trained</p>";
+   modalContainer += 			"<div class='input'>"+percent+"%</div>";
+   modalContainer += 		"</div>";
+   modalContainer += 		"<div class='col-xs-12 form-row'>";
+   modalContainer += 			"<p class='form-label'>Employees Trained</p>";
+   modalContainer += 			"<div class='input'>"+roles+"</div>";
+   modalContainer += 		"</div>";
+   modalContainer += 		"<div class='col-xs-12 form-row'>";
+   modalContainer += 			"<p class='form-label'>Email</p>";
+   modalContainer += 			"<div class='input'>"+data[0].email+"</div>";
+   modalContainer += 		"</div>";
+   modalContainer += 		"<div class='col-xs-12 form-row'>";
+   modalContainer += 			"<p class='form-label'>Website</p>";
+   modalContainer += 			"<div class='input'>"+data[0].website+"</div>";
+   modalContainer += 		"</div>";
+   modalContainer += 		"<div class='col-xs-12 form-row'>";
+   modalContainer += 			"<p class='form-label'>Menu</p>";
+   modalContainer += 			"<a class='input'>Menu</a>";
+   modalContainer += 		"</div>";
+   modalContainer += 		"<div class='col-xs-12 form-row'>";
+   modalContainer += 			"<p class='form-label'>Social Media Links</p>";
+   modalContainer += 			"<div class='input'><a href='"+data[0].facebook_url+"'>Facebook</a>, <a href='"+data[0].twitter_url+"'>Twitter</a></div>";
+   modalContainer += 		"</div>";
+   modalContainer += 		"<div class='col-xs-12 form-row'>";
+   modalContainer += 			"<p class='form-label'>Allergy Eats</p>";
+   modalContainer += 			"<a class='input'>"+data[0].allergy_eats_url+"</a>";
+   modalContainer += 		"</div>";
+   modalContainer += 	"</div>";
+   modalContainer += "</div>";
+   modalContainer += "<div class='col-xs-5 left'>";
+   modalContainer += 	"<img class='' style='max-width:100%' src='http://maps.googleapis.com/maps/api/staticmap?markers="+data[0].latitude+"%2C"+data[0].longitude+"&zoom=18&size=300x300&maptype=roadmap&sensor=false' />" ;
+   modalContainer += "</div>";
+  
+	 $('.modal-body').append(modalContainer);
+	 
+}
+ 
 function initialize(lat, lng) {
  	center = (typeof lat != 'number') ? new google.maps.LatLng(-34.397, 150.644) : new google.maps.LatLng(lat, lng)
  	
@@ -131,6 +216,7 @@ var checkLength = function(value) {
     $(this).closest('fieldset').hide();
     event.preventDefault();
 	})
+
 $(document).ready(function(){
 	$( "#check" ).click(function() {
 	  event.preventDefault();
@@ -148,8 +234,11 @@ $(document).ready(function(){
 		}
 	  });
 
-	$('.sub.add_fields').on('click', function(){
-		$('.submit.inactive').trigger('click');
+	$('.sub').on('click', function(){
+		$('.inactive').trigger('click');
 	})
+	 $('#modalOpen').on('click', function(){
+  	 	getRestaurant(this.classList[0], this.classList[1], function(data) { populateModal(data) })
+  	})
 
 })

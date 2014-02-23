@@ -22,7 +22,7 @@ SafeFare::Application.routes.draw do
   match "/about" => "home#about", via: [:get, :post]
   match "/contact" => "home#contact", via: [:get]
   match "/submit" => "home#submit", via: [:post]
-  match "/search" => "search#index", via: [:get]
+  match "/find-a-restaurant" => "search#index", via: [:get]
   match "/results" => "search#results", via: [:post]
 
 

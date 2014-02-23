@@ -4,6 +4,28 @@ $blue:#243772;
 $hover:#3a5ad8;
 
 @media screen and (max-width: 767px){ /* Insert your own breakpoint as needed */
+	.content-section{
+		.col-sm-4.col-xs-12.right{
+		
+			text-align: center;
+			padding-bottom: 20px;
+		}
+	}
+	.search-section{
+		.right-side{
+			margin-top:25px;
+		}
+	}
+	.about-section{
+		.col-sm-4{
+			margin-top:15px;
+			text-align: center;
+		p{
+			text-align:left;
+		}
+		}
+
+	}
 	nav#main-nav{
 		width:100%;
 		background:$blue !important;
@@ -107,6 +129,7 @@ $hover:#3a5ad8;
 				padding:30px;
 			}
 		}
+
 	
 input#submit-search{
 	

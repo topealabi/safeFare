@@ -11,7 +11,7 @@ $hover:#3a5ad8;
           border-radius: $radius;
 }
 //Globals
-p,a,h1,h2,li{font-family:'proxima-nova-condensed';}
+p,a,h1,h2,li{font-family:'proxima-nova-condensed';margin:0px;}
 h2.small-thick{
 	font-weight:500;
 		color:white;
@@ -22,6 +22,7 @@ h2.small-thick{
 ul{margin:0px; padding:0px;}
 ul li{list-style:none;margin:0px; padding:0px;}
 input{@include border-radius(0px);}
+.padding-top{padding-top:15px;}
 p{
 margin: 0px;
 color: inherit;
@@ -41,6 +42,8 @@ a{text-decoration:none;color:inherit}
 .no-padding{padding:0px;}
 .text-center{ text-align:center;}
 .orange-header{color:$orange;font-weight:300;font-family:'proxima-nova'; font-size:28px;}
+.blue-header{color:$blue;font-weight:300;font-family:'proxima-nova'; font-size:20px;}
+
 .nav-link{
 	background:$blue;
 	width:180px;
@@ -64,6 +67,8 @@ a{text-decoration:none;color:inherit}
 .safe-fare-breadcrumb{
 	width:100%;
 	height:50px;
+	padding-top: 15px;
+	padding-left: 15px;
 	li{
 		float:left;
 		list-style:none;
@@ -192,6 +197,7 @@ nav#main-nav{margin-bottom:0px;}
 // footer
 .footer-section{
 	min-height: 134px;
+	height:100%;
 	position:absolute;
 	background: $orange;
 	width: 100%;
@@ -220,12 +226,14 @@ nav#main-nav{margin-bottom:0px;}
 	}
 
 	.nav-link{
-				width:100%;
+				width:95%;
+				margin:auto;
 				padding:10px 0px !important;
 				margin-top:0px;	
 				margin-bottom:15px;	
-				cursor:pointer;		
-				a, p{
+				cursor:pointer;
+				font-family:'proxima-nova-condensed';		
+				a, p, div, span{
 				font-weight:400;
 				font-family:'proxima-nova-condensed';
 				font-size:18px;
@@ -282,7 +290,7 @@ nav#main-nav{
 	}
 	.input{
 		float:left;
-		width:60%;
+		width:60% !important;
 		input{
 			width:100%;
 		}
@@ -309,6 +317,7 @@ div.alert{
 	width:100%;
 	background:#F2D571;
 	position: absolute;
+	top:0px;
 	background-image: image-url("flag.png");
 	background-position: 0px 0px;
 	background-size: 16px;
@@ -318,4 +327,25 @@ div.alert{
 }
 input[type="file"] {
 display: inline-block;
+}
+.modal-dialog{
+width:80%;
+max-width:900px;
+	.modal-body{
+		.form-row{
+			padding:0px;
+			border-top:2px solid $blue;
+
+		}
+		.form-label{
+			width:40%;
+			color:black;
+		}
+		.input{
+			
+		}
+		.form-label, .input{
+			padding: 5px 10px 5px 0px;
+		}
+	}
 }
