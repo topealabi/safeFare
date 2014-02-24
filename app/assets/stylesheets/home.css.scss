@@ -8,6 +8,19 @@
        -o-border-radius: $radius;
           border-radius: $radius;
 }
+.clearfix {
+    zoom:1;
+    &:before, &:after {
+        content: "\0020";
+        display: block;
+        height: 0;
+        overflow: hidden;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
 $orange: #EC4423;
 $border:#243772;
 $blue:#243772;
@@ -65,10 +78,11 @@ $hover:#3a5ad8;
 		.for-restaurant{
 			.nav-link{
 				width:100%;
-				padding:10px 0px !important;				
 				a{
-				font-weight:400;
-				font-family:'proxima-nova-condensed';
+					display: block;
+					font-weight:400;
+					font-family:'proxima-nova-condensed';
+					padding:10px 0px !important;				
 				}
 			}
 		}
@@ -84,10 +98,11 @@ $hover:#3a5ad8;
 // about
 .about-section{
 	.col-sm-8{
-		ul{padding-top:10px} 
+		ul{
+			padding: 10px 0 0 20px;
+		}
 		li{
-		padding-left:15px;
-		list-style-type:disc
+			list-style-type:disc
 		}
 	}
 	.col-sm-4{
@@ -110,10 +125,15 @@ $hover:#3a5ad8;
 
 	.form-row{
 		clear:both;
-		padding:10px 0px;
+		padding:5px 0px;
+		@extend .clearfix;
 	}
-	.i-am-cat{
-		width: 76%;
+	.i-am-cat {
+		padding: 10px 0;
+		width: 75%;
+		.input {
+			width: 100% !important;
+		}
 		label{
 			color:$blue;
 			padding:0px 10px;
@@ -131,7 +151,8 @@ $hover:#3a5ad8;
 		height:200px;
 	}
 	.nav-link{
-		width:100%;
+		margin-left: 141px;
+		width:60%;
 	}
 	input[type=submit]{
 		display:none;

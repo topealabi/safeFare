@@ -6,11 +6,28 @@ $border:#AD2D0A;
 $blue:#243772;
 $hover:#3a5ad8;
 .search-section{
+	.find-a-restaurant {
+		input[type=submit]{
+			display:none;
+		}
+		select, .chosen-container {
+			width: 60%;
+			margin: 10px 0;
+		}
+		.role-container {
+			float: left;
+			margin: 18px 0;
+		}
+		.nav-link {
+			clear: both;
+			cursor: pointer;
+			margin-top: 20px;
+			margin-left: 25%;
+			width: 60%;
+		}
+	}
 	.right-side{
 		text-align: center;
-	}
-	.find-a-restaurant input[type=submit]{
-		display:none;
 	}
 }
 .results-section{

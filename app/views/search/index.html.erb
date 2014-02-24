@@ -9,57 +9,57 @@
     <div class="col-sm-8 find-a-restaurant">
       <h2 class="orange-header padding-left">Find a Restaurant</h2>
             <%= form_tag "/results", :method => :get do %>
-              <div class="col-xs-12 form-row validate name">
+              <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>Restaurant Name:</p>
                 <%= text_field_tag :search, params[:search], class:"input" %>
                 <span class='feedback'></span>
               </div>
-               <div class="col-xs-12 form-row validate name">
+               <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>Cuisines:</p>
                <%= select_tag(:cuisine_search, options_from_collection_for_select(Cuisine.all, :name, :name), multiple: true,class: "chosen-select req") %>
                 <span class='feedback'></span>
               </div>
-              <div class="col-xs-12 form-row validate name">
+              <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>Address:</p>
                 <%= text_field_tag :address, params[:address], class:"input" %>
                 <span class='feedback'></span>
               </div>
-              <div class="col-xs-12 form-row validate name">
+              <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>City:</p>
                 <%= text_field_tag :city, params[:city], class:"input" %>
                 <span class='feedback'></span>
               </div>
-              <div class="col-xs-12 form-row validate name">
+              <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>State:</p>
-               <%= select_tag(:state_search, options_from_collection_for_select(State.all, :abbreviation, :abbreviation), multiple: true,class: "chosen-select req") %>
+               <%= select_tag(:state_search, options_from_collection_for_select(State.all, :abbreviation, :abbreviation), multiple: false,class: "req") %>
                 <span class='feedback'></span>
               </div>
-              <div class="col-xs-12 form-row validate name">
+              <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>Neighborhood:</p>
                <%= select_tag(:hood_search, options_from_collection_for_select(Neighborhood.all, :name, :name), multiple: true,class: "chosen-select req") %>
                 <span class='feedback'></span>
               </div>
-              <div class="col-xs-12 form-row validate name">
+              <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>Zip:</p>
                 <%= text_field_tag :zip, params[:zip], class:"input" %>
                 <span class='feedback'></span>
               </div>
-              <div class="col-xs-12 form-row validate name">
+              <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>Within:</p>
-               <%= select_tag(:within, "<option>5 miles</option><option>10 miles</option><option>15 miles</option>".html_safe,class: "chosen-select req") %>
+               <%= select_tag(:within, "<option>5 miles</option><option>10 miles</option><option>15 miles</option>".html_safe,class: "req") %>
                 <span class='feedback'></span>
               </div>
             
-            <div class="col-sm-12 form-row">
+            <div class="col-sm-12 form-row clearfix">
               <p class='form-label'>Trained Employee Role</p>
-             
+              <div class="role-container">
                  <% Role.all.each do |ro|%>
                    <%= check_box_tag "worker_role[]", ro.role %>
                    <%= label_tag(:worker_role, ro.role) %>
                 <% end %>
-                 
+              </div>
           </div> 
-          <div class="nav-link" style='width:100%;'>
+          <div class="nav-link">
             <div style='font-size:18px; color:white;' class='sub_form'>Search</div>
           </div>
           <%= submit_tag "Search", :name => nil %>
@@ -84,7 +84,7 @@
 
 <script>
 
-$('.chosen-select').chosen();
+$('.chosen-select').chosen({placeholder_text_multiple: '-------------------'});
 $('.sub_form').on('click',function(){
   $('.find-a-restaurant input[type=submit]').trigger('click');
 })
