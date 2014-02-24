@@ -1,6 +1,11 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$orange: #EC4423;
+$border:#AD2D0A;
+$blue:#243772;
+$hover:#3a5ad8;
+$highlight: #00b4e9;
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
      -moz-border-radius: $radius;
@@ -105,10 +110,20 @@ $hover:#3a5ad8;
 			list-style-type:disc
 		}
 	}
-	.col-sm-4{
-		img{
-			max-width:100%;
-		}
+	img{
+		max-width:100%;
+	}
+	p {
+		padding: 0 0 15px;
+	}
+	hr {
+		border-color: $blue;
+	}
+	.contact-btn {
+		margin: 45px 0;
+	}
+	.margin-bottom {
+		margin-bottom: 45px;
 	}
 }
 
