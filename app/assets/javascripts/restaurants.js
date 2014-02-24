@@ -218,25 +218,8 @@ var checkLength = function(value) {
 	})
 
 $(document).ready(function(){
-	$( "#check" ).click(function() {
-	  event.preventDefault();
-	  var address = $('#restaurant_address')[0];
-	  var city = $('#restaurant_city')[0];
-	  var state = $('#restaurant_state')[0];
-	  var params = $(address).val() + ',' + $(city).val() + ',' + $(state).val() ;
-  	  params = params.replace(/\s+/g, '+')
-	  if (params.length < 5) {
-	  	alert('please provide a valid address');
-	  }else{
 
-	  	geocode(params);
-		
-		}
-	  });
 
-	$('.sub').on('click', function(){
-		$('.inactive').trigger('click');
-	})
 	 $('#modalOpen').on('click', function(){
   	 	getRestaurant(this.classList[0], this.classList[1], function(data) { populateModal(data) })
   	})

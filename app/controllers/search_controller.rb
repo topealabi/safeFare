@@ -1,6 +1,6 @@
 class SearchController < ApplicationController
-	
-	def index
+	def results
+
 		if params[:search].present?
 			@search  = Restaurant.solr_search do
 				fulltext params[:search]
@@ -28,9 +28,9 @@ class SearchController < ApplicationController
 				    with(:location).in_radius(*Geocoder.coordinates(whereat), howfar)
 				end
 			end
-			@restaurants = @search.results
-			
 
+			@restaurants = @search.results
+		
 		else
 			@search  = Restaurant.solr_search do
 				if params[:cuisine_search].present?
@@ -52,9 +52,16 @@ class SearchController < ApplicationController
 				end
 
 			end
+		    
 		    @restaurants = @search.results
-		end	
+		   
+		end
+
 	end
+	
+	def index
+	end
+	
 end
 
 

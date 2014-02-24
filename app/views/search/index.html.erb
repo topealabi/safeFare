@@ -8,7 +8,7 @@
     </ul>
     <div class="col-sm-8 find-a-restaurant">
       <h2 class="orange-header padding-left">Find a Restaurant</h2>
-            <%= form_tag "/find-a-restaurant", :method => :get do %>
+            <%= form_tag "/results", :method => :get do %>
               <div class="col-xs-12 form-row validate name">
                 <p class='form-label'>Restaurant Name:</p>
                 <%= text_field_tag :search, params[:search], class:"input" %>
@@ -81,46 +81,6 @@
 
 <br>
 <br>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Location</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @restaurants.each do |restaurant| %>
-      <tr>
-        <td><div id='modalOpen' data-toggle="modal" data-target="#restaurantModal" class= "<%=restaurant.id%> <%=restaurant.user.id%> "><%= restaurant.name %></div></td>
-
-        <td><%= restaurant.address %></td>
-        <td><%= restaurant.city %></td>
-        <td><%= restaurant.state %></td>
-        <td><%= restaurant.zip %></td>
-        <td><%= restaurant.email %></td>
-        <td><%= restaurant.phone %></td>
-  
-        
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
 <script>
 

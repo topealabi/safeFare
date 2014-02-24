@@ -23,7 +23,7 @@ SafeFare::Application.routes.draw do
   match "/contact" => "home#contact", via: [:get]
   match "/submit" => "home#submit", via: [:post]
   match "/find-a-restaurant" => "search#index", via: [:get]
-  match "/results" => "search#results", via: [:post]
+  match "/results" => "search#results", via: [:post, :get]
 
 
   # Example of regular route:

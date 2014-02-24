@@ -1,11 +1,43 @@
 // Place all the styles related to the search controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$orange: #EC4423;
+$border:#AD2D0A;
+$blue:#243772;
+$hover:#3a5ad8;
 .search-section{
 	.right-side{
 		text-align: center;
 	}
 	.find-a-restaurant input[type=submit]{
 		display:none;
+	}
+}
+.results-section{
+	.tb-wrap{
+		border-top: 3px solid $orange; 
+	}
+	table{
+		width:95%;
+		margin:auto;
+		
+		th{background:none; font-size:15px; color:$blue; font-weight:600;font-family:'proxima-nova-condensed';}
+		tr{ height:40px;}
+		th{
+			border-bottom:2px solid $blue;
+			padding:15px 0px;
+		
+		}
+		.reg{
+			color:black;
+			font-size:14px;
+			font-weight: 400;
+
+		}
+		.title{
+		 font-size:15px; color:$blue; font-weight:600;font-family:'proxima-nova-condensed';
+	
+		}
+		td{padding:10px 0px;}
 	}
 }

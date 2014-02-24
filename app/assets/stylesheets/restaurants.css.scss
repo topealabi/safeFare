@@ -73,8 +73,15 @@ a.add_an_employee:hover{
 .submit.inactive{
 	display:none;
 }
-#check{
 
+#check {
+width: 100%;
+display: block;
+height: 100%;
+cursor: pointer;
+}
+#check:hover{
+	font-weight:bold;
 }
 .form-row.emp_role{
 	border-bottom: 2px solid #cccccc;

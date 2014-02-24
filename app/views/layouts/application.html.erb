@@ -47,7 +47,7 @@
 			<div class="safeFare-search right col-sm-6 col-xs-12" style='padding:0px;'>
 				<h2 class='small-thick'>Find a Restaurant</h2>
 				<p>Locate a food allergy aware restaurant near you.</p>
-				<form name="search" action="/find-a-restaurant" method="get">
+				<form name="search" action="/results" method="get">
 					<input type="text" name="search" id='cuisine' placeholder='Restaurant, Cuisine, etc.'>
 					<input type="text" name="location" id='free-text' placeholder='Address, Zip, etc.'>
 					<input type="submit" name="nil" data-role='none'id='submit-search' value='' >
@@ -61,7 +61,7 @@
 			<ul>
 				<li><a href="/">Home</a></li>
 				<li <% if current_uri == "/about"%> class="active"<%end%>><a href="/about">About SafeFARE</a></li>
-				<li<% if current_uri == "/find-a-restaurant"%> class="active"<%end%>><a href="/find-a-restaurant">Find a Restaurant</a></li>
+				<li<% if current_uri == "/find-a-restaurant" || '/results' %> class="active"<%end%>><a href="/find-a-restaurant">Find a Restaurant</a></li>
 				<li><a href="">For Diners</a></li>
 				<li><a href="">For Restaurants</a></li>			
 			</ul>

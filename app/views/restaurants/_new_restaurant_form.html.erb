@@ -117,7 +117,21 @@
 <% end %>
 
 <script>
+$( "#check" ).click(function() {
+	  event.preventDefault();
+	  var address = $('#restaurant_address')[0];
+	  var city = $('#restaurant_city')[0];
+	  var state = $('#restaurant_state')[0];
+	  var params = $(address).val() + ',' + $(city).val() + ',' + $(state).val() ;
+  	  params = params.replace(/\s+/g, '+')
+	  if (params.length < 5) {
+	  	alert('please provide a valid address');
+	  }else{
 
+	  	geocode(params);
+		
+		}
+	  });
 $('.chosen-select').chosen();
 
 $('input, textarea, .select').on('blur',function(){ 
@@ -136,4 +150,7 @@ $('.add_fields').on('click', function(){
 		$('.role-click a').css('display', 'none');
 		$('.role-click a').remove();
 })
+	$('.sub').on('click', function(){
+		$('.submit').trigger('click');
+	})
 </script>

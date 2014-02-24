@@ -1,0 +1,61 @@
+<div class="results-section">
+  <div class="section-wrapper">
+
+    <ul class="safe-fare-breadcrumb">
+        <li><a href="/">Home > </a></li>
+        <li><a href="" class='active'> Find a Restaurant</a></li>
+    </ul>
+    <div class="col-xs-12">
+      <h2 class="orange-header">Search Results</h2>
+      <p style='margin:15px 0px;'>Didn't find what you are looking for? <a href='/find-a-restaurant'>Search Again?</a></p>
+      <p style='padding-bottom:10px;'> <%= @restaurants.length %> OF <%= @restaurants.length %> RESTAURANTS </p>
+      <div class="col-sm-12 tb-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Restaurant Name</th>
+              <th>Cuisine</th>
+              <th>Neighborhoods</th>
+              <th>City</th>
+              <th>Staff Trained</th>
+              <th>Kid Friendly</th>
+              <th>Phone</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @restaurants.each do |restaurant| %>
+              <tr>
+                <td class=' col-xs-2 title'><div id='modalOpen' data-toggle="modal" data-target="#restaurantModal" class= "<%=restaurant.id%> <%=restaurant.user.id%> "><%= restaurant.name %></div><p class='reg' style='padding-top:5px'><%= restaurant.address %></p> </td>
+                <td class=' col-xs-1'><% restaurant.cuisines.each do |x| %>
+                    <%= x.name+' ' %><br>
+                    <%end%>
+                  </td>
+                  <td class=' col-xs-2'><% restaurant.neighborhoods.each do |x| %>
+                    <%= x.name+' ' %><br>
+                    <%end%>
+                  </td>
+                <td class=' col-xs-2'><%= restaurant.city %></td>
+                  <% @roles = [] %>
+                 <td class=' col-xs-2'><% restaurant.aware_employees.each do |emp| %>
+                        <%  emp.roles.each do |role| %>
+                          <% if @roles.include?(role.role) %>
+                          <% else %>
+                            <%= role.role%><br>
+                            <% @roles << role.role %>
+                          <% end %>  
+                        <%end%>  
+                      <%end%>  
+                 </td>    
+                <td class=' col-xs-2'><%= restaurant.kid_friendly? %></td>
+                <td class=' col-xs-2'><%= restaurant.phone %></td>
+          
+                
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+ </div> 
