@@ -6,6 +6,59 @@ $border:#AD2D0A;
 $blue:#243772;
 $hover:#3a5ad8;
 .search-section{
+	.search input#submit-search {
+float: right;
+width: 44px;
+height: 44px;
+-webkit-transition: all .3s ease;
+-moz-transition: all .3s ease;
+-o-transition: all .3s ease;
+transition: all .3s ease;
+margin: 0px;
+-webkit-border-radius: 0px;
+-moz-border-radius: 0px;
+-ms-border-radius: 0px;
+-o-border-radius: 0px;
+border-radius: 0px;
+background-image: url(/images/search.gif);
+background-position: 0px 0px;
+}
+	.form-wrap{
+		background:#f2f5ff;
+	}
+	form{
+		background:#f2f5ff;
+		padding-bottom: 30px;
+
+	}
+	ul.nav{
+		li a{
+			-webkit-transition: all 1s ease;  /* Chrome 1-25, Safari 3.2+ */
+     -moz-transition: all 1s ease;  /* Firefox 4-15 */
+       -o-transition: all 1 ease;  /* Opera 10.50–12.00 */
+          transition: all 1s ease; 
+          font-family: 'proxima-nova-condensed';
+          font-size:15px;
+          background:$blue;
+          color:white;
+          font-weight:600;
+          text-decoration:none;
+		}
+		li.active a{
+			background:#f2f5ff;
+			color:$blue;
+		}
+		li a:hover{
+			background:$hover !important;
+			color:white;
+		
+		}
+		li.active a:hover{
+			background:#f2f5ff;
+
+		}
+		
+	}
 	.find-a-restaurant {
 		input[type=submit]{
 			display:none;
@@ -22,8 +75,9 @@ $hover:#3a5ad8;
 			clear: both;
 			cursor: pointer;
 			margin-top: 20px;
-			margin-left: 25%;
-			width: 60%;
+			margin-left: 10%;
+			width: 30%;
+
 		}
 	}
 	.right-side{

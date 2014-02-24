@@ -8,7 +8,14 @@
     </ul>
     <div class="col-sm-8 find-a-restaurant">
       <h2 class="orange-header padding-left">Find a Restaurant</h2>
-            <%= form_tag "/results", :method => :get do %>
+          <ul class="nav nav-tabs" id="searchTabs">
+            <li><a href="#basic" data-toggle="tab">BASIC SEARCH</a></li>
+            <li class="active"><a href="#advanced" data-toggle="tab">ADVANCED SEARCH</a></li>
+           
+            </ul>
+       <div class="tab-content">
+  <div class="tab-pane active" id="advanced">
+     <%= form_tag "/results", :method => :get do %>
               <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>Restaurant Name:</p>
                 <%= text_field_tag :search, params[:search], class:"input" %>
@@ -57,6 +64,7 @@
                    <%= check_box_tag "worker_role[]", ro.role %>
                    <%= label_tag(:worker_role, ro.role) %>
                 <% end %>
+            
               </div>
           </div> 
           <div class="nav-link">
@@ -64,6 +72,24 @@
           </div>
           <%= submit_tag "Search", :name => nil %>
       <% end %>
+  </div>
+
+  <div class="tab-pane" id="basic">
+    <form name="search" action="/results" method="get">
+      <div class="col-sm-12 form-row clearfix">
+        <p class='form-label'>Search For:</p>
+          <input type="text" name="search" id='cuisine' class='input'placeholder='Restaurant, Cuisine, etc.'>
+      </div>
+       <div class="col-sm-12 form-row clearfix">
+        <p class='form-label'>Near:</p>
+          <input type="text" name="location" class='input'id='free-text' placeholder='Address, Zip, etc.'>
+        </div>
+          <input type="submit" name="nil" style='display:block'data-role='none'id='submit-search' value='' >
+        </form>
+  </div>
+ 
+</div>
+           
     </div>
     <div class="col-sm-4 right-side">
       <%= image_tag("food-resources.png", :alt => "temp thumbnail") %>
