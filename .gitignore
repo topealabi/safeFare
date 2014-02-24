@@ -17,6 +17,7 @@
 /tmp
 
 #ignore solr files
+<<<<<<< HEAD
 /solr
 /solr/*
 
