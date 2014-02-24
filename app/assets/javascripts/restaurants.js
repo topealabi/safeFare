@@ -1,7 +1,8 @@
 var marker;
 var map;
 function getRestaurant(restaurant_id, restaurant_user, callback){
-	$(function(){
+	
+  $(function(){
         $.ajax({
         url:'/users/'+restaurant_user+'/restaurants/'+restaurant_id+'',
         type:"GET",
@@ -9,7 +10,9 @@ function getRestaurant(restaurant_id, restaurant_user, callback){
         
         async:'true',
         success:function (data) {
-        	callback(data);
+        	
+          callback(data);
+
           }
         });
       });
@@ -17,12 +20,18 @@ function getRestaurant(restaurant_id, restaurant_user, callback){
 }
 function populateModal(data){
 
+
+   var url=''   
+    if (data[0].logo.url != "/images/fallback/default.png"){
+      url = data[0].logo.url
+    }
+
    var roles = ''  
    var cuisines = ''
    var percent = Math.round((data[3]/data[0].total_employees) * 100);
    $.each(data[1],function(){ cuisines += this.name + ' ' });
    $.each(data[2],function(){ roles += this + ' ' });
-   debugger;
+
    var modalContainer = '';
    modalContainer += "<div class='col-xs-7 right'>";
    modalContainer += 	"<div class='left'>";
@@ -31,8 +40,11 @@ function populateModal(data){
    modalContainer += 		"<p>"+data[0].city+', '+data[0].state+' '+data[0].zip+"</p>";
    modalContainer += 		"<p>"+data[0].phone+"</p>";
    modalContainer += 	"</div>";
+
    modalContainer += 	"<div class='right'>"
-   modalContainer += 		"<img class='' style='margin-top:10px;' src="+data[0].logo.url+"/>";
+     if(url != ''){
+   modalContainer += 		"<img class='' style='margin-top:10px;' src="+url+"/>";
+ }
    modalContainer += 	"</div>";
    modalContainer += 	"<div style='clear:both'></div>";
    modalContainer += 	"<div class='info'>";
@@ -97,13 +109,6 @@ function initialize(lat, lng) {
   	map = new google.maps.Map(document.getElementById('map-canvas'),
           mapOptions);
 
-  	marker = new google.maps.Marker({
-	    map:map,
-	    draggable:true,
-	    animation: google.maps.Animation.DROP,
-	    position: center
-  	});
-  	google.maps.event.addListener(marker, 'mouseup', setpos);
 }
 function setpos(){
 
@@ -124,7 +129,19 @@ function resetCenter(latlng){
   	setpos();
   	google.maps.event.addListener(marker, 'mouseup', setpos);
 }
+function addMarkers(lat, lng){
 
+  center = new google.maps.LatLng(lat, lng);
+  debugger;
+  map.setCenter(center);
+
+  marker = new google.maps.Marker({
+      map:map,
+      draggable:false,
+      animation: google.maps.Animation.DROP,
+      position: center
+    });
+}
 
 function geocode(params){
 	$(function(){
@@ -219,9 +236,9 @@ var checkLength = function(value) {
 
 $(document).ready(function(){
 
-
-	 $('#modalOpen').on('click', function(){
-  	 	getRestaurant(this.classList[0], this.classList[1], function(data) { populateModal(data) })
+	 $('.modalOpen').on('click', function(){
+  	 	
+      getRestaurant(this.classList[1], this.classList[2], function(data) { populateModal(data) })
   	})
 
 })

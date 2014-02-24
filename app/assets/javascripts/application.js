@@ -17,4 +17,4 @@
 //= require_tree .
 //= require turbolinks
 //= require twitter/bootstrap
-
+//= require jquery-tablesorter
