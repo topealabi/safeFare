@@ -8,36 +8,42 @@
     <div class="col-xs-12">
       <h2 class="orange-header">Search Results</h2>
       <p style='margin:15px 0px;'>Didn't find what you are looking for? <a href='/find-a-restaurant'>Search Again?</a></p>
-      <p style='padding-bottom:10px;'> <%= @restaurants.length %> OF <%= @restaurants.length %> RESTAURANTS </p>
+      <p style='padding-bottom:10px; float:left'> <%= @restaurants.length %> OF <%= @restaurants.length %> RESTAURANTS </p>
+      <div class="map-cont"><div id="map-canvas" ></div></div>
+      <h2 class="map">View Map of Results</h2>
       <div class="col-sm-12 tb-wrap">
-        <table>
+        <table class="tablesorter">
           <thead>
-            <tr>
-              <th>Restaurant Name</th>
-              <th>Cuisine</th>
-              <th>Neighborhoods</th>
+            <tr class='order'>
+              <th>Restaurant Name
+</th>
+              <th class=''>Cuisine</th>
+              <th class='medium'>Neighborhoods</th>
               <th>City</th>
-              <th>Staff Trained</th>
-              <th>Kid Friendly</th>
-              <th>Phone</th>
+              <th>Zip</th>
+              <th class='small'>Staff<br>Trained</th>
+              <th class='small'>Kid <br>Friendly</th>
+              <th class=''>Phone</th>
             </tr>
           </thead>
 
           <tbody>
             <% @restaurants.each do |restaurant| %>
+            
               <tr>
-                <td class=' col-xs-2 title'><div id='modalOpen' data-toggle="modal" data-target="#restaurantModal" class= "<%=restaurant.id%> <%=restaurant.user.id%> "><%= restaurant.name %></div><p class='reg' style='padding-top:5px'><%= restaurant.address %></p> </td>
-                <td class=' col-xs-1'><% restaurant.cuisines.each do |x| %>
+                <td class=' col-xs-3 title'><div data-toggle="modal" data-target="#restaurantModal" class= "modalOpen <%=restaurant.id%> <%=restaurant.user.id%> "><%= restaurant.name %></div><p class='reg' style='padding-top:5px'><%= restaurant.address %></p> </td>
+                <td class='  col-xs-1'><% restaurant.cuisines.each do |x| %>
                     <%= x.name+' ' %> <br>
                     <%end%>
                   </td>
-                  <td class=' col-xs-2'><% restaurant.neighborhoods.each do |x| %>
+                  <td class='medium col-xs-2'><% restaurant.neighborhoods.each do |x| %>
                     <%= x.name+' ' %><br>
                     <%end%>
                   </td>
-                <td class=' col-xs-2'><%= restaurant.city %></td>
+                <td class=' col-xs-1'><%= restaurant.city %></td>
+                 <td class=' col-xs-1'><%= restaurant.zip %></td>
                   <% @roles = [] %>
-                 <td class=' col-xs-2'><% restaurant.aware_employees.each do |emp| %>
+                 <td class='small col-xs-1'><% restaurant.aware_employees.each do |emp| %>
                         <%  emp.roles.each do |role| %>
                           <% if @roles.include?(role.role) %>
                           <% else %>
@@ -47,10 +53,8 @@
                         <%end%>  
                       <%end%>  
                  </td>    
-                <td class=' col-xs-2'><%= restaurant.kid_friendly? %></td>
-                <td class=' col-xs-2'><%= restaurant.phone %></td>
-          
-                
+                <td class=' medium col-xs-1'><%= restaurant.kid_friendly? %></td>
+                <td class='  col-xs-1'><%= restaurant.phone %></td>
               </tr>
             <% end %>
           </tbody>
@@ -59,3 +63,21 @@
     </div>
   </div>
  </div> 
+
+ <script>
+  $(document).ready(function(){
+     initialize();  
+  $(".tablesorter").tablesorter(); 
+ 
+  $('h2.map').on('click',function(){
+   
+    $('.map-cont').toggleClass('grow')
+  
+  })
+
+
+  })
+ 
+ </script>
+
+

@@ -34,16 +34,44 @@ $hover:#3a5ad8;
 	.tb-wrap{
 		border-top: 3px solid $orange; 
 	}
+	.map-cont{
+		width:100%;
+		height:0px;
+		  -webkit-transition: all 1s ease;  /* Chrome 1-25, Safari 3.2+ */
+     -moz-transition: all 1s ease;  /* Firefox 4-15 */
+       -o-transition: all 1 ease;  /* Opera 10.50–12.00 */
+          transition: all 1s ease; 
+	}
+	.map-cont.grow{
+		height:300px;
+	}
+#map-canvas{
+	width: 100%;
+height: 100%;
+
+}
+	h2.map{
+			text-align: center;
+color: #243772;
+font-size: 17px;
+width: 140px;
+margin: auto;
+font-weight: 600;
+		}
+		
 	table{
 		width:95%;
 		margin:auto;
-		
-		th{background:none; font-size:15px; color:$blue; font-weight:600;font-family:'proxima-nova-condensed';}
+
+		th, h2.map{background:none; font-size:15px; color:$blue; font-weight:600;font-family:'proxima-nova-condensed';}
 		tr{ height:40px;}
 		th{
 			border-bottom:2px solid $blue;
 			padding:15px 0px;
 		
+		}
+		td{
+			padding:4px;
 		}
 		.reg{
 			color:black;
