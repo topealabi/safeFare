@@ -28,7 +28,7 @@
               <tr>
                 <td class=' col-xs-2 title'><div id='modalOpen' data-toggle="modal" data-target="#restaurantModal" class= "<%=restaurant.id%> <%=restaurant.user.id%> "><%= restaurant.name %></div><p class='reg' style='padding-top:5px'><%= restaurant.address %></p> </td>
                 <td class=' col-xs-1'><% restaurant.cuisines.each do |x| %>
-                    <%= x.name+' ' %><br>
+                    <%= x.name+' ' %> <br>
                     <%end%>
                   </td>
                   <td class=' col-xs-2'><% restaurant.neighborhoods.each do |x| %>

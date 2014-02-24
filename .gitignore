@@ -13,10 +13,13 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
+/log/*.log.*
 /tmp
 
 #ignore solr files
-solr/*
+<<<<<<< HEAD
+/solr
+/solr/*
 
-#ignore db yml
-
+# Ignore DS_Store
+.DS_Store
