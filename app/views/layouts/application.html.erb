@@ -62,7 +62,7 @@
 				<li><a href="/">Home</a></li>
 				<li <% if current_uri == "/about"%> class="active"<%end%>><a href="/about">About SafeFARE</a></li>
 				<li<% if current_uri == "/find-a-restaurant" || current_uri == '/results' %> class="active"<%end%>><a href="/find-a-restaurant">Find a Restaurant</a></li>
-				<li><a href="">For Diners</a></li>
+				<li<% if current_uri == "/for-diners"%> class="active"<%end%>><a href="/for-diners">For Diners</a></li>
 				<li><a href="">For Restaurants</a></li>			
 			</ul>
 		</div>
@@ -107,8 +107,8 @@
 			</div>
 			<div class="food-allergy-links col-sm-4 col-xs-12 padding">
 			
-					<div class="nav-link"><a href="http://www.foodallergy.org">Visit foodallergy.org</a></div>
-					<p style='text-align:right'>Find more information and resources for managing food allergies on FARE’s website.</p>
+					<div class="nav-link"><a href="http://www.foodallergy.org" rel="external">Visit FoodAllergy.org</a></div>
+					<p style='text-align:right'>Find more information and resources for managing food allergies on <a href="http://www.foodallergy.org" rel="external">FARE’s website</a>.</p>
 					
 			</div>
 		</div>
@@ -119,13 +119,14 @@
 $(document).ready(function(){
 	$('#mobile-nav').on("click",function(){
 		$('#main-nav').toggleClass('open');
-	})
+	});
 	$('input#free-text,input#cuisine').focus(function(){
 		$(this).toggleClass('click');
-	})
+	});
 	$('input#free-text,input#cuisine').blur(function(){
 		$(this).toggleClass('click');
-	})
+	});
+	$('a[rel="external"]').attr('target', '_blank');
 
 })
 </script>

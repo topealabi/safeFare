@@ -22,4 +22,6 @@ class HomeController < ApplicationController
    def form_params
       params.require(:contact_form).permit(:message, :name,:email,:subject, :restaurant_owner, :employee, :member, :zip, :other, :parent)
     end
+    def diners
+    end
 end
