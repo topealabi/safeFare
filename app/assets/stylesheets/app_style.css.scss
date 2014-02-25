@@ -91,12 +91,12 @@ hr { border-color: $blue; }
 		text-decoration: none;
 	}
 }
-.safe-fare-breadcrumb{
+.section-wrapper .safe-fare-breadcrumb{
 	font-size: 14px;
-	height:50px;
-	padding-top: 15px;
+	margin: 20px 0 30px;
 	padding-left: 15px;
 	width:100%;
+	@extend .clearfix;
 	li{
 		float:left;
 		list-style:none;
