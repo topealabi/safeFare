@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 $orange: #EC4423;
+$orange-hover: #ff6446;
 $border:#AD2D0A;
 $blue:#243772;
 $hover:#3a5ad8;
@@ -12,6 +13,12 @@ $highlight: #00b4e9;
       -ms-border-radius: $radius;
        -o-border-radius: $radius;
           border-radius: $radius;
+}
+@mixin transition($property, $time, $ease) {
+  -webkit-transition: $property $time $ease;  /* Chrome 1-25, Safari 3.2+ */
+     -moz-transition: $property $time $ease;  /* Firefox 4-15 */
+       -o-transition: $property $time $ease;  /* Opera 10.50–12.00 */
+          transition: $property $time $ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
 }
 .clearfix {
     zoom:1;
@@ -25,11 +32,6 @@ $highlight: #00b4e9;
         clear: both;
     }
 }
-
-$orange: #EC4423;
-$border:#243772;
-$blue:#243772;
-$hover:#3a5ad8;
 // home-info-section
 .info-section{
 	height:595px;
@@ -103,13 +105,14 @@ $hover:#3a5ad8;
 // about
 .about-section, .contact-section, .diners-section {
 	.right-section {
-		margin-top: 45px;
+		margin-top: 50px;
 	}
 	ul{
 		padding: 0 0 0 20px;
 		margin: 0 0 15px;
 		list-style-type: disc;
 	}
+	ul.link-list { list-style: none; padding-left: 0; line-height: 120%; li, a { line-height: 120%; margin-bottom: 5px; } }
 	img{
 		max-width:100%;
 	}
@@ -123,7 +126,7 @@ $hover:#3a5ad8;
 		line-height: 150%;
 	}
 	.contact-btn {
-		margin: 45px 0;
+		margin: 0 0 45px;
 	}
 	.margin-bottom {
 		margin-bottom: 45px;
@@ -160,19 +163,31 @@ $hover:#3a5ad8;
 		}
 	}
 }
-.contact-form{
+.contact-form .form-row .input input[type="text"], .contact-form .form-row .input input[type="email"] { width: 100% !important; }
+.contact-form, .login-form, .blue-form {
 	background:#f2f5ff;
 	padding:25px;
 	margin-bottom:40px;
 	font-family:'proxima-nova-condensed';
+	@include transition(height, 1s, ease);
+	@extend .clearfix;
 	#contact_form_message{
 		height:200px;
 	}
-	.nav-link{
-		margin-left: 141px;
+	input[type="submit"].login {
+		width: 48%;
 	}
-	input[type=submit]{
-		display:none;
+	.nav-link{
+		margin-left: 25%;
+		&.signup {
+			background: $orange;
+			float: right;
+			margin: 0 0 0 4%;
+			width: 48%;
+			&:hover {
+				background: $orange-hover;
+			}
+		}
 	}
 }
 .i-am-cat{

@@ -1,0 +1,67 @@
+<div class="about-section">
+	<div class="section-wrapper">
+		<ul class="safe-fare-breadcrumb">
+			  <li><a href="/">Home > </a></li>
+			  <li><a href="" class='active'>For Restaurants</a></li>
+		</ul>
+		<div class="col-sm-8 col-xs-12">
+			<h1>For Restaurants</h1>
+			<p>Fifteen million Americans have food allergies – and they are eager to find restaurants that can accommodate them. The SafeFARE program offers tools that help create a safer dining experience – including &#8220;Find a Restaurant,&#8221; a searchable database of allergy aware restaurants. If your employees  have completed the ServSafe® Allergens Online Course or AllerTrain™ classes, be sure to sign up below to set up a free account and add your restaurant to our database. You can sign in to update your account whenever you like.</p>
+			<p>If you haven't yet received allergen training, we encourage you to do so! To learn more, please see &#8220;<a href="http://www.servsafe.com/allergens/the-course" rel="external">Allergen Training for Restaurant Staff</a>&#8221;</p>
+			<% if !user_signed_in? %>
+				<h2>Restaurant Login</h2>
+				<div class="contact-form">
+					<%= form_for(:user, :url => session_path(:user)) do |f| %>
+						<div class="form-row col-sm-12">
+							<p class='form-label'>Email</p>
+							<%= f.text_field :email, label: false %>
+						</div>
+						<div class="form-row col-sm-12">
+							<p class='form-label'>Password</p>
+							<%= f.password_field :password, label: false %>
+						</div>
+						<div class="form-row col-sm-12">
+							<div class="no-label-wrap">
+								<%= f.check_box :remember_me %>
+								<%= f.label :remember_me %>
+							</div>
+						</div>
+						<div class="form-row col-sm-12">
+							<div class="no-label-wrap">
+								<%= f.submit 'LOG IN', class: 'login' %>
+								<div class="nav-link signup">
+									<a href="">SIGN UP</a>
+								</div>
+							</div>
+						</div>
+						<div class="form-row col-sm-12">
+							<div class="no-label-wrap">
+								<%= link_to "Forgot your password?", new_password_path(:user), class: "forgot-your-password" %>
+							</div>
+						</div>
+					<% end %>
+				</div>
+			<% else %>
+				<hr>
+			<% end %>
+			<h2>Ingredient Quiz – Test Your Knowledge!</h2>
+			<p>Think you know all there is to know about meal ingredients that might turn up in a restaurant? Download the following quiz, put together by Chef Joel Schaefer, to see how much you really know.</p>
+			<ul>
+				<li><a href="http://www.foodallergy.org/document.doc?id=222" rel="external" title="http://www.foodallergy.org/document.doc?id=222">Quiz</a></li>
+				<li><a href="http://www.foodallergy.org/document.doc?id=221" rel="external" title="http://www.foodallergy.org/document.doc?id=221">Answer key. No cheating!</a></li>
+			</ul>
+		</div>
+		<div class="col-sm-4 col-xs-12">
+			<h1>Resource Library</h1>
+			<ul class="link-list">
+				<li><a href="http://www.foodallergy.org/managing-food-allergies-at/dining-out/training-for-restaurant-employees" title="http://www.foodallergy.org/managing-food-allergies-at/dining-out/training-for-restaurant-employees" rel="external">Allergen Training for Restaurant Staff</a></li>
+				<li><a href="http://www.foodallergy.org/managing-food-allergies-at/dining-out/before-you-go" title="http://www.foodallergy.org/managing-food-allergies-at/dining-out/before-you-go" rel="external">Before You Go</a></li>
+				<li><a href="http://www.foodallergy.org/managing-food-allergies-at/dining-out/calling-the-restaurant" title="http://www.foodallergy.org/managing-food-allergies-at/dining-out/calling-the-restaurant" rel="external">Calling the Restaurant</a></li>
+				<li><a href="http://www.foodallergy.org/managing-food-allergies-at/dining-out/at-the-restaurant" title="http://www.foodallergy.org/managing-food-allergies-at/dining-out/at-the-restaurant" rel="external">At the Restaurant</a></li>
+				<li><a href="http://www.foodallergy.org/managing-food-allergies-at/dining-out/insiders-guide" title="http://www.foodallergy.org/managing-food-allergies-at/dining-out/insiders-guide" rel="external">&#8220;Insider&#8217;s Guide to Dining Out&#8221; by Chef Joel Schaefer</a></li>
+				<li><a href="http://www.foodallergy.org/document.doc?id=219" title="http://www.foodallergy.org/document.doc?id=219" rel="external">Sample chef card</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+

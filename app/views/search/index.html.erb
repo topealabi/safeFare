@@ -59,9 +59,6 @@
                 <% end %>
               </div>
           </div> 
-          <div class="nav-link">
-            <div style='font-size:18px; color:white;' class='sub_form'>Search</div>
-          </div>
           <%= submit_tag "Search", :name => nil %>
       <% end %>
     </div>
@@ -83,9 +80,5 @@
 <br>
 
 <script>
-
-$('.chosen-select').chosen({placeholder_text_multiple: '-------------------'});
-$('.sub_form').on('click',function(){
-  $('.find-a-restaurant input[type=submit]').trigger('click');
-})
+  $('.chosen-select').chosen({placeholder_text_multiple: '-------------------'});
 </script>

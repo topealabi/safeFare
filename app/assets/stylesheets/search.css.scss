@@ -7,18 +7,15 @@ $blue:#243772;
 $hover:#3a5ad8;
 .search-section{
 	.find-a-restaurant {
-		input[type=submit]{
-			display:none;
-		}
 		select, .chosen-container {
-			width: 60%;
+			width: 70%;
 			margin: 10px 0;
 		}
 		.role-container {
 			float: left;
 			margin: 18px 0;
 		}
-		.nav-link {
+		input[type="submit"] {
 			clear: both;
 			cursor: pointer;
 			margin-top: 20px;

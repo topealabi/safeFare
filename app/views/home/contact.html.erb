@@ -2,7 +2,8 @@
 	<div class="section-wrapper">
 		<ul class="safe-fare-breadcrumb">
 			  <li><a href="/">Home > </a></li>
-			  <li><a href="" class='active'> Contact Us</a></li>
+			  <li><a href="/about">About > </a></li>
+			  <li><a href="/about/contact-us" class='active'> Contact Us</a></li>
 		</ul>
 		<div class="col-sm-8 col-xs-12">
 			<h1>Contact Us</h1>
@@ -12,7 +13,7 @@
 				<%= simple_form_for @contactform, url: "/submit", method: :post do |f| %>
 					<div class="col-sm-12 form-row">
 						<p class='form-label'>Full Name</p>
-						<%= f.input :name, label: false, input_html: { class: "right" }%>
+						<%= f.input :name, label: false%>
 					</div>
 					<div class="col-sm-12 form-row">
 						<p class='form-label'>I am</p>
@@ -26,30 +27,29 @@
 					</div> 
 					<div class="col-sm-12 form-row">
 						<p class='form-label'>Email</p>
-						<%= f.input :email, label: false, input_html: { class: "right" }  %>
+						<%= f.input :email, label: false  %>
 					</div>
 					<div class="col-sm-12 form-row">
 						<p class='form-label'>Zip</p>
-						<%= f.input :zip, label: false, input_html: { class: "right" }  %>
+						<%= f.input :zip, label: false  %>
 					</div>
 
 					<div class="col-sm-12 form-row">
 						<p class='form-label'>Subject</p>
-						<%= f.input :subject, label: false, input_html: { class: "right" }  %>
+						<%= f.input :subject, label: false  %>
 					</div>
 		
 					<div class="col-sm-12 form-row">
 						<p class='form-label'>Message</p>
-						<%= f.input :message, label: false, :as => :text, input_html: { class: "right" }  %>
+						<%= f.input :message, label: false, :as => :text  %>
 					</div>
-					<div style='clear:both'></div>
-					<div class="nav-link">
-						<div style='font-size:18px; color:white;' class='sub_form'>Contact Us</div>
+					<div class="col-sm-12 form-row">
+						<div class="no-label-wrap">
+							<%= f.submit "SUBMIT" %>
+						</div>
 					</div>
-					<%= f.submit :class => "inactive submit"%>
 				<%end%>
 			</div>
-			<div style='clear:both;'></div>
 		</div>
 		<div class="col-sm-4 col-xs-12 right ">
 			<h1>National Offices</h1>
@@ -73,8 +73,3 @@
 	</div>
 	<div style='clear:both'></div>
 </div>
-<script>
-	$('.sub_form').on('click', function(){
-		$('.inactive').trigger('click');
-	})
-</script>

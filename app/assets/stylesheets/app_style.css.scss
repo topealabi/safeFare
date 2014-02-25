@@ -1,5 +1,6 @@
 // Variables
 $orange: #EC4423;
+$orange-hover: #ff592a;
 $border:#AD2D0A;
 $blue:#243772;
 $hover:#3a5ad8;
@@ -10,6 +11,13 @@ $hover:#3a5ad8;
        -o-border-radius: $radius;
           border-radius: $radius;
 }
+@mixin transition($property, $time, $ease) {
+  -webkit-transition: $property $time $ease;  /* Chrome 1-25, Safari 3.2+ */
+     -moz-transition: $property $time $ease;  /* Firefox 4-15 */
+       -o-transition: $property $time $ease;  /* Opera 10.50–12.00 */
+          transition: $property $time $ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+}
+
 .clearfix {
     zoom:1;
     &:before, &:after {
@@ -63,10 +71,10 @@ a{text-decoration:none;color:inherit}
 .padding{padding:30px;}
 .no-padding{padding:0px;}
 .text-center{ text-align:center;}
-h1, .orange-header{color:$orange;font-weight:300;font-family:'proxima-nova'; font-size:28px;padding-bottom:15px;}
+h1, .orange-header{color:$orange;font-weight:300;font-family:'proxima-nova'; font-size:28px;padding-bottom:20px;}
 h2, .blue-header{color:$blue;font-weight:500;font-family:'proxima-nova'; font-size:20px;}
-hr { border-color: $blue; }
-.nav-link{
+hr { border-color: $blue;clear:both;@extend .clearfix; }
+.nav-link, form input[type="submit"] {
 	background:$blue;
 	cursor: pointer;
 	width:180px;
@@ -74,10 +82,10 @@ hr { border-color: $blue; }
 	font-size:17px;
 	letter-spacing: 0.05em;
 	margin-top:15px;
-	 -webkit-transition: all .5s ease;  /* Chrome 1-25, Safari 3.2+ */
-     -moz-transition: all .5 ease;  /* Firefox 4-15 */
-       -o-transition: all .5 ease;  /* Opera 10.50–12.00 */
-          transition: all .5 ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+	 -webkit-transition: background .5s ease;  /* Chrome 1-25, Safari 3.2+ */
+     -moz-transition: background .5 ease;  /* Firefox 4-15 */
+       -o-transition: background .5 ease;  /* Opera 10.50–12.00 */
+          transition: background .5 ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
 	div {
 		padding:7px 0px;
 	}	
@@ -118,7 +126,6 @@ hr { border-color: $blue; }
 	height:100%;
 	background:$orange;
 	color:white;
-	padding-bottom:33px;
 	.safeFare-icon{
 		margin-top:40px;
 		img{
@@ -133,42 +140,34 @@ hr { border-color: $blue; }
 		border:0px solid white;
 		height:45px;
 	}
-	input#cuisine{
+	input#cuisine, input#free-text {
 		width:44.5%;
 		background:white;
 		background-image: image-url("find.png");
 		background-position:0px 0px;
 		background-repeat:no-repeat;
 	    padding-left:60px;
-	     -webkit-transition: all 1s ease;  /* Chrome 1-25, Safari 3.2+ */
-	     -moz-transition: all 1s ease;  /* Firefox 4-15 */
-	       -o-transition: all 1 ease;  /* Opera 10.50–12.00 */
-	          transition: all 1s ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+	     -webkit-transition: background-position 1s ease, padding-left 1s ease;  /* Chrome 1-25, Safari 3.2+ */
+	     -moz-transition: background-position 1s ease, padding-left 1s ease;  /* Firefox 4-15 */
+	       -o-transition: background-position 1s ease, padding-left 1s ease;  /* Opera 10.50–12.00 */
+	          transition: background-position 1s ease, padding-left 1s ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
     }
 	input#free-text{
-		background:white;
-		width:44.5%;
 		background-image: image-url("near.png");
-		background-position:0px 0px;
-		background-repeat:no-repeat;
 	    padding-left:65px;
-	     -webkit-transition: all 1s ease;  /* Chrome 1-25, Safari 3.2+ */
-	     -moz-transition: all 1s ease;  /* Firefox 4-15 */
-	       -o-transition: all 1 ease;  /* Opera 10.50–12.00 */
-	          transition: all 1s ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
 	}
-	input#free-text.click, input#cuisine.click{
-		background-position:-100px 0px;
+	input#free-text:focus, input#cuisine:focus{
+		background-position:-60px 0px;
 		padding: 10px;
 	}
 	input#submit-search{
 		float:right;
 		width:44px;
 		height:44px;
-		-webkit-transition: all .3s ease;
-		   -moz-transition: all .3s ease;  /* Firefox 4-15 */
-	         -o-transition: all .3s ease;  /* Opera 10.50–12.00 */
-	            transition: all .3s ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+		-webkit-transition: background-position .3s ease;
+		   -moz-transition: background-position .3s ease;  /* Firefox 4-15 */
+	         -o-transition: background-position .3s ease;  /* Opera 10.50–12.00 */
+	            transition: background-position .3s ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
 		margin:0px;
 		@include border-radius(0px);
 		background-image: image-url("search.gif");
@@ -289,6 +288,31 @@ nav#main-nav{
 		float:right;
 	}	
 }
+form input[type="submit"] {
+	background: $blue;
+	border: none;
+	box-shadow: none;
+	color: white;
+	filter: none;
+	-ms-filter: none;
+	font-family: 'proxima-nova-condensed';
+	font-size: 15px;
+	font-style: normal;
+	font-weight: 700;
+	float: none;
+	letter-spacing: normal;
+	line-height: 22px;
+	margin: 0;
+	text-shadow: none;
+	width:180px;
+	&:not(.disabled):hover {
+		background: $hover;
+		border: none;
+		box-shadow: none;
+		filter: none;
+		text-shadow: none;
+	}
+}
 .form-row{
 	clear:both;
 	padding: 5px 0px;
@@ -306,25 +330,31 @@ nav#main-nav{
 		text-align: left;
 	}
 	.feedback{
+		float: left;
 		font-size:25px;
 		padding:5px 10px;
-		max-width: 15%;
+		max-width: 10%;
 	}
-	.input{
+	.input, input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]) {
 		float:left;
-		width:60% !important;
-		input{
-			width:100%;
+		width:65% !important;
+		input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]) {
+			width:100% !important;
 		}
 		textarea {
 			width: 100%;
 			max-width: 100%;
 		}
 	}
+	.no-label-wrap { float: left; margin-left: 25%; width: 65%; }
 	#map-canvas{
 		width:100%;
-		height:200px;
+		height:0;
 		opacity:0;
+		@include transition(height, 0.5s, ease);
+		&.active {
+			height: 200%;
+		}
 	}
 }
 
@@ -375,3 +405,4 @@ input[type="file"] {
 		}
 	}
 }
+.white-space { height: 30px; }

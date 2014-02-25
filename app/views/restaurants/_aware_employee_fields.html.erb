@@ -1,34 +1,32 @@
-<div class="col-xs-12 form-row">
-	<p class='form-label validate emp_name'>Name</p>
-	<%= f.input :name, label: false, input_html: { class: "req" }   %>
-	<span class='feedback'></span>
-</div>
-<div class="col-xs-12 form-row">
-	<p class='form-label validate Verifcation'>Verifcation</p>
-	<%= f.input :verification, label: false, input_html: { class: "req" }  %>
-	<span class='feedback'></span>
-</div>
-<div class="col-xs-12 form-row">
-	<p class='form-label'>Certification Type</p>
-		<%= f.input :cert_type, collection: @type, required: true, label: false, input_html: { class: "chosen-select" } %>
-	<span class='feedback'></span>
-</div>			
-<div class="col-xs-12 form-row">
-	<p class='form-label'>Expiration</p>
-	<%= f.input :expiration, label: false, as: :date %>
-	<span class='feedback'></span>
-</div>
-<div class="col-xs-12 form-row emp_role">
-	<p class='form-label'>Role</p>
+<div class="aware-cont">
+	<div class="col-xs-12 form-row">
+		<p class='form-label validate emp_name'>Name</p>
+		<%= f.input :name, label: false, input_html: { class: "req" }   %>
+		<span class='feedback'></span>
+	</div>
+	<div class="col-xs-12 form-row">
+		<p class='form-label validate Verifcation'>Verifcation</p>
+		<%= f.input :verification, label: false, input_html: { class: "req" }  %>
+		<span class='feedback'></span>
+	</div>
+	<div class="col-xs-12 form-row">
+		<p class='form-label'>Certification Type</p>
+			<%= f.input :cert_type, collection: @type, required: true, label: false, input_html: { class: "chosen-select" } %>
+		<span class='feedback'></span>
+	</div>			
+	<div class="col-xs-12 form-row">
+		<p class='form-label'>Expiration</p>
+		<%= f.input :expiration, label: false, as: :date %>
+		<span class='feedback'></span>
+	</div>
+	<div class="col-xs-12 form-row emp_role">
+		<p class='form-label'>Role</p>
 		<%= f.simple_fields_for :restaurant_roles do |builder| %>
- 			<%= render "restaurant_role_fields" , :f => builder %>
- 		<% end %>
- 		<div class="role-click">
- 			<%= link_to_add_fields "Add Role", f, :restaurant_roles %>
- 		</div>	
-
+			<%= render "restaurant_role_fields" , :f => builder %>
+		<% end %>
+		<div class="role-click">
+			<%= link_to_add_fields "Add Role", f, :restaurant_roles %>
+		</div>
+	</div>
+	<hr>
 </div>
-
-<script>
-
-</script>
