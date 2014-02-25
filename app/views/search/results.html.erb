@@ -1,0 +1,134 @@
+<div class="results-section">
+  <div class="section-wrapper">
+
+    <ul class="safe-fare-breadcrumb">
+        <li><a href="/">Home > </a></li>
+        <li><a href="" class='active'> Find a Restaurant</a></li>
+    </ul>
+    <div class="col-xs-12">
+      <h2 class="orange-header">Search Results</h2>
+      <p style='margin:15px 0px;'>Didn't find what you are looking for? <a href='/find-a-restaurant'>Search Again?</a></p>
+      <p style='padding-bottom:10px; float:left'> <%= @restaurants.length %> OF <%= @restaurants.length %> RESTAURANTS </p>
+      <div class="map-cont"><div id="map-canvas" ></div></div>
+      <h2 class="map">View Map of Results</h2>
+      <div class="col-sm-12 tb-wrap">
+        <table class="tablesorter">
+          <thead>
+            <tr class='order'>
+              <th>Restaurant Name
+</th>
+              <th class='small'>Cuisine</th>
+              <th class='medium'>Neighborhoods</th>
+              <th class='small'>City</th>
+              <th class='small'>Zip</th>
+              <th class='small'>Staff<br>Trained</th>
+              <th class='small'>Kid <br>Friendly</th>
+              <th class=''>Phone</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @restaurants.each do |restaurant| %>
+            
+              <tr>
+                <td class=' col-xs-3 title'><div data-toggle="modal" data-target="#restaurantModal" class= "modalOpen <%=restaurant.id%> <%=restaurant.user.id%> "><%= restaurant.name %></div><p class='reg' style='padding-top:5px'><%= restaurant.address %></p> </td>
+                <td class='small col-xs-1'><% restaurant.cuisines.each do |x| %>
+                    <%= x.name+' ' %> <br>
+                    <%end%>
+                  </td>
+                  <td class='medium col-xs-2'><% restaurant.neighborhoods.each do |x| %>
+                    <%= x.name+' ' %><br>
+                    <%end%>
+                  </td>
+                <td class=' small col-xs-1'><%= restaurant.city %></td>
+                 <td class='small col-xs-1'><%= restaurant.zip %></td>
+                  <% @roles = [] %>
+                 <td class='small col-xs-1'><% restaurant.aware_employees.each do |emp| %>
+                        <%  emp.roles.each do |role| %>
+                          <% if @roles.include?(role.role) %>
+                          <% else %>
+                            <%= role.role%><br>
+                            <% @roles << role.role %>
+                          <% end %>  
+                        <%end%>  
+                      <%end%>  
+                 </td>    
+                <td class=' medium col-xs-1'><%= restaurant.kid_friendly? %></td>
+                <td class='  col-xs-1'><%= restaurant.phone %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+ </div> 
+<% if @restaurants.length != 0 %>
+  <script>
+    var search_results = []
+    var bounds = new google.maps.LatLngBounds(
+          new google.maps.LatLng("<%=@restaurants.first.latitude%>","<%=@restaurants.first.longitude%>"),
+          new google.maps.LatLng("<%=@restaurants.last.latitude%>","<%=@restaurants.last.longitude%>")
+         )
+    var infowindows=[]
+  </script>
+<%end%>
+<% @restaurants.each do |restaurant| %>
+  <script>
+     var latLng = new google.maps.LatLng("<%=restaurant.latitude%>", "<%=restaurant.longitude%>");
+     console.log(latLng)
+     search_results.push({
+      location: new google.maps.LatLng("<%=restaurant.latitude%>", "<%=restaurant.longitude%>"),
+      name: "<%=restaurant.name%>",
+      phone:"<%=restaurant.phone%>"
+      });
+  </script>
+<% end %>
+<script>
+  var markers = [];
+  var iterator = 0;
+  var marker;
+  function show_initialize() {
+    var mapOptions = {
+      zoom: 12,
+      center: bounds.getCenter()
+    };
+      map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+  }
+  function drop() {
+    for (var i = 0; i < search_results.length; i++) {
+      setTimeout(function() {
+        addMarker();
+      }, i * 200);
+    }
+  }
+  function addMarker() {
+    markers.push(new google.maps.Marker({
+      position: search_results[iterator].location,
+      map: map,
+      draggable: true,
+      title: search_results[iterator].name,
+      content: search_results[iterator].phone,
+      animation: google.maps.Animation.DROP
+    }));
+     infowindow = new google.maps.InfoWindow({
+    });
+    google.maps.event.addListener(markers[iterator], 'click', function() {
+      infowindow.setContent("<h1>"+ this.title + "</h1><h2>"+this.content+"</h2>")
+      infowindow.open(map,this);
+    });
+    iterator++;
+  }
+  google.maps.event.addDomListener(window, 'load', show_initialize);
+  $(document).ready(function(){
+    $(".tablesorter").tablesorter(); 
+    $('h2.map').on('click',function(){
+      $('.map-cont').toggleClass('grow');
+      $('#map-canvas').toggleClass('opacity');
+      drop();
+    })
+  })
+ </script>
+
+

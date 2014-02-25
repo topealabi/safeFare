@@ -12,11 +12,14 @@
 /db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
-/log/*.log
+/log/*
+/tmp/*
 /tmp
+/log
 
 #ignore solr files
-solr/*
+/solr
+/solr/*
 
-#ignore db yml
-
+# Ignore DS_Store
+.DS_Store

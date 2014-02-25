@@ -4,38 +4,67 @@ $blue:#243772;
 $hover:#3a5ad8;
 
 @media screen and (max-width: 767px){ /* Insert your own breakpoint as needed */
+	.medium, .small{
+		display:none !important;
+	}
+	.content-section{
+		.col-sm-4.col-xs-12.right{
+		
+			text-align: center;
+			padding-bottom: 20px;
+		}
+	}
+	.search-section{
+		.right-side{
+			margin-top:25px;
+		}
+	}
+	.about-section{
+		.col-sm-4{
+			margin-top:15px;
+			text-align: center;
+			p{
+				text-align:left;
+			}
+		}
+	}
+	.contact-form {
+		.nav-link {
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
 	nav#main-nav{
 		width:100%;
 		background:$blue !important;
+		border: none;
 		border-radius:0px;
-		height:50px;
+		height:auto;
+		max-height: 50px;
 		overflow:hidden;
-		transition: height 0.5s ease;
+		transition: max-height 0.5s ease;
 		
 	}
-	nav#main-nav.open{
-		height:200px;
+	#main-nav:hover {
+		max-height:220px;
 	}
 	.mobile-menu { 
 		display: block; 
-		padding-top: 15px;
 		text-align: center;
 		#mobile-nav{
-			color:white;
-			text-decoration: none;
-			font-weight:600;
-			font-family:'proxima-nova-condensed';
-			font-size:18px;
-			letter-spacing: .03em;
-			cursor:pointer;
-		
+				color:white;
+				cursor:pointer;
+				text-decoration: none;
+				font-weight:600;
+				font-family:'proxima-nova-condensed';
+				font-size:18px;
+				letter-spacing: .03em;
+				padding: 16px 0;
 			}
 			.mobile-nav-items {
-				padding-top:35px;
 				li{
-					padding: 4px;
-					height: 25px;
-					border-bottom: 1px solid white;
+					padding: 6px 0;
+					border-top: 1px solid white;
 				}
 				li:hover{
 					background:$hover;
@@ -107,12 +136,19 @@ $hover:#3a5ad8;
 				padding:30px;
 			}
 		}
+
 	
-input#submit-search{
-	
-		width: 50%% !important;
+	input#submit-search{
+		
+			width: 50%% !important;
 	}
-	}
+	.search-section .find-a-restaurant {
+		.nav-link {
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}	
+}
 
 
 

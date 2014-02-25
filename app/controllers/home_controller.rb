@@ -18,8 +18,12 @@ class HomeController < ApplicationController
 	         redirect_to root_path
 	      end
 	end
+    def for_diners
+    end
+    def for_restaurants
+    end
 	private
-   def form_params
+    def form_params
       params.require(:contact_form).permit(:message, :name,:email,:subject, :restaurant_owner, :employee, :member, :zip, :other, :parent)
     end
 end

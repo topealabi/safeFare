@@ -1,24 +1,25 @@
 
 <div class="new-restaurant-section" style='padding:20px 0px;'>
 	<div class="section-wrapper">
-		<h2 class="orange-header padding-left">Add Your Restaurant</h2>
+		<div class="col-sm-12">
+			<h1>Add Your Restaurant</h1>
+		</div>
 		<%= render 'new_restaurant_form' %>
 	</div>
-	<div style='clear:both'></div>
 </div>
 
  
  <script type="text/javascript">
- $('input.inactive').click(function(e){
+ $('input[type="submit"]').click(function(e){
 	elements = $('.validate');
 	var counter = 0; 
 	$.each(elements,function(index,value){ 
 		if ( $("."+value.className.split(' ')[3]+" input").val() == '' ){
-			$("."+value.className.split(' ')[3]+" .feedback").html('&otimes;'); 
+			$("."+value.className.split(' ')[3]+" .feedback div").html('&otimes;'); 
 			$("."+value.className.split(' ')[3]+" .feedback").css('color', 'red');
 			counter ++;	
 		}else{
-			$("."+value.className.split(' ')[3]+" .feedback").html('&#10003;'); 
+			$("."+value.className.split(' ')[3]+" .feedback div").html('&#10003;'); 
 			$("."+value.className.split(' ')[3]+" .feedback").css('color', 'green');
 		}
 	})

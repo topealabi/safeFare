@@ -20,10 +20,20 @@ SafeFare::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
   match "/about" => "home#about", via: [:get, :post]
-  match "/contact" => "home#contact", via: [:get]
+  match "/about/contact-us" => "home#contact", via: [:get]
   match "/submit" => "home#submit", via: [:post]
-  match "/search" => "search#index", via: [:get]
-  match "/results" => "search#results", via: [:post]
+  match "/find-a-restaurant" => "search#index", via: [:get]
+  match "/results" => "search#results", via: [:post, :get]
+  match "/for-diners" => "home#for_diners", via: [:get]
+  match "/for-restaurants" => "home#for_restaurants", via: [:get, :post]
+
+  # devise_scope :user do
+  #   get   '/for-restaurants',          to: 'devise/sessions#new'
+  #   get   '/for-restaurants',          to: 'devise/sessions#new'
+  #   get   'users/login',    to: 'devise/sessions#new'
+  #   get   'logout',         to: 'devise/sessions#destroy'
+  #   get   '/for-restaurants/signup',         to: 'devise/registrations#new'
+  # end
 
 
   # Example of regular route:

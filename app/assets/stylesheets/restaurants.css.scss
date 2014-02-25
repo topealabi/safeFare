@@ -38,7 +38,7 @@ a.add_an_employee:hover{
 	width:100%;
 }
 
-.add_fields{
+.add_fields, .sub{
 	background:$blue;
 
 	text-align: center;
@@ -60,29 +60,45 @@ a.add_an_employee:hover{
 		font-weight: 600;
 		letter-spacing: 0.05em;
 	}
-.add_fields.sub{
+	.sub{
 	float: right;
 	margin-left: 5px;
 	margin-top: -9.5px;
 	padding-top: 10px;
 	padding-bottom: 9px;
 	}
-.add_fields:hover{
+.add_fields:hover, .sub:hover{
 	background:$hover;
 }
 .submit.inactive{
 	display:none;
 }
-#check{
 
+#check {
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	text-decoration:underline;
+	color:black;
+}
+#check:hover{
+	text-decoration: none;
 }
 .form-row.emp_role{
-	border-bottom: 2px solid #cccccc;
-padding-bottom: 25px;
-margin-bottom: 15px;
-
-
+	padding-bottom: 25px;
 }
 .form-row.emp_role.edit{
 	padding-bottom:50px;
+}
+.new-restaurant-section {
+	.restaurant_total_employees {
+		margin: 10px 0;
+	}
+	select, .chosen-container {
+		width: 100%;
+		margin: 10px 0;
+	}
+	input[type=file] {
+		margin: 10px 0;
+	}
 }

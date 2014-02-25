@@ -2,51 +2,74 @@
 	<div class="section-wrapper">
 		<ul class="safe-fare-breadcrumb">
 			  <li><a href="/">Home > </a></li>
-			  <li><a href="" class='active'> Contact Us</a></li>
+			  <li><a href="/about">About > </a></li>
+			  <li><a href="/about/contact-us" class='active'> Contact Us</a></li>
 		</ul>
-		<div class="col-sm-7">
-			<h2 class="orange-header">Contact Us</h2>
-			<%= simple_form_for @contactform, url: "/submit", method: :post do |f| %>
+		<div class="col-sm-8 col-xs-12">
+			<h1>Contact Us</h1>
+			<p><a href="http://www.foodallergy.org" rel="external" title="http://www.foodallergy.org">Food Allergy Research &amp; Education (FARE)</a> is the nation’s leading national organization working on behalf of the 15 million Americans with food allergy. Our mission is to find a cure for food allergies, and to keep individuals with food allergies safe and included. We do this by investing in world-class research that advances treatment and understanding of the disease; providing evidence-based education and resources; undertaking advocacy at all levels of government; and increasing awareness of food allergy as a serious and growing public health issue.</p>
+			<p>To learn more about food allergy, FARE or the SafeFARE program, please fill in the fields below.</p>
+			<div class="contact-form">
+				<%= simple_form_for @contactform, url: "/submit", method: :post do |f| %>
 					<div class="col-sm-12 form-row">
-						
-						<p>Name</p>
-						<%= f.input :name, label: false, input_html: { class: "right" }%>
+						<p class='form-label'>Full Name</p>
+						<%= f.input :name, label: false%>
 					</div>
 					<div class="col-sm-12 form-row">
-						<p>I Am</p>
+						<p class='form-label'>I am</p>
 						<div class="i-am-cat right">
-						<%= f.input :parent, label: "A Parent" ,as: :boolean%>
-						<%= f.input :restaurant_owner, label: "A Restaurant Owner" ,as: :boolean%>
-						<%= f.input :employee, label: "A Restaurant Employee" ,as: :boolean%>
-						<%= f.input :member, label: "A SafeFARE Member" ,as: :boolean%>
+						<%= f.input :parent, label: "a parent" ,as: :boolean%>
+						<%= f.input :member, label: "a person managing food allergies" ,as: :boolean%>
+						<%= f.input :restaurant_owner, label: "a restaurant owner" ,as: :boolean%>
+						<%= f.input :employee, label: "a restaurant employee" ,as: :boolean%>
 						<%= f.input :other, label: "Other" ,as: :boolean%>
 						</div>
 					</div> 
 					<div class="col-sm-12 form-row">
-						<p>Email</p>
-						<%= f.input :email, label: false, input_html: { class: "right" }  %>
+						<p class='form-label'>Email</p>
+						<%= f.input :email, label: false  %>
 					</div>
 					<div class="col-sm-12 form-row">
-						<p>Zip Code</p>
-						<%= f.input :zip, label: false, input_html: { class: "right" }  %>
+						<p class='form-label'>Zip</p>
+						<%= f.input :zip, label: false  %>
 					</div>
 
 					<div class="col-sm-12 form-row">
-						<p>Subject</p>
-						<%= f.input :subject, label: false, input_html: { class: "right" }  %>
+						<p class='form-label'>Subject</p>
+						<%= f.input :subject, label: false  %>
 					</div>
 		
 					<div class="col-sm-12 form-row">
-						<p>Message</p>
-						<%= f.input :message, label: false, input_html: { class: "right" }  %>
+						<p class='form-label'>Message</p>
+						<%= f.input :message, label: false, :as => :text  %>
 					</div>
-					
-
-					<%= f.submit  %>
+					<div class="col-sm-12 form-row">
+						<div class="no-label-wrap">
+							<%= f.submit "SUBMIT" %>
+						</div>
+					</div>
 				<%end%>
+			</div>
 		</div>
-		<div class="col-sm-5">
-			
+		<div class="col-sm-4 col-xs-12 right ">
+			<h1>National Offices</h1>
+			<h2>National Headquarters</h2>
+			<address>
+				<div class="vcard">
+					<div class="street-address">7925 Jones Branch Drive</div>
+					<div>Suite 1100</div>
+					<div>
+						<span class="locality">McLean</span>, 
+						<span class="region">VA</span>, 
+						<span class="postal-code">22102</span>
+						<span class="country-name">USA</span>
+					</div>
+					<div class="tel">Toll-Free: <a href="tel:18009294040">800-929-4040</a></div>
+					<div class="tel">Main: <a href="tel:7036913179">703-691-3179</a></div>
+					<div class="fax">Fax: 703-691-2713</div>
+				</div>		
+			</address>
 		</div>
 	</div>
+	<div style='clear:both'></div>
 </div>

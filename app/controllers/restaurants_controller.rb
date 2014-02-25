@@ -25,6 +25,8 @@ class RestaurantsController < ApplicationController
 		  @states = []
     	@user = current_user
     	@restaurant = Restaurant.new
+      @employee=@restaurant.aware_employees.build
+      @employee.restaurant_roles.build
       @restaurant.areas.build
       @restaurant.type_of_cuisines.build
       @role = Role.all
@@ -88,6 +90,21 @@ class RestaurantsController < ApplicationController
   
   def show
     @restaurant = Restaurant.find(params[:id])
+    @roles = []
+    @employees = @restaurant.aware_employees.length
+    @restaurant.aware_employees.each do |emp|
+      emp.roles.each do |role|
+        if @roles.include?(role.role)
+          p 'exst'
+        else
+          @roles << role.role
+        end
+      end
+    end
+    respond_to do |format|
+      format.html{  }
+      format.json { render json: [@restaurant,@restaurant.cuisines,@roles,@employees] }
+      end
   end
 	private	
 		def restaurant_params
