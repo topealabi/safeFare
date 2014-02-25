@@ -1,5 +1,10 @@
 var marker;
 var map;
+
+var titles =[];
+
+
+
 function getRestaurant(restaurant_id, restaurant_user, callback){
 	
   $(function(){
@@ -16,7 +21,6 @@ function getRestaurant(restaurant_id, restaurant_user, callback){
           }
         });
       });
-
 }
 function populateModal(data){
 
@@ -33,7 +37,7 @@ function populateModal(data){
    $.each(data[2],function(){ roles += this + ' ' });
 
    var modalContainer = '';
-   modalContainer += "<div class='col-xs-7 right'>";
+   modalContainer += "<div class='col-xs-12 col-sm-7 right'>";
    modalContainer += 	"<div class='left'>";
    modalContainer += 		"<h2 class='orange-header'>"+data[0].name+"</h2>";
    modalContainer += 		"<p>"+data[0].address+"</p>";
@@ -90,8 +94,15 @@ function populateModal(data){
    modalContainer += 		"</div>";
    modalContainer += 	"</div>";
    modalContainer += "</div>";
-   modalContainer += "<div class='col-xs-5 left'>";
-   modalContainer += 	"<img class='' style='max-width:100%' src='http://maps.googleapis.com/maps/api/staticmap?markers="+data[0].latitude+"%2C"+data[0].longitude+"&zoom=18&size=300x300&maptype=roadmap&sensor=false' />" ;
+   modalContainer += "<div class='col-xs-12 col-sm-5 left' style='text-align:center'>";
+   if (data[0].repos != ''){
+    var loc_array = data[0].repos.split(',')
+    modalContainer +=   "<img class='' style='max-width:100%' src='http://maps.googleapis.com/maps/api/staticmap?markers="+loc_array[0]+"%2C"+loc_array[1]+"&zoom=18&size=300x300&maptype=roadmap&sensor=false' />" ;
+
+   }else{
+    modalContainer +=   "<img class='' style='max-width:100%' src='http://maps.googleapis.com/maps/api/staticmap?markers="+data[0].latitude+"%2C"+data[0].longitude+"&zoom=18&size=300x300&maptype=roadmap&sensor=false' />" ;
+
+   }
    modalContainer += "</div>";
   
 	 $('.modal-body').append(modalContainer);
@@ -240,5 +251,8 @@ $(document).ready(function(){
   	 	
       getRestaurant(this.classList[1], this.classList[2], function(data) { populateModal(data) })
   	})
-
+   $('#restaurantModal').on('hidden.bs.modal',function(){
+    modalContainer = ''
+    $('.modal-body').html('');
+   })
 })

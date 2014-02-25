@@ -10,6 +10,19 @@ $hover:#3a5ad8;
        -o-border-radius: $radius;
           border-radius: $radius;
 }
+.modal-footer {
+
+border-top: 0px solid #e5e5e5; 
+}
+
+button.close {
+padding: 0;
+padding: 10px;
+cursor: pointer;
+background: $orange;
+border: 0;
+-webkit-appearance: none;
+}
 .clearfix {
     zoom:1;
     &:before, &:after {
