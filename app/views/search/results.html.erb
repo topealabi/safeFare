@@ -17,10 +17,10 @@
             <tr class='order'>
               <th>Restaurant Name
 </th>
-              <th class=''>Cuisine</th>
+              <th class='small'>Cuisine</th>
               <th class='medium'>Neighborhoods</th>
-              <th>City</th>
-              <th>Zip</th>
+              <th class='small'>City</th>
+              <th class='small'>Zip</th>
               <th class='small'>Staff<br>Trained</th>
               <th class='small'>Kid <br>Friendly</th>
               <th class=''>Phone</th>
@@ -32,7 +32,7 @@
             
               <tr>
                 <td class=' col-xs-3 title'><div data-toggle="modal" data-target="#restaurantModal" class= "modalOpen <%=restaurant.id%> <%=restaurant.user.id%> "><%= restaurant.name %></div><p class='reg' style='padding-top:5px'><%= restaurant.address %></p> </td>
-                <td class='  col-xs-1'><% restaurant.cuisines.each do |x| %>
+                <td class='small col-xs-1'><% restaurant.cuisines.each do |x| %>
                     <%= x.name+' ' %> <br>
                     <%end%>
                   </td>
@@ -40,8 +40,8 @@
                     <%= x.name+' ' %><br>
                     <%end%>
                   </td>
-                <td class=' col-xs-1'><%= restaurant.city %></td>
-                 <td class=' col-xs-1'><%= restaurant.zip %></td>
+                <td class=' small col-xs-1'><%= restaurant.city %></td>
+                 <td class='small col-xs-1'><%= restaurant.zip %></td>
                   <% @roles = [] %>
                  <td class='small col-xs-1'><% restaurant.aware_employees.each do |emp| %>
                         <%  emp.roles.each do |role| %>
@@ -63,21 +63,72 @@
     </div>
   </div>
  </div> 
-
- <script>
+<% if @restaurants.length != 0 %>
+  <script>
+    var search_results = []
+    var bounds = new google.maps.LatLngBounds(
+          new google.maps.LatLng("<%=@restaurants.first.latitude%>","<%=@restaurants.first.longitude%>"),
+          new google.maps.LatLng("<%=@restaurants.last.latitude%>","<%=@restaurants.last.longitude%>")
+         )
+    var infowindows=[]
+  </script>
+<%end%>
+<% @restaurants.each do |restaurant| %>
+  <script>
+     var latLng = new google.maps.LatLng("<%=restaurant.latitude%>", "<%=restaurant.longitude%>");
+     console.log(latLng)
+     search_results.push({
+      location: new google.maps.LatLng("<%=restaurant.latitude%>", "<%=restaurant.longitude%>"),
+      name: "<%=restaurant.name%>",
+      phone:"<%=restaurant.phone%>"
+      });
+  </script>
+<% end %>
+<script>
+  var markers = [];
+  var iterator = 0;
+  var marker;
+  function show_initialize() {
+    var mapOptions = {
+      zoom: 12,
+      center: bounds.getCenter()
+    };
+      map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+  }
+  function drop() {
+    for (var i = 0; i < search_results.length; i++) {
+      setTimeout(function() {
+        addMarker();
+      }, i * 200);
+    }
+  }
+  function addMarker() {
+    markers.push(new google.maps.Marker({
+      position: search_results[iterator].location,
+      map: map,
+      draggable: true,
+      title: search_results[iterator].name,
+      content: search_results[iterator].phone,
+      animation: google.maps.Animation.DROP
+    }));
+     infowindow = new google.maps.InfoWindow({
+    });
+    google.maps.event.addListener(markers[iterator], 'click', function() {
+      infowindow.setContent("<h1>"+ this.title + "</h1><h2>"+this.content+"</h2>")
+      infowindow.open(map,this);
+    });
+    iterator++;
+  }
+  google.maps.event.addDomListener(window, 'load', show_initialize);
   $(document).ready(function(){
-     initialize();  
-  $(".tablesorter").tablesorter(); 
- 
-  $('h2.map').on('click',function(){
-   
-    $('.map-cont').toggleClass('grow')
-  
+    $(".tablesorter").tablesorter(); 
+    $('h2.map').on('click',function(){
+      $('.map-cont').toggleClass('grow');
+      $('#map-canvas').toggleClass('opacity');
+      drop();
+    })
   })
-
-
-  })
- 
  </script>
 
 

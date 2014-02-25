@@ -8,7 +8,13 @@
     </ul>
     <div class="col-sm-8 find-a-restaurant">
       <h1>Find a Restaurant</h1>
-            <%= form_tag "/results", :method => :get do %>
+          <ul class="nav nav-tabs" id="searchTabs">
+            <li><a href="#basic" data-toggle="tab">BASIC SEARCH</a></li>
+            <li class="active"><a href="#advanced" data-toggle="tab">ADVANCED SEARCH</a></li>          
+          </ul>
+       <div class="tab-content">
+  <div class="tab-pane active" id="advanced">
+     <%= form_tag "/results", :method => :get do %>
               <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>Restaurant Name:</p>
                 <%= text_field_tag :search, params[:search], class:"input" %>
@@ -16,7 +22,7 @@
               </div>
                <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>Cuisines:</p>
-               <%= select_tag(:cuisine_search, options_from_collection_for_select(Cuisine.all, :name, :name), multiple: true,class: "chosen-select req") %>
+               <%= select_tag(:cuisine_search, options_from_collection_for_select(Cuisine.all, :name, :name), multiple: true,class: "chosen-select req input") %>
                 <span class='feedback'></span>
               </div>
               <div class="col-xs-12 form-row clearfix validate name">
@@ -31,12 +37,12 @@
               </div>
               <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>State:</p>
-               <%= select_tag(:state_search, options_from_collection_for_select(State.all, :abbreviation, :abbreviation), multiple: false,class: "req") %>
+               <%= select_tag(:state_search, options_from_collection_for_select(State.all, :abbreviation, :abbreviation), multiple: false,class: "req input") %>
                 <span class='feedback'></span>
               </div>
               <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>Neighborhood:</p>
-               <%= select_tag(:hood_search, options_from_collection_for_select(Neighborhood.all, :name, :name), multiple: true,class: "chosen-select req") %>
+               <%= select_tag(:hood_search, options_from_collection_for_select(Neighborhood.all, :name, :name), multiple: true,class: "chosen-select req input") %>
                 <span class='feedback'></span>
               </div>
               <div class="col-xs-12 form-row clearfix validate name">
@@ -46,7 +52,7 @@
               </div>
               <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>Within:</p>
-               <%= select_tag(:within, "<option>5 miles</option><option>10 miles</option><option>15 miles</option>".html_safe,class: "req") %>
+               <%= select_tag(:within, "<option>5 miles</option><option>10 miles</option><option>15 miles</option>".html_safe,class: "req input") %>
                 <span class='feedback'></span>
               </div>
             
@@ -57,10 +63,29 @@
                    <%= check_box_tag "worker_role[]", ro.role %>
                    <%= label_tag(:worker_role, ro.role) %>
                 <% end %>
+            
               </div>
           </div> 
           <%= submit_tag "Search", :name => nil %>
       <% end %>
+  </div>
+
+  <div class="tab-pane" id="basic">
+    <form name="search" action="/results" method="get">
+      <div class="col-sm-12 form-row clearfix">
+        <p class='form-label'>Search For:</p>
+          <input type="text" name="search" id='cuisine' class='input'placeholder='Restaurant, Cuisine, etc.'>
+      </div>
+       <div class="col-sm-12 form-row clearfix">
+        <p class='form-label'>Near:</p>
+          <input type="text" name="location" class='input'id='free-text' placeholder='Address, Zip, etc.'>
+        </div>
+          <input type="submit" name="nil" style='display:block'data-role='none'id='submit-search' value='' >
+        </form>
+  </div>
+ 
+</div>
+           
     </div>
     <div class="col-sm-4 right-side">
       <%= image_tag("food-resources.png", :alt => "temp thumbnail") %>

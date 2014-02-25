@@ -17,7 +17,18 @@ $hover:#3a5ad8;
        -o-transition: $property $time $ease;  /* Opera 10.50–12.00 */
           transition: $property $time $ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
 }
+.modal-footer {
 
+border-top: 0px solid #e5e5e5; 
+}
+button.close {
+padding: 0;
+padding: 10px;
+cursor: pointer;
+background: $orange;
+border: 0;
+-webkit-appearance: none;
+}
 .clearfix {
     zoom:1;
     &:before, &:after {
