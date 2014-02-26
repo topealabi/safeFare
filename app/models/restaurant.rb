@@ -1,5 +1,6 @@
 class Restaurant < ActiveRecord::Base
 	mount_uploader :logo, ImageUploader
+  mount_uploader :image, PictureUploader
   VALID_STATES = ['CA']
 
   	State.all.each do |state| 

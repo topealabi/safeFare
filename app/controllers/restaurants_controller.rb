@@ -65,7 +65,7 @@ class RestaurantsController < ApplicationController
     
   end
   def edit
-
+    
     @cuisines = []
     @restaurant = Restaurant.find(params[:id])
     @states = []  
@@ -92,6 +92,8 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.find(params[:id])
     @roles = []
     @employees = @restaurant.aware_employees.length
+    @percent = (@employees.to_f/@restaurant.total_employees.to_f) * 100
+   
     @restaurant.aware_employees.each do |emp|
       emp.roles.each do |role|
         if @roles.include?(role.role)
@@ -109,7 +111,7 @@ class RestaurantsController < ApplicationController
 	private	
 		def restaurant_params
       	params.require(:restaurant).permit(:name,:address,:city,:state, :email, :phone,:repos,
-          :hours,:approved,:website,:facebook_url,:twitter_url,:allergy_eats_url,:role_id,
+          :hours,:approved,:website,:facebook_url,:twitter_url,:allergy_eats_url,:role_id,:image,
           :zip,:logo,:total_employees,:description,:is_visible,cuisine_ids:[],neighborhood_ids:[],
           aware_employees_attributes:[:name,:id, :verification,:expiration, :cert_type,role_ids:[],restaurant_roles_attributes:[role_id:[]]],
           type_of_cuisines_attributes:[:id,:restaurant_id,cuisine_id:[]],
@@ -122,10 +124,11 @@ class RestaurantsController < ApplicationController
         params[:restaurant][:cuisine_ids].each do |cuisine|
           if cuisine == ''
             TypeOfCuisine.where(restaurant_id: @restaurant.id).each do |record|
-              record.destroy
+              @restaurant.update!(tags: ' ')
             end
           else
             TypeOfCuisine.create(restaurant_id: @restaurant.id, cuisine_id: cuisine )
+             @restaurant.update!(tags: @restaurant.tags + ' ' + Cuisine.find(cuisine).name)
           end
         end
       # edit neighborhoods
@@ -136,6 +139,7 @@ class RestaurantsController < ApplicationController
             end
           else
             Area.create(restaurant_id: @restaurant.id, neighborhood_id: hood )
+              @restaurant.update!(tags: @restaurant.tags + ' ' + Neighborhood.find(hood).name)
           end
         end
         #edit employee roles
@@ -170,12 +174,18 @@ class RestaurantsController < ApplicationController
     def save_nests(this_restaurant)
       # Save Cuisine Nest
       params[:restaurant][:type_of_cuisines_attributes].first[1][:cuisine_id].each do |cuisine|
-        if cuisine != '' then TypeOfCuisine.create(restaurant_id: this_restaurant.id, cuisine_id: cuisine ) end
+        if cuisine != '' 
+          TypeOfCuisine.create(restaurant_id: this_restaurant.id, cuisine_id: cuisine )
+          this_restaurant.update!(tags: this_restaurant.tags + ' ' + Cuisine.find(cuisine).name)
+        end
       end
       # End Cuisine
       # Save Neighborhood Nest
         params[:restaurant][:areas_attributes].first[1][:neighborhood_id].each do |hood|
-          if hood != '' then Area.create(restaurant_id: this_restaurant.id, neighborhood_id: hood )end
+          if hood != '' 
+           Area.create(restaurant_id: this_restaurant.id, neighborhood_id: hood )
+            this_restaurant.update!(tags: this_restaurant.tags + ' ' + Neighborhood.find(hood).name)
+         end
         end
       # End Neighborhood  
       # Save Employee Roles
