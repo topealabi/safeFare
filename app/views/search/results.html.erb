@@ -3,47 +3,46 @@
 
     <ul class="safe-fare-breadcrumb">
         <li><a href="/">Home > </a></li>
-        <li><a href="" class='active'> Find a Restaurant</a></li>
+        <li><a href="/find-a-restaurant">Find a Restaurant > </a></li>
+        <li><a href="" class='active'>Search Results</a></li>
     </ul>
     <div class="col-xs-12">
       <h2 class="orange-header">Search Results</h2>
       <p style='margin:15px 0px;'>Didn't find what you are looking for? <a href='/find-a-restaurant'>Search Again?</a></p>
-      <p style='padding-bottom:10px; float:left'> <%= @restaurants.length %> OF <%= @restaurants.length %> RESTAURANTS </p>
-      <div class="map-cont"><div id="map-canvas" ></div></div>
-      <h2 class="map">View Map of Results</h2>
-      <div class="col-sm-12 tb-wrap">
+      <div class="map-wrap"><div id="map-canvas" ></div></div>
+      <div class="search-count"><%= @restaurants.length %> OF <%= @restaurants.length %> RESTAURANTS</div>
+      <h2 class="map-trig">View Map of Results</h2>
+      <div class="tb-wrap">
         <table class="tablesorter">
           <thead>
             <tr class='order'>
-              <th>Restaurant Name
-</th>
-              <th class='small'>Cuisine</th>
-              <th class='medium'>Neighborhoods</th>
-              <th class='small'>City</th>
-              <th class='small'>Zip</th>
-              <th class='small'>Staff<br>Trained</th>
-              <th class='small'>Kid <br>Friendly</th>
-              <th class=''>Phone</th>
+              <th>Restaurant Name</th>
+              <th>Cuisine</th>
+              <th>Neighborhoods</th>
+              <th>City</th>
+              <th>Zip</th>
+              <th>Staff<br>Trained</th>
+              <th>Kid <br>Friendly</th>
+              <th>Phone</th>
             </tr>
           </thead>
 
           <tbody>
             <% @restaurants.each do |restaurant| %>
-            
               <tr>
-                <td class=' col-xs-3 title'><div data-toggle="modal" data-target="#restaurantModal" class= "modalOpen <%=restaurant.id%> <%=restaurant.user.id%> "><%= restaurant.name %></div><p class='reg' style='padding-top:5px'><%= restaurant.address %></p> </td>
-                <td class='small col-xs-1'><% restaurant.cuisines.each do |x| %>
+                <td class='title'><div data-toggle="modal" data-target="#restaurantModal" class= "modalOpen <%=restaurant.id%> <%=restaurant.user.id%> "><%= restaurant.name %></div><p class='reg' style='padding-top:5px'><%= restaurant.address %></p> </td>
+                <td><% restaurant.cuisines.each do |x| %>
                     <%= x.name+' ' %> <br>
                     <%end%>
                   </td>
-                  <td class='medium col-xs-2'><% restaurant.neighborhoods.each do |x| %>
+                  <td><% restaurant.neighborhoods.each do |x| %>
                     <%= x.name+' ' %><br>
                     <%end%>
                   </td>
-                <td class=' small col-xs-1'><%= restaurant.city %></td>
-                 <td class='small col-xs-1'><%= restaurant.zip %></td>
+                <td><%= restaurant.city %></td>
+                 <td><%= restaurant.zip %></td>
                   <% @roles = [] %>
-                 <td class='small col-xs-1'><% restaurant.aware_employees.each do |emp| %>
+                 <td><% restaurant.aware_employees.each do |emp| %>
                         <%  emp.roles.each do |role| %>
                           <% if @roles.include?(role.role) %>
                           <% else %>
@@ -53,8 +52,8 @@
                         <%end%>  
                       <%end%>  
                  </td>    
-                <td class=' medium col-xs-1'><%= restaurant.kid_friendly? %></td>
-                <td class='  col-xs-1'><%= restaurant.phone %></td>
+                <td><%= restaurant.kid_friendly? %></td>
+                <td><%= restaurant.phone %></td>
               </tr>
             <% end %>
           </tbody>
@@ -123,9 +122,8 @@
   google.maps.event.addDomListener(window, 'load', show_initialize);
   $(document).ready(function(){
     $(".tablesorter").tablesorter(); 
-    $('h2.map').on('click',function(){
-      $('.map-cont').toggleClass('grow');
-      $('#map-canvas').toggleClass('opacity');
+    $('.map-trig').on('click',function(){
+      $('.map-wrap').toggleClass('active');
       drop();
     })
   })
