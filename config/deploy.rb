@@ -2,7 +2,7 @@
 lock '3.1.0'
 
 set :application, 'SafeFare'
-set :deploy_user, 'root'
+set :deploy_user, 'deployer'
 set :repo_url, 'git@github.com:topealabi/safeFare.git'
 
 # Default branch is :master
@@ -16,7 +16,7 @@ set :branch, 'master'
 
 # Default value for :format is :pretty
 # set :format, :pretty
-
+set :rails_env, "production"
 # Default value for :log_level is :debug
 # set :log_level, :debug
 
