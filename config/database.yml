@@ -20,8 +20,8 @@ development:
   database: safefare_development
   pool: 5
   host: localhost
-  #username: blog
-  #password: secret
+  username: blog
+  password: secret
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -50,8 +50,8 @@ test:
   database: safefare_test
   pool: 5
   host: localhost
-  #username: blog
-  #password: secret
+  username: blog
+  password: secret
   # username: admin
   # password: 4nH6az7fL40W!
 
@@ -61,5 +61,5 @@ production:
   database: safefare_production
   pool: 5
   host: localhost
-  #username: blog
-  #password: secret
+  username: blog
+  password: secret
