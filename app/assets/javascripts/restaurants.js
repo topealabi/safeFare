@@ -239,9 +239,13 @@ var checkLength = function(value) {
 
 $(document).ready(function(){
 
-	 $('.modalOpen').on('click', function(){
-  	 	
-      getRestaurant(this.classList[1], this.classList[2], function(data) { populateModal(data) })
+	 $('.modalOpen').on('click', function(e){
+    width = document.body.clientWidth;
+      if (width > 700){
+        e.preventDefault();
+        $('#restaurantModal').modal('show');
+        getRestaurant(this.classList[1], this.classList[2], function(data) { populateModal(data) })
+      }
   	})
    $('#restaurantModal').on('hidden.bs.modal',function(){
     modalContainer = ''

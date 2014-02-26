@@ -415,6 +415,15 @@ div.alert{
 input[type="file"] {
 	display: inline-block;
 }
+
+.rest-link, .modalOpen{
+	color:$blue;
+	font-weight: 600;
+	font-size:15px;
+}
+.modalOpen:hover{
+	text-decoration:underline;
+}
 .modal-dialog{
 	width:80%;
 	max-width:900px;

@@ -3,9 +3,3 @@ buttons for adding restaurants or editing restaurants.
 They should see all of their restaurants. 
  -->
 <%= link_to "Add A New Restaurant" , new_user_restaurant_path(current_user) %> 
-<h1><%=@user.email%>'s Restaurants</h1>
-<% if @restaurants != nil %>
-	<% @restaurants.each do |restaurant| %>
-		<li> <%= link_to restaurant.name , edit_user_restaurant_path(current_user, restaurant.id) %> </a></li>
-	<% end %>
-<% end %>
