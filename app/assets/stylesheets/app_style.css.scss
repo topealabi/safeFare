@@ -375,14 +375,18 @@ form input[type="submit"] {
 		}
 	}
 	.no-label-wrap { float: left; margin-left: 25%; width: 65%; }
-	.map-wrap { overflow: hidden; height: 0; @include transition(height, 0.5s, ease); }
+	.map-wrap { 
+		height: 0;
+		overflow: hidden;
+		@include transition(height, 0.5s, ease); 
+		&.active {
+			height: 200px;
+		}
+	}
 	#map-canvas{
 		width:100%;
 		height:200px;
 		opacity:1;
-		&.active {
-			height: 200%;
-		}
 	}
 	a {
 		margin-top: 0;
