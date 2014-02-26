@@ -2,7 +2,7 @@
 lock '3.1.0'
 
 set :application, 'SafeFare'
-set :deploy_user, 'root'
+set :deploy_user, 'deployer'
 set :repo_url, 'git@github.com:topealabi/safeFare.git'
 
 # Default branch is :master
@@ -33,7 +33,7 @@ set :linked_dirs, %w{bin log tmp vendor/bundle public/system}
 #set :default_env, { path: "/opt/ruby/bin:$PATH" }
 set :default_env, { rvm_bin_path: '/home/deployer/.rvm/bin/rvm' }
 
-SSHKit.config.command_map[:rake]  = "bundle exec rake" #8
+SSHKit.config.command_map[:rake]  = " RAILS_ENV=production bundle exec rake" #8
 SSHKit.config.command_map[:rails] = "bundle exec rails"
 
 # Default value for keep_releases is 5
