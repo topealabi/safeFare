@@ -131,13 +131,13 @@ function resetCenter(latlng){
 	center = latlng;
 
 	map.setCenter(latlng);
+  if (marker) marker.setMap(null);
 	marker = new google.maps.Marker({
 	    map:map,
 	    draggable:true,
 	    animation: google.maps.Animation.DROP,
 	    position: center
   	});
-  console.log(marker);
   	google.maps.event.addListener(marker, 'mouseup', setpos);
 }
 
