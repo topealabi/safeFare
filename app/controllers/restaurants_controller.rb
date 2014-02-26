@@ -92,6 +92,8 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.find(params[:id])
     @roles = []
     @employees = @restaurant.aware_employees.length
+    @percent = (@employees.to_f/@restaurant.total_employees.to_f) * 100
+   
     @restaurant.aware_employees.each do |emp|
       emp.roles.each do |role|
         if @roles.include?(role.role)

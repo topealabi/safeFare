@@ -1,46 +1,51 @@
   
-   <div class='col-xs-12 col-sm-7 right'>
+<div class='col-xs-12 col-sm-7 right'>
   <div class='left'>
-     		<h2 class='orange-header'>+data[0].name+</h2>
-     		<p>+data[0].address+</p>
-     		<p>+data[0].city+', '+data[0].state+' '+data[0].zip+</p>
-     		<p>+data[0].phone+</p>
+     		<h2 class='orange-header'><%=@restaurant.name%></h2>
+     		<p><%=@restaurant.address%></p>
+     		<p><%=@restaurant.city %>, <%=@restaurant.state%> <%=@restaurant.zip%></p>
+     		<p><%=@restaurant.phone%></p>
   </div>
 
   <div class='right'>
-     if(url != ''){
-     		<img class='' style='margin-top:10px' src=+url+/>
- }
+     	<img class='' style='margin-top:10px' src="<%=@restaurant.logo.url%>"/> 
   </div>
   <div style='clear:both'></div>
   <div class='info'>
      		<div class='col-xs-12 form-row'>
      			<p class='form-label'>Cuisine</p>
-     			<div class='input'>+cuisines+</div>
+     			<div class='input'>
+               <%@restaurant.cuisines.each do |x|%>
+                  <%= x.name %>
+               <%end%>
+            </div>
      		</div>
      		<div class='col-xs-12 form-row'>
      			<p class='form-label'>Hours</p>
-     			<div class='input'>+data[0].hours+</div>
+     			<div class='input'><%=@restaurant.hours %></div>
      		</div>
      		<div class='col-xs-12 form-row'>
      			<p class='form-label'>Number of Employees</p>
-     			<div class='input'>+data[0].total_employees+</div>
+     			<div class='input'><%=@restaurant.total_employees%></div>
      		</div>
      		<div class='col-xs-12 form-row'>
      			<p class='form-label'>Percent Trained</p>
-     			<div class='input'>+percent+%</div>
+     			<div class='input'><%=@percent.round%></div>
      		</div>
      		<div class='col-xs-12 form-row'>
      			<p class='form-label'>Employees Trained</p>
-     			<div class='input'>+roles+</div>
+     			<div class='input'>
+               <% @roles.each do |x|%>
+                  <%= x %>
+            </div>
      		</div>
      		<div class='col-xs-12 form-row'>
      			<p class='form-label'>Email</p>
-     			<div class='input'>+data[0].email+</div>
+     			<div class='input'><%= @restaurant.email %></div>
      		</div>
      		<div class='col-xs-12 form-row'>
      			<p class='form-label'>Website</p>
-     			<div class='input'>+data[0].website+</div>
+     			<div class='input'><%= @restaurant.website %></div>
      		</div>
      		<div class='col-xs-12 form-row'>
      			<p class='form-label'>Menu</p>
@@ -48,21 +53,14 @@
      		</div>
      		<div class='col-xs-12 form-row'>
      			<p class='form-label'>Social Media Links</p>
-     			<div class='input'><a href='+data[0].facebook_url+'>Facebook</a>, <a href='+data[0].twitter_url+'>Twitter</a></div>
+     			<div class='input'><a href='<%=@restaurant.facebook_url%>'>Facebook</a>, <a href='<%=@restaurant.twitter_url%>'>Twitter</a></div>
      		</div>
      		<div class='col-xs-12 form-row'>
      			<p class='form-label'>Allergy Eats</p>
-     			<a class='input'>+data[0].allergy_eats_url+</a>
+     			<a class='input'><%=@restaurant.allergy_eats_url%></a>
      		</div>
   </div>
    </div>
    <div class='col-xs-12 col-sm-5 left' style='text-align:center'>
-   if (data[0].repos != ''){
-    var loc_array = data[0].repos.split(',')
-        <img class='' style='max-width:100%' src='http://maps.googleapis.com/maps/api/staticmap?markers=+loc_array[0]+%2C+loc_array[1]+&zoom=18&size=300x300&maptype=roadmap&sensor=false' /> 
-
-   }else{
-        <img class='' style='max-width:100%' src='http://maps.googleapis.com/maps/api/staticmap?markers=+data[0].latitude+%2C+data[0].longitude+&zoom=18&size=300x300&maptype=roadmap&sensor=false' /> 
-
-   }
+ 
    </div>
