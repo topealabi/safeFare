@@ -95,19 +95,19 @@ background-position: 0px 0px;
 		height:300px;
 
 	}
-#map-canvas{
-	width: 100%;
-height: 300px;
-opacity:0;
--webkit-transition: all 1s ease;  /* Chrome 1-25, Safari 3.2+ */
-     -moz-transition: all 1s ease;  /* Firefox 4-15 */
-       -o-transition: all 1 ease;  /* Opera 10.50–12.00 */
-          transition: all 1s ease; 
+	#map-canvas{
+		width: 100%;
+	height: 300px;
+	opacity:0;
+	-webkit-transition: all 1s ease;  /* Chrome 1-25, Safari 3.2+ */
+	     -moz-transition: all 1s ease;  /* Firefox 4-15 */
+	       -o-transition: all 1 ease;  /* Opera 10.50–12.00 */
+	          transition: all 1s ease; 
 
-}
-.opacity{
-	opacity:1 !important;
-}
+	}
+	.opacity{
+		opacity:1 !important;
+	}
 	h2.map{
 		text-align: center;
 		color: #243772;
@@ -120,11 +120,11 @@ opacity:0;
 		z-index:12;
 		position:relative;
 		margin:20px auto;
-		}
+	}
 	.tablesorter-default .header, .tablesorter-default .tablesorter-header {
-    background-position: center left !important;
-    padding-left: 20px;
-}​
+	    background-position: center left !important;
+	    padding-left: 20px;
+	}​
 	table{
 		width:95%;
 		margin:auto;

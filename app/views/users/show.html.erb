@@ -2,10 +2,76 @@
 buttons for adding restaurants or editing restaurants.  
 They should see all of their restaurants. 
  -->
-<%= link_to "Add A New Restaurant" , new_user_restaurant_path(current_user) %> 
-<h1><%=@user.email%>'s Restaurants</h1>
-<% if @restaurants != nil %>
-	<% @restaurants.each do |restaurant| %>
-		<li> <%= link_to restaurant.name , edit_user_restaurant_path(current_user, restaurant.id) %> </a></li>
-	<% end %>
-<% end %>
+<div class="user-section">
+	<div class="section-wrapper">
+		<div class="col-sm-12">
+			<h1>Welcome <%=@user.email%></h1>
+			<a href="" class="nav-link right orange">DELETE MY ACCOUNT</a>
+			<h2>Account Information</h2>
+			<div class="blue-form">
+				<form>
+					<div class="col-sm-12">
+						<div class="col-xs-12 form-row validate name">
+							<p class='form-label'>Name*</p>
+							<input type="text">
+							<div class='feedback'><div></div></div>
+						</div>
+						<div class="col-xs-12 form-row validate name">
+							<p class='form-label'>Username</p>
+							<input type="text" readonly="" value="<%=@user.email%>">
+							<div class='feedback'><div></div></div>
+							<div class="no-label-wrap">
+								<div class="clear">your username cannot be changed</div>
+							</div>
+						</div>
+						<div class="white-space"></div>
+						<h2>Change Password</h2>
+						<hr>
+						<div class="col-xs-12 form-row validate name">
+							<p class='form-label'>Password</p>
+							<input type="text">
+							<div class='feedback'><div></div></div>
+						</div>
+						<div class="col-xs-12 form-row validate name">
+							<p class='form-label'>Re-Type Password</p>
+							<input type="text">
+							<div class='feedback'><div></div></div>
+						</div>
+						<div class="col-xs-12 form-row">
+							<div class="no-label-wrap">
+								<input type="submit" value="SUBMIT" class="nav-link">
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="tb-wrap">
+			<%= link_to "ADD RESTAURANT" , new_user_restaurant_path(current_user), class: "right nav-link add-rest" %><h2>My Restaurants</h2>
+		        <table class="tablesorter">
+		          <thead>
+		            <tr class='order'>
+		              <th class="center edit">Edit</th>
+		              <th>Restaurant Name</th>
+		              <th class="center"># Employees</th>
+		              <th class="center">% Trained</th>
+		              <th class="center">Approved</th>
+		            </tr>
+		          </thead>
+
+		          <tbody>
+		            <% @restaurants.each do |restaurant| %>
+		              <tr>
+		              	<td class="center edit"><a class="edit-button"></a></td>
+		                <td class='title'><a class= "modalOpen <%=restaurant.id%> <%=restaurant.user.id%> "><%= restaurant.name %></a><br><%= restaurant.address %></td>
+		                <td class="center">10</td>
+		                <td class="center">2%</td>
+		                <td class="center"><div class="approved not"></div></td>
+		              </tr>
+		            <% end %>
+		          </tbody>
+		        </table>
+		      </div>
+		      <div class="rest-tbl-message">Click on the restaurant name or the edit button to modify individual restaurant information.</div>
+		</div>
+	</div>
+</div>
