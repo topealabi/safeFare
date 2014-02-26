@@ -25,6 +25,8 @@ class RestaurantsController < ApplicationController
 		  @states = []
     	@user = current_user
     	@restaurant = Restaurant.new
+      @employee=@restaurant.aware_employees.build
+      @employee.restaurant_roles.build
       @restaurant.areas.build
       @restaurant.type_of_cuisines.build
       @role = Role.all

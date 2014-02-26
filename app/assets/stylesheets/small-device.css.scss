@@ -31,7 +31,6 @@ $hover:#3a5ad8;
 	}
 	.contact-form {
 		.nav-link {
-			width: 80%;
 			margin-left: auto;
 			margin-right: auto;
 		}
@@ -39,35 +38,34 @@ $hover:#3a5ad8;
 	nav#main-nav{
 		width:100%;
 		background:$blue !important;
+		border: none;
 		border-radius:0px;
-		height:50px;
+		height:auto;
+		max-height: 50px;
 		overflow:hidden;
-		transition: height 0.5s ease;
+		transition: max-height 0.5s ease;
 		
 	}
-	nav#main-nav.open{
-		height:200px;
+	#main-nav:hover {
+		max-height:220px;
 	}
 	.mobile-menu { 
 		display: block; 
-		padding-top: 15px;
 		text-align: center;
 		#mobile-nav{
-			color:white;
-			text-decoration: none;
-			font-weight:600;
-			font-family:'proxima-nova-condensed';
-			font-size:18px;
-			letter-spacing: .03em;
-			cursor:pointer;
-		
+				color:white;
+				cursor:pointer;
+				text-decoration: none;
+				font-weight:600;
+				font-family:'proxima-nova-condensed';
+				font-size:18px;
+				letter-spacing: .03em;
+				padding: 16px 0;
 			}
 			.mobile-nav-items {
-				padding-top:35px;
 				li{
-					padding: 4px;
-					height: 25px;
-					border-bottom: 1px solid white;
+					padding: 6px 0;
+					border-top: 1px solid white;
 				}
 				li:hover{
 					background:$hover;
@@ -149,7 +147,6 @@ $hover:#3a5ad8;
 		.nav-link {
 			margin-left: auto;
 			margin-right: auto;
-			width: 60%;
 		}
 	}	
 }
