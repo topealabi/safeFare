@@ -111,7 +111,7 @@ class RestaurantsController < ApplicationController
 	private	
 		def restaurant_params
       	params.require(:restaurant).permit(:name,:address,:city,:state, :email, :phone,:repos,
-          :hours,:approved,:website,:facebook_url,:twitter_url,:allergy_eats_url,:role_id,
+          :hours,:approved,:website,:facebook_url,:twitter_url,:allergy_eats_url,:role_id,:image,
           :zip,:logo,:total_employees,:description,:is_visible,cuisine_ids:[],neighborhood_ids:[],
           aware_employees_attributes:[:name,:id, :verification,:expiration, :cert_type,role_ids:[],restaurant_roles_attributes:[role_id:[]]],
           type_of_cuisines_attributes:[:id,:restaurant_id,cuisine_id:[]],
