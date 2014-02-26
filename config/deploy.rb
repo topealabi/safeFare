@@ -21,13 +21,13 @@ set :branch, 'master'
 # set :log_level, :debug
 
 # Default value for :pty is false
-set :pty, true
+#set :pty, true
 
 # Default value for :linked_files is []
-#set :linked_files, %w{config/database.yml config/database.yml}
+set :linked_files, %w{config/database.yml config/database.yml}
 
 # Default value for linked_dirs is []
-#set :linked_dirs, %w{bin log tmp vendor/bundle public/system}
+set :linked_dirs, %w{bin log tmp vendor/bundle public/system}
 
 # Default value for default_env is {}
 #set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -50,6 +50,8 @@ namespace :deploy do
   end
 
   after :finishing, "deploy:cleanup"
+
+  
   # after :publishing, :restart
 
   # after :restart, :clear_cache do
