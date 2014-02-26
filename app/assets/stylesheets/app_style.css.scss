@@ -11,8 +11,7 @@ $hover:#3a5ad8;
           border-radius: $radius;
 }
 .modal-footer {
-
-border-top: 0px solid #e5e5e5; 
+	border-top: 0px solid #e5e5e5; 
 }
 
 button.close {
@@ -352,6 +351,15 @@ div.alert{
 }
 input[type="file"] {
 	display: inline-block;
+}
+
+.rest-link, .modalOpen{
+	color:$blue;
+	font-weight: 600;
+	font-size:15px;
+}
+.modalOpen:hover{
+	text-decoration:underline;
 }
 .modal-dialog{
 	width:80%;
