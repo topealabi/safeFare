@@ -18,8 +18,7 @@ $hover:#3a5ad8;
           transition: $property $time $ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
 }
 .modal-footer {
-
-border-top: 0px solid #e5e5e5; 
+	border-top: 0px solid #e5e5e5; 
 }
 button.close {
 padding: 0;
@@ -85,21 +84,28 @@ a{text-decoration:none;color:inherit}
 h1, .orange-header{color:$orange;font-weight:300;font-family:'proxima-nova'; font-size:28px;padding-bottom:20px;}
 h2, .blue-header{color:$blue;font-weight:500;font-family:'proxima-nova'; font-size:20px;}
 hr { border-color: $blue;clear:both;@extend .clearfix; }
-.nav-link, form input[type="submit"] {
+a.nav-link, .nav-link, form input[type="submit"] {
 	background:$blue;
+	color:white;
 	cursor: pointer;
+	display: block;
 	width:180px;
 	text-align: center;
+	text-decoration: none;
 	font-size:17px;
 	letter-spacing: 0.05em;
+	padding: 7px 0;
 	margin-top:15px;
 	 -webkit-transition: background .5s ease;  /* Chrome 1-25, Safari 3.2+ */
      -moz-transition: background .5 ease;  /* Firefox 4-15 */
        -o-transition: background .5 ease;  /* Opera 10.50–12.00 */
           transition: background .5 ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+    &:not(a):not(input) {
+    	padding: 0;
+    }
 	div {
-		padding:7px 0px;
-	}	
+		padding: 7px 0px;
+	}
 	a{
 		color:white;
 		display: block;
@@ -108,6 +114,17 @@ hr { border-color: $blue;clear:both;@extend .clearfix; }
 		letter-spacing: 0.05em;
 		padding: 7px 0;
 		text-decoration: none;
+	}
+	&.orange {
+		background: $orange;
+		&:hover {
+			background: $orange-hover;
+		}
+	}
+	& + .nav-link {
+		margin-left: 10px;
+		margin-top: 0;
+		float: left;
 	}
 }
 .section-wrapper .safe-fare-breadcrumb{
@@ -358,14 +375,17 @@ form input[type="submit"] {
 		}
 	}
 	.no-label-wrap { float: left; margin-left: 25%; width: 65%; }
+	.map-wrap { overflow: hidden; height: 0; @include transition(height, 0.5s, ease); }
 	#map-canvas{
 		width:100%;
-		height:0;
-		opacity:0;
-		@include transition(height, 0.5s, ease);
+		height:200px;
+		opacity:1;
 		&.active {
 			height: 200%;
 		}
+	}
+	a {
+		margin-top: 0;
 	}
 }
 
