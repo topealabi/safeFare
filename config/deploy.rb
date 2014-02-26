@@ -51,6 +51,10 @@ namespace :deploy do
 
   after :finishing, "deploy:cleanup"
 
+  task :restart_apache do
+    print "Restarting webserver"
+    run "#{sudo} service apache2 restart"  
+  end
   
   # after :publishing, :restart
 
