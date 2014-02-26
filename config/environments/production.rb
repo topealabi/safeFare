@@ -11,7 +11,7 @@ SafeFare::Application.configure do
   config.eager_load = true
   #precompile assets
   #config.assets.precompile = true
-  config.assets.precompile += %w( active_admin.css active_admin/print.css active_admin.js )
+  config.assets.precompile += %w( active_admin.css application.css application.js home.js respond.js restaurant.js search.js scripts.js active_admin/print.css active_admin.js )
  
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
