@@ -17,34 +17,34 @@
           <thead>
             <tr class='order'>
               <th>Restaurant Name</th>
-              <th>Cuisine</th>
-              <th>Neighborhoods</th>
-              <th>City</th>
-              <th>Zip</th>
-              <th>Staff<br>Trained</th>
-              <th>Kid <br>Friendly</th>
-              <th>Phone</th>
+              <th class="center">Cuisine</th>
+              <th class="center">Neighborhoods</th>
+              <th class="center">City</th>
+              <th class="center">Zip</th>
+              <th class="center">Staff<br>Trained</th>
+              <th class="center">Kid <br>Friendly</th>
+              <th class="center">Phone</th>
             </tr>
           </thead>
-
           <tbody>
             <% @restaurants.each do |restaurant| %>
               <tr>
-                <td class=' col-xs-3 title'>
+                <td class='title'>
                   <a href="/users/<%=restaurant.user.id%>/restaurants/<%=restaurant.id%>" class= "modalOpen <%=restaurant.id%> <%=restaurant.user.id%> "><%= restaurant.name %></a>
-                  <p class='reg' style='padding-top:5px'><%= restaurant.address %></p> </td>
-                <td class='small col-xs-1'><% restaurant.cuisines.each do |x| %>
+                  <p><%= restaurant.address %></p>
+                </td>
+                <td class="center"><% restaurant.cuisines.each do |x| %>
                     <%= x.name+' ' %> <br>
                     <%end%>
                   </td>
-                  <td><% restaurant.neighborhoods.each do |x| %>
+                  <td class="center"><% restaurant.neighborhoods.each do |x| %>
                     <%= x.name+' ' %><br>
                     <%end%>
                   </td>
-                <td><%= restaurant.city %></td>
-                 <td><%= restaurant.zip %></td>
+                <td class="center"><%= restaurant.city %></td>
+                 <td class="center"><%= restaurant.zip %></td>
                   <% @roles = [] %>
-                 <td><% restaurant.aware_employees.each do |emp| %>
+                 <td class="center"><% restaurant.aware_employees.each do |emp| %>
                         <%  emp.roles.each do |role| %>
                           <% if @roles.include?(role.role) %>
                           <% else %>
@@ -54,8 +54,8 @@
                         <%end%>  
                       <%end%>  
                  </td>    
-                <td><%= restaurant.kid_friendly? %></td>
-                <td><%= restaurant.phone %></td>
+                <td class="center"><%= restaurant.kid_friendly? %></td>
+                <td class="center"><a href="tel:<%= restaurant.phone %>"><%= restaurant.phone %></a></td>
               </tr>
             <% end %>
           </tbody>
@@ -125,6 +125,7 @@
   $(document).ready(function(){
     $(".tablesorter").tablesorter(); 
     $('.map-trig').on('click',function(){
+      $(this).css('visibility', 'hidden');
       $('.map-wrap').toggleClass('active');
       drop();
     })

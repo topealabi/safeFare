@@ -83,12 +83,12 @@ background-position: 0px 0px;
 	.tb-wrap{
 		border-top: 3px solid $orange; 
 	}
-	.map-trig{ text-align: center; }
+	.map-trig{ text-align: center; cursor: pointer; }
 	.search-count { float: left; }
 	.tablesorter-default .header, .tablesorter-default .tablesorter-header {
-	    background-position: center left !important;
-	    padding-left: 20px;
-	}​
+		background-position: center left !important;
+		padding-left: 20px;
+	}
 	table{
 		border-top: 3px solid $orange; 
 		border-collapse: collapse;
@@ -115,10 +115,11 @@ background-position: 0px 0px;
 			font-weight: 400;
 
 		}
-		.title{
-		 font-size:15px; color:$blue; font-weight:600;font-family:'proxima-nova-condensed';
-	
+		.title {
+			p { margin: 0; }
+			a {
+				font-size:15px; color:$blue; font-weight:600;font-family:'proxima-nova-condensed';
+			}
 		}
-		td{padding:10px 0px;}
 	}
 }
