@@ -31,9 +31,11 @@
 			</div>
 		</div>
 		<div class="col-xs-12 form-row">
-			<div class="no-label-wrap">		
-				<div id="map-canvas" ></div>
-				<%= f.input :repos, label: false, as: :hidden %>
+			<div class="no-label-wrap">
+				<div class="map-wrap">	
+					<div id="map-canvas" ></div>
+					<%= f.input :repos, label: false, as: :hidden %>
+				</div>
 			</div>
 		</div>
 
@@ -56,7 +58,7 @@
 		<h2>Restaurant Information</h2>
 		<div class="col-xs-12 form-row validate number_of_employees">
 			<p class='form-label'>Total Number of Employees*</p>
-			<%= f.input :total_employees, label: false, input_html: { class: "req" } %>
+			<%= f.input :total_employees, label: false, input_html: { class: "req", min: '0' } %>
 			<div class='feedback'><div></div></div>
 		</div>
 		<div class="col-xs-12 form-row">
@@ -141,9 +143,7 @@
 		if (params.length < 5) {
 			alert('please provide a valid address');
 		} else{
-			$("#map-canvas").css('height', '200');
 			geocode(params);
-
 		}
 	});
 	$('.chosen-select').chosen();

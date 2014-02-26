@@ -46,9 +46,9 @@ function populateModal(data){
    modalContainer += 	"</div>";
 
    modalContainer += 	"<div class='right'>"
-     if(url != ''){
-   modalContainer += 		"<img class='' style='margin-top:10px;' src="+url+"/>";
- }
+   if(url != ''){
+     modalContainer += 		"<img class='' style='margin-top:10px;' src="+url+"/>";
+   }
    modalContainer += 	"</div>";
    modalContainer += 	"<div style='clear:both'></div>";
    modalContainer += 	"<div class='info'>";
@@ -137,22 +137,10 @@ function resetCenter(latlng){
 	    animation: google.maps.Animation.DROP,
 	    position: center
   	});
-  	setpos();
+  console.log(marker);
   	google.maps.event.addListener(marker, 'mouseup', setpos);
 }
-function addMarkers(lat, lng){
 
-  center = new google.maps.LatLng(lat, lng);
-  debugger;
-  map.setCenter(center);
-
-  marker = new google.maps.Marker({
-      map:map,
-      draggable:false,
-      animation: google.maps.Animation.DROP,
-      position: center
-    });
-}
 
 function geocode(params){
 	$(function(){
@@ -163,8 +151,12 @@ function geocode(params){
         
         async:'true',
         success:function (data) {
-        	$('#map-canvas').animate({opacity:1},500);
-            resetCenter(data.results[0].geometry.location)
+            if (data.results.length) {
+              resetCenter(data.results[0].geometry.location)
+              $(".map-wrap").css('height', '200');
+            } else {
+              alert('Address not found');
+            }
           }
         });
       });

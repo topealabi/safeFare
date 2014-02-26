@@ -84,13 +84,10 @@ a.add_an_employee:hover{
 #check:hover{
 	text-decoration: none;
 }
-.form-row.emp_role{
+.new-restaurant-section .form-row.emp_role{
 	padding-bottom: 25px;
 }
-.form-row.emp_role.edit{
-	padding-bottom:50px;
-}
-.new-restaurant-section {
+.new-restaurant-section, .edit-restaurant-section {
 	.restaurant_total_employees {
 		margin: 10px 0;
 	}
