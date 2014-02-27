@@ -20,11 +20,11 @@
 		<div class="mobile-menu">
 			<div id='mobile-nav'>Nav</div>
 			<ul class='mobile-nav-items'>
-				<li><a href="">Home</a></li>
-				<li><a href="">About SafeFARE</a></li>
-				<li><a href="">Find a Restaurant</a></li>
-				<li><a href="">For Diners</a></li>
-				<li><a href="">For Restaurants</a></li>			
+				<li><a href="/">Home</a></li>
+				<li <% if current_uri == "/about"%> class="active"<%end%>><a href="/about">About SafeFARE</a></li>
+				<li<% if current_uri == "/find-a-restaurant" || current_uri == '/results' %> class="active"<%end%>><a href="/find-a-restaurant">Find a Restaurant</a></li>
+				<li<% if current_uri == "/for-diners"%> class="active"<%end%>><a href="/for-diners">For Diners</a></li>
+				<li<% if current_uri == "/for-restaurants"%> class="active"<%end%>><a href="/for-restaurants">For Restaurants</a></li>		
 			</ul>
 		</div>
 		<div class="sign-in">
@@ -43,7 +43,7 @@
 
 <div class="search">
 		<div class="section-wrapper">
-			<div class="safeFare-icon left col-sm-6 col-xs-12"><%= image_tag("logo.gif", :alt => "temp logo") %></div>
+			<div class="safeFare-icon left col-sm-6 col-xs-12"><a href="/"><%= image_tag("logo.gif", :alt => "temp logo") %></a></div>
 			<div class="safeFare-search right col-sm-6 col-xs-12" style='padding:0px;'>
 				<h2 class='small-thick'>Find a Restaurant</h2>
 				<p>Locate a food allergy aware restaurant near you.</p>
@@ -52,6 +52,7 @@
 					<input type="text" name="location" id='free-text' placeholder='Address, Zip, etc.'>
 					<input type="submit" name="nil" data-role='none'id='submit-search' value='' >
 				</form>
+				<div class="advanced-link"><a href="/find-a-restaurant">Use our advanced search tool</a></div>
 			</div>
 		</div>
 		<div style='clear:both'></div>
@@ -74,10 +75,7 @@
 	<div class="modal-dialog modal-lg">
     <div class="modal-content">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      <div class="modal-body col-sm-11 left"></div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+      <div class="modal-body col-sm-12"></div>
     </div>
   </div>
 </div>
@@ -87,7 +85,7 @@
 		<div class="section-wrapper">
 			<div class="contact-links col-sm-8 col-xs-12 padding">
 				<ul>
-					<li style='padding-left:0px;'><a href="/about/contact-us">Contact Us</a></li>
+					<li><a href="/about/contact-us">Contact Us</a></li>
 					<li><a href="">Sitemap</a></li>
 					<li><a href="">Privacy Policy</a></li>
 					<li><a href="">Disclaimer</a></li>
@@ -111,7 +109,6 @@
 <script>
 $(document).ready(function(){
 	$('a[rel="external"]').attr('target', '_blank');
-
 });
 </script>
 </body>
