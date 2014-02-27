@@ -18,22 +18,18 @@
               <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>Restaurant Name:</p>
                 <%= text_field_tag :search, params[:search], class:"input" %>
-                <span class='feedback'></span>
               </div>
                <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>Cuisines:</p>
                <%= select_tag(:cuisine_search, options_from_collection_for_select(Cuisine.all, :name, :name), multiple: true,class: "chosen-select req input") %>
-                <span class='feedback'></span>
               </div>
               <div class="col-xs-12 form-row clearfix validate name">
-                <p class='form-label'>Address:</p>
-                <%= text_field_tag :address, params[:address], class:"input" %>
-                <span class='feedback'></span>
+                <p class='form-label'>Neighborhood:</p>
+               <%= select_tag(:hood_search, options_from_collection_for_select(Neighborhood.all, :name, :name), multiple: true,class: "chosen-select req input") %>
               </div>
               <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>City:</p>
                 <%= text_field_tag :city, params[:city], class:"input" %>
-                <span class='feedback'></span>
               </div>
               <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>State:</p>
@@ -48,12 +44,10 @@
               <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>Zip:</p>
                 <%= text_field_tag :zip, params[:zip], class:"input" %>
-                <span class='feedback'></span>
               </div>
               <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>Within:</p>
                <%= select_tag(:within, "<option>5 miles</option><option>10 miles</option><option>15 miles</option>".html_safe,class: "req input") %>
-                <span class='feedback'></span>
               </div>
             
             <div class="col-sm-12 form-row clearfix">
@@ -65,18 +59,7 @@
                 <% end %>
               </div>
           </div> 
-
-          <!-- <div class="col-sm-12 form-row clearfix">
-              <p class='form-label'>Kid Friendly</p>
-              <div class="role-container">
-                <% Restaurant.all.each do |ro|%>
-                   <%= check_box_tag "kid_friendly", ro.kid_friendly %>
-                   <%= label_tag(:kid_friendly, ro.kid_friendly) %>
-                <% end %>
-              </div>
-          </div> -->
-
-          <%= submit_tag "Search", :name => nil, :id => 'submit-search' %>
+          <%= submit_tag "SUBMIT", :name => nil %>
       <% end %>
   </div>
 
@@ -90,7 +73,7 @@
         <p class='form-label'>Near:</p>
           <input type="text" name="address" class='input'id='address' placeholder='Address, Zip, etc.'>
         </div>
-          <input type="submit" name="nil" style='display:block'data-role='none'id='submit-search' value='Search' >
+          <input type="submit" name="nil" style='display:block'data-role='none'id='submit-search' value='SUBMIT' >
         </form>
   </div>
  
@@ -98,7 +81,7 @@
            
     </div>
     <div class="col-sm-4 right-side">
-      <%= image_tag("food-resources.png", :alt => "temp thumbnail") %>
+      <a href="/for-diners"><%= image_tag("food-resources.png", :alt => "temp thumbnail") %></a>
         <div class="col-md-12 margin-top"> 
           <h2 class="orange-header" style='text-align:center'>
             For Restaurants</h2>

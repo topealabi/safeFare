@@ -16,6 +16,8 @@
 /tmp/*
 /tmp
 /log
+public/uploads/tmp
+public/uploads/tmp/*
 
 #ignore solr files
 /solr

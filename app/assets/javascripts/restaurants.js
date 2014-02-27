@@ -37,72 +37,105 @@ function populateModal(data){
    $.each(data[2],function(){ roles += this + ' ' });
 
    var modalContainer = '';
-   modalContainer += "<div class='col-xs-12 col-sm-7 right'>";
-   modalContainer += 	"<div class='left'>";
-   modalContainer += 		"<h2 class='orange-header'>"+data[0].name+"</h2>";
-   modalContainer += 		"<p>"+data[0].address+"</p>";
-   modalContainer += 		"<p>"+data[0].city+', '+data[0].state+' '+data[0].zip+"</p>";
-   modalContainer += 		"<p>"+data[0].phone+"</p>";
-   modalContainer += 	"</div>";
-
-   modalContainer += 	"<div class='right'>"
-   if(url != ''){
-     modalContainer += 		"<img class='' style='margin-top:10px;' src="+url+"/>";
-   }
-   modalContainer += 	"</div>";
-   modalContainer += 	"<div style='clear:both'></div>";
-   modalContainer += 	"<div class='info'>";
-   modalContainer += 		"<div class='col-xs-12 form-row'>";
-   modalContainer += 			"<p class='form-label'>Cuisine</p>";
-   modalContainer += 			"<div class='input'>"+cuisines+"</div>";
-   modalContainer += 		"</div>";
-   modalContainer += 		"<div class='col-xs-12 form-row'>";
-   modalContainer += 			"<p class='form-label'>Hours</p>";
-   modalContainer += 			"<div class='input'>"+data[0].hours+"</div>";
-   modalContainer += 		"</div>";
-   modalContainer += 		"<div class='col-xs-12 form-row'>";
-   modalContainer += 			"<p class='form-label'>Number of Employees</p>";
-   modalContainer += 			"<div class='input'>"+data[0].total_employees+"</div>";
-   modalContainer += 		"</div>";
-   modalContainer += 		"<div class='col-xs-12 form-row'>";
-   modalContainer += 			"<p class='form-label'>Percent Trained</p>";
-   modalContainer += 			"<div class='input'>"+percent+"%</div>";
-   modalContainer += 		"</div>";
-   modalContainer += 		"<div class='col-xs-12 form-row'>";
-   modalContainer += 			"<p class='form-label'>Employees Trained</p>";
-   modalContainer += 			"<div class='input'>"+roles+"</div>";
-   modalContainer += 		"</div>";
-   modalContainer += 		"<div class='col-xs-12 form-row'>";
-   modalContainer += 			"<p class='form-label'>Email</p>";
-   modalContainer += 			"<div class='input'>"+data[0].email+"</div>";
-   modalContainer += 		"</div>";
-   modalContainer += 		"<div class='col-xs-12 form-row'>";
-   modalContainer += 			"<p class='form-label'>Website</p>";
-   modalContainer += 			"<div class='input'>"+data[0].website+"</div>";
-   modalContainer += 		"</div>";
-   modalContainer += 		"<div class='col-xs-12 form-row'>";
-   modalContainer += 			"<p class='form-label'>Menu</p>";
-   modalContainer += 			"<a class='input'>Menu</a>";
-   modalContainer += 		"</div>";
-   modalContainer += 		"<div class='col-xs-12 form-row'>";
-   modalContainer += 			"<p class='form-label'>Social Media Links</p>";
-   modalContainer += 			"<div class='input'><a href='"+data[0].facebook_url+"'>Facebook</a>, <a href='"+data[0].twitter_url+"'>Twitter</a></div>";
-   modalContainer += 		"</div>";
-   modalContainer += 		"<div class='col-xs-12 form-row'>";
-   modalContainer += 			"<p class='form-label'>Allergy Eats</p>";
-   modalContainer += 			"<a class='input'>"+data[0].allergy_eats_url+"</a>";
-   modalContainer += 		"</div>";
-   modalContainer += 	"</div>";
-   modalContainer += "</div>";
-   modalContainer += "<div class='col-xs-12 col-sm-5 left' style='text-align:center'>";
+   modalContainer += "<div class='col-xs-12 col-sm-5'>";
    if (data[0].repos != ''){
     var loc_array = data[0].repos.split(',')
-    modalContainer +=   "<img class='' style='max-width:100%' src='http://maps.googleapis.com/maps/api/staticmap?markers="+loc_array[0]+"%2C"+loc_array[1]+"&zoom=18&size=300x300&maptype=roadmap&sensor=false' />" ;
-
-   }else{
-    modalContainer +=   "<img class='' style='max-width:100%' src='http://maps.googleapis.com/maps/api/staticmap?markers="+data[0].latitude+"%2C"+data[0].longitude+"&zoom=18&size=300x300&maptype=roadmap&sensor=false' />" ;
-
+    modalContainer +=   "<img src='http://maps.googleapis.com/maps/api/staticmap?markers="+loc_array[0]+"%2C"+loc_array[1]+"&zoom=16&size=374x300&maptype=roadmap&sensor=false' />" ;
+   } else{
+    modalContainer +=   "<img src='http://maps.googleapis.com/maps/api/staticmap?markers="+data[0].latitude+"%2C"+data[0].longitude+"&zoom=16&size=374x300&maptype=roadmap&sensor=false' />" ;
    }
+   if (data[0].image.url) {
+    modalContainer += "<div class='image-cont'>";
+    modalContainer +=   "<img src='" + data[0].image.url + "'>";
+    modalContainer += "</div>";
+   }
+   modalContainer += "</div>";
+   modalContainer += "<div class='col-xs-12 col-sm-7'>";
+   modalContainer += "<div class='row'>";
+   modalContainer += 		"<h1>"+data[0].name+"</h1>";
+   modalContainer +=  "<address class='col-sm-6'>";
+   modalContainer += 		"<div>"+data[0].address+"</div>";
+   modalContainer += 		"<div>"+data[0].city+', '+data[0].state+' '+data[0].zip+"</div>";
+   modalContainer += 		"<div>"+data[0].phone+"</div>";
+   modalContainer += 	"</address>";
+
+   if(url != ''){
+     modalContainer +=  "<div class='col-sm-6 logo-wrap'>"
+     modalContainer += 		"<img src="+url+"/>";
+     modalContainer +=  "</div>";
+     modalContainer +=  "<div class='white-space'></div>";
+   }
+   modalContainer += 	"<div class='info col-xs-12'>";
+   if (data[0].description) {
+     modalContainer +=    "<div class='description'>";
+     modalContainer +=      "<div>"+data[0].description+"</div>";
+     modalContainer +=    "</div>";
+   }
+   if (cuisines) {
+     modalContainer += 		"<div class='form-row'>";
+     modalContainer += 			"<div class='form-label'>Cuisine</div>";
+     modalContainer += 			"<div class='input'>"+cuisines+"</div>";
+     modalContainer += 		"</div>";
+   }
+   if (data[0].hours) {
+     modalContainer += 		"<div class='form-row'>";
+     modalContainer += 			"<div class='form-label'>Hours</div>";
+     modalContainer += 			"<div class='input'>"+data[0].hours+"</div>";
+     modalContainer += 		"</div>";
+   }
+   if (data[0].total_employees) {
+     modalContainer += 		"<div class='form-row'>";
+     modalContainer += 			"<div class='form-label'>Number of Employees</div>";
+     modalContainer += 			"<div class='input'>"+data[0].total_employees+"</div>";
+     modalContainer += 		"</div>";
+   }
+   if (percent) {
+     modalContainer += 		"<div class='form-row'>";
+     modalContainer += 			"<div class='form-label'>Percent Trained</div>";
+     modalContainer += 			"<div class='input'>"+percent+"%</div>";
+     modalContainer += 		"</div>";
+   }
+   if (roles) {
+     modalContainer += 		"<div class='form-row'>";
+     modalContainer += 			"<div class='form-label'>Employees Trained</div>";
+     modalContainer += 			"<div class='input'>"+roles+"</div>";
+     modalContainer += 		"</div>";
+   }
+   if (data[0].email) {
+     modalContainer += 		"<div class='form-row'>";
+     modalContainer += 			"<div class='form-label'>Email</div>";
+     modalContainer += 			"<div class='input'><a href='mailto:"+data[0].email+"'>"+data[0].email+"</a></div>";
+     modalContainer += 		"</div>";
+   }
+   if (data[0].website) {
+     modalContainer += 		"<div class='form-row'>";
+     modalContainer += 			"<div class='form-label'>Website</div>";
+     modalContainer += 			"<div class='input'><a href='"+data[0].website+"'>"+data[0].website+"</a></div>";
+     modalContainer += 		"</div>";
+   }
+   if (data[0].facebook_url || data[0].twitter_url) {
+     modalContainer += 		"<div class='form-row'>";
+     modalContainer += 			"<div class='form-label'>Social Media Links</div>";
+     modalContainer += 			"<div class='input'>";
+     if (data[0].facebook_url) { 
+      modalContainer +=       "<a href='"+data[0].facebook_url+"'>Facebook</a>";
+    }
+    if (data[0].facebook_url && data[0].twitter_url) {
+      modalContainer +=       ", ";
+    }
+    if (data[0].twitter_url) {
+      modalContainer +=       "<a href='"+data[0].twitter_url+"'>Twitter</a></div>";
+    }
+     modalContainer += 		"</div>";
+   }
+   if (data[0].allergy_eats_url) {
+     modalContainer += 		"<div class='form-row'>";
+     modalContainer += 			"<div class='form-label'>Allergy Eats</div>";
+     modalContainer += 			"<a class='input'>"+data[0].allergy_eats_url+"</a>";
+     modalContainer += 		"</div>";
+   }
+   modalContainer +=  "</div>";
+   modalContainer += 	"</div>";
    modalContainer += "</div>";
   
 	 $('.modal-body').append(modalContainer);
