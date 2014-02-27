@@ -6,7 +6,8 @@ class HomeController < ApplicationController
 	def contact
 		@contactform = ContactForm.new
 	end
-	
+	def about
+	end
 	def submit
 		
 		@form = ContactForm.new(form_params)
