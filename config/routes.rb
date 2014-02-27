@@ -21,6 +21,7 @@ SafeFare::Application.routes.draw do
   root 'home#index'
   match "/about" => "home#about", via: [:get, :post]
   match "/about/contact-us" => "home#contact", via: [:get]
+  match "/about/privacy-policy" => "home#privacy_policy", via: [:get]
   match "/submit" => "home#submit", via: [:post]
   match "/find-a-restaurant" => "search#index", via: [:get]
   match "/results" => "search#results", via: [:post, :get]
