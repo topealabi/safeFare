@@ -23,7 +23,7 @@ class SearchController < ApplicationController
 				end
 				if ( (params[:addy]).present? || (params[:city]).present? || (params[:hood_search]).present? || (params[:state_search]).present? || params[:zip].present?)
 					def whereat
-				      [params[:addy], params[:city], params[:state_search], params[:hood_search], params[:zip]].compact.join(', ')
+				      [params[:addy], params[:hood_search], params[:city], params[:state_search], params[:hood_search], params[:zip]].compact.join(', ')
 				    end
 				    def howfar 
 				       params[:within].to_i * 1.60934
@@ -58,12 +58,14 @@ class SearchController < ApplicationController
 
 				if ( (params[:addy]).present? || (params[:city]).present? || (params[:hood_search]).present? || (params[:state_search]).present? || params[:zip].present?)
 					def whereat
-				      [params[:addy], params[:city], params[:state_search], params[:zip]].compact.join(', ')
+				      [params[:addy], params[:hood_search], params[:city], params[:state_search], params[:zip]].compact.join(', ')
 				    end
 				    def howfar 
 				       params[:within].to_i * 1.60934
 				    end
+				    puts *Geocoder.coordinates(whereat) 
 				    with(:location).in_radius(*Geocoder.coordinates(whereat), howfar)
+				    puts request.location.coordinates
 				    order_by_geodist(:location, *request.location.coordinates)
 				end
 

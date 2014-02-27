@@ -50,7 +50,8 @@ class Restaurant < ActiveRecord::Base
 
   searchable do
     text :name 
-    text :address                        
+    text :address
+    text :tags                        
     string :city                              
     text :state                       
     text :description

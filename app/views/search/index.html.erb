@@ -63,9 +63,19 @@
                    <%= check_box_tag "worker_role[]", ro.role %>
                    <%= label_tag(:worker_role, ro.role) %>
                 <% end %>
-            
               </div>
           </div> 
+
+          <!-- <div class="col-sm-12 form-row clearfix">
+              <p class='form-label'>Kid Friendly</p>
+              <div class="role-container">
+                <% Restaurant.all.each do |ro|%>
+                   <%= check_box_tag "kid_friendly", ro.kid_friendly %>
+                   <%= label_tag(:kid_friendly, ro.kid_friendly) %>
+                <% end %>
+              </div>
+          </div> -->
+
           <%= submit_tag "Search", :name => nil, :id => 'submit-search' %>
       <% end %>
   </div>
