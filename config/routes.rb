@@ -1,12 +1,7 @@
 SafeFare::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users,:skip => [:sessions]
-  as :user do
-    get 'signin' => 'devise/sessions#new', :as => :new_user_session
-    post 'signin' => 'devise/sessions#create', :as => :user_session
-    delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
-  end
+  devise_for :users
 #  ActiveAdmin.routes(self)
   resources :users do
     resources :restaurants do
