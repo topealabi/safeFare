@@ -167,6 +167,7 @@ $highlight: #00b4e9;
 .contact-form .form-row .input input[type="text"], .contact-form .form-row .input input[type="email"] { width: 100% !important; }
 .contact-form, .login-form, .blue-form {
 	background:#f2f5ff;
+	clear: both;
 	padding:25px;
 	margin-bottom:40px;
 	font-family:'proxima-nova-condensed';
@@ -177,6 +178,7 @@ $highlight: #00b4e9;
 	}
 	input[type="submit"].login {
 		width: 48%;
+		float: left;
 	}
 	.nav-link{
 		margin-left: 25%;

@@ -3,49 +3,48 @@
 
     <ul class="safe-fare-breadcrumb">
         <li><a href="/">Home > </a></li>
-        <li><a href="" class='active'> Find a Restaurant</a></li>
+        <li><a href="/find-a-restaurant">Find a Restaurant > </a></li>
+        <li><a href="" class='active'>Search Results</a></li>
     </ul>
     <div class="col-xs-12">
       <h2 class="orange-header">Search Results</h2>
       <p style='margin:15px 0px;'>Didn't find what you are looking for? <a href='/find-a-restaurant'>Search Again?</a></p>
-      <p style='padding-bottom:10px; float:left'> <%= @restaurants.length %> OF <%= @restaurants.length %> RESTAURANTS </p>
-      <div class="map-cont"><div id="map-canvas" ></div></div>
-      <h2 class="map">View Map of Results</h2>
-      <div class="col-sm-12 tb-wrap">
+      <div class="map-wrap"><div id="map-canvas" ></div></div>
+      <div class="search-count"><%= @restaurants.length %> OF <%= @restaurants.length %> RESTAURANTS</div>
+      <h2 class="map-trig">View Map of Results</h2>
+      <div class="tb-wrap">
         <table class="tablesorter">
           <thead>
             <tr class='order'>
-              <th>Restaurant Name
-</th>
-              <th class='small'>Cuisine</th>
-              <th class='medium'>Neighborhoods</th>
-              <th class='small'>City</th>
-              <th class='small'>Zip</th>
-              <th class='small'>Staff<br>Trained</th>
-              <th class='small'>Kid <br>Friendly</th>
-              <th class=''>Phone</th>
+              <th>Restaurant Name</th>
+              <th class="center hide-on-small">Cuisine</th>
+              <th class="center hide-on-small">Neighborhoods</th>
+              <th class="center hide-on-small">City</th>
+              <th class="center">Zip</th>
+              <th class="center hide-on-medium">Staff<br>Trained</th>
+              <th class="center hide-on-medium">Kid <br>Friendly</th>
+              <th class="center">Phone</th>
             </tr>
           </thead>
-
           <tbody>
             <% @restaurants.each do |restaurant| %>
-            
               <tr>
-                <td class=' col-xs-3 title'>
+                <td class='title'>
                   <a href="/users/<%=restaurant.user.id%>/restaurants/<%=restaurant.id%>" class= "modalOpen <%=restaurant.id%> <%=restaurant.user.id%> "><%= restaurant.name %></a>
-                  <p class='reg' style='padding-top:5px'><%= restaurant.address %></p> </td>
-                <td class='small col-xs-1'><% restaurant.cuisines.each do |x| %>
+                  <p><%= restaurant.address %></p>
+                </td>
+                <td class="center hide-on-small"><% restaurant.cuisines.each do |x| %>
                     <%= x.name+' ' %> <br>
                     <%end%>
                   </td>
-                  <td class='medium col-xs-2'><% restaurant.neighborhoods.each do |x| %>
+                  <td class="center hide-on-small"><% restaurant.neighborhoods.each do |x| %>
                     <%= x.name+' ' %><br>
                     <%end%>
                   </td>
-                <td class=' small col-xs-1'><%= restaurant.city %></td>
-                 <td class='small col-xs-1'><%= restaurant.zip %></td>
+                <td class="center hide-on-small"><%= restaurant.city %></td>
+                 <td class="center"><%= restaurant.zip %></td>
                   <% @roles = [] %>
-                 <td class='small col-xs-1'><% restaurant.aware_employees.each do |emp| %>
+                 <td class="center hide-on-medium"><% restaurant.aware_employees.each do |emp| %>
                         <%  emp.roles.each do |role| %>
                           <% if @roles.include?(role.role) %>
                           <% else %>
@@ -55,8 +54,8 @@
                         <%end%>  
                       <%end%>  
                  </td>    
-                <td class=' medium col-xs-1'><%= restaurant.kid_friendly? %></td>
-                <td class='  col-xs-1'><%= restaurant.phone %></td>
+                <td class="center hide-on-medium"><%= restaurant.kid_friendly? %></td>
+                <td class="center"><a href="tel:<%= restaurant.phone %>"><%= restaurant.phone %></a></td>
               </tr>
             <% end %>
           </tbody>
@@ -125,9 +124,9 @@
   google.maps.event.addDomListener(window, 'load', show_initialize);
   $(document).ready(function(){
     $(".tablesorter").tablesorter(); 
-    $('h2.map').on('click',function(){
-      $('.map-cont').toggleClass('grow');
-      $('#map-canvas').toggleClass('opacity');
+    $('.map-trig').on('click',function(){
+      $(this).css('visibility', 'hidden');
+      $('.map-wrap').toggleClass('active');
       drop();
     })
   })

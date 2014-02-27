@@ -64,7 +64,8 @@ a{text-decoration:none;color:inherit}
 
 .section-wrapper{
 	max-width:970px;
-	margin: 0 auto 50px;
+	margin: 0 auto;
+	padding: 0 0 40px;
 	ul {
 		list-style: none;
 	}
@@ -77,6 +78,7 @@ a{text-decoration:none;color:inherit}
 .container-fluid{ min-height:595px;}
 .left{ float:left; }
 .right{ float:right; }
+.clear { clear: both; }
 .cont{padding:15px}
 .padding{padding:30px;}
 .no-padding{padding:0px;}
@@ -189,6 +191,7 @@ a.nav-link, .nav-link, form input[type="submit"] {
 		padding: 10px;
 	}
 	input#submit-search{
+		display: inline-block;
 		float:right;
 		width:44px;
 		height:44px;
@@ -375,15 +378,6 @@ form input[type="submit"] {
 		}
 	}
 	.no-label-wrap { float: left; margin-left: 25%; width: 65%; }
-	.map-wrap { overflow: hidden; height: 0; @include transition(height, 0.5s, ease); }
-	#map-canvas{
-		width:100%;
-		height:200px;
-		opacity:1;
-		&.active {
-			height: 200%;
-		}
-	}
 	a {
 		margin-top: 0;
 	}
@@ -396,6 +390,19 @@ form input[type="submit"] {
 	height: 1px;
 	padding: 0px;
 }
+.map-wrap { 
+	height: 0;
+	overflow: hidden;
+	@include transition(height, 0.5s, ease); 
+	&.active {
+		height: 300px;
+	}
+}
+#map-canvas{
+	width:100%;
+	height:300px;
+}
+
 div.alert{
 	text-align:center;
 	padding:0px;
@@ -415,7 +422,11 @@ div.alert{
 input[type="file"] {
 	display: inline-block;
 }
-
+.normalize{
+	float:left;
+	padding: 21px;
+font-size: 15px;
+}
 .rest-link, .modalOpen{
 	color:$blue;
 	font-weight: 600;

@@ -10,8 +10,8 @@
  *
  *= require_self
  *= require chosen
+ *= require jquery-tablesorter/theme.default
  *= require_tree .
-  *= require jquery-tablesorter/theme.default
  */
  
 @import "twitter/bootstrap";

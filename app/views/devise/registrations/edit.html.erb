@@ -62,16 +62,12 @@ They should see all of their restaurants.
                 <% @restaurants.each do |restaurant| %>
                   <tr>
                     <td class="center edit"><a class="edit-button"></a></td>
-                    <td class='title'><a href='/users/<%=@user.id%>/restaurants/<%=restaurant.id%>/edit'><%= restaurant.name %></a><br><%= restaurant.address %></td>
+                    <td class='title'><a class= "modalOpen <%=restaurant.id%> <%=restaurant.user.id%> "><%= restaurant.name %></a><br><%= restaurant.address %></td>
                     <td class="center"><%= restaurant.total_employees %></td>
                     <td class="center"><% percent = (restaurant.aware_employees.length.to_f / restaurant.total_employees.to_f ) * 100 %>
                     <%= percent.round %>
                     </td>
-                    <% if restaurant.approved %>
-                    <td class="center"><div class="approved"></div></td>
-                    <%else%>
-                     <td class="center"><div class="approved not"></div></td>
-                    <%end%>
+                    <td class="center"><div class="approved <% if !restaurant.approved%> not <% end %>"></div></td>
                   </tr>
                 <% end %>
               </tbody>
