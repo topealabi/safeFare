@@ -4,7 +4,7 @@ $blue:#243772;
 $hover:#3a5ad8;
 @media screen and (max-width: 920px){
 	
-input#submit-search{
+	input#submit-search{
 		float:right;
 		width:44px;
 		height:44px;
@@ -22,6 +22,10 @@ input#submit-search{
 
 		background-repeat:no-repeat !important;
 		background-position:top center !important;
+	}
+	.safeFare-search {
+		h2, p { display: inline-block; width: 90%; }
+		.advanced-link { float: none; margin: 0; text-align: center; a { display: block; width: 90%; }}
 	}
 
 	.hide-on-medium {
