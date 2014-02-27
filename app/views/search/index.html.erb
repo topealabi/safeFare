@@ -51,6 +51,10 @@
                 <span class='feedback'></span>
               </div>
               <div class="col-xs-12 form-row clearfix validate name">
+                  <p class='form-label'>Kid Friendly</p>
+                  <%= check_box_tag :kid_friendly %>
+              </div>
+              <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>Within:</p>
                <%= select_tag(:within, "<option>5 miles</option><option>10 miles</option><option>15 miles</option>".html_safe,class: "req input") %>
                 <span class='feedback'></span>
