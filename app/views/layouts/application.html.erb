@@ -28,12 +28,17 @@
 			</ul>
 		</div>
 		<div class="sign-in">
-			<div class="nav-link">
+			
 				<% if user_signed_in? %>
-		 		  <%= link_to 'Edit Restaurant', user_restaurants_path(current_user) %> 
+				<%= link_to('Logout', destroy_user_session_path, :method => :delete, class: 'normalize') %>  
+				<div class="nav-link" style='float:left'>
+		 		   <%= link_to('My Account', current_user) %>
+		 		</div>
+					
 		 		<% else %>
-		 		  <%= link_to "RESTAURANT LOGIN", new_user_registration_path %> 
-		 		 
+		 		<div class="nav-link">
+		 		  <%= link_to "RESTAURANT LOGIN", '/for-restaurants' %> 
+		 		 </div>
 		 		<% end %> 
 	 		</div>
 		</div>

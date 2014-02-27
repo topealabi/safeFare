@@ -428,8 +428,12 @@ div.alert{
 input[type="file"] {
 	display: inline-block;
 }
-
-.rest-link, .modalOpen {
+.normalize{
+	float:left;
+	padding: 21px;
+font-size: 15px;
+}
+.rest-link, .modalOpen{
 	color:$blue;
 	font-weight: 600;
 	font-size:15px;

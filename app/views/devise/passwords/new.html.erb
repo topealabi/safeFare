@@ -1,3 +1,5 @@
+
+
 <div class="about-section">
 	<div class="section-wrapper">
 		<ul class="safe-fare-breadcrumb">
@@ -5,44 +7,29 @@
 			  <li><a href="" class='active'>For Restaurants</a></li>
 		</ul>
 		<div class="col-sm-8 col-xs-12">
-			<h1>For Restaurants</h1>
+			<h1>Forgot Your Password?</h1>
 			<p>Fifteen million Americans have food allergies – and they are eager to find restaurants that can accommodate them. The SafeFARE program offers tools that help create a safer dining experience – including &#8220;Find a Restaurant,&#8221; a searchable database of allergy aware restaurants. If your employees  have completed the ServSafe® Allergens Online Course or AllerTrain™ classes, be sure to sign up below to set up a free account and add your restaurant to our database. You can sign in to update your account whenever you like.</p>
 			<p>If you haven't yet received allergen training, we encourage you to do so! To learn more, please see &#8220;<a href="http://www.servsafe.com/allergens/the-course" rel="external">Allergen Training for Restaurant Staff</a>&#8221;</p>
-			<% if !user_signed_in? %>
+	
 				<h2>Restaurant Login</h2>
 				<div class="contact-form">
-					<%= form_for(:user, :url => session_path(:user)) do |f| %>
-						<%= devise_error_messages! %>
+					<%= form_for(resource, :url => password_path(resource_name)) do |f| %>
+					<%= devise_error_messages! %>
 						<div class="form-row col-sm-12">
 							<p class='form-label'>Email</p>
 							<%= f.text_field :email, label: false %>
 						</div>
-						<div class="form-row col-sm-12">
-							<p class='form-label'>Password</p>
-							<%= f.password_field :password, label: false %>
-						</div>
+			
 						<div class="form-row col-sm-12">
 							<div class="no-label-wrap">
-								<%= f.check_box :remember_me %>
-								<%= f.label :remember_me %>
+								<%= f.submit 'Send Email', class: 'login' %>
+								<div class="nav-link signup orange"><a href="/for-restaurants">Log In</a></div>
 							</div>
 						</div>
-						<div class="form-row col-sm-12">
-							<div class="no-label-wrap">
-								<%= f.submit 'LOG IN', class: 'login' %>
-								<div class="nav-link signup orange"><a href="/users/sign_up">SIGN UP</a></div>
-							</div>
-						</div>
-						<div class="form-row col-sm-12">
-							<div class="no-label-wrap">
-								<%= link_to "Forgot your password?", new_password_path(:user), class: "forgot-your-password" %>
-							</div>
-						</div>
+						
 					<% end %>
 				</div>
-			<% else %>
-				<hr>
-			<% end %>
+		
 			<h2>Ingredient Quiz – Test Your Knowledge!</h2>
 			<p>Think you know all there is to know about meal ingredients that might turn up in a restaurant? Download the following quiz, put together by Chef Joel Schaefer, to see how much you really know.</p>
 			<ul>

@@ -1,0 +1,30 @@
+
+<div class="sign-up-section">
+	<div class="section-wrapper">
+		<ul class="safe-fare-breadcrumb">
+			  <li><a href="/">Home > </a></li>
+			  <li><a href="/for-restaurants" class=''>For Restaurants ></a></li>
+			  <li><a href="" class='active'>Resend Confirmation</a></li>
+		</ul>
+		<div class="col-sm-8 col-xs-12">
+			<h2>Resend confirmation instructions</h2>
+				<div class="contact-form">
+					<%= simple_form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+						  <%= f.error_notification %>
+						  <%= f.full_error :confirmation_token %>
+
+						  <div class="form-row col-sm-12">
+						  	<p class='form-label'>Email</p>
+						    <%= f.input :email, :required => true, label:false, :autofocus => true %>
+						  </div>
+						 
+						 <div class="form-row col-sm-12">
+						    <%= f.button :submit, "Resend confirmation instructions", class:'nav-link login padding' %>
+						  </div>
+						<% end %>		
+				</div>
+		</div>
+	</div>
+</div>	
+
+

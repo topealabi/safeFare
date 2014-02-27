@@ -8,8 +8,8 @@ class Restaurant < ActiveRecord::Base
   	end
   scope :pending, where(approved:false)
 	validates_presence_of :name, :address, :city, :zip
-  validates_length_of :phone, :maximum => 11
-  validates_length_of :phone, :minimum => 10
+
+ 
   validates_inclusion_of :state,
     in: VALID_STATES
   validates_numericality_of :total_employees
