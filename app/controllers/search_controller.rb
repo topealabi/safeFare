@@ -1,9 +1,12 @@
 class SearchController < ApplicationController
 	def results
+		
+		#@restaurants = Restaurant.near(request.location.coordinates, 10)
 
 		if params[:search].present?
 			@search  = Restaurant.solr_search do
 				fulltext params[:search]
+				order_by_geodist(:location, *request.location.coordinates)
 				if params[:cuisine_search].present?
 					any_of do
 						params[:cuisine_search].each do |tag|
@@ -27,20 +30,30 @@ class SearchController < ApplicationController
 				    end
 				    with(:location).in_radius(*Geocoder.coordinates(whereat), howfar)
 				end
+
+				if params[:kid_friendly].present?
+					any_of do
+						params[:kid_friendly].each do |tag|
+							with(:kids, tag)
+						end
+					end
+				end
 			end
 
 			@restaurants = @search.results
 		
-		else
+		elsif (params[:worker_role].present? || params[:cuisine_search].present? || (params[:addy]).present? || (params[:city]).present? || (params[:hood_search]).present? || (params[:state_search]).present? || params[:zip].present?)
 			@search  = Restaurant.solr_search do
 
 				#with (:location).in_radius(*Geocoder.coordinates(current_user))
 				if params[:cuisine_search].present?
 				with(:cuisines_name, params[:cuisine_search])
+				order_by_geodist(:location, *request.location.coordinates)
 				end
 
 				if params[:worker_role].present?
 				with(:worker, params[:worker_role])
+				order_by_geodist(:location, *request.location.coordinates)
 				end
 
 				if ( (params[:addy]).present? || (params[:city]).present? || (params[:hood_search]).present? || (params[:state_search]).present? || params[:zip].present?)
@@ -51,17 +64,28 @@ class SearchController < ApplicationController
 				       params[:within].to_i * 1.60934
 				    end
 				    with(:location).in_radius(*Geocoder.coordinates(whereat), howfar)
+				    order_by_geodist(:location, *request.location.coordinates)
+				end
+
+				if params[:kid_friendly].present?
+				with(:kids, params[:kid_friendly])
+				order_by_geodist(:location, *request.location.coordinates)
 				end
 
 			end
 		    
 		    @restaurants = @search.results
+
+		else
+
+			@restaurants = Restaurant.near(request.location.coordinates, 10)
 		   
 		end
 
 	end
 	
 	def index
+
 	end
 	
 end
