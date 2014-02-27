@@ -6,7 +6,8 @@ They should see all of their restaurants.
 	<div class="section-wrapper">
 		<div class="col-sm-12">
 			<h1>Welcome <%=@user.email%></h1>
-			<a href="" class="nav-link right orange">DELETE MY ACCOUNT</a>
+			<!-- <a href="" class="nav-link right orange">DELETE MY ACCOUNT</a> -->
+			<%= link_to "DELETE MY ACCOUNT", user_registration_path(current_user),:class=>'nav-link right orange', :confirm => "Are you sure?", :method => :delete %>
 			<h2>Account Information</h2>
 			<div class="blue-form">
 				<form>
