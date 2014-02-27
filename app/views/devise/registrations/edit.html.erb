@@ -14,7 +14,7 @@ They should see all of their restaurants.
             <h2>Account Information</h2>
             <hr>
             <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-              
+              <%= devise_error_messages! %>
             <div class="col-xs-12 form-row validate name">
               <p class='form-label'>Email</p>
               <%= f.email_field :email %>

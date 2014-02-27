@@ -12,7 +12,7 @@ class HomeController < ApplicationController
 		@form = ContactForm.new(form_params)
 	      if @form.valid?
 		    @form.deliver!  
-	        redirect_to root_path
+	        redirect_to :back, notice: 'Successfully Sent' 
 	      else
 	    
 	         redirect_to root_path
