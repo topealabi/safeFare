@@ -17,12 +17,12 @@
           <thead>
             <tr class='order'>
               <th>Restaurant Name</th>
-              <th class="center">Cuisine</th>
-              <th class="center">Neighborhoods</th>
-              <th class="center">City</th>
+              <th class="center hide-on-small">Cuisine</th>
+              <th class="center hide-on-small">Neighborhoods</th>
+              <th class="center hide-on-small">City</th>
               <th class="center">Zip</th>
-              <th class="center">Staff<br>Trained</th>
-              <th class="center">Kid <br>Friendly</th>
+              <th class="center hide-on-medium">Staff<br>Trained</th>
+              <th class="center hide-on-medium">Kid <br>Friendly</th>
               <th class="center">Phone</th>
             </tr>
           </thead>
@@ -33,18 +33,18 @@
                   <a href="/users/<%=restaurant.user.id%>/restaurants/<%=restaurant.id%>" class= "modalOpen <%=restaurant.id%> <%=restaurant.user.id%> "><%= restaurant.name %></a>
                   <p><%= restaurant.address %></p>
                 </td>
-                <td class="center"><% restaurant.cuisines.each do |x| %>
+                <td class="center hide-on-small"><% restaurant.cuisines.each do |x| %>
                     <%= x.name+' ' %> <br>
                     <%end%>
                   </td>
-                  <td class="center"><% restaurant.neighborhoods.each do |x| %>
+                  <td class="center hide-on-small"><% restaurant.neighborhoods.each do |x| %>
                     <%= x.name+' ' %><br>
                     <%end%>
                   </td>
-                <td class="center"><%= restaurant.city %></td>
+                <td class="center hide-on-small"><%= restaurant.city %></td>
                  <td class="center"><%= restaurant.zip %></td>
                   <% @roles = [] %>
-                 <td class="center"><% restaurant.aware_employees.each do |emp| %>
+                 <td class="center hide-on-medium"><% restaurant.aware_employees.each do |emp| %>
                         <%  emp.roles.each do |role| %>
                           <% if @roles.include?(role.role) %>
                           <% else %>
@@ -54,7 +54,7 @@
                         <%end%>  
                       <%end%>  
                  </td>    
-                <td class="center"><%= restaurant.kid_friendly? %></td>
+                <td class="center hide-on-medium"><%= restaurant.kid_friendly? %></td>
                 <td class="center"><a href="tel:<%= restaurant.phone %>"><%= restaurant.phone %></a></td>
               </tr>
             <% end %>
