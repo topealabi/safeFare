@@ -25,10 +25,8 @@ function getRestaurant(restaurant_id, restaurant_user, callback){
 function populateModal(data){
 
 
-   var url=''   
-    if (data[0].logo.url != "/images/fallback/default.png"){
-      url = data[0].logo.url
-    }
+      
+  
 
    var roles = ''  
    var cuisines = ''
@@ -61,7 +59,7 @@ function populateModal(data){
 
    if(url != ''){
      modalContainer +=  "<div class='col-sm-6 logo-wrap'>"
-     modalContainer += 		"<img src="+url+"/>";
+     modalContainer += 		"<img src='"+data[0].logo.url+"'>";
      modalContainer +=  "</div>";
      modalContainer +=  "<div class='white-space'></div>";
    }

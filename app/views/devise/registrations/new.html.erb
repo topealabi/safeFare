@@ -7,6 +7,8 @@
 		</ul>
 		<div class="col-sm-8 col-xs-12">
 			<h1>Sign Up</h1>
+			<p><span style='font-weight:600'>Sign Up!</span> below to set up a free account and add your restaurant to our database. You can sign in and update your account whenever you like.</p>
+
 			<p>If you haven't yet received allergen training, we encourage you to do so! To learn more, please see &#8220;<a href="http://www.servsafe.com/allergens/the-course" rel="external">Allergen Training for Restaurant Staff</a>&#8221;</p>
 				<h2>Restaurant Sign Up</h2>
 				<div class="contact-form">
@@ -31,19 +33,13 @@
 						
 						<div class="form-row col-sm-12">
 							<div class="no-label-wrap">
-								<%= f.submit 'SIGN UP', class: 'login' %>
+								<%= f.submit 'SIGN UP', class: 'login orange' %>
 								
 							</div>
 						</div>
 						
 					<% end %>
 				</div>
-			<h2>Ingredient Quiz – Test Your Knowledge!</h2>
-			<p>Think you know all there is to know about meal ingredients that might turn up in a restaurant? Download the following quiz, put together by Chef Joel Schaefer, to see how much you really know.</p>
-			<ul>
-				<li><a href="http://www.foodallergy.org/document.doc?id=222" rel="external" title="http://www.foodallergy.org/document.doc?id=222">Quiz</a></li>
-				<li><a href="http://www.foodallergy.org/document.doc?id=221" rel="external" title="http://www.foodallergy.org/document.doc?id=221">Answer key. No cheating!</a></li>
-			</ul>
 		</div>
 		<div class="col-sm-4 col-xs-12">
 			<h1>Resource Library</h1>
@@ -58,15 +54,4 @@
 		</div>
 	</div>
 </div>
-<script>
-$('#user_password').on('blur',function(){
-	var val = $(this).val().length
-	if (val < 8){
-		$('#pass_feedback').fadeIn();
-	}else{
-		$('#pass_feedback').fadeOut();
-	}
-
-})
-</script>
 

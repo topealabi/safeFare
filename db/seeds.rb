@@ -21,14 +21,14 @@ CSV.foreach('db/states.csv', headers: true) do |row|
 	end
 end
 
-['Chinese', 'Thai', 'Mexican', 'American'].each do |cuisine|
-	cuisine_exist = Cuisine.where({name: cuisine})
-	
+
+CSV.foreach('db/cuisines.csv', headers: false) do |cuisine|
+	cuisine_exist = Cuisine.where({name: cuisine[0]})
 	if cuisine_exist.length >= 1
 		puts 'exist'
 	else
-		Cuisine.create(name: cuisine)
-		puts cuisine
+		Cuisine.create(name: cuisine[0])
+		puts cuisine[0]
 	end
 end
 ['Chef', 'Server', 'Front of House', 'Back of House'].each do |role|
