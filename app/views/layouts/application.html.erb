@@ -3,6 +3,11 @@
 <head>
   <title>SafeFARE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Favicons ================================================== -->
+	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png">
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
 	
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
@@ -54,7 +59,7 @@
 				<p>Locate a food allergy aware restaurant near you.</p>
 				<form name="search" action="/results" method="get">
 					<input type="text" name="search" id='search' placeholder='Restaurant, Cuisine, etc.'>
-					<input type="text" name="address" id='address' placeholder='Address, Zip, etc.'>
+					<input type="text" name="address" id='address' placeholder='Address, ZIP, etc.'>
 					<input type="submit" name="nil" data-role='none'id='submit-search' value='' >
 				</form>
 				<div class="advanced-link"><a href="/find-a-restaurant">Use our advanced search tool</a></div>

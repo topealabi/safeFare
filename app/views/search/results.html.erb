@@ -20,7 +20,7 @@
               <th class="center hide-on-small">Cuisine</th>
               <th class="center hide-on-small">Neighborhoods</th>
               <th class="center hide-on-small">City</th>
-              <th class="center">Zip</th>
+              <th class="center">ZIP</th>
               <th class="center hide-on-medium">Staff<br>Trained</th>
               <th class="center hide-on-medium">Kid <br>Friendly</th>
               <th class="center">Phone</th>
@@ -81,7 +81,8 @@
      search_results.push({
       location: new google.maps.LatLng("<%=restaurant.latitude%>", "<%=restaurant.longitude%>"),
       name: "<%=restaurant.name%>",
-      phone:"<%=restaurant.phone%>"
+      phone:"<%=restaurant.phone%>",
+      address: "<%=restaurant.address%>"
       });
   </script>
 <% end %>
@@ -105,18 +106,19 @@
     }
   }
   function addMarker() {
+    var bodyCont = "<div>" + search_results[iterator].address + "<br>" + search_results[iterator].phone + "</div>";
     markers.push(new google.maps.Marker({
       position: search_results[iterator].location,
       map: map,
       draggable: true,
       title: search_results[iterator].name,
-      content: search_results[iterator].phone,
+      content: bodyCont,
       animation: google.maps.Animation.DROP
     }));
      infowindow = new google.maps.InfoWindow({
     });
     google.maps.event.addListener(markers[iterator], 'click', function() {
-      infowindow.setContent("<h1>"+ this.title + "</h1><h2>"+this.content+"</h2>")
+      infowindow.setContent("<h1>"+ this.title + "</h1>" + this.content)
       infowindow.open(map,this);
     });
     iterator++;

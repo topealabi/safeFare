@@ -132,6 +132,20 @@ $highlight: #00b4e9;
 	.margin-bottom {
 		margin-bottom: 45px;
 	}
+	.find-a-button, .resources-button {
+		background-image: url(../images/about-us-sprite-272x272.gif);
+		height: 136px;
+		width: 136px;
+		@include transition(background-position, 0.5s, ease);
+	}
+	.find-a-button {
+		background-position: 0px 0px;
+		&:hover { background-position: 0px 136px; }
+	}
+	.resources-button {
+		background-position: 136px 0px;
+		&:hover { background-position: 136px 136px; }
+	}
 }
 
 
