@@ -2,8 +2,10 @@
 lock '3.1.0'
 
 set :application, 'SafeFare'
-set :deploy_user, 'root'
-set :repo_url, 'git@github.com:topealabi/safeFare.git'
+set :deploy_user, 'deployer'
+set :repo_url, 'ssh://git@office.themechanism.com/volume1/homes/git/repositories/safeFare.git'
+set :password, "gitgitgit"
+
 
 # Default branch is :master
 set :branch, 'master'
