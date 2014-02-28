@@ -24,7 +24,7 @@ $hover:#3a5ad8;
 		border-collapse: collapse;
 		width:100%;
 		margin:auto;
- 		font-size:15px;
+ 		font-size:16px;
  		color: black;
  		font-family:'proxima-nova-condensed';
  		tr { border-bottom: 1px solid $blue; }
@@ -41,13 +41,13 @@ $hover:#3a5ad8;
 		}
 		.reg{
 			color:black;
-			font-size:14px;
+			font-size:16px;
 			font-weight: 400;
 
 		}
 		.edit { width: 45px; }
 		.title a {
-		 font-size:15px; color:$blue; font-weight:600;font-family:'proxima-nova-condensed';
+		 font-size:16px; color:$blue; font-weight:600;font-family:'proxima-nova-condensed';
 		}
 	}
 	.edit-button {

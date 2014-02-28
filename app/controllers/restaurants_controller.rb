@@ -89,11 +89,15 @@ class RestaurantsController < ApplicationController
   end
   
   def show
+
     @restaurant = Restaurant.find(params[:id])
     @roles = []
     @employees = @restaurant.aware_employees.length
     @percent = (@employees.to_f/@restaurant.total_employees.to_f) * 100
-   
+    if @restaurant.repos != nil
+      @repos_lat = @restaurant.repos.split(',')[0].strip
+      @repos_long = @restaurant.repos.split(',')[1].strip
+    end
     @restaurant.aware_employees.each do |emp|
       emp.roles.each do |role|
         if @roles.include?(role.role)
@@ -121,7 +125,7 @@ class RestaurantsController < ApplicationController
   
     def edit_nests
       #edit cuisine nests
-      binding.pry
+  
         params[:restaurant][:cuisine_ids].each do |cuisine|
           if cuisine == ''
             TypeOfCuisine.where(restaurant_id: @restaurant.id).each do |record|
