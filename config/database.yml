@@ -17,11 +17,11 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: safefare_development
+  database: safeFare_development
   pool: 5
   host: localhost
-  username: blog
-  password: secret
+  #username: admin
+  #password: 4nH6az7fL40W!
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -47,19 +47,17 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: safefare_test
+  database: safeFare_test
   pool: 5
   host: localhost
-  username: blog
-  password: secret
-  # username: admin
-  # password: 4nH6az7fL40W!
+  #username: admin
+  #password: 4nH6az7fL40W!
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: safefare_production
+  database: safeFare_production
   pool: 5
   host: localhost
-  username: blog
-  password: secret
+  #username: blog
+  #password: secret

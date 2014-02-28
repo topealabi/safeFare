@@ -1,66 +1,20 @@
-  
-<div class='col-xs-12 col-sm-7 right'>
-  <div class='left'>
-     		<h2 class='orange-header'><%=@restaurant.name%></h2>
-     		<p><%=@restaurant.address%></p>
-     		<p><%=@restaurant.city %>, <%=@restaurant.state%> <%=@restaurant.zip%></p>
-     		<p><%=@restaurant.phone%></p>
-  </div>
+<%=@restaurant.name %>
+<%=@restaurant.address %>
+<%=@restaurant.city %>
+<%=@restaurant.state %>
+<%=@restaurant.total_employees %>
+<%=@restaurant.logo.url %>
+<%=@percent%>
+<%=@roles %>
+<%=@restaurant.image.url %>
+<% if @restaurant.repos != nil %>
+ <img src="http://maps.googleapis.com/maps/api/staticmap?markers=<%=@restaurant.latitude%>%2C<%=@restaurant.longitude%>&zoom=16&size=374x300&maptype=roadmap&sensor=false" />
+<%else%>
+ <img src="http://maps.googleapis.com/maps/api/staticmap?markers=<%=@restaurant.latitude%>%2C<%=@restaurant.longitude%>&zoom=16&size=374x300&maptype=roadmap&sensor=false" />
+<%end%>
+<%@restaurant.cuisines.each do |cuisine| %>
+  <%= cuisine.name %>
+<%end%>
 
-  <div class='right'>
-     	<img class='' style='margin-top:10px' src="<%=@restaurant.logo.url%>"/> 
-  </div>
-  <div style='clear:both'></div>
-  <div class='info'>
-     		<div class='col-xs-12 form-row'>
-     			<p class='form-label'>Cuisine</p>
-     			<div class='input'>
-               <%@restaurant.cuisines.each do |x|%>
-                  <%= x.name %>
-               <%end%>
-            </div>
-     		</div>
-     		<div class='col-xs-12 form-row'>
-     			<p class='form-label'>Hours</p>
-     			<div class='input'><%=@restaurant.hours %></div>
-     		</div>
-     		<div class='col-xs-12 form-row'>
-     			<p class='form-label'>Number of Employees</p>
-     			<div class='input'><%=@restaurant.total_employees%></div>
-     		</div>
-     		<div class='col-xs-12 form-row'>
-     			<p class='form-label'>Percent Trained</p>
-     			<div class='input'><%=@percent.round%></div>
-     		</div>
-     		<div class='col-xs-12 form-row'>
-     			<p class='form-label'>Employees Trained</p>
-     			<div class='input'>
-               <% @roles.each do |x|%>
-                  <%= x %>
-            </div>
-     		</div>
-     		<div class='col-xs-12 form-row'>
-     			<p class='form-label'>Email</p>
-     			<div class='input'><%= @restaurant.email %></div>
-     		</div>
-     		<div class='col-xs-12 form-row'>
-     			<p class='form-label'>Website</p>
-     			<div class='input'><%= @restaurant.website %></div>
-     		</div>
-     		<div class='col-xs-12 form-row'>
-     			<p class='form-label'>Menu</p>
-     			<a class='input'>Menu</a>
-     		</div>
-     		<div class='col-xs-12 form-row'>
-     			<p class='form-label'>Social Media Links</p>
-     			<div class='input'><a href='<%=@restaurant.facebook_url%>'>Facebook</a>, <a href='<%=@restaurant.twitter_url%>'>Twitter</a></div>
-     		</div>
-     		<div class='col-xs-12 form-row'>
-     			<p class='form-label'>Allergy Eats</p>
-     			<a class='input'><%=@restaurant.allergy_eats_url%></a>
-     		</div>
-  </div>
-   </div>
-   <div class='col-xs-12 col-sm-5 left' style='text-align:center'>
- 
-   </div>
+
+
