@@ -61,7 +61,7 @@ They should see all of their restaurants.
               <tbody>
                 <% @restaurants.each do |restaurant| %>
                   <tr>
-                    <td class="center edit"><a class="edit-button"></a></td>
+                    <td class="center edit"><a href="/users/<%=@user.id%>/restaurants/<%=restaurant.id%>/edit" class="edit-button"></a></td>
                     <td class='title'><a href='/users/<%=@user.id%>/restaurants/<%=restaurant.id%>/edit'><%= restaurant.name %></a><br><%= restaurant.address %></td>
                     <td class="center"><%= restaurant.total_employees %></td>
                     <td class="center"><% percent = (restaurant.aware_employees.length.to_f / restaurant.total_employees.to_f ) * 100 %>

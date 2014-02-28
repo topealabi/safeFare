@@ -57,7 +57,7 @@ function populateModal(data){
    modalContainer += 		"<div>"+data[0].phone+"</div>";
    modalContainer += 	"</address>";
 
-   if(url != ''){
+   if(data[0].logo.url){
      modalContainer +=  "<div class='col-sm-6 logo-wrap'>"
      modalContainer += 		"<img src='"+data[0].logo.url+"'>";
      modalContainer +=  "</div>";
