@@ -94,12 +94,7 @@ class RestaurantsController < ApplicationController
     @roles = []
     @employees = @restaurant.aware_employees.length
     @percent = (@employees.to_f/@restaurant.total_employees.to_f) * 100
-    binding.pry
-    if @restaurant.repos != ''
-      @repos_lat = @restaurant.repos.split(',')[0].strip
-      @repos_long = @restaurant.repos.split(',')[1].strip
-      binding.pry
-    end
+    
     @restaurant.aware_employees.each do |emp|
       emp.roles.each do |role|
         if @roles.include?(role.role)
