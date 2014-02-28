@@ -50,7 +50,7 @@ ActiveAdmin.register Restaurant do
         redirect_to admin_restaurant_path(@restaurant), notice: 'Thanks' 
       else
         redirect_to :back
-        binding.pry  
+        
       end
     end
     def edit
