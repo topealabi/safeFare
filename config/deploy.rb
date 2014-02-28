@@ -4,8 +4,7 @@ lock '3.1.0'
 set :application, 'SafeFare'
 set :deploy_user, 'deployer'
 set :repo_url, 'ssh://git@office.themechanism.com/volume1/homes/git/repositories/safeFare.git'
-set :password, "gitgitgit"
-
+set :ssh_options, { :forward_agent => true }
 
 # Default branch is :master
 set :branch, 'master'
