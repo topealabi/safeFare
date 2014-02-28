@@ -1,20 +1,118 @@
-<%=@restaurant.name %>
-<%=@restaurant.address %>
-<%=@restaurant.city %>
-<%=@restaurant.state %>
-<%=@restaurant.total_employees %>
-<%=@restaurant.logo.url %>
-<%=@percent%>
-<%=@roles %>
-<%=@restaurant.image.url %>
-<% if @restaurant.repos != nil %>
- <img src="http://maps.googleapis.com/maps/api/staticmap?markers=<%=@restaurant.latitude%>%2C<%=@restaurant.longitude%>&zoom=16&size=374x300&maptype=roadmap&sensor=false" />
-<%else%>
- <img src="http://maps.googleapis.com/maps/api/staticmap?markers=<%=@restaurant.latitude%>%2C<%=@restaurant.longitude%>&zoom=16&size=374x300&maptype=roadmap&sensor=false" />
-<%end%>
-<%@restaurant.cuisines.each do |cuisine| %>
-  <%= cuisine.name %>
-<%end%>
+<div class="show-section">
+	<div class="section-wrapper">
+		<ul class="safe-fare-breadcrumb">
+			  <li><a href="/">Home > </a></li>
+			  <li><a href="/find-a-restaurant">Find a Restaurant > </a></li>
+			  <li><a href="" class='active'><%=@restaurant.name %></a></li>
+		</ul>
 
+   <div class='col-xs-12 col-sm-5 map-and-image'>
+	<% if @restaurant.repos != '' %>
+	 <img src="http://maps.googleapis.com/maps/api/staticmap?markers=<%=@restaurant.latitude%>%2C<%=@restaurant.longitude%>&zoom=16&size=374x300&maptype=roadmap&sensor=false" />
+	<%else%>
+	 <img src="http://maps.googleapis.com/maps/api/staticmap?markers=<%=@restaurant.latitude%>%2C<%=@restaurant.longitude%>&zoom=16&size=374x300&maptype=roadmap&sensor=false" />
+	<%end%>
+	<% if @restaurant.image.url != '' %>
+    <div class='image-cont'>
+    <img src='<%=@restaurant.image.url %>'>
+    </div>
+   <% end %>
+   </div>
+   <div class='col-xs-12 col-sm-7'>
+   <div class='row'>
+   <h1><%=@restaurant.name %></h1>
+   <address class='col-xs-6'>
+   <div><%=@restaurant.address %></div>
+   <div><%=@restaurant.city %>, <%=@restaurant.state %> <%=@restaurant.zip %></div>
+   <div><%=@restaurant.phone %></div>
+   </address>
 
+	<% if @restaurant.logo.url != '' %>
+     <div class='col-xs-6 logo-wrap'>
+     <img src="<%=@restaurant.logo.url%>"/>
+     </div>
+     <div class='white-space'></div>
+	<%end%>
+   <div class='info col-xs-12'>
+	<% if @restaurant.description != '' %>
+     <div class='description'>
+     <div><%=@restaurant.description%></div>
+     </div>
+   <% end %>
+	<% if @restaurant.cuisines.length > 0 %>
+     <div class='form-row'>
+     <div class='form-label'>Cuisine</div>
+     <div class='input'>
+     	<%@restaurant.cuisines.each do |cuisine| %>
+		  <%= cuisine.name %>
+		<%end%>
+	</div>
+     </div>
+   <% end %>
+	<% if @restaurant.hours != '' %>
+     <div class='form-row'>
+     <div class='form-label'>Hours</div>
+     <div class='input'><%=@restaurant.hours%></div>
+     </div>
+   <% end %>
+	<% if @restaurant.total_employees != '' %>
+     <div class='form-row'>
+     <div class='form-label'>Number of Employees</div>
+     <div class='input'><%=@restaurant.total_employees %></div>
+     </div>
+   <% end %>
+	<% if @percent != '' %>
+     <div class='form-row'>
+     <div class='form-label'>Percent Trained</div>
+     <div class='input'><%=@percent%>%</div>
+     </div>
+   <% end %>
+	<% if @roles.length > 0 %>
+     <div class='form-row'>
+     <div class='form-label'>Employees Trained</div>
+     <div class='input'>
+	 <%@roles.each do |role| %>
+		  <%= role %>
+		<%end%>
+     </div>
+     </div>
+   <% end %>
+	<% if @restaurant.email != '' %>
+     <div class='form-row'>
+     <div class='form-label'>Email</div>
+     <div class='input'><a href='mailto:<%=@restaurant.email%>'><%=@restaurant.email%></a></div>
+     </div>
+   <% end %>
+	<% if @restaurant.website != '' %>
+     <div class='form-row'>
+     <div class='form-label'>Website</div>
+     <div class='input'><a href='<%=@restaurant.website%>'><%=@restaurant.website%></a></div>
+     </div>
+   <% end %>
+	<% if @restaurant.facebook_url != '' || @restaurant.twitter_url != '' %>
+     <div class='form-row'>
+     <div class='form-label'>Social Media Links</div>
+     <div class='input'>
+     <% if @restaurant.facebook_url != '' %>
+      <a href='<%=@restaurant.facebook_url%>'>Facebook</a>
+    <%end%>
+    <% if @restaurant.facebook_url != '' && @restaurant.twitter_url != '' %>
+      , 
+    <%end%>
+    <% if @restaurant.twitter_url != '' %>
+      <a href='<%=@restaurant.twitter_url%>'>Twitter</a></div>
+    <%end%>
+     </div>
+   <%end%>
+	<% if @restaurant.allergy_eats_url != '' %>
+     <div class='form-row'>
+     <div class='form-label'>Allergy Eats</div>
+     <a class='input'><%=@restaurant.allergy_eats_url%></a>
+     </div>
+   <% end %>
+   </div>
+   </div>
+   </div>
 
+   </div>
+   </div>

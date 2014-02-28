@@ -475,4 +475,33 @@ font-size: 15px;
 		}
 	}
 }
+.show-section {
+	color:black;
+	font-weight: normal;
+	font-size:16px;
+	padding: 40px 15px;
+	@extend .clearfix;
+	h1 { padding-left: 15px; }
+	address { padding-bottom: 20px; }
+	img { max-width: 100%; }
+	.image-cont { text-align: left; margin-top: 20px; img { max-width: 300px; } }
+	.logo-wrap { text-align: right; img { max-width: 200px; } }
+	.info { @extend .clearfix;clear:both; }
+	.description { padding-bottom: 20px; }
+	.form-row{
+		padding:0px;
+		border-top:1px solid $blue;
+		p { padding: 5px }
+	}
+	.form-label{
+		width:40%;
+		color:black;
+	}
+	.input{
+		width: 60% !important;
+	}
+	.form-label, .input{
+		padding: 5px 10px 5px 0px;
+	}
+}
 .white-space { height: 30px;clear: both; }
