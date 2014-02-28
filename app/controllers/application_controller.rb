@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   	#Redirect to the user's page after log in.
 	def after_sign_in_path_for(resource)
 	  if resource.is_a?(AdminUser)
-		admin_dashboard_path(resource)
+		  admin_dashboard_path(resource)
 	  end
 	end
 end

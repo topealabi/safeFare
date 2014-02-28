@@ -121,9 +121,11 @@ class RestaurantsController < ApplicationController
   
     def edit_nests
       #edit cuisine nests
+      binding.pry
         params[:restaurant][:cuisine_ids].each do |cuisine|
           if cuisine == ''
             TypeOfCuisine.where(restaurant_id: @restaurant.id).each do |record|
+              record.destroy
               @restaurant.update!(tags: ' ')
             end
           else
