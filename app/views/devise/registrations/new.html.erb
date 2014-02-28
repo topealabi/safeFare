@@ -18,7 +18,11 @@
 						</div>
 						<div class="form-row col-sm-12">
 							<p class='form-label'>Password</p>
+							
 							<%= f.password_field :password, label: false %>
+							<div style='clear:both'></div>
+							<div id='pass_feedback' style='margin-left: 25%;
+'>Must Be At Least 8 Characters Long</div>
 						</div>
 						<div class="form-row col-sm-12">
 							<p class='form-label'>Password Confirmation</p>
@@ -28,14 +32,10 @@
 						<div class="form-row col-sm-12">
 							<div class="no-label-wrap">
 								<%= f.submit 'SIGN UP', class: 'login' %>
-								<div class="nav-link signup orange"><a href="/for-restaurants">LOG IN</a></div>
+								
 							</div>
 						</div>
-						<div class="form-row col-sm-12">
-							<div class="no-label-wrap">
-								<%= link_to "Forgot your password?", new_password_path(:user), class: "forgot-your-password" %>
-							</div>
-						</div>
+						
 					<% end %>
 				</div>
 			<h2>Ingredient Quiz – Test Your Knowledge!</h2>
@@ -58,4 +58,15 @@
 		</div>
 	</div>
 </div>
+<script>
+$('#user_password').on('blur',function(){
+	var val = $(this).val().length
+	if (val < 8){
+		$('#pass_feedback').fadeIn();
+	}else{
+		$('#pass_feedback').fadeOut();
+	}
+
+})
+</script>
 

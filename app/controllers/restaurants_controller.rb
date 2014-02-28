@@ -30,7 +30,7 @@ class RestaurantsController < ApplicationController
       @restaurant.areas.build
       @restaurant.type_of_cuisines.build
       @role = Role.all
-      @type = ['1','2']
+      @type = ['ServSafe Allergens Online Course', 'AllerTrain']
     	State.all.each do |state|
     	 @states << state.abbreviation
     	end
@@ -69,7 +69,7 @@ class RestaurantsController < ApplicationController
     @cuisines = []
     @restaurant = Restaurant.find(params[:id])
     @states = []  
-    @type = ['1','2']
+    @type = ['ServSafe Allergens Online Course', 'AllerTrain']
     Cuisine.all.each do |x|
       if @restaurant.cuisines.include?(x) then puts x else @cuisines << x end 
     end
@@ -121,9 +121,11 @@ class RestaurantsController < ApplicationController
   
     def edit_nests
       #edit cuisine nests
+      binding.pry
         params[:restaurant][:cuisine_ids].each do |cuisine|
           if cuisine == ''
             TypeOfCuisine.where(restaurant_id: @restaurant.id).each do |record|
+              record.destroy
               @restaurant.update!(tags: ' ')
             end
           else

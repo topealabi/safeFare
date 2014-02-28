@@ -1,5 +1,5 @@
 class AwareEmployee < ActiveRecord::Base
-	VALID_TYPES = ['1', '2']
+	VALID_TYPES = ['ServSafe Allergens Online Course', 'AllerTrain']
 	validates_inclusion_of :cert_type,
     	in: VALID_TYPES
 	belongs_to :restaurant,

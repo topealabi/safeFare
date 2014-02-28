@@ -49,9 +49,9 @@ button.close {
 p,a,h1,h2,li,address{font-family:'proxima-nova-condensed';font-style: normal;margin:0px;}
 a, a:link, a:visited{color:$blue;}
 h2.small-thick{
-	font-weight:500;
+	font-weight:600;
 	color:white;
-	font-size:20px;
+	font-size:21px;
 	letter-spacing:.05em;
 	font-family:'proxima-nova';
 }
@@ -170,7 +170,7 @@ a.nav-link, form input[type="submit"] { padding: 7px 0; }
 	.advanced-link { float: right; margin-right: 50px; }
 
 	h2{margin:37px 0 0px;}
-	p{font-weight: 300; margin:5px 0px 10px;}
+	p{font-weight: 300; margin:0px 0px 5px;}
 	input{
 		border:0px solid white;
 		height:45px;
@@ -187,11 +187,11 @@ a.nav-link, form input[type="submit"] { padding: 7px 0; }
 	       -o-transition: background-position 1s ease, padding-left 1s ease;  /* Opera 10.50–12.00 */
 	          transition: background-position 1s ease, padding-left 1s ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
     }
-	input#free-text{
+	input#address{
 		background-image: image-url("near.png");
 	    padding-left:65px;
 	}
-	input#free-text:focus, input#cuisine:focus{
+	input#address:focus, input#search:focus{
 		background-position:-60px 0px;
 		padding: 8px 10px 7px;
 	}

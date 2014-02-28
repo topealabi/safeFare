@@ -12,7 +12,7 @@
 				<h2>Restaurant Login</h2>
 				<div class="contact-form">
 					<%= form_for(:user, :url => session_path(:user)) do |f| %>
-					<%= devise_error_messages! %>
+						<%= devise_error_messages! %>
 						<div class="form-row col-sm-12">
 							<p class='form-label'>Email</p>
 							<%= f.text_field :email, label: false %>
@@ -30,6 +30,7 @@
 						<div class="form-row col-sm-12">
 							<div class="no-label-wrap">
 								<%= f.submit 'LOG IN', class: 'login' %>
+								<h2 style='width:12%; text-align:center; margin-top:5px;' class='left'>OR</h2>
 								<div class="nav-link signup orange"><a href="/users/sign_up">SIGN UP</a></div>
 							</div>
 						</div>
@@ -60,6 +61,7 @@
 				<li><a href="http://www.foodallergy.org/managing-food-allergies-at/dining-out/insiders-guide" title="http://www.foodallergy.org/managing-food-allergies-at/dining-out/insiders-guide" rel="external">&#8220;Insider&#8217;s Guide to Dining Out&#8221; by Chef Joel Schaefer</a></li>
 				<li><a href="http://www.foodallergy.org/document.doc?id=219" title="http://www.foodallergy.org/document.doc?id=219" rel="external">Sample chef card</a></li>
 			</ul>
+			<div class="nav-link signup orange"><a href="/users/sign_up">SIGN UP</a></div>
 		</div>
 	</div>
 </div>
