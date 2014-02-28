@@ -17,10 +17,10 @@ require "rvm/capistrano"
 #   https://github.com/capistrano/bundler
 #   https://github.com/capistrano/rails
 #
- require 'rvm/capistrano'
+ require 'capistrano/rvm'
 # require 'capistrano/rbenv'
 # require 'capistrano/chruby'
- require 'capistrano/bundler'
+require 'capistrano/bundler'
 require 'capistrano/rails/assets'
 require 'capistrano/rails/migrations'
 

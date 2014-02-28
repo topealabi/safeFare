@@ -33,7 +33,13 @@
               </div>
               <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>State:</p>
-               <%= select_tag(:state_search, options_from_collection_for_select(State.all, :abbreviation, :abbreviation), multiple: false,class: "req input") %>
+               <%= select_tag(:state_search, options_from_collection_for_select(State.all, :abbreviation, :abbreviation), multiple: false, include_blank: '', class: "req input") %>
+                <span class='feedback'></span>
+              </div>
+              <div class="col-xs-12 form-row clearfix validate name">
+                <p class='form-label'>Neighborhood:</p>
+               <%= select_tag(:hood_search, options_from_collection_for_select(Neighborhood.all, :name, :name), multiple: true,class: "chosen-select req input") %>
+                <span class='feedback'></span>
               </div>
               <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>Zip:</p>
@@ -55,7 +61,6 @@
                    <%= check_box_tag "worker_role[]", ro.role %>
                    <%= label_tag(:worker_role, ro.role) %>
                 <% end %>
-            
               </div>
           </div> 
           <%= submit_tag "SUBMIT", :name => nil %>
@@ -66,11 +71,11 @@
     <form name="search" action="/results" method="get">
       <div class="col-sm-12 form-row clearfix">
         <p class='form-label'>Search For:</p>
-          <input type="text" name="search" id='cuisine' class='input'placeholder='Restaurant, Cuisine, etc.'>
+          <input type="text" name="search" id='search' class='input'placeholder='Restaurant, Cuisine, etc.'>
       </div>
        <div class="col-sm-12 form-row clearfix">
         <p class='form-label'>Near:</p>
-          <input type="text" name="location" class='input'id='free-text' placeholder='Address, Zip, etc.'>
+          <input type="text" name="address" class='input'id='address' placeholder='Address, Zip, etc.'>
         </div>
           <input type="submit" name="nil" style='display:block'data-role='none'id='submit-search' value='SUBMIT' >
         </form>

@@ -10,7 +10,8 @@ SafeFare::Application.configure do
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
   #precompile assets
-  config.assets.precompile = true
+  #config.assets.precompile = true
+  config.assets.precompile += %w( active_admin.css application.css application.js home.js respond.js restaurant.js search.js scripts.js active_admin/print.css active_admin.js )
  
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
@@ -51,7 +52,7 @@ SafeFare::Application.configure do
     :user_name => "safeFareTesting@gmail.com",
     :password => "linux*1989"
   }
-   config.action_mailer.default_url_options = { :host => 'safefare.77km-pwgn.accessdomain.com' }
+   config.action_mailer.default_url_options = { :host => '6vdf-pwpq.accessdomain.com' }
 
 
   # Specifies the header that your server uses for sending files.
@@ -66,6 +67,8 @@ SafeFare::Application.configure do
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
+
+  
 
   # Use a different logger for distributed setups.
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
