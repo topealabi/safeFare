@@ -5,12 +5,12 @@ class Role < ActiveRecord::Base
 
 
 
-  searchable do
-  	text :role
-  	string :work_place, :multiple => true do
-  		aware_employees.map do |employee| 
-  			employee.restaurant.name 
-  		end 
-  	end
-  end
+  # searchable do
+  # 	text :role
+  # 	string :work_place, :multiple => true do
+  # 		aware_employees.map do |employee| 
+  # 			employee.restaurant.name 
+  # 		end 
+  # 	end
+  # end
 end

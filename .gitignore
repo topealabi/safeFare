@@ -27,3 +27,4 @@ public/uploads/tmp/*
 
 # Ignore DS_Store
 .DS_Store
+database.yml

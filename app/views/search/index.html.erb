@@ -25,7 +25,7 @@
               </div>
               <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>City:</p>
-                <%= text_field_tag :city, params[:city], class:"input" %>
+                <%= text_field_tag :city_search, params[:city_search], class:"input" %>
               </div>
               <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>State:</p>
@@ -39,7 +39,7 @@
               </div>
               <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>ZIP:</p>
-                <%= text_field_tag :zip, params[:zip], class:"input" %>
+                <%= text_field_tag :zip_search, params[:zip_search], class:"input" %>
               </div>
               <div class="col-xs-12 form-row clearfix validate name">
                   <p class='form-label'>Kid Friendly</p>
@@ -47,7 +47,7 @@
               </div>
               <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>Within:</p>
-               <%= select_tag(:within, "<option>5 miles</option><option>10 miles</option><option>15 miles</option>".html_safe,class: "req input") %>
+               <%= select_tag(:within, "<option>&nbsp;</option><option>5 miles</option><option>10 miles</option><option>15 miles</option>".html_safe,class: "req input") %>
               </div>
             
             <div class="col-sm-12 form-row clearfix">

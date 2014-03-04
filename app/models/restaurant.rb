@@ -4,9 +4,9 @@ class Restaurant < ActiveRecord::Base
   mount_uploader :image, PictureUploader
   VALID_STATES = ['CA']
 
-   	State.all.each do |state| 
-   		VALID_STATES << state.abbreviation
-   	end
+   	# State.all.each do |state| 
+   	# 	VALID_STATES << state.abbreviation
+   	# end
   scope :pending, where(approved:false)
 	validates_presence_of :name, :address, :city, :zip
 
@@ -53,7 +53,8 @@ class Restaurant < ActiveRecord::Base
     text :address
     text :tags                        
     string :city                              
-    text :state                       
+    string :state
+    integer :zip                       
     text :description
     boolean :kid_friendly
     double :latitude
