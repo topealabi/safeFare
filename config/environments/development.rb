@@ -10,7 +10,7 @@ SafeFare::Application.configure do
   config.eager_load = false
 
   #to spoof ip address for location testing in development
-  config.middleware.use('SpoofIp', '72.69.209.145')
+  config.middleware.use('SpoofIp', '24.185.190.0')
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true

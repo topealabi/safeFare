@@ -2,8 +2,8 @@ class SearchController < ApplicationController
 	def results
 		
 		#@restaurants = Restaurant.near(request.location.coordinates, 10)
-		puts request.location.latitude
-		puts request.location.longitude
+		puts request.location.coordinates
+		#puts request.location.longitude
 		def whereat
 	      	[params[:address], params[:hood_search], params[:city_search], params[:state_search], params[:zip_search]].compact.join(', ')
 	    end
@@ -219,16 +219,13 @@ class SearchController < ApplicationController
 		elsif (params[:address].present?)
 			@search  = Restaurant.solr_search do
 			    with(:location).in_radius(*Geocoder.coordinates(whereat), howfar)
-			    order_by_geodist(:location, request.location.latitude, request.location.longitude)
-
+			    
 				if params[:worker_role].present?
 				with(:worker, params[:worker_role])
-				order_by_geodist(:location, request.location.latitude, request.location.latitude)
 				end
 
 				if params[:kid_friendly].present?
 				with(:kids, params[:kid_friendly])
-				order_by_geodist(:location, request.location.latitude, request.location.longitude )
 				end
 
 			end
@@ -260,9 +257,11 @@ class SearchController < ApplicationController
 			@restaurants = @search.results
 
 		else
-			@restaurants = Restaurant.near(request.location, 50, :order => :distance)
+			puts [request.location.latitude, request.location.longitude]
+			#@restaurants = Restaurant.near([request.location.latitude, request.location.longitude], 50, :order => :distance)
+					
 		end
-
+		@restaurants = Restaurant.near([request.location.latitude, request.location.longitude], 50)
 	end
 	
 	def index
