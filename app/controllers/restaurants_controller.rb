@@ -48,7 +48,7 @@ class RestaurantsController < ApplicationController
         format.json { render action: 'show', status: :created, location: @restaurant }
       else
    
-        format.html { redirect_to new_user_restaurant_path(current_user), notice: @restaurant.errors.full_messages }
+        format.html { 'redirect_to new_user_restaurant_path(current_user), notice: @restaurant.errors.full_messages '}
         format.json { render json: @restaurant.errors, status: :unprocessable_entity }
       end
     end
@@ -94,7 +94,8 @@ class RestaurantsController < ApplicationController
     @roles = []
     @employees = @restaurant.aware_employees.length
     @percent = (@employees.to_f/@restaurant.total_employees.to_f) * 100
-    
+    if @restaurant.repos != nil
+    end
     @restaurant.aware_employees.each do |emp|
       emp.roles.each do |role|
         if @roles.include?(role.role)
@@ -112,7 +113,7 @@ class RestaurantsController < ApplicationController
 	private	
 		def restaurant_params
       	params.require(:restaurant).permit(:name,:address,:city,:state, :email, :phone,:repos,
-          :hours,:approved,:website,:facebook_url,:twitter_url,:allergy_eats_url,:role_id,:image,
+          :hours,:approved,:kid_friendly,:website,:facebook_url,:twitter_url,:allergy_eats_url,:role_id,:image,
           :zip,:logo,:total_employees,:description,:is_visible,cuisine_ids:[],neighborhood_ids:[],
           aware_employees_attributes:[:name,:id, :verification,:expiration, :cert_type,role_ids:[],restaurant_roles_attributes:[role_id:[]]],
           type_of_cuisines_attributes:[:id,:restaurant_id,cuisine_id:[]],

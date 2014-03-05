@@ -2,17 +2,17 @@ class Restaurant < ActiveRecord::Base
 	mount_uploader :logo, ImageUploader
 
   mount_uploader :image, PictureUploader
-  VALID_STATES = ['CA']
+  # VALID_STATES = ['CA']
 
-   	# State.all.each do |state| 
-   	# 	VALID_STATES << state.abbreviation
-   	# end
+  #  	# State.all.each do |state| 
+  #  	# 	VALID_STATES << state.abbreviation
+  #  	# end
   scope :pending, where(approved:false)
 	validates_presence_of :name, :address, :city, :zip
 
  
-  validates_inclusion_of :state,
-    in: VALID_STATES
+  # validates_inclusion_of :state,
+  #   in: VALID_STATES
   validates_numericality_of :total_employees
  	validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
   validates :name, uniqueness: true

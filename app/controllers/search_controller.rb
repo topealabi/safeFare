@@ -2,8 +2,7 @@ class SearchController < ApplicationController
 	def results
 		
 		#@restaurants = Restaurant.near(request.location.coordinates, 10)
-		puts request.location.latitude
-		puts request.location.longitude
+		
 		def whereat
 	      	[params[:address], params[:hood_search], params[:city_search], params[:state_search], params[:zip_search]].compact.join(', ')
 	    end
@@ -260,7 +259,7 @@ class SearchController < ApplicationController
 			@restaurants = @search.results
 
 		else
-			@restaurants = Restaurant.near(request.location, 50, :order => :distance)
+			@restaurants = Restaurant.all
 		end
 
 	end

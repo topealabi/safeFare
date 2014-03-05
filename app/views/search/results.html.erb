@@ -92,7 +92,7 @@
   var marker;
   function show_initialize() {
     var mapOptions = {
-      zoom: 12,
+      zoom: 9,
       center: bounds.getCenter()
     };
       map = new google.maps.Map(document.getElementById('map-canvas'),
@@ -110,7 +110,7 @@
     markers.push(new google.maps.Marker({
       position: search_results[iterator].location,
       map: map,
-      draggable: true,
+      draggable: false,
       title: search_results[iterator].name,
       content: bodyCont,
       animation: google.maps.Animation.DROP

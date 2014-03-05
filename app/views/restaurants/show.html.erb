@@ -7,8 +7,8 @@
 		</ul>
 
    <div class='col-xs-12 col-sm-5 map-and-image'>
-	<% if @restaurant.repos != '' %>
-	 <img src="http://maps.googleapis.com/maps/api/staticmap?markers=<%=@repos.lat%>%2C<%=@repos.long%>&zoom=16&size=374x300&maptype=roadmap&sensor=false" />
+	<% if @restaurant.repos == nil || @restaurant.repos == ''  %>
+	  <img src="http://maps.googleapis.com/maps/api/staticmap?markers=<%=@restaurant.latitude%>%2C<%=@restaurant.longitude%>&zoom=16&size=374x300&maptype=roadmap&sensor=false" />
 	<%else%>
 	 <img src="http://maps.googleapis.com/maps/api/staticmap?markers=<%=@restaurant.latitude%>%2C<%=@restaurant.longitude%>&zoom=16&size=374x300&maptype=roadmap&sensor=false" />
 	<%end%>

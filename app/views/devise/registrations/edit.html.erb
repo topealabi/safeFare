@@ -17,7 +17,8 @@ They should see all of their restaurants.
               <%= devise_error_messages! %>
             <div class="col-xs-12 form-row validate name">
               <p class='form-label'>Email</p>
-              <%= f.email_field :email %>
+              <h1 class='input' style='display:block; margin-top:5px;'><%=@user.email%></div>
+                 <%= f.hidden_field :email, value: @user.email%>
               <div class='feedback'><div></div></div>
             </div>
             <div class="col-xs-12 form-row validate name">
