@@ -17,6 +17,7 @@ gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 gem 'mail_form'
+
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 

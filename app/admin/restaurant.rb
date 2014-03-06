@@ -23,10 +23,6 @@ ActiveAdmin.register Restaurant do
     end
   end
 
-
-
-
-
 # start controller
   controller do
     def new
@@ -58,10 +54,12 @@ ActiveAdmin.register Restaurant do
     end
     def update
       @restaurant = Restaurant.find(params[:id])
+   
        if @restaurant.update_attributes(
         name: params[:restaurant][:name],
         user_id: params[:restaurant][:user_id],
         address:params[:restaurant][:address],
+        approved:params[:restaurant][:approved],
         city:params[:restaurant][:city],
         logo:params[:restaurant][:logo],
         state:params[:restaurant][:state],
@@ -151,7 +149,7 @@ ActiveAdmin.register Restaurant do
       f.input :name
       f.input :address
       f.input :city
-      
+      f.input :approved
       f.input :state, :as => :select, :collection => @states, :include_blank => false
       f.input :email
       f.input :phone

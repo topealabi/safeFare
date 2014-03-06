@@ -8,6 +8,7 @@ ActiveAdmin.register_page "Dashboard" do
     table_for Restaurant.where(approved:!true) do 
       column :name do |restaurant|
         link_to restaurant.name, edit_admin_restaurant_path(restaurant)
+        # link_to 'Approve!', approve_admin_restaurant_path, method: :post
         end
       column :created_at
       bool_column :approved

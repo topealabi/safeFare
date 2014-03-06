@@ -1,7 +1,4 @@
-<!-- This is the page a user should land on when they log in.  There should be 
-buttons for adding restaurants or editing restaurants.  
-They should see all of their restaurants. 
- -->
+<% if current_user == @user %>
 <div class="user-section">
   <div class="section-wrapper">
     <div class="col-sm-12">
@@ -67,3 +64,11 @@ They should see all of their restaurants.
     </div>
   </div>
 </div>
+<%else%>
+  <div class="col-sm-12" style='text-align:center;'>
+      <div class="center error">
+        <h1>You've ended up in the wrong place</h1>
+        <%= link_to "Get Me Out Of Here!", '/for-restaurants', class:'nav-link' %>
+      </div>  
+  </div>
+<%end%>

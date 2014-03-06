@@ -41,7 +41,7 @@
                 <p class='form-label'>ZIP:</p>
                 <%= text_field_tag :zip_search, params[:zip_search], class:"input" %>
               </div>
-              <div class="col-xs-12 form-row clearfix validate name">
+              <div class="col-xs-12 form-row clearfix validate name check">
                   <p class='form-label'>Kid Friendly</p>
                   <%= check_box_tag :kid_friendly %>
               </div>
@@ -54,8 +54,10 @@
               <p class='form-label'>Trained Employee Role</p>
               <div class="role-container">
                  <% Role.all.each do |ro|%>
+                   <div class="role-group">
                    <%= check_box_tag "worker_role[]", ro.role %>
                    <%= label_tag(:worker_role, ro.role) %>
+                   </div>
                 <% end %>
               </div>
           </div> 
