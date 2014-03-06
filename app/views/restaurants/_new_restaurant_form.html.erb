@@ -62,6 +62,11 @@
 			<div class='feedback'><div></div></div>
 		</div>
 		<div class="col-xs-12 form-row">
+			<p class='form-label'>Kid Friendly</p>
+			<%= f.input :kid_friendly, label: false, input_html: { class: "req" },  as: :boolean   %>
+			<div class='feedback'><div></div></div>
+		</div>
+		<div class="col-xs-12 form-row">
 			<p class='form-label'>Hours</p>
 			<%= f.input :hours, label: false %>
 			<div class='feedback'><div></div></div>

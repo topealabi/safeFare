@@ -13,36 +13,22 @@ They should see all of their restaurants.
           <div class="col-sm-12">
             <h2>Account Information</h2>
             <hr>
-            <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-              
-            <div class="col-xs-12 form-row validate name">
-              <p class='form-label'>Email</p>
-              <%= f.email_field :email %>
-              <div class='feedback'><div></div></div>
-            </div>
-            <div class="col-xs-12 form-row validate name">
+            <%= form_for(@user, :url => { :action => "update_password" } ) do |f| %>
+              <%= devise_error_messages! %>
+              <div class="col-xs-12 form-row validate name">
               <p class='form-label'>New Password</p>
-              <%= f.password_field :password, :autocomplete => "off" %>
-              <div class='feedback'><div></div></div>
-            </div>
-            <div class="col-xs-12 form-row validate name">
+                <%= f.password_field :password, :autocomplete => "off"  %>
+              </div>
+               <div class="col-xs-12 form-row validate name">
               <p class='form-label'>Re-Type Password</p>
               <%= f.password_field :password_confirmation %>
               <div class='feedback'><div></div></div>
             </div>
-            <div class="col-xs-12 form-row validate name">
-              <p class='form-label'>Current Password</p>
-               <%= f.password_field :current_password %>
-              <div class='feedback'><div></div></div>
-            </div>
-            <div class="col-xs-12 form-row">
-              <div class="no-label-wrap">
-                 <%= f.submit "Update", class:'nav-link' %>
+              <div class="action_container" style='margin:auto;'>
+                <%= f.submit %>
               </div>
-            </div>
-          <%end%> 
+            <% end %>
           </div>
-        
       </div>
 
       <div class="tb-wrap">

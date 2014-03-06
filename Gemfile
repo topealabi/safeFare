@@ -42,6 +42,9 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+#pagination
+gem 'will_paginate'
+
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'cancan'
 

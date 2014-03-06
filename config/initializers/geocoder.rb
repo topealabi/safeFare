@@ -1,8 +1,8 @@
 # # config/initializers/geocoder.rb
-# Geocoder.configure(
+ Geocoder.configure(
 
 #   # geocoding service (see below for supported options):
-#   :lookup => :bing,
+   :lookup => :google,
 
 #   key: ENV['BING_GEOCODE_ID'],
 
@@ -12,8 +12,8 @@
 #   :maxmind => {service}
 
 #   # geocoding service request timeout, in seconds (default 3):
-#   :timeout => 5,
+   :timeout => 20,
 
 #   # set default units to kilometers:
 #   :units => :km,
-# )
+ )

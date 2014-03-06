@@ -36,8 +36,10 @@ function populateModal(data){
 
    var modalContainer = '';
    modalContainer += "<div class='col-xs-12 col-sm-5'>";
-   if (data[0].repos != ''){
+   if (data[0].repos != null){
+
     var loc_array = data[0].repos.split(',')
+
     modalContainer +=   "<img src='http://maps.googleapis.com/maps/api/staticmap?markers="+loc_array[0]+"%2C"+loc_array[1]+"&zoom=16&size=374x300&maptype=roadmap&sensor=false' />" ;
    } else{
     modalContainer +=   "<img src='http://maps.googleapis.com/maps/api/staticmap?markers="+data[0].latitude+"%2C"+data[0].longitude+"&zoom=16&size=374x300&maptype=roadmap&sensor=false' />" ;

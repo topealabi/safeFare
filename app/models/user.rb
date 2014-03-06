@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   	inverse_of: :user
   	
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
 
 end
