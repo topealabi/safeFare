@@ -152,7 +152,7 @@ a.nav-link, form input[type="submit"] { padding: 7px 0; }
 		}
 	}
 }
-
+.check input{margin-top: 15px;}
 .nav-link:hover{background:$hover;}
 // Nav
 .search{
@@ -165,6 +165,7 @@ a.nav-link, form input[type="submit"] { padding: 7px 0; }
 		img{
 			width:100%;
 			max-width:368px;
+			max-height:100%;
 		}
 	}
 	.advanced-link { float: right; margin-right: 50px; }
@@ -503,5 +504,20 @@ font-size: 16px;
 	.form-label, .input{
 		padding: 5px 10px 5px 0px;
 	}
+}
+.center.error{
+	width:65%;
+	margin:30px auto;
+	a{
+		margin:auto;
+	}
+}
+.role-group{
+	float:left;
+	padding:10px;
+	font-size: 14px;
+background: white;
+
+
 }
 .white-space { height: 30px;clear: both; }

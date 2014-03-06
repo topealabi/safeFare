@@ -23,6 +23,7 @@ class RestaurantsController < ApplicationController
 
   def new
 		  @states = []
+
     	@user = current_user
     	@restaurant = Restaurant.new
       @employee=@restaurant.aware_employees.build
