@@ -4,7 +4,76 @@ $blue:#243772;
 $hover:#3a5ad8;
 
 @media screen and (max-width: 767px){ /* Insert your own breakpoint as needed */
+	.or{
+		display:none;
+	}
+	.contact-form form{
+		max-width: 385px;
+		margin:auto;	
+		input#user_email, input#user_password{
+			width:100% !important;
+		}
+	}
+	#basic form{
+		max-width: 385px;
+		margin:auto;
+		padding:20px;
+		.form-row .form-label{width:100%;}	
+		input#search, input#address{
+			width:100% !important;
+		}
+		input#submit-search{
+			width:50%;
+			margin:auto;
+			margin-left:0px !important;
+		}
+	}
+	.accounts form{
+		max-width: 385px;
+		margin:auto;
+		padding:20px;
+		.form-row .form-label{width:100%;}	
+		input#user_password, input#user_password_confirmation{
+			width:100% !important;
+		}
+		.action_container input{float:left;}
+		
+	}
+	#advanced form{
+		max-width: 385px;
+		margin:auto;
+		padding:20px;
+		.form-row .form-label{width:100%;}	
+		select#state_search,select#within,.chosen-container,input#search,input#city_search, input#address, input#zip_search{
+			width:100% !important;
+		}
+		input#submit-search{
+			width:50%;
+			margin:auto;
+			margin-left:0px !important;
+		}
+		.chosen-choices{
+			width:100% !important;
+		}
+		.role-group{
+			float:none;
+		}
+		.small-left{
+			margin-left:10px;
 
+		}
+	}
+	.form-row .no-label-wrap{
+			margin-left:0px;
+		}
+	.form-row .form-label{
+		float:none;
+		text-align:left;
+
+		input{
+			width: auto !important;
+		}
+	}
 	.hide-on-medium, .hide-on-small{
 		display:none !important;
 	}
@@ -47,8 +116,8 @@ $hover:#3a5ad8;
 		transition: max-height 0.5s ease;
 		
 	}
-	#main-nav:hover {
-		max-height:220px;
+	#main-nav.show {
+		max-height:250px;
 	}
 	.mobile-menu { 
 		display: block; 
@@ -66,7 +135,7 @@ $hover:#3a5ad8;
 			}
 			.mobile-nav-items {
 				li{
-					border-top: 1px solid white;
+					border-top: 1px solid #141E3F;
 					a {
 						display: block;
 						padding: 6px 0;
@@ -158,6 +227,14 @@ $hover:#3a5ad8;
 			margin-right: auto;
 		}
 	}
+
+	.find-a-button, .resources-button {
+		display:none;
+	}
+	
+	
+
+
 	.footer-section .contact-links li { padding-left: 3px; padding-right: 3px; }
 }
 

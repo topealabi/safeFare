@@ -5,9 +5,9 @@
       <h1>Welcome <%=@user.email%></h1>
       <!-- <a href="" class="nav-link right orange">DELETE MY ACCOUNT</a> -->
       <%= link_to "DELETE MY ACCOUNT", user_registration_path(resource_name),:class=>'nav-link right orange', :confirm => "Are you sure?", :method => :delete %>
-      <div class="blue-form">
+      <div class="blue-form accounts">
         
-          <div class="col-sm-12">
+          <div class="col-sm-12" >
             <h2>Account Information</h2>
             <hr>
             <%= form_for(@user, :url => { :action => "update_password" } ) do |f| %>
@@ -22,7 +22,7 @@
               <div class='feedback'><div></div></div>
             </div>
               <div class="action_container" style='margin:auto;'>
-                <%= f.submit %>
+                <%= f.submit%>
               </div>
             <% end %>
           </div>

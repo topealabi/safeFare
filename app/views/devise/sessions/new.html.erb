@@ -14,7 +14,7 @@
 					<%= form_for(:user, :url => session_path(:user)) do |f| %>
 						<%= devise_error_messages! %>
 						<div class="form-row col-sm-12">
-							<p class='form-label'>Email</p>
+							<p class='form-label col-xs-12'>Email</p>
 							<%= f.text_field :email, label: false %>
 						</div>
 						<div class="form-row col-sm-12">
@@ -30,7 +30,7 @@
 						<div class="form-row col-sm-12">
 							<div class="no-label-wrap">
 								<%= f.submit 'LOG IN', class: 'login' %>
-								<h2 style='width:12%; text-align:center; margin-top:5px;' class='left'>OR</h2>
+								<h2 style='width:12%; text-align:center; margin-top:5px;' class='or left'>OR</h2>
 								<div class="nav-link signup orange"><a href="/users/sign_up">SIGN UP</a></div>
 							</div>
 						</div>
