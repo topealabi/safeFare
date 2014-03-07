@@ -43,6 +43,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'cancan'
 

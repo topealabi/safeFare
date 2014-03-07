@@ -41,7 +41,7 @@ class Restaurant < ActiveRecord::Base
   accepts_nested_attributes_for :type_of_cuisines, :reject_if => lambda { |a| a[:cuisine_id].blank? }, :allow_destroy => true
 
   geocoded_by :restaurant_location
-  after_validation :geocode
+  after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
   
 
   def restaurant_location 
@@ -57,11 +57,15 @@ class Restaurant < ActiveRecord::Base
     integer :zip                       
     text :description
     boolean :kid_friendly
+    boolean :approved
     double :latitude
     double :longitude
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
     string :cuisines_name, :multiple => true do
       cuisines.map { |cuisine| cuisine.name}
+    end
+    string :hood_name, :multiple => true do
+      neighborhoods.map { |neighborhood| neighborhood.name}
     end
     string :worker, :multiple => true do
       z = aware_employees.map  do |emp|
