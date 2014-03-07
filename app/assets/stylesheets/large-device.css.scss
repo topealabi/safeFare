@@ -5,7 +5,8 @@ $hover:#3a5ad8;
 
 @media screen and (min-width: 768px) { /* Insert all styles should go inside this */
 
- .mobile-menu { display: none; }
+ .mobile-menu {
+	 display: none; }
 
 	nav#main-nav{
 		width:100%;

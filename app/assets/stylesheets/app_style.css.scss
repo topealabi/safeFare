@@ -163,9 +163,7 @@ a.nav-link, form input[type="submit"] { padding: 7px 0; }
 	.safeFare-icon{
 		margin-top:40px;
 		img{
-			width:100%;
-			max-width:368px;
-			max-height:100%;
+			max-width:100%;
 		}
 	}
 	.advanced-link { float: right; margin-right: 50px; }
@@ -179,6 +177,7 @@ a.nav-link, form input[type="submit"] { padding: 7px 0; }
 	input#search, input#address {
 		width:44.5%;
 		background:white;
+
 		background-image: image-url("find.png");
 		background-position:0px 0px;
 		background-repeat:no-repeat;
@@ -252,6 +251,9 @@ a.nav-link, form input[type="submit"] { padding: 7px 0; }
 		color:$blue;
 		display:block;
 	}
+}
+.tab-content{
+	background:#f2f5ff;
 }
 ul.nav a:hover { background: $orange !important; }
 nav#main-nav{margin-bottom:0px;}
@@ -520,4 +522,11 @@ background: white;
 
 
 }
+.placeholder { color: #aaa; vertical-align:center;}
+ .mobile-menu {
+	 display: none; }
 .white-space { height: 30px;clear: both; }
+
+.action_container input{float:left; margin-left:25%;}
+
+

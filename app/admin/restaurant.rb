@@ -57,7 +57,7 @@ ActiveAdmin.register Restaurant do
     end
     def update
       @restaurant = Restaurant.find(params[:id])
-   
+   binding.pry
        if @restaurant.update_attributes(
         name: params[:restaurant][:name],
         user_id: params[:restaurant][:user_id],

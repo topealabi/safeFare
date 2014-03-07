@@ -29,7 +29,10 @@
 				<li <% if current_uri == "/about"%> class="active"<%end%>><a href="/about">About SafeFARE</a></li>
 				<li<% if current_uri == "/find-a-restaurant" || current_uri == '/results' %> class="active"<%end%>><a href="/find-a-restaurant">Find a Restaurant</a></li>
 				<li<% if current_uri == "/for-diners"%> class="active"<%end%>><a href="/for-diners">For Diners</a></li>
-				<li<% if current_uri == "/for-restaurants"%> class="active"<%end%>><a href="/for-restaurants">For Restaurants</a></li>		
+				<li<% if current_uri == "/for-restaurants"%> class="active"<%end%>><a href="/for-restaurants">For Restaurants</a></li>
+				<% if user_signed_in? %>
+				<li><%= link_to('Logout', destroy_user_session_path, :method => :delete, class: '') %></li>
+				<%end%>		
 			</ul>
 		</div>
 		<div class="sign-in">
@@ -53,7 +56,7 @@
 
 <div class="search">
 		<div class="section-wrapper">
-			<div class="safeFare-icon left col-sm-6 col-xs-12"><a href="/"><%= image_tag("logo.gif", :alt => "temp logo") %></a></div>
+			<div class="safeFare-icon left col-sm-6 col-xs-12"><a href="/"><%= image_tag("logo.png", :alt => "temp logo") %></a></div>
 			<div class="safeFare-search right col-sm-6 col-xs-12" style='padding:0px;'>
 				<h2 class='small-thick'>Find a Restaurant</h2>
 				<p>Locate a food allergy aware restaurant near you.</p>
@@ -119,6 +122,13 @@
 <script>
 $(document).ready(function(){
 	$('a[rel="external"]').attr('target', '_blank');
+	$('#search, #address').placeholder();
+	$('#mobile-nav').on('touchstart click',function(e){
+		if ($(e.target) != $('#mobile-nav li')){
+			e.preventDefault();
+			$('#main-nav').toggleClass('show');
+		}
+	});
 });
 </script>
 </body>

@@ -17,6 +17,10 @@ $hover:#3a5ad8;
 		background-repeat:no-repeat;
 		background-position:top center !important;
 	}
+	#basic input#submit-search{
+		width:50% !important;
+		background-image:none !important;
+	}
 	input#submit-search:hover{
 		background:$hover;
 
@@ -31,9 +35,14 @@ $hover:#3a5ad8;
 	.hide-on-medium {
 		display:none !important;
 	}
+	.role-group{
+			float:none;
+		}
 	.show-section {
 		.map-and-image { text-align: center; }
 		.image-cont { text-align: center; }
 	}
-
+	.nav-link.signup.orange{
+		margin: auto;
+	}
 }
