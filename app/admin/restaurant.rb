@@ -17,11 +17,14 @@ ActiveAdmin.register Restaurant do
     end
   end  
   sidebar "Restaurant Employees", only: [:show, :edit] do
-    ul do
+    ul do 
       li link_to("All Aware Employees", admin_restaurant_aware_employees_path(restaurant))
-      
+      Restaurant.find(params[:id]).aware_employees.each do |emp|
+      li link_to(emp.name, edit_admin_restaurant_aware_employee_path(Restaurant.find(params[:id]), emp)) 
+      end
     end
   end
+
 
 # start controller
   controller do

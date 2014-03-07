@@ -16,18 +16,61 @@
 //
 //   .status_tag { background: #6090DB; }
 
-.form-inputs{
-	input { float: right; }
+
+
+.col-approved {
+     font-size: 30px; 
+}
+    
+
+#new_admin_user {
+    background-color: #F2F5FF;
 }
 
+
+.form-inputs{
+	.input {
+        margin-bottom: 25px;
+        label{ 
+            font-family: 'proxima-nova';
+            font-size: 16px;
+            font-weight: 600;
+            font-style: normal;
+            color:  #243772;
+            line-height: 24px;
+            padding-top: 10px; 
+            padding-right: 20px;
+            padding-bottom: 10px;
+
+        }
+        input {
+            float: right;
+        }
+    }
+    .admin_user_remember_me{
+        width: 140px;
+    }
+}
+
+.form-actions .button{
+    margin-bottom: 25px;
+
+}
+
+
+
+body.logged_out { background-color: #FFFFFF; }
+
 body.logged_out h2 {
-    background: -moz-linear-gradient(-90deg, #0382dd, #34556f) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background: -moz-linear-gradient(-90deg, #FFFFFF, #FFFFFF) repeat scroll 0 0 rgba(0, 0, 0, 0);
     border: medium none;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    color: #FFFFFF;
-    font-size: 1em;
-    font-weight: bold;
-    line-height: 18px;
+    color: #243772;
+    //font-family: 'proxima-nova';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px;
     margin: -13px -30px 20px;
     padding: 5px 10px 3px;
     text-shadow: 0 1px 0 #000000;
@@ -111,3 +154,5 @@ form input[type=submit]:hover{
     background:#3a5ad8;
 }
 .padding-left{padding-left:15px;}
+
+
