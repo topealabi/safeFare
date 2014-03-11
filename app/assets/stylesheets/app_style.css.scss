@@ -394,6 +394,7 @@ form input[type="submit"] {
 
 .role-click a{
 	opacity: 0;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=00)";
 	display: inline;
 	width: 1px;
 	height: 1px;
@@ -515,18 +516,50 @@ font-size: 16px;
 	}
 }
 .role-group{
-	float:left;
+
 	padding:10px;
 	font-size: 14px;
 background: white;
 
 
 }
+.search-field{padding:5px 0px;}
 .placeholder { color: #aaa; vertical-align:center;}
  .mobile-menu {
 	 display: none; }
 .white-space { height: 30px;clear: both; }
 
 .action_container input{float:left; margin-left:25%;}
+.custom-pag{
+	.pagination{
+		span.page,span.page:hover {
+			background:none;
+			border:0px solid white;
+			text-shadow:none;
+			box-shadow:none;
+			a{
+				box-shadow:none;
+				background:none;
+				font-size:14px;
+				color:$blue;
+				text-shadow:none;
+				border:0px solid white;	
+			}
+		}
 
+		span.current, span.page.current:hover {
+		
+			color:$blue;
+			font-size:14px;
+			text-shadow:none;
+			box-shadow:none;
+			background:none;
+			border:0px solid white;
+
+		}
+		span.page:hover{
+			text-decoration: underline;
+		}
+	}
+}
 

@@ -91,8 +91,11 @@ a.add_an_employee:hover{
 	.restaurant_total_employees {
 		margin: 10px 0;
 	}
+	.chosen-container.chosen-container-multi{
+		width:100% !important;
+	}
 	select, .chosen-container {
-		width: 100%;
+	
 		margin: 10px 0;
 	}
 	input[type=file] {

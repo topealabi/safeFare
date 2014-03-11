@@ -44,15 +44,24 @@ class RestaurantsController < ApplicationController
  
     respond_to do |format|
       if @restaurant.save
+        save_url(@restaurant)
         save_nests(@restaurant)
         format.html { redirect_to current_user, notice: 'Restaurant was successfully created.' }
         format.json { render action: 'show', status: :created, location: @restaurant }
       else
    
-        format.html { 'redirect_to new_user_restaurant_path(current_user), notice: @restaurant.errors.full_messages '}
+        format.html { redirect_to new_user_restaurant_path(current_user), notice: @restaurant.errors.full_messages }
         format.json { render json: @restaurant.errors, status: :unprocessable_entity }
       end
     end
+  end
+  def save_url(restaurant)
+    if Restaurant.where(name:restaurant.name).length > 1
+              Restaurant.update(restaurant.id, url: restaurant.name.gsub(/[ ']/, '-') + Restaurant.where(name:restaurant.name).length.to_s)
+          else
+              Restaurant.update(restaurant.id, url: restaurant.name.gsub(/[ ']/, '-'))
+
+          end
   end
   def destroy
      @restaurant =  Restaurant.find(params[:id])
@@ -90,11 +99,15 @@ class RestaurantsController < ApplicationController
   end
   
   def show
-
+   if params[:url] == nil
     @restaurant = Restaurant.find(params[:id])
+  else 
+      @restaurant = Restaurant.find_by_url(params[:url])
+  end
     @roles = []
+
     @employees = @restaurant.aware_employees.length
-    @percent = (@employees.to_f/@restaurant.total_employees.to_f) * 100
+    @percent = ((@employees.to_f/@restaurant.total_employees.to_f) * 100).round(1)
     if @restaurant.repos != nil
     end
     @restaurant.aware_employees.each do |emp|
@@ -113,7 +126,7 @@ class RestaurantsController < ApplicationController
   end
 	private	
 		def restaurant_params
-      	params.require(:restaurant).permit(:name,:address,:city,:state, :email, :phone,:repos,
+      	params.require(:restaurant).permit(:name,:url,:address,:city,:state, :email, :phone,:repos,
           :hours,:approved,:kid_friendly,:website,:facebook_url,:twitter_url,:allergy_eats_url,:role_id,:image,
           :zip,:logo,:total_employees,:description,:is_visible,cuisine_ids:[],neighborhood_ids:[],
           aware_employees_attributes:[:name,:id, :verification,:expiration, :cert_type,role_ids:[],restaurant_roles_attributes:[role_id:[]]],
@@ -198,10 +211,12 @@ class RestaurantsController < ApplicationController
          params[:restaurant][:aware_employees_attributes].each do |employee|
           #find saved emplpyee with the correct name AT the current restaurant
            saved_employee = AwareEmployee.where(name: employee[1][:name], restaurant_id: this_restaurant.id).first
-        #   #iterate through restaurant roles and save 
-           employee[1][:restaurant_roles_attributes].first[1][:role_id].each do |role|
-             if role != '' then RestaurantRole.create(aware_employee_id: saved_employee.id, role_id: role ) end
-            end 
+        #   #iterate through restaurant roles and save
+           if saved_employee != nil 
+             employee[1][:restaurant_roles_attributes].first[1][:role_id].each do |role|
+               if role != '' then RestaurantRole.create(aware_employee_id: saved_employee.id, role_id: role ) end
+              end 
+            end  
           end
       end  
     end

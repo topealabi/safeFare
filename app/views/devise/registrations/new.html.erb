@@ -15,6 +15,10 @@
 					<%= form_for(:user, :url => registration_path(resource_name)) do |f| %>
 				<%= devise_error_messages! %>
 						<div class="form-row col-sm-12">
+							<p class='form-label'>Name</p>
+							<%= f.text_field :name, label: false %>
+						</div>
+						<div class="form-row col-sm-12">
 							<p class='form-label'>Email</p>
 							<%= f.text_field :email, label: false %>
 						</div>

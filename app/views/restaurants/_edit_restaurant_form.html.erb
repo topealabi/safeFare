@@ -13,7 +13,7 @@
 		</div>
 		<div class="col-xs-12 form-row">
 			<p class='form-label'>Kid Friendly</p>
-			<%= f.input :kid_friendly, label: false, input_html: { class: "req" },  as: :boolean   %>
+			<%= f.input :kid_friendly, label: false, input_html: { class: "req margin-top" },  as: :boolean   %>
 			<div class='feedback'><div></div></div>
 		</div>
 		<div class="col-xs-12 form-row validate address">
@@ -178,6 +178,7 @@
 <%end%>
 
 <script>
+if (isIE) {$('.ie-gonem, .role-click a').fadeOut();}
 $( "#check" ).click(function() {
 	  event.preventDefault();
 	  var address = $('#restaurant_address')[0];

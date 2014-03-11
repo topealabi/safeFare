@@ -27,7 +27,7 @@
 		</div>
 		<div class="col-xs-12 form-row">
 			<div class="no-label-wrap">
-				<span id='check'>Check Address</span>. You may move the pin to a desired location.
+				<span class='ie-gone' id='check'>Check Address</span>. <span class='ie-gone'>You may move the pin to a desired location.</span>
 			</div>
 		</div>
 		<div class="col-xs-12 form-row">
@@ -62,8 +62,8 @@
 			<div class='feedback'><div></div></div>
 		</div>
 		<div class="col-xs-12 form-row">
-			<p class='form-label'>Kid Friendly</p>
-			<%= f.input :kid_friendly, label: false, input_html: { class: "req" },  as: :boolean   %>
+			<p class='form-label'>Description</p>
+			<%= f.input :description, label: false %>
 			<div class='feedback'><div></div></div>
 		</div>
 		<div class="col-xs-12 form-row">
@@ -71,15 +71,12 @@
 			<%= f.input :hours, label: false %>
 			<div class='feedback'><div></div></div>
 		</div>
+		
 		<div class="col-xs-12 form-row neighborhood">
 			<%= f.simple_fields_for :areas do |h| %>
 				<p class='form-label'>Neighborhood</p>
 				<%= h.input :neighborhood_id, collection: Neighborhood.all, multiple: true, value: :id, label: false, input_html: { class: "chosen-select req", multiple: true } %>
 			<% end %>
-			<div class='feedback'><div></div></div>
-		<div class="col-xs-12 form-row">
-			<p class='form-label'>Description</p>
-			<%= f.input :description, label: false %>
 			<div class='feedback'><div></div></div>
 		</div>
 		<div class="col-xs-12 form-row cuisine">
@@ -90,8 +87,8 @@
 			<div class='feedback'><div></div></div>
 		</div>
 		<div class="col-xs-12 form-row">
-			<p class='form-label'>Allergy Eats</p>
-			<%= f.input :allergy_eats_url, label: false %>
+			<p class='form-label'>Kid Friendly</p>
+			<%= f.input :kid_friendly, label: false, input_html: { class: "req margin-top" },  as: :boolean   %>
 			<div class='feedback'><div></div></div>
 		</div>
 		<div class="col-xs-12 form-row">
@@ -132,18 +129,22 @@
 			<div class='feedback'><div></div></div>
 		</div>
 		<div class="col-xs-12 form-row">
+			<p class='form-label'>Allergy Eats</p>
+			<%= f.input :allergy_eats_url, label: false %>
+			<div class='feedback'><div></div></div>
+		</div>
+		<div class="col-xs-12 form-row">
 			<div class="no-label-wrap">
 				<%= f.button :submit, :class => "nav-link" %>
 			</div>
 		</div>
-	
 	</div>
 <% end %>
-
 <script>
+if (isIE) {$('.ie-gone, .role-click a').fadeOut();}
 (function() {
-	$( "#check" ).click(function(event) {
-		event.preventDefault();
+	$( "#check" ).on('click',function(event) {
+		console.log('click');
 		var address = $('#restaurant_address')[0];
 		var city = $('#restaurant_city')[0];
 		var state = $('#restaurant_state')[0];
@@ -152,6 +153,7 @@
 		if (params.length < 5) {
 			alert('please provide a valid address');
 		} else{
+			console.log('another');
 			geocode(params);
 		}
 	});

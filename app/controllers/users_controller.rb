@@ -26,6 +26,6 @@ def update_password
 
   def user_params
     # NOTE: Using `strong_parameters` gem
-    params.required(:user).permit(:password, :password_confirmation)
+    params.required(:user).permit(:name, :email, :password, :password_confirmation)
   end
 end
