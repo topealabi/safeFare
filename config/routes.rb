@@ -31,7 +31,8 @@ end
   match "/results" => "search#results", via: [:post, :get]
   match "/for-diners" => "home#for_diners", via: [:get]
   match "/for-restaurants" => "home#for_restaurants", via: [:get, :post]
-
+  match "/sitemap" => "home#sitemap", via: [:get, :post]
+  match "/disclaimer" => "home#disclaimer", via: [:get, :post]
 
   # devise_scope :user do
   #   get   '/for-restaurants',          to: 'devise/sessions#new'

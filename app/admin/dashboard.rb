@@ -11,7 +11,7 @@ ActiveAdmin.register_page "Dashboard" do
         
         end
       column :created_at
-      bool_column :approved
+      column :approved
     end
     strong { link_to "View All Restaurants", admin_restaurants_path }
   end

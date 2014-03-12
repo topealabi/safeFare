@@ -5,7 +5,7 @@ ActiveAdmin.register Restaurant do
   index do
     column :name
     column :address
-    bool_column :approved
+    column :approved
     default_actions
   end
   show do
@@ -57,7 +57,7 @@ ActiveAdmin.register Restaurant do
     end
     def update
       @restaurant = Restaurant.find(params[:id])
-   binding.pry
+
        if @restaurant.update_attributes(
         name: params[:restaurant][:name],
         user_id: params[:restaurant][:user_id],

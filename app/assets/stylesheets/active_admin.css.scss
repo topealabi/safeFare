@@ -18,13 +18,13 @@
 
 
 
-.col-approved {
-     font-size: 30px; 
-}
+
     
 
 #new_admin_user {
     background-color: #F2F5FF;
+    padding: 10px;
+
 }
 
 
@@ -151,8 +151,9 @@ form input[type=submit] {
     letter-spacing: 0.05em;
 }
 form input[type=submit]:hover{
-    background:#3a5ad8;
+    background:#3a5ad8 !important;
+    box-shadow:none;
 }
 .padding-left{padding-left:15px;}
 
-
+h1, .orange-header{color:#EC4423;font-weight:300;font-size:28px;padding-bottom:20px;}

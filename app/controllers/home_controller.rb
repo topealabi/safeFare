@@ -4,10 +4,14 @@ class HomeController < ApplicationController
 	end
 	def about
 	end
+	def sitemap
+	end
 	def contact
 		@contactform = ContactForm.new
 	end
 	def about
+	end
+	def disclaimer
 	end
 	def submit
 		
