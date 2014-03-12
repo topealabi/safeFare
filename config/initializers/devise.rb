@@ -10,7 +10,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'safeFare_test@safeFare.com'
+  config.mailer_sender = 'safeFareAdmin@safeFare.org'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
