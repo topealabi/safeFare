@@ -22,5 +22,8 @@ module ApplicationHelper
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
+  def boolean_to_words(value)
+    value ? "Yes" : "No"
+  end
 end
 

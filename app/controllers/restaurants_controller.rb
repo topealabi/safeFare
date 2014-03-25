@@ -23,7 +23,7 @@ class RestaurantsController < ApplicationController
 
   def new
 		  @states = []
-
+      
     	@user = current_user
     	@restaurant = Restaurant.new
       @employee=@restaurant.aware_employees.build
@@ -46,12 +46,14 @@ class RestaurantsController < ApplicationController
       if @restaurant.save
         save_url(@restaurant)
         save_nests(@restaurant)
+        $old_form = ''
         format.html { redirect_to current_user, notice: 'Restaurant was successfully created.' }
         format.json { render action: 'show', status: :created, location: @restaurant }
       else
-   
+      $old_form = @restaurant
         format.html { redirect_to new_user_restaurant_path(current_user), notice: @restaurant.errors.full_messages }
         format.json { render json: @restaurant.errors, status: :unprocessable_entity }
+        
       end
     end
   end

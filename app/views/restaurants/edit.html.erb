@@ -18,6 +18,10 @@
 	</div>
 </div>
 <script>
-
-	
+var start_length = $('.aware-cont').length;
+$('.remove_fields').click(function(event){
+ 	if ($('.aware-cont').length > start_length){
+		$('.aware-cont').last().remove()
+	}
+})
 </script>

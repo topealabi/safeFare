@@ -46,8 +46,8 @@
 		 		</div>
 					
 		 		<% else %>
-		 		<div class="nav-link">
-		 		  <%= link_to "RESTAURANT LOGIN", '/for-restaurants' %> 
+		 		<div class="nav-link" style='margin-top:7px'>
+		 		  <%= link_to "RESTAURANT LOGIN/SIGN-UP", '/for-restaurants' %> 
 		 		 </div>
 		 		<% end %> 
 	 		</div>
@@ -83,7 +83,7 @@
 			</ul>
 		</div>
 	</div>
-<div class="alert notice"> <%= notice %> <%= alert %> </div>	
+<div class="alert notice"><%= notice %><%= alert %></div>	
 <div class="container-fluid">
 		<%= yield %>
 <div class="modal fade modal-lg" id="restaurantModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

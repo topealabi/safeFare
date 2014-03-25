@@ -21,3 +21,9 @@
 
 en:
   hello: "Hello world"
+en:
+  activerecord:
+    models:
+      area:
+        one: Neighborhood
+        other: Neighborhoods

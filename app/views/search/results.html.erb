@@ -11,8 +11,9 @@
       <p style='margin:15px 0px;'>Didn't find what you are looking for? <a href='/find-a-restaurant'>Search Again?</a></p>
       <div class="map-wrap"><div id="map-canvas" ></div></div>
       
-      <div class="search-count"><%= @restaurants.length %> OF <%= @restaurants.length %> RESTAURANTS</div>
+    
      <h2 class="map-trig">View Map of Results</h2>
+     <A HREF="javascript:window.print()">Click to Print These Listings</A>
       <div class="tb-wrap">
         <table class="tablesorter">
           <thead>
@@ -51,7 +52,7 @@
                         <%end%>  
                       <%end%>  
                  </td>    
-                <td class="center hide-on-medium"><%= restaurant.kid_friendly? %></td>
+                <td class="center hide-on-medium"><%= boolean_to_words(restaurant.kid_friendly?) %></td>
                 <td class="center"><a href="tel:<%= restaurant.phone %>"><%= restaurant.phone %></a></td>
               </tr>
             <% end %>
@@ -96,6 +97,7 @@
   var marker;
 
   function show_initialize() {
+   
     var mapOptions = {
       zoom: 9,
       center: bounds.getCenter()
@@ -130,15 +132,16 @@
    
     iterator++;
   }
-  google.maps.event.addDomListener(window, 'load', show_initialize);
 
   $(document).ready(function(){
+     show_initialize(); 
+
     $(".tablesorter").tablesorter(); 
     $('.map-trig').on('click',function(){
       $(this).css('visibility', 'hidden');
       $('.map-wrap').toggleClass('active');
-      drop();
-      map.fitBounds(fullBounds);
+        drop();
+        map.fitBounds(fullBounds);
     })
   })
  </script>

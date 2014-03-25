@@ -15,6 +15,7 @@ class Restaurant < ActiveRecord::Base
   #   in: VALID_STATES
   validates_numericality_of :total_employees
  	validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
+  
   validates :name, uniqueness: {scope: :user_id}, presence: true
  	belongs_to :user,
  	  inverse_of: :restaurants

@@ -16,36 +16,39 @@
   <div class="tab-pane active" id="advanced">
      <%= form_tag "/results", :method => :get do %>
               <div class="col-xs-12 form-row clearfix validate name">
-                <p class='form-label'>Restaurant Name:</p>
+                <p class='form-label no-padding-top'>Restaurant <br> Name</p>
                 <%= text_field_tag :search, params[:search], class:"input" %>
               </div>
+              <div class="col-xs-12 form-row clearfix validate name">
+                <p class='form-label'>Cuisines</p>
+               <%= select_tag(:cuisine_search, options_from_collection_for_select(Cuisine.all, :name, :name), multiple: true,class: "chosen-select req input") %>
+              </div>
+              <p class="disclaim">Please begin by entering in a cuisine type.  Your cuisine will be autofill. 
+                You can choose multiple cuisines.</p>
+                <div class="col-xs-12 form-row clearfix validate name">
+                  <p class='form-label'>Neighborhood</p>
+                 <%= select_tag(:hood_search, options_from_collection_for_select(Neighborhood.all, :name, :name), multiple: true,class: "chosen-select req input") %>
+                  <span class='feedback'></span>
+              </div>
                <div class="col-xs-12 form-row clearfix validate name">
-                <p class='form-label'>City:</p>
+                <p class='form-label'>City</p>
                 <%= text_field_tag :city_search, params[:city_search], class:"input" %>
               </div>
                <div class="col-xs-12 form-row clearfix validate name">
-                <p class='form-label'>State:</p>
+                <p class='form-label'>State</p>
                <%= select_tag(:state_search, options_from_collection_for_select(State.all, :abbreviation, :abbreviation), multiple: false, include_blank: '', class: "req input") %>
                 <span class='feedback'></span>
-              </div>
+                </div>
                 <div class="col-xs-12 form-row clearfix validate name">
-                <p class='form-label'>ZIP:</p>
+                <p class='form-label'>ZIP</p>
                 <%= text_field_tag :zip_search, params[:zip_search], class:"input" %>
               </div>
                <div class="col-xs-12 form-row clearfix validate name">
-                <p class='form-label'>Within:</p>
+                <p class='form-label'>Within</p>
                <%= select_tag(:within, "<option>&nbsp;</option><option>5 miles</option><option>10 miles</option><option>15 miles</option>".html_safe,class: "req input") %>
               </div>
-               <div class="col-xs-12 form-row clearfix validate name">
-                <p class='form-label'>Cuisines:</p>
-               <%= select_tag(:cuisine_search, options_from_collection_for_select(Cuisine.all, :name, :name), multiple: true,class: "chosen-select req input") %>
-              </div>
+          
              
-              <div class="col-xs-12 form-row clearfix validate name">
-                <p class='form-label'>Neighborhood:</p>
-               <%= select_tag(:hood_search, options_from_collection_for_select(Neighborhood.all, :name, :name), multiple: true,class: "chosen-select req input") %>
-                <span class='feedback'></span>
-              </div>
             
               <div class="col-xs-12 form-row clearfix validate name check">
                   <p class='form-label'>Kid Friendly</p>
@@ -53,7 +56,7 @@
               </div>
              
             <div class="col-sm-12 form-row clearfix">
-              <p class='form-label'>Trained Employee Role</p>
+              <p class='form-label no-padding-top'>Trained<br> Employee Role</p>
               <div class="role-container">
                  <% Role.all.each do |ro|%>
                    <div class="role-group">
@@ -62,6 +65,7 @@
                    </div>
                 <% end %>
               </div>
+               <p class="disclaim">To learn which employee(s) have completed a food allergy training program, please check off the appropriate box.</p>
           </div> 
           <%= submit_tag "SUBMIT", :name => nil, class:"small-left" %>
       <% end %>
@@ -70,11 +74,11 @@
   <div class="tab-pane" id="basic">
     <form name="search" action="/results" method="get">
       <div class="col-sm-12 form-row clearfix">
-        <p class='form-label'>Search For:</p>
+        <p class='form-label'>Search For</p>
           <input type="text" name="search" id='search' class='input'placeholder='Restaurant, Cuisine, etc.'>
       </div>
        <div class="col-sm-12 form-row clearfix">
-        <p class='form-label'>Near:</p>
+        <p class='form-label'>Near</p>
           <input type="text" name="address" class='input'id='address' placeholder='Address, ZIP, etc.'>
         </div>
           <input type="submit" name="nil" style='display:block'data-role='none'id='submit-search' value='SUBMIT' >

@@ -31,7 +31,7 @@ CSV.foreach('db/cuisines.csv', headers: false) do |cuisine|
 		puts cuisine[0]
 	end
 end
-['Chef', 'Server', 'Front of House', 'Back of House'].each do |role|
+['Chef', 'Manager', 'Other'].each do |role|
 	role_exist = Role.where({role: role})
 	
 	if role_exist.length >= 1

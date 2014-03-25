@@ -1,19 +1,26 @@
 ActiveAdmin.register AwareEmployee do
-    belongs_to :restaurant
-    navigation_menu :restaurant
-    config.filters = false
+    # belongs_to :restaurant
+    # navigation_menu :restaurant
+
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
-    permit_params :name, :verification, :cert_type, :expiration, :approved?, :role_id, restaurant_roles_attributes:[:role_id, :_destroy]
+  filter :restaurant
+  filter :name
+  filter :approved?
+  filter :expiration
+  filter :approved
+  filter :created_at
+  permit_params :name, :verification, :cert_type, :expiration, :approved?, :role_id, restaurant_roles_attributes:[:role_id, :_destroy]
   controller do
     def update
       @employee = AwareEmployee.find(params[:id])
        if @employee.update_attributes(name: params[:aware_employee][:name], verification: params[:aware_employee][:verification],
         cert_type: params[:aware_employee][:cert_type], approved?: params[:aware_employee][:approved?])
-          redirect_to admin_restaurant_aware_employees_path(params[:restaurant_id]), notice: 'Thanks' 
+          redirect_to admin_aware_employees_path, notice: 'Thanks' 
           admin_edit_nests(@employee)
         else
+       
           redirect_to :back
         end
     end
@@ -35,13 +42,26 @@ ActiveAdmin.register AwareEmployee do
     end          
   end
 
+index do
+    column :name
+    column :restaurant
+    column :approved?
+    default_actions
+  end
+  show do
+    attributes_table do
+      row :name
+      bool_row :approved
+     
+    end
+  end 
 
 form do |f|
       f.inputs "Details" do
       f.input :name
       f.input :verification
       f.input :approved?
-      f.input :cert_type, :as => :select, :collection => ['1','2'], :include_blank => false, :selected => (aware_employee.cert_type if !aware_employee.cert_type.nil?)
+      f.input :cert_type, :as => :select, :collection => ['ServSafe Allergens Online Course', 'AllerTrain'], :include_blank => false, :selected => (aware_employee.cert_type if !aware_employee.cert_type.nil?)
       f.input :expiration
       end
       f.inputs "Employee Roles" do

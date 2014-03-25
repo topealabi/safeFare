@@ -6,28 +6,19 @@ var titles =[];
 
 
 function getRestaurant(restaurant_id, restaurant_user, callback){
-	
   $(function(){
         $.ajax({
         url:'/users/'+restaurant_user+'/restaurants/'+restaurant_id+'',
         type:"GET",
         dataType: 'json',
-        
         async:'true',
         success:function (data) {
-        	
           callback(data);
-
           }
         });
       });
 }
 function populateModal(data){
-
-
-      
-  
-
    var roles = ''  
    var cuisines = ''
    var percent = Math.round((data[3]/data[0].total_employees) * 100);
@@ -110,7 +101,7 @@ function populateModal(data){
    if (data[0].website) {
      modalContainer += 		"<div class='form-row'>";
      modalContainer += 			"<div class='form-label'>Website</div>";
-     modalContainer += 			"<div class='input'><a href='"+data[0].website+"'>"+data[0].website+"</a></div>";
+     modalContainer += 			"<div class='input'><a href='http://"+data[0].website+"'>"+data[0].website+"</a></div>";
      modalContainer += 		"</div>";
    }
    if (data[0].facebook_url || data[0].twitter_url) {
@@ -130,7 +121,7 @@ function populateModal(data){
    }
    if (data[0].allergy_eats_url) {
      modalContainer += 		"<div class='form-row'>";
-     modalContainer += 			"<div class='form-label'>Allergy Eats</div>";
+     modalContainer += 			"<div class='form-label'>AllergyEats</div>";
      modalContainer += 			"<a class='input'>"+data[0].allergy_eats_url+"</a>";
      modalContainer += 		"</div>";
    }
@@ -265,13 +256,14 @@ var checkLength = function(value) {
   	$('.chosen-select').chosen();
   	
   	})
-  $('form').on('click', '.remove_fields', function(event){
-    $(this).prev('input[type=hidden]').val('1');
-    $(this).closest('fieldset').hide();
-    event.preventDefault();
-	})
 
 $(document).ready(function(){
+  if($('.alert').html() != ''){
+    $('.alert').addClass('active');
+  }
+  $('.alert.active').click(function(){
+    $('.alert').removeClass('active');
+  })
 
 	 $('.modalOpen').on('click', function(e){
     width = document.body.clientWidth;
