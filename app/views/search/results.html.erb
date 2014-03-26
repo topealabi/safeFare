@@ -11,14 +11,14 @@
       <p style='margin:15px 0px;'>Didn't find what you are looking for? <a href='/find-a-restaurant'>Search Again?</a></p>
       <div class="map-wrap"><div id="map-canvas" ></div></div>
       
-      <div class="search-count"><%= @restaurants.length %> OF <%= @restaurants.length %> RESTAURANTS</div>
+    
      <h2 class="map-trig">View Map of Results</h2>
+     <A HREF="javascript:window.print()">Click to Print These Listings</A>
       <div class="tb-wrap">
         <table class="tablesorter">
           <thead>
             <tr class='order'>
               <th>Restaurant Name</th>
-              <th class="center hide-on-small">Cuisine</th>
               <th class="center hide-on-small">Neighborhoods</th>
               <th class="center hide-on-small">City</th>
               <th class="center">ZIP</th>
@@ -31,13 +31,10 @@
             <% @restaurants.each do |restaurant| %>
               <tr>
                 <td class='title'>
-                  <a href="/users/<%=restaurant.user.id%>/restaurants/<%=restaurant.id%>" class= "modalOpen <%=restaurant.id%> <%=restaurant.user.id%> "><%= restaurant.name %></a>
+                  <a href="/restaurants/<%=restaurant.url%>" class= "modalOpen <%=restaurant.id%> <%=restaurant.user.id%> "><%= restaurant.name %></a>
                   <p><%= restaurant.address %></p>
                 </td>
-                <td class="center hide-on-small"><% restaurant.cuisines.each do |x| %>
-                    <%= x.name+' ' %> <br>
-                    <%end%>
-                  </td>
+            
                   <td class="center hide-on-small"><% restaurant.neighborhoods.each do |x| %>
                     <%= x.name+' ' %><br>
                     <%end%>
@@ -55,21 +52,20 @@
                         <%end%>  
                       <%end%>  
                  </td>    
-                <td class="center hide-on-medium"><%= restaurant.kid_friendly? %></td>
+                <td class="center hide-on-medium"><%= boolean_to_words(restaurant.kid_friendly?) %></td>
                 <td class="center"><a href="tel:<%= restaurant.phone %>"><%= restaurant.phone %></a></td>
               </tr>
             <% end %>
           </tbody>
         </table>
       </div>
-
-      <%= paginate @restaurants %>
-      
+  <div class="custom-pag"><%= paginate @restaurants %><div>
     </div>
   </div>
  </div> 
 <% if @restaurants.length != 0 %>
   <script>
+  var fullBounds = new google.maps.LatLngBounds();
     var search_results = []
     var bounds = new google.maps.LatLngBounds(
           new google.maps.LatLng("<%=@restaurants.first.latitude%>","<%=@restaurants.first.longitude%>"),
@@ -88,14 +84,20 @@
       phone:"<%=restaurant.phone%>",
       address: "<%=restaurant.address%>"
       });
+
+    fullBounds.extend(latLng);
+    
+    
   </script>
 <% end %>
 <script>
-var fullBounds = new google.maps.LatLngBounds();
+
   var markers = [];
   var iterator = 0;
   var marker;
+
   function show_initialize() {
+   
     var mapOptions = {
       zoom: 9,
       center: bounds.getCenter()
@@ -105,6 +107,7 @@ var fullBounds = new google.maps.LatLngBounds();
       
   }
   function drop() {
+    infowindow = new google.maps.InfoWindow({});
     for (var i = 0; i < search_results.length; i++) {
       setTimeout(function() {
         addMarker();
@@ -121,27 +124,24 @@ var fullBounds = new google.maps.LatLngBounds();
       content: bodyCont,
       animation: google.maps.Animation.DROP
     }));
-     infowindow = new google.maps.InfoWindow({
-    });
+    
     google.maps.event.addListener(markers[iterator], 'click', function() {
       infowindow.setContent("<h1>"+ this.title + "</h1>" + this.content)
       infowindow.open(map,this);
     });
-    var lat=parseFloat(markers[iterator].position.d) ;
-    var lon=parseFloat(markers[iterator].position.e);
-    var point= new google.maps.LatLng(lat,lon);
-    fullBounds.extend(point);
-    map.fitBounds(fullBounds);
+   
     iterator++;
   }
-  google.maps.event.addDomListener(window, 'load', show_initialize);
 
   $(document).ready(function(){
+     show_initialize(); 
+
     $(".tablesorter").tablesorter(); 
     $('.map-trig').on('click',function(){
       $(this).css('visibility', 'hidden');
       $('.map-wrap').toggleClass('active');
-      drop();
+        drop();
+        map.fitBounds(fullBounds);
     })
   })
  </script>

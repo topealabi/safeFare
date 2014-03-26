@@ -4,14 +4,14 @@ ActiveAdmin.register_page "Dashboard" do
 
   content :title => proc{ I18n.t("active_admin.dashboard") } do
     
-    section "Pending Restaurants" do
+  section "Pending Restaurants" do
+    
     table_for Restaurant.where(approved:!true) do 
       column :name do |restaurant|
         link_to restaurant.name, edit_admin_restaurant_path(restaurant)
-        
         end
       column :created_at
-      bool_column :approved
+      column :approved
     end
     strong { link_to "View All Restaurants", admin_restaurants_path }
   end

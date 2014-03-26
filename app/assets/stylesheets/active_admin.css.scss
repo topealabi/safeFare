@@ -18,13 +18,43 @@
 
 
 
-.col-approved {
-     font-size: 30px; 
-}
-    
+.buttons{
+     input[type=submit] {
+    -webkit-border-radius: 200px;
+    -moz-border-radius: 200px;
+    border-radius: 200px;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.0em;
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 12px;
+    margin-right: 3px;
+    padding: 7px 16px 6px;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+    background: #838a90;
+    background: -webkit-linear-gradient(-90deg, #838a90, #414549);
+    background: -moz-linear-gradient(-90deg, #838a90, #414549);
+    background: linear, -90deg, #838a90, #414549;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF838A90', endColorstr='#FF414549');
+    -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF838A90', endColorstr='#FF414549');
+    text-shadow: black 0 1px 0;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 0 0px rgba(255, 255, 255, 0.2) inset;
+    border: solid 1px #484e53;
+    border-color: #484e53;
+    border-top-color: #616a71;
+    border-right-color: #484e53;
+    border-bottom-color: #363b3f;
+    border-left-color: #484e53;
+    color: #efefef;
+    cursor: pointer;
+    }
+} 
 
 #new_admin_user {
     background-color: #F2F5FF;
+    padding: 10px;
+
 }
 
 
@@ -151,8 +181,9 @@ form input[type=submit] {
     letter-spacing: 0.05em;
 }
 form input[type=submit]:hover{
-    background:#3a5ad8;
+    background:#3a5ad8 !important;
+    box-shadow:none;
 }
 .padding-left{padding-left:15px;}
 
-
+h1, .orange-header{color:#EC4423;font-weight:300;font-size:28px;padding-bottom:20px;}

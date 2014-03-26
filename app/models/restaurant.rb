@@ -15,7 +15,8 @@ class Restaurant < ActiveRecord::Base
   #   in: VALID_STATES
   validates_numericality_of :total_employees
  	validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
-  validates :name, uniqueness: true
+  
+  validates :name, uniqueness: {scope: :user_id}, presence: true
  	belongs_to :user,
  	  inverse_of: :restaurants
 	
@@ -42,7 +43,8 @@ class Restaurant < ActiveRecord::Base
 
   geocoded_by :restaurant_location
   after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
-  
+
+
 
   def restaurant_location 
     [address, city, state, zip].compact.join(', ')

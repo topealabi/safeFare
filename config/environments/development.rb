@@ -5,7 +5,7 @@ SafeFare::Application.configure do
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
-  config.action_mailer.default_url_options = { :host => 'safefare.77km-pwgn.accessdomain.com' }
+  config.action_mailer.default_url_options = { :host => '6vdf-pwpq.accessdomain.com' }
   # Do not eager load code on boot.
   config.eager_load = false
 
@@ -20,7 +20,7 @@ SafeFare::Application.configure do
     :enable_starttls_auto => true,
     :address => "smtp.gmail.com",
     :port => 587,
-    :domain => "safefare.77km-pwgn.accessdomain.com",
+    :domain => "6vdf-pwpq.accessdomain.com",
     :authentication => :login,
     :user_name => "safeFareTesting@gmail.com",
     :password => "linux*1989"

@@ -31,7 +31,7 @@ CSV.foreach('db/cuisines.csv', headers: false) do |cuisine|
 		puts cuisine[0]
 	end
 end
-['Chef', 'Server', 'Front of House', 'Back of House'].each do |role|
+['Chef', 'Manager', 'Other'].each do |role|
 	role_exist = Role.where({role: role})
 	
 	if role_exist.length >= 1
@@ -52,14 +52,15 @@ end
 	end
 end
 CSV.foreach("db/rest.csv", headers: true) do |row|
+	p 'hello'
 	if User.where(email: row["user_email"]).exists?
 		@user = User.where(email: row["user_email"]).first
 		puts "user_exists"
 		puts "now adding this users restaurant"
-	
 		if @user.restaurants.where(name:row["restaurant_name"]).exists?
 			puts "restaurant exists for this user"
 		else
+			p "i am creating a new restaurant for an existing user #{@user}"
 			@restaurant = Restaurant.create(
 				user_id: @user.id,
 				name:row["restaurant_name"],
@@ -71,6 +72,7 @@ CSV.foreach("db/rest.csv", headers: true) do |row|
 				hours:row["hours"],
 				website:row["website"],
 				facebook_url: row["facebook_url"],
+				# if contains at sign
 				twitter_url: row["twitter_url"],
 				allergy_eats_url: row["allergy_eats_url"],
 				zip:row["zip"],
@@ -79,35 +81,86 @@ CSV.foreach("db/rest.csv", headers: true) do |row|
 				kid_friendly:row["kid_friendly?"],
 				)
 			if @restaurant.save
-				puts 'saved this restaurant'
+				puts 'saved a restaurant for an existing user'
 				puts 'what about its cuisines?'
-				if Cuisine.where(name:row["cuisine"]).length > 0
-					@type = TypeOfCuisine.create(restaurant_id:@restaurant.id, cuisine_id: Cuisine.where(name:row["cuisine"]).first.id)
-					if @type.save
-						p 'saved cuisine to restaurant'
-					end
-				end
+					if Restaurant.where(name:@restaurant.name).length > 1
+	      				Restaurant.update(@restaurant.id, url: @restaurant.name.gsub(/[ ']/, '-') + Restaurant.where(name:@restaurant.name).length.to_s)
+		   			else
+		      			Restaurant.update(@restaurant.id, url: @restaurant.name.gsub(/[ ']/, '-'))
 
+		    		end
+				row['cuisine'].split(',').each do |cuisine|
+					p "does this cuisine exist?"
+					if Cuisine.where(name:cuisine).length > 0
+						p "yes, cool, lets associate it to your restaurant"
+						@type = TypeOfCuisine.create(restaurant_id:@restaurant.id, cuisine_id: Cuisine.where(name:cuisine).first.id)
+						if @type.save
+							p 'saved existing cuisine to restaurant'
+						end
+					else
+						p "no this cuisine doesnt exist, lets save it"
+						@new_cuisine = Cuisine.create(name:cuisine)
+						if @new_cuisine.save
+							p "cool, now this cuisine exists, lets associate it to this restaurant"
+							@type = TypeOfCuisine.create(restaurant_id:@restaurant.id, cuisine_id: Cuisine.where(name:cuisine).first.id)
+							if @type.save
+								p 'saved existing cuisine to restaurant'
+								
+							else
+								p 'error saving type of cuisine'
+							end
+						else
+							p 'error saving new cuisine'
+						end
+					end	
+				end
+				p 'all the cuisines are saved, now for the employees'
 				@employee = AwareEmployee.create(
 						 name: row["employee_name"],
 						 verification:'seededbySAFEFARE',
 						 cert_type: 'AllerTrain',
-						 expiration: row["expiration"],           
+						 expiration: DateTime.new(2015,2,3),           
    				         restaurant_id: @restaurant.id
    				         )
 					
-					if @employee.save
-						p 'emp saved'
-					end
+				if @employee.save
+					p 'emp saved, what about his/her roles'
+					row['employee_role'].split(',').each do |role|
+						p "does this role exist?"
+						if Role.where(role:role).length > 0
+							p "yes, cool, lets associate it to your employee"
+							@type = RestaurantRole.create(aware_employee_id:@employee.id, role_id: Role.where(role:role).first.id)
+							if @type.save
+								p 'saved existing role to emplotee'
+								
+							end
+						else
+							p "no this role doesnt exist, lets save it"
+							@new_role = Role.create(role:role)
+							if @new_role.save
+								p "cool, now this cuisine exists, lets associate it to this restaurant"
+								@type = RestaurantRole.create(aware_employee_id:@employee.id, role_id: @new_role.id)
+								if @type.save
+									p 'saved existing role to emplotee'
+								end
+							else
+								p 'error saving new role'
+							end
+						end
+					end		
+				else
+				p 'this employee didnt save'
+				end
 			else
+				p 'restraunt did not save'
 			end
 		end
 	else
-		@user = User.new(email: row["user_email"], password:"safeFare123")
+		p "hello new user"
+		@user = User.new(email: row["user_email"], password:"safeFare123", name:row["user_name"])
 		@user.skip_confirmation!
 			if @user.save
-				puts "saved new user now saving restaurant"
-				
+				puts "saved new user now saving #{@user.name} restaurant"
 				@restaurant = Restaurant.create(
 					user_id: @user.id,
 					name:row["restaurant_name"],
@@ -127,13 +180,39 @@ CSV.foreach("db/rest.csv", headers: true) do |row|
 					kid_friendly:row["kid_friendly?"],
 					)
 				if @restaurant.save
-					puts 'saved this restaurant'
+					puts "saved #{@user.name} restaurant named #{@restaurant.name}"
 					puts 'what about its cuisines?'
-					if Cuisine.where(name:row["cuisine"]).length > 0
-						@type = TypeOfCuisine.create(restaurant_id:@restaurant.id, cuisine_id: Cuisine.where(name:row["cuisine"]).first.id)
-						if @type.save
-							p 'saved cuisine to restaurant'
-						end
+						if Restaurant.where(name:@restaurant.name).length > 1
+	      				Restaurant.update(@restaurant.id, url: @restaurant.name.gsub(/[ ']/, '-') + Restaurant.where(name:@restaurant.name).length.to_s)
+			   			else
+			      		Restaurant.update(@restaurant.id, url: @restaurant.name.gsub(/[ ']/, '-'))
+			    		end
+				
+					row['cuisine'].split(',').each do |cuisine|
+						p "does this cuisine exist?"
+						if Cuisine.where(name:cuisine).length > 0
+							p "yes, cool, lets associate it to your restaurant"
+							@type = TypeOfCuisine.create(restaurant_id:@restaurant.id, cuisine_id: Cuisine.where(name:cuisine).first.id)
+							if @type.save
+								p 'saved existing cuisine to restaurant'
+								
+							end
+						else
+							p "no this cuisine doesnt exist, lets save it"
+							@new_cuisine = Cuisine.create(name:cuisine)
+							if @new_cuisine.save
+								p "cool, now this cuisine exists, lets associate it to this restaurant"
+								@type = TypeOfCuisine.create(restaurant_id:@restaurant.id, cuisine_id: @new_cuisine.id)
+								if @type.save
+									p 'saved existing cuisine to restaurant'
+								
+								else
+									p 'error saving type of cuisine'
+								end
+							else
+								p 'error saving new cuisine'
+							end
+						end	
 					end
 				
 					@employee = AwareEmployee.create(
@@ -145,15 +224,39 @@ CSV.foreach("db/rest.csv", headers: true) do |row|
    				         )
 					
 					if @employee.save
-						p 'emp saved'
+						p 'emp saved, what about his/her roles'
+						row['employee_role'].split(',').each do |role|
+							p "does this role exist?"
+							if Role.where(role:role).length > 0
+								p "yes, cool, lets associate it to your employee"
+								@type = RestaurantRole.create(aware_employee_id:@employee.id, role_id: Role.where(role:role).first.id)
+								if @type.save
+									p 'saved existing role to emplotee'
+									
+								end
+							else
+								p "no this role doesnt exist, lets save it"
+								@new_role = Role.create(role:role)
+								if @new_role.save
+									p "cool, now this cuisine exists, lets associate it to this restaurant"
+									@type = RestaurantRole.create(aware_employee_id:@employee.id, role_id: @new_role.id)
+									if @type.save
+										p 'saved existing role to emplotee'
+									end
+								else
+									p 'error saving new role'
+								end
+							end
+						end		
+					else
+						p 'this employee didnt save'
+						binding.pry
 					end
 				else
-					p 'this didnt save'
-				end
-			else
-				'problem with user'	
+				p 'problem with restaurant'
+				
 			end
+		end
 	end
-
 end
 

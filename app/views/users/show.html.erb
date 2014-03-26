@@ -2,32 +2,9 @@
 <div class="user-section">
   <div class="section-wrapper">
     <div class="col-sm-12">
-      <h1>Welcome <%=@user.email%></h1>
+      <h1>Welcome <%=@user.name%></h1>
       <!-- <a href="" class="nav-link right orange">DELETE MY ACCOUNT</a> -->
       <%= link_to "DELETE MY ACCOUNT", user_registration_path(resource_name),:class=>'nav-link right orange', :confirm => "Are you sure?", :method => :delete %>
-      <div class="blue-form accounts">
-        
-          <div class="col-sm-12" >
-            <h2>Account Information</h2>
-            <hr>
-            <%= form_for(@user, :url => { :action => "update_password" } ) do |f| %>
-              <%= devise_error_messages! %>
-              <div class="col-xs-12 form-row validate name">
-              <p class='form-label'>New Password</p>
-                <%= f.password_field :password, :autocomplete => "off"  %>
-              </div>
-               <div class="col-xs-12 form-row validate name">
-              <p class='form-label'>Re-Type Password</p>
-              <%= f.password_field :password_confirmation %>
-              <div class='feedback'><div></div></div>
-            </div>
-              <div class="action_container" style='margin:auto;'>
-                <%= f.submit%>
-              </div>
-            <% end %>
-          </div>
-      </div>
-
       <div class="tb-wrap">
       <%= link_to "ADD RESTAURANT" , new_user_restaurant_path(current_user), class: "right nav-link add-rest" %><h2>My Restaurants</h2>
             <table class="tablesorter">
@@ -45,7 +22,7 @@
                 <% @restaurants.each do |restaurant| %>
                   <tr>
                     <td class="center edit"><a href="/users/<%=@user.id%>/restaurants/<%=restaurant.id%>/edit" class="edit-button"></a></td>
-                    <td class='title'><a href='/users/<%=@user.id%>/restaurants/<%=restaurant.id%>/edit'><%= restaurant.name %></a><br><%= restaurant.address %></td>
+                    <td class='title'><a href='/users/<%=@user.id%>/restaurants/<%=restaurant.id%>/edit'><%= restaurant.name %></a><br><a href="/restaurants/<%= restaurant.url %>"><%= restaurant.address %></td>
                     <td class="center"><%= restaurant.total_employees %></td>
                     <td class="center"><% percent = (restaurant.aware_employees.length.to_f / restaurant.total_employees.to_f ) * 100 %>
                     <%= percent.round %>
@@ -61,6 +38,31 @@
             </table>
           </div>
           <div class="rest-tbl-message">Click on the restaurant name or the edit button to modify individual restaurant information.</div>
+      <div class="blue-form accounts">
+          <div class="col-sm-12" >
+            <h2>Account Information</h2>
+            <hr>
+            <%= form_for(@user, :url => { :action => "update_password" } ) do |f| %>
+              <%= devise_error_messages! %>
+              <div class="col-xs-12 form-row validate name">
+              <p class='form-label'>Email</p>
+                <h2 class='input'><%=@user.email%></h2>
+              </div>
+              <div class="col-xs-12 form-row validate name">
+              <p class='form-label'>New Password</p>
+                <%= f.password_field :password, :autocomplete => "off"  %>
+              </div>
+               <div class="col-xs-12 form-row validate name">
+              <p class='form-label'>Re-Type Password</p>
+              <%= f.password_field :password_confirmation %>
+              <div class='feedback'><div></div></div>
+            </div>
+              <div class="action_container" style='margin:auto;'>
+                <%= f.submit%>
+              </div>
+            <% end %>
+          </div>
+      </div>
     </div>
   </div>
 </div>

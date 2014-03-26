@@ -1,49 +1,35 @@
-<!-- This is the page a user should land on when they log in.  There should be 
-buttons for adding restaurants or editing restaurants.  
-They should see all of their restaurants. 
- -->
+<% if current_user == @user %>
 <div class="user-section">
   <div class="section-wrapper">
     <div class="col-sm-12">
-      <h1>Welcome <%=@user.email%></h1>
+      <h1>Welcome <%=@user.name%></h1>
       <!-- <a href="" class="nav-link right orange">DELETE MY ACCOUNT</a> -->
       <%= link_to "DELETE MY ACCOUNT", user_registration_path(resource_name),:class=>'nav-link right orange', :confirm => "Are you sure?", :method => :delete %>
-      <div class="blue-form">
+      <div class="blue-form accounts">
         
-          <div class="col-sm-12">
+          <div class="col-sm-12" >
             <h2>Account Information</h2>
             <hr>
-            <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+            <%= form_for(@user, :url => { :action => "update_password" } ) do |f| %>
               <%= devise_error_messages! %>
-            <div class="col-xs-12 form-row validate name">
+              <div class="col-xs-12 form-row validate name">
               <p class='form-label'>Email</p>
-              <h1 class='input' style='display:block; margin-top:5px;'><%=@user.email%></div>
-                 <%= f.hidden_field :email, value: @user.email%>
-              <div class='feedback'><div></div></div>
-            </div>
-            <div class="col-xs-12 form-row validate name">
+                <h2 class='input'><%=@user.email%></h2>
+              </div>
+              <div class="col-xs-12 form-row validate name">
               <p class='form-label'>New Password</p>
-              <%= f.password_field :password, :autocomplete => "off" %>
-              <div class='feedback'><div></div></div>
-            </div>
-            <div class="col-xs-12 form-row validate name">
+                <%= f.password_field :password, :autocomplete => "off"  %>
+              </div>
+               <div class="col-xs-12 form-row validate name">
               <p class='form-label'>Re-Type Password</p>
               <%= f.password_field :password_confirmation %>
               <div class='feedback'><div></div></div>
             </div>
-            <div class="col-xs-12 form-row validate name">
-              <p class='form-label'>Current Password</p>
-               <%= f.password_field :current_password %>
-              <div class='feedback'><div></div></div>
-            </div>
-            <div class="col-xs-12 form-row">
-              <div class="no-label-wrap">
-                 <%= f.submit "Update", class:'nav-link' %>
+              <div class="action_container" style='margin:auto;'>
+                <%= f.submit%>
               </div>
-            </div>
-          <%end%> 
+            <% end %>
           </div>
-        
       </div>
 
       <div class="tb-wrap">
@@ -62,13 +48,17 @@ They should see all of their restaurants.
               <tbody>
                 <% @restaurants.each do |restaurant| %>
                   <tr>
-                    <td class="center edit"><a class="edit-button"></a></td>
-                    <td class='title'><a class= "modalOpen <%=restaurant.id%> <%=restaurant.user.id%> "><%= restaurant.name %></a><br><%= restaurant.address %></td>
+                    <td class="center edit"><a href="/users/<%=@user.id%>/restaurants/<%=restaurant.id%>/edit" class="edit-button"></a></td>
+                    <td class='title'><a href='/users/<%=@user.id%>/restaurants/<%=restaurant.id%>/edit'><%= restaurant.name %></a><br><a href="/restaurants/<%= restaurant.url %>"><%= restaurant.address %></td>
                     <td class="center"><%= restaurant.total_employees %></td>
                     <td class="center"><% percent = (restaurant.aware_employees.length.to_f / restaurant.total_employees.to_f ) * 100 %>
                     <%= percent.round %>
                     </td>
-                    <td class="center"><div class="approved <% if !restaurant.approved%> not <% end %>"></div></td>
+                    <% if restaurant.approved %>
+                    <td class="center"><div class="approved"></div></td>
+                    <%else%>
+                     <td class="center"><div class="approved not"></div></td>
+                    <%end%>
                   </tr>
                 <% end %>
               </tbody>
@@ -78,3 +68,11 @@ They should see all of their restaurants.
     </div>
   </div>
 </div>
+<%else%>
+  <div class="col-sm-12" style='text-align:center;'>
+      <div class="center error">
+        <h1>You've ended up in the wrong place</h1>
+        <%= link_to "Get Me Out Of Here!", '/for-restaurants', class:'nav-link' %>
+      </div>  
+  </div>
+<%end%>

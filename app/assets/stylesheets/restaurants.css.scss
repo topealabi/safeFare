@@ -5,6 +5,7 @@ $orange: #EC4423;
 $border:#AD2D0A;
 $blue:#243772;
 $hover:#3a5ad8;
+$orange-hover: #ff592a;
 .center{
 	text-align:center;
 }
@@ -38,7 +39,7 @@ a.add_an_employee:hover{
 	width:100%;
 }
 
-.add_fields, .sub{
+.add_fields, .sub, .remove_fields{
 	background:$blue;
 
 	text-align: center;
@@ -70,6 +71,14 @@ a.add_an_employee:hover{
 .add_fields:hover, .sub:hover{
 	background:$hover;
 }
+.remove_fields{
+	background:$orange;
+	display:inline-block;
+	cursor:pointer;
+}
+.remove_fields:hover{
+	background:$orange-hover;
+}
 .submit.inactive{
 	display:none;
 }
@@ -91,8 +100,11 @@ a.add_an_employee:hover{
 	.restaurant_total_employees {
 		margin: 10px 0;
 	}
+	.chosen-container.chosen-container-multi{
+		width:100% !important;
+	}
 	select, .chosen-container {
-		width: 100%;
+	
 		margin: 10px 0;
 	}
 	input[type=file] {

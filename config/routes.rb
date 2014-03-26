@@ -17,7 +17,7 @@ resource :user, only: [:edit] do
   end
 end
 
-
+ match "/restaurants/:url" => "restaurants#show", via: [:get]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -31,6 +31,8 @@ end
   match "/results" => "search#results", via: [:post, :get]
   match "/for-diners" => "home#for_diners", via: [:get]
   match "/for-restaurants" => "home#for_restaurants", via: [:get, :post]
+  match "/sitemap" => "home#sitemap", via: [:get, :post]
+  match "/disclaimer" => "home#disclaimer", via: [:get, :post]
 
   # devise_scope :user do
   #   get   '/for-restaurants',          to: 'devise/sessions#new'

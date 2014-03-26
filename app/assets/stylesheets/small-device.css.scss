@@ -14,6 +14,16 @@ $hover:#3a5ad8;
 			width:100% !important;
 		}
 	}
+	.new_restaurant{
+		max-width: 385px;
+		margin:auto;
+		.form-label{
+			width:100%;
+		}
+		.form-row input, .input{
+			width:100% !important;
+		}
+	}
 	#basic form{
 		max-width: 385px;
 		margin:auto;
@@ -236,8 +246,15 @@ $hover:#3a5ad8;
 
 
 	.footer-section .contact-links li { padding-left: 3px; padding-right: 3px; }
+
+.disclaim{
+	width: 100%;
+float: right;
+margin-right: 0%;
+padding:5px;
 }
 
+}
 
 
 	@media screen and (max-width: 1060px){

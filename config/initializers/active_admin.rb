@@ -37,6 +37,7 @@ ActiveAdmin.setup do |config|
   #
   config.site_title = "SafeFARE"
   config.show_comments_in_menu = false;
+  config.batch_actions = false
   config.current_user_method = :current_admin_user
 
   # Set the link url for the title. For example, to take
@@ -166,7 +167,6 @@ ActiveAdmin.setup do |config|
   #
   # Enable and disable Batch Actions
   #
-  config.batch_actions = true
 
 
   # == Controller Filters
@@ -256,7 +256,7 @@ ActiveAdmin.setup do |config|
   # Pagination is enabled by default for all resources.
   # You can control the default per page count for all resources here.
   #
-  # config.default_per_page = 30
+  config.default_per_page = 15
 
 
   # == Filters

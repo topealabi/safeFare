@@ -13,7 +13,9 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbqyE_ATNzMEVS_S-79LoBo6peBwoVa-o&sensor=true"></script>
-  	
+  <script>
+ 	 var isIE = /*@cc_on!@*/false || !!document.documentMode;
+  </script>
   <script type="text/javascript" src="//use.typekit.net/vmz8fhp.js"></script>
 <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 </head>
@@ -44,8 +46,8 @@
 		 		</div>
 					
 		 		<% else %>
-		 		<div class="nav-link">
-		 		  <%= link_to "RESTAURANT LOGIN", '/for-restaurants' %> 
+		 		<div class="nav-link" style='margin-top:7px'>
+		 		  <%= link_to "RESTAURANT LOGIN/SIGN-UP", '/for-restaurants' %> 
 		 		 </div>
 		 		<% end %> 
 	 		</div>
@@ -83,7 +85,7 @@
 			</ul>
 		</div>
 	</div>
-<div class="alert notice"> <%= notice %> <%= alert %> </div>	
+<div class="alert notice"><%= notice %><%= alert %></div>	
 <div class="container-fluid">
 		<%= yield %>
 <div class="modal fade modal-lg" id="restaurantModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -101,14 +103,14 @@
 			<div class="contact-links col-sm-8 col-xs-12 padding">
 				<ul>
 					<li><a href="/about/contact-us">Contact Us</a></li>
-					<li><a href="">Sitemap</a></li>
+					<li><a href="/sitemap">Sitemap</a></li>
 					<li><a href="/about/privacy-policy">Privacy Policy</a></li>
-					<li><a href="">Disclaimer</a></li>
+					<li><a href="/disclaimer">Disclaimer</a></li>
 					<li><a href="http://www.foodallergy.org" rel="external">Learn about FARE</a></li>
 					<div style='clear:both;'></div>
 				</ul>
 				<div class="copyright">
-					<p>2014, Food Allergy Research and Education, Inc.</p>
+					<p>Copyright &copy; 2014, Food Allergy Research and Education, Inc.</p>
 					<p>7925 Jones Branch Dr., Suite 1100, McLean, VA 22102</p>
 					<p>Phone: (800) 929-4040 | Fax: (703) 691-2713 </p>
 				</div>

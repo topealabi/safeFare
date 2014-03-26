@@ -1,11 +1,16 @@
 ActiveAdmin.register Restaurant do
   menu :priority => 1
-  scope :pending
-  config.filters = false
+  config.filters = true
+  filter :name
+  filter :neighborhood
+  filter :city
+  filter :state
+  filter :zip
+  filter :approved
+  filter :created_at
   index do
     column :name
-    column :address
-    bool_column :approved
+    column :approved
     default_actions
   end
   show do
@@ -18,9 +23,8 @@ ActiveAdmin.register Restaurant do
   end  
   sidebar "Restaurant Employees", only: [:show, :edit] do
     ul do 
-      li link_to("All Aware Employees", admin_restaurant_aware_employees_path(restaurant))
       Restaurant.find(params[:id]).aware_employees.each do |emp|
-      li link_to(emp.name, edit_admin_restaurant_aware_employee_path(Restaurant.find(params[:id]), emp)) 
+      li link_to(emp.name, edit_admin_aware_employee_path(emp)) 
       end
     end
   end
@@ -57,7 +61,7 @@ ActiveAdmin.register Restaurant do
     end
     def update
       @restaurant = Restaurant.find(params[:id])
-   binding.pry
+
        if @restaurant.update_attributes(
         name: params[:restaurant][:name],
         user_id: params[:restaurant][:user_id],
@@ -164,15 +168,17 @@ ActiveAdmin.register Restaurant do
       f.input :zip
       f.input :total_employees
       f.input :description
-      f.has_many :areas, :allow_destroy => true, :new_record => true do |cf|
+      
+      f.has_many :areas, :allow_destroy => true, :heading => "Neighborhoods", :new_record => true do |cf|
            cf.input :neighborhood, :as=> :select, :member_label=>:name
-        end
       end
-      f.inputs "Employee Roles" do
-       f.has_many :type_of_cuisines, :allow_destroy => true, :new_record => true do |cf|
-           cf.input :cuisine, :as=> :select, :member_label=>:name
-        end
+      f.has_many :type_of_cuisines, :allow_destroy => true,:heading => "Cuisines", :new_record => true do |cf|
+         cf.input :cuisine, :as=> :select, :member_label=>:name
       end
+   
+      end
+     
+      
       f.actions
     end
   permit_params :name, :address, :city, :state, :email, :phone, :hours, :user_id,
