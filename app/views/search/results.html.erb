@@ -19,8 +19,9 @@
           <thead>
             <tr class='order'>
               <th>Restaurant Name</th>
-              <th class="center hide-on-small">Neighborhoods</th>
+              <th class="center hide-on-medium">Neighborhoods</th>
               <th class="center hide-on-small">City</th>
+               <th class="center hide-on-small">State</th>
               <th class="center">ZIP</th>
               <th class="center hide-on-medium">Staff<br>Trained</th>
               <th class="center hide-on-medium">Kid <br>Friendly</th>
@@ -40,6 +41,7 @@
                     <%end%>
                   </td>
                 <td class="center hide-on-small"><%= restaurant.city %></td>
+                <td class="center hide-on-small"><%= restaurant.state %></td>
                  <td class="center"><%= restaurant.zip %></td>
                   <% @roles = [] %>
                  <td class="center hide-on-medium"><% restaurant.aware_employees.each do |emp| %>

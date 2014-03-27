@@ -1,10 +1,6 @@
 var marker;
 var map;
-
 var titles =[];
-
-
-
 function getRestaurant(restaurant_id, restaurant_user, callback){
   $(function(){
         $.ajax({
@@ -259,9 +255,12 @@ var checkLength = function(value) {
 
 $(document).ready(function(){
   if($('.alert').html() != ''){
+    
+    $('.alert').prepend('<h1 style="text-align:center">Message From SafeFare</h1>');
     $('.alert').addClass('active');
   }
   $('.alert.active').click(function(){
+    $('.alert').html('');
     $('.alert').removeClass('active');
   })
 

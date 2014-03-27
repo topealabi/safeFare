@@ -54,18 +54,33 @@ $hover:#3a5ad8;
 		}
 	}
 	.edit-button {
-		background-image: url(../images/edit-button.jpg);
+		background-image: url(../images/edit-sprite.png);
 		cursor: pointer;
 		display: inline-block;
 		height: 45px;
 		width: 45px;
+		-webkit-transition: background-position .3s ease;
+		   -moz-transition: background-position .3s ease;  /* Firefox 4-15 */
+	         -o-transition: background-position .3s ease;  /* Opera 10.50–12.00 */
+	            transition: background-position .3s ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+		
+		
+		background-position: 0px 0px;
+	}
+	.edit-button:hover{
+		background-position: 0px 45px;
 	}
 	.approved {
 		background-image: url(../images/thumbs-up.jpg);
 		display: inline-block;
 		height: 45px;
 		width: 45px;
-		&.not { background-image: url(../images/thumbs-down.jpg); }
+		-webkit-transition: all .3s ease;
+		   -moz-transition: all .3s ease;  /* Firefox 4-15 */
+	         -o-transition: all .3s ease;  /* Opera 10.50–12.00 */
+	            transition: all .3s ease;
+		&.not { font-weight:900;background:none; border-radius:40px; padding-top:15px;}
+		&.not:hover{background:#FFC10D; cursor:pointer; font-size:12px; color:white;}
 	}
 	.rest-tbl-message { margin-bottom: 20px; padding-left: 6px; }
 }

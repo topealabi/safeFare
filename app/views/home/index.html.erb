@@ -1,4 +1,5 @@
 <div class="home">
+	<div class="alert notice" style='display:none; opacity:0px;'><%= notice %><%= alert %></div> 
 	<div class="info-section">
 		<div class="section-wrapper">
 			<div class="home-background"></div>
@@ -31,3 +32,28 @@
 		</div>
 	</div>
 </div>
+<div class="modal fade" id="home_instructions" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        
+      
+      <div class="modal-body" style='padding-top:10px;'>
+      
+        	
+      </div>
+ 
+    </div>
+  </div>
+</div>
+<script>
+$(document).ready(function(){
+	if($('.alert').html() != ''){
+   
+    $('#home_instructions .modal-body').append($('.alert').html());
+     $('#home_instructions').modal('show');
+  }
+})
+
+</script>

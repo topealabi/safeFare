@@ -7,9 +7,10 @@
 			<div class='feedback'><div></div></div>
 		</div>
 		<div class="col-xs-12 form-row">
-			<p class='form-label'>Publish</p>
+			<p class='form-label'>Visible</p>
 			<%= f.input :is_visible, label: false, input_html: { class: "req" },  as: :radio_buttons    %>
 			<div class='feedback'><div></div></div>
+			 <p class="disclaim">Choose <span class='required_field'>No</span> only if you do not want <span class='required_field'><%= @restaurant.name %></span> to show up in search results.</p>
 		</div>
 		<div class="col-xs-12 form-row">
 			<p class='form-label'>Kid Friendly</p>
@@ -79,7 +80,7 @@
 		</div>
 		<div class="col-xs-12 form-row">
 			<p class='form-label'>Hours</p>
-			<%= f.input :hours, label: false %>
+			<%= f.input :hours, label: false, input_html: { placeholder:'8AM-7PM M-F', class: "req", min: '0' } %>
 			<div class='feedback'><div></div></div>
 		</div>
 		<div class="col-xs-12 form-row">

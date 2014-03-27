@@ -217,7 +217,9 @@ a.nav-link, form input[type="submit"] { padding: 7px 0; }
 		background-position: 0px 0px;
 	}
 	input#submit-search:hover{
-		background-position: 0px 44px;
+		background-image: image-url("search.gif");
+		background-position: 0px 44px !important;
+
 	}
 }
 .nav-full-bar{
@@ -230,7 +232,7 @@ a.nav-link, form input[type="submit"] { padding: 7px 0; }
 		li{
 			width:20%;
 			float:left;
-			transition: background 0.5s ease;
+			@include transition(background, .5s, ease); 
 			text-align: center;
 			color:white;
 			list-style: none;
@@ -426,34 +428,28 @@ padding-bottom:5px;
 	height:300px;
 }
 
-div.alert{
-	text-align:center;
-	padding:0px;
-	border-radius:0px;
-	border:0px solid white;
-	width:0%;
-	opacity:0;
-	height:0px;
-	background:#120503;
-	position: absolute;
-	top:0px;
-	right:0px;
-	color:white;
-	background-image: image-url("flag.png");
-	background-position: 0px 0px;
-	background-size: 16px;
-	background-position: 15px 0px;
-	background-repeat: no-repeat;
-	-webkit-transition: all .3s ease;
-		   -moz-transition: all 1s ease;  /* Firefox 4-15 */
-	         -o-transition: all 1s ease;  /* Opera 10.50–12.00 */
-	            transition: all 1s ease;
-
+.alert {
+position: relative;
+background:#f2f5ff;
+margin: auto;
+width: 500px;
+height: 0px;
+top: 0;
+left: 0;
+padding:0px;
+right: 0;
+bottom: 0;
+border:0px solid white;
+@include transition(height, 1s, ease); 
 }
-div.alert.active{
-height:65px;
-width:100%;
-opacity:.8;
+#error_explanation{
+	
+}
+.alert.active{
+	height:145px;
+	padding:10px;
+	margin-top:20px;
+	color:$orange;
 }
 input[type="file"] {
 	display: inline-block;
@@ -590,4 +586,30 @@ background: white;
 .no-padding{
 	padding:0px;
 }
-.chosen-choices{padding:7px !important}
+
+.for_diners{
+	width:262px;
+	display:block;
+	margin:auto;
+	height:140px;
+	-webkit-transition: background-position .3s ease;
+		   -moz-transition: background-position .3s ease;  /* Firefox 4-15 */
+	         -o-transition: background-position .3s ease;  /* Opera 10.50–12.00 */
+	            transition: background-position .3s ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+		
+		background-image: image-url("food-resources.png");
+		background-position: 0px 140px;
+	}
+	.for_diners:hover{
+	
+		background-position: 0px 0px !important;
+}
+.chosen-container-multi .chosen-choices li.search-field input[type="text"]{
+	height:29px;
+}
+.kids input{
+	margin-top:0px;
+}
+#state_search, #within{
+	width:15% !important;
+}

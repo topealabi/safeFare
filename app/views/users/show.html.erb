@@ -1,5 +1,6 @@
 <% if current_user == @user %>
 <div class="user-section">
+  <div class="alert notice"><%= notice %><%= alert %></div> 
   <div class="section-wrapper">
     <div class="col-sm-12">
       <h1>Welcome <%=@user.name%></h1>
@@ -30,7 +31,7 @@
                     <% if restaurant.approved %>
                     <td class="center"><div class="approved"></div></td>
                     <%else%>
-                     <td class="center"><div class="approved not"></div></td>
+                     <td class="center"><div class="approved not" style='text-align:center;'>Pending</div></td>
                     <%end%>
                   </tr>
                 <% end %>

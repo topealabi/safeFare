@@ -21,10 +21,19 @@ class SearchController < ApplicationController
 	   			50
 	   		end
 	    end
-
+	    def words_to_boolean(value)
+    		if value == 'true' 
+    			true
+    		elsif value == 'false'
+    			false
+    		else
+    			nil
+    		end
+ 		end
+	   
 		if params[:search].present?
 			@search  = Restaurant.solr_search do
-				#with(:approved, :true)
+			with(:approved, :true)
 				fulltext params[:search]
 				order_by_geodist(:location, request.location.latitude, request.location.longitude)
 				paginate(:page => params[:page] || 1, :per_page => 10)
@@ -59,7 +68,7 @@ class SearchController < ApplicationController
 				end
 
 				if params[:for_kids].present?
-					with(:kid_friendly, :for_kids)
+					with(:kid_friendly, words_to_boolean(params[:for_kids]))
 				end 
 			end
 
@@ -67,7 +76,7 @@ class SearchController < ApplicationController
 
 		elsif params[:cuisine_search].present?
 			@search  = Restaurant.solr_search do
-				#with(:approved, :true)
+				with(:approved, :true)
 				order_by_geodist(:location, request.location.latitude, request.location.longitude)
 				paginate(:page => params[:page] || 1, :per_page => 10)
 				any_of do
@@ -102,7 +111,7 @@ class SearchController < ApplicationController
 				end
 
 				if params[:for_kids].present?
-					with(:kid_friendly, :for_kids)
+					with(:kid_friendly, words_to_boolean(params[:for_kids]))
 				end 
 			end
 			@restaurants = @search.results
@@ -110,7 +119,7 @@ class SearchController < ApplicationController
 		elsif params[:address].present? || params[:city_search].present? || params[:state_search].present? || params[:zip_search].present?
 				
 			@search  = Restaurant.solr_search do
-				#with(:approved, :true)
+				with(:approved, :true)
 				with(:location).in_radius(*Geocoder.coordinates(whereat), howfar)
 				order_by_geodist(:location, request.location.latitude, request.location.longitude)
 				paginate(:page => params[:page] || 1, :per_page => 10)
@@ -136,7 +145,7 @@ class SearchController < ApplicationController
 				end
 
 				if params[:for_kids].present?
-					with(:kid_friendly, :for_kids)
+					with(:kid_friendly, words_to_boolean(params[:for_kids]))
 				end 
 			end
 
@@ -144,7 +153,7 @@ class SearchController < ApplicationController
 
 		elsif params[:hood_search].present?
 			@search = Restaurant.solr_search do
-				#with(:approved, :true)
+				with(:approved, :true)
 				any_of do
 					params[:hood_search].each do |tag|
 						with(:hood_name, tag)
@@ -164,7 +173,7 @@ class SearchController < ApplicationController
 				end
 
 				if params[:for_kids].present?
-					with(:kid_friendly, :for_kids)
+					with(:kid_friendly, words_to_boolean(params[:for_kids]))
 				end 
 			end
 			
@@ -172,7 +181,7 @@ class SearchController < ApplicationController
 		
 		elsif (params[:within].present?)
 			@search  = Restaurant.solr_search do
-				#with(:approved, :true)
+				with(:approved, :true)
 				with(:location).in_radius(request.location.latitude, request.location.longitude, howfar)
 				order_by_geodist(:location, request.location.latitude, request.location.longitude )
 				paginate(:page => params[:page] || 1, :per_page => 10)
@@ -183,7 +192,7 @@ class SearchController < ApplicationController
 				end
 
 				if params[:for_kids].present?
-					with(:kid_friendly, :for_kids)
+					with(:kid_friendly, words_to_boolean(params[:for_kids]))
 				end
 
 			end
@@ -193,21 +202,24 @@ class SearchController < ApplicationController
 
 		elsif (params[:worker_role].present?)
 			@search  = Restaurant.solr_search do
-				#with(:approved, :true)
+				with(:approved, :true)
 				with(:worker, params[:worker_role])
 				order_by_geodist(:location, request.location.latitude, request.location.longitude)
 				paginate(:page => params[:page] || 1, :per_page => 10)
 
 				if params[:for_kids].present?
-					with(:kid_friendly, :for_kids)
+
+					with(:kid_friendly, words_to_boolean(params[:for_kids]))
 				end
 			end
 			@restaurants = @search.results
 
 		elsif params[:for_kids].present?
 			@search  = Restaurant.solr_search do
-				#with(:approved, :true)
-				with(:kid_friendly, :for_kids)
+				with(:approved, :true)
+				
+				with(:kid_friendly, words_to_boolean(params[:for_kids]))
+
 				order_by_geodist(:location, request.location.latitude, request.location.longitude)
 				paginate(:page => params[:page] || 1, :per_page => 10)
 			end
@@ -216,7 +228,7 @@ class SearchController < ApplicationController
 		else
 			#@restaurants = Restaurant.near([request.location.latitude, request.location.longitude], 50)
 			@search = Restaurant.solr_search do
-				#with(:approved, :true)
+				with(:approved, :true)
 				order_by_geodist(:location, request.location.latitude, request.location.longitude)
 				paginate(:page => params[:page] || 1, :per_page => 10)
 			end

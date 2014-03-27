@@ -4,6 +4,7 @@
 }
 </style>
 <div class="edit-restaurant-section">
+	<div class="alert notice"><%= notice %><%= alert %></div> 
 	<div class="section-wrapper">
 		<% if current_user.id != @restaurant.user_id %>
 			<p> This restaurant does not belong to you </p>
