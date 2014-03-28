@@ -429,27 +429,22 @@ padding-bottom:5px;
 }
 
 .alert {
-position: relative;
-background:#f2f5ff;
-margin: auto;
-width: 500px;
-height: 0px;
-top: 0;
-left: 0;
-padding:0px;
-right: 0;
-bottom: 0;
-border:0px solid white;
-@include transition(height, 1s, ease); 
+position:absolute;
+ -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=0);
+  -moz-opacity: 0;
+  -khtml-opacity: 0;
+  opacity: 0;
+  display:none;
 }
-#error_explanation{
-	
-}
-.alert.active{
-	height:145px;
-	padding:10px;
-	margin-top:20px;
-	color:$orange;
+#alert_modal{
+	width:600px;
+	margin:auto;
+	position:fixed;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
 }
 input[type="file"] {
 	display: inline-block;

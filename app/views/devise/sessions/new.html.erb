@@ -8,14 +8,14 @@
 		<div class="col-sm-8 col-xs-12">
 			<h1>For Restaurants</h1>
 			<p>Fifteen million Americans have food allergies – and they are eager to find restaurants that can accommodate them. The SafeFARE program offers tools that help create a safer dining experience – including &#8220;Find a Restaurant,&#8221; a searchable database of allergy aware restaurants. If your employees  have completed the ServSafe® Allergens Online Course or AllerTrain™ classes, be sure to sign up below to set up a free account and add your restaurant to our database. You can sign in to update your account whenever you like.</p>
-			<p>If you haven't yet received allergen training, we encourage you to do so! To learn more, please see &#8220;<a href="http://www.servsafe.com/allergens/the-course" rel="external">Allergen Training for Restaurant Staff</a>&#8221;</p>
+			<p>If you haven't yet received allergen training, we encourage you to do so! To learn more, please see &#8220;<a href="http://www.foodallergy.org/managing-food-allergies-at/dining-out/training-for-restaurant-employees" rel="external">Allergen Training for Restaurant Staff</a>&#8221;</p>
 			<% if !user_signed_in? %>
 				<h2>Restaurant Login</h2>
 				<div class="contact-form">
 					<%= form_for(:user, :url => session_path(:user)) do |f| %>
 						<%= devise_error_messages! %>
 						<div class="form-row col-sm-12">
-							<p class='form-label col-xs-12'>Email</p>
+							<p class='form-label'>Email</p>
 							<%= f.text_field :email, label: false %>
 						</div>
 						<div class="form-row col-sm-12">
@@ -31,13 +31,15 @@
 						<div class="form-row col-sm-12">
 							<div class="no-label-wrap">
 								<%= f.submit 'LOG IN', class: 'login' %>
-								<h2 style='width:12%; text-align:center; margin-top:5px;' class='or left'>OR</h2>
-								<div class="nav-link signup orange"><a href="/users/sign_up">SIGN UP</a></div>
+								
 							</div>
 						</div>
 						<div class="form-row col-sm-12">
 							<div class="no-label-wrap">
 								<%= link_to "Forgot your password?", new_password_path(:user), class: "forgot-your-password" %>
+							</div>
+							<div class="no-label-wrap">
+								<a class='forgot-your-password' href="/users/sign_up">Sign Up</a>
 							</div>
 						</div>
 					<% end %>

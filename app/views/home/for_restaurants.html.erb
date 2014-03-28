@@ -31,13 +31,15 @@
 						<div class="form-row col-sm-12">
 							<div class="no-label-wrap">
 								<%= f.submit 'LOG IN', class: 'login' %>
-								<h2 style='width:12%; text-align:center; margin-top:5px;' class='or left'>OR</h2>
-								<div class="nav-link signup orange"><a href="/users/sign_up">SIGN UP</a></div>
+								
 							</div>
 						</div>
 						<div class="form-row col-sm-12">
 							<div class="no-label-wrap">
 								<%= link_to "Forgot your password?", new_password_path(:user), class: "forgot-your-password" %>
+							</div>
+							<div class="no-label-wrap">
+								<a class='forgot-your-password' href="/users/sign_up">Sign Up</a>
 							</div>
 						</div>
 					<% end %>

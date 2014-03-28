@@ -14,8 +14,12 @@ class AwareEmployeesController < ApplicationController
 	end
   def destroy
   @employee =  AwareEmployee.find(params[:id])
+    @restaurant = Restaurant.find(params[:restaurant_id])
     respond_to do |format|
       if @employee.delete
+        if @restaurant.aware_employees.length == 0
+          Restaurant.update(@restaurant.id, approved: false)
+        end
         format.html { redirect_to :back, notice: 'Successfully Deleted' }
       else
         format.html { redirect_to root_path, notice: 'There was an error on your form' }

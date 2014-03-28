@@ -4,15 +4,18 @@
 }
 </style>
 <div class="edit-restaurant-section">
-	<div class="alert notice"><%= notice %><%= alert %></div> 
+
+	
+		<div class="alert notice"><% if @notice != '' %><span class='required_field'> <%=@notice%></span><br><%end%><%= notice %><%= alert %></div>
+	
 	<div class="section-wrapper">
 		<% if current_user.id != @restaurant.user_id %>
 			<p> This restaurant does not belong to you </p>
 		<% else %>
 			<% if @restaurant.approved != true %>
-				<h5> This Restaurant has <span style='color:red'> Not Yet </span> Been Approved by The SafeFARE Staff </h5>
+				<h5 style='margin-top:20px;'> This Restaurant has <span style='color:red'> Not Yet </span> Been Approved by The SafeFARE Staff </h5>
 			<% end %> 
-			<h2 class="orange-header padding-left"><%=@restaurant.name%></h2>
+			<h2 class="orange-header padding-left" style='margin-top:15px'><%=@restaurant.name%></h2>
 			<%= render 'edit_restaurant_form' %>
 		<%end%>
 		<div style='clear:both'></div>	
