@@ -20,8 +20,6 @@ CSV.foreach('db/states.csv', headers: true) do |row|
 	  	end
 	end
 end
-
-
 CSV.foreach('db/cuisines.csv', headers: false) do |cuisine|
 	cuisine_exist = Cuisine.where({name: cuisine[0]})
 	if cuisine_exist.length >= 1
@@ -41,13 +39,14 @@ end
 		puts role
 	end
 end
-['Bushwick', 'Allston', 'Bed Stuy', 'East Village'].each do |hood|
-	hood_exist = Neighborhood.where({name: hood})
+CSV.foreach('db/neighborhoods.csv', headers: false) do |hood|
+	hood_exist = Neighborhood.where({name: hood[0]})
 	
 	if hood_exist.length >= 1
-		puts 'This hood exists yo'
+		puts 'This hood exists'
 	else
-		Neighborhood.create(name: hood)
+
+		 Neighborhood.create(name: hood[0])
 		puts hood
 	end
 end
@@ -250,11 +249,10 @@ CSV.foreach("db/rest.csv", headers: true) do |row|
 						end		
 					else
 						p 'this employee didnt save'
-						binding.pry
+						
 					end
 				else
 				p 'problem with restaurant'
-				
 			end
 		end
 	end
