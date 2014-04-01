@@ -65,8 +65,6 @@
 				<form name="search" action="/results" method="get" id="form_search">
 					<input type="text" name="search" id='search' placeholder='Restaurant, Cuisine, etc.'>
 					<input type="text" name="address" id='address' placeholder='Address, ZIP, etc.'>
-					<input type="text" name="user_longitude" id="user_longitude" style="display: none;">
-					<input type="text" name="user_latitude" id="user_latitude" style="display: none;">
 					<input type="submit" name="nil" data-role='none'id='submit-search' value=''>
 				</form>
 				<div class="advanced-link"><a href="/find-a-restaurant">Use our advanced search tool</a></div>
@@ -136,33 +134,5 @@ $(document).ready(function(){
 });
 </script>
 
-<script type="text/javascript">
-$('#submit-search').click(function(e){
-	
-	e.preventDefault();
-	getLocation(function() {
-		$('#form_search').submit();
-	});
-
-})
-function getLocation(callback)
-  {
-  if (navigator.geolocation)
-    {
-	    navigator.geolocation.getCurrentPosition(function(position) {
-	    	showPosition(position, callback);
-	    });
-    }
-  else{ callback(); }
-  }
-function showPosition(position, callback)
-  {
-	var x = $("#user_latitude");
-	var y = $("#user_longitude");
-	x.val(position.coords.latitude);
-	y.val(position.coords.longitude);
-	callback();
-  }
-</script>
 </body>
 </html>
