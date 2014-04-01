@@ -113,7 +113,7 @@ $highlight: #00b4e9;
 		margin: 0 0 15px;
 		list-style-type: disc;
 	}
-	ul.link-list { list-style: none; padding-left: 0; line-height: 120%; li, a { line-height: 120%; margin-bottom: 5px; } }
+	ul.link-list { list-style: none; padding: 10px; background:#f2f5ff; line-height: 120%; li, a { line-height: 120%; margin-bottom: 5px; } }
 	img{
 		max-width:100%;
 	}
@@ -127,7 +127,7 @@ $highlight: #00b4e9;
 		line-height: 150%;
 	}
 	.contact-btn {
-		margin: 0 0 45px;
+		margin: 0 0 20px;
 	}
 	.margin-bottom {
 		margin-bottom: 45px;
@@ -214,4 +214,3 @@ $highlight: #00b4e9;
 		float:left;
 	}
 }
-

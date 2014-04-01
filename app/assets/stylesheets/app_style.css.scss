@@ -109,10 +109,7 @@ a.nav-link, .nav-link, form input[type="submit"] {
 	font-size:17px;
 	letter-spacing: 0.05em;
 	margin-top:15px;
-	 -webkit-transition: background .5s ease;  /* Chrome 1-25, Safari 3.2+ */
-     -moz-transition: background .5 ease;  /* Firefox 4-15 */
-       -o-transition: background .5 ease;  /* Opera 10.50–12.00 */
-          transition: background .5 ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+	@include transition(all, 0.5s, ease); 
 	padding: 0;
 	div {
 		padding: 7px 0px;
@@ -302,7 +299,8 @@ nav#main-nav{margin-bottom:0px;}
 		margin:auto;
 		padding:10px 0px !important;
 		margin-top:0px;	
-		margin-bottom:15px;	
+		margin-bottom:15px;
+		@include transition(all, 0.5s, ease); 	
 		cursor:pointer;
 		font-family:'proxima-nova-condensed';		
 		a, p, div, span{
@@ -583,7 +581,7 @@ background: white;
 }
 
 .for_diners{
-	width:262px;
+	width:100%;
 	display:block;
 	margin:auto;
 	height:140px;
@@ -593,11 +591,11 @@ background: white;
 	            transition: background-position .3s ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
 		
 		background-image: image-url("food-resources.png");
-		background-position: 0px 140px;
+		background-position: 15px 140px;
 	}
 	.for_diners:hover{
 	
-		background-position: 0px 0px !important;
+		background-position: 15px 0px !important;
 }
 .chosen-container-multi .chosen-choices li.search-field input[type="text"]{
 	height:29px;
