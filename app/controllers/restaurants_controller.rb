@@ -23,7 +23,6 @@ class RestaurantsController < ApplicationController
 
   def new
 		  @states = []
-      
     	@user = current_user
     	@restaurant = Restaurant.new
       @employee=@restaurant.aware_employees.build
@@ -35,7 +34,6 @@ class RestaurantsController < ApplicationController
     	State.all.each do |state|
     	 @states << state.abbreviation
     	end
-      
   end
 	def create
 	
@@ -47,7 +45,7 @@ class RestaurantsController < ApplicationController
         save_url(@restaurant)
         save_nests(@restaurant)
         $old_form = ''
-        format.html { redirect_to current_user, notice: 'Restaurant was successfully created.' }
+        format.html { redirect_to current_user, notice: 'Thank you for providing information; will be reviewed by SafeFARE staff and you will receive a response within 48 hours.' }
         format.json { render action: 'show', status: :created, location: @restaurant }
       else
       $old_form = @restaurant
@@ -69,7 +67,8 @@ class RestaurantsController < ApplicationController
      @restaurant =  Restaurant.find(params[:id])
     respond_to do |format|
       if @restaurant.delete
-        format.html { redirect_to current_user, notice: 'Successfully Deleted' }
+
+        format.html { redirect_to current_user, notice: "Successfully Deleted #{@restaurant.name}" }
       else
         format.html { redirect_to root_path, notice: 'There was an error on your form' }
       end
@@ -77,9 +76,12 @@ class RestaurantsController < ApplicationController
     
   end
   def edit
-    
+    @notice = ''
     @cuisines = []
     @restaurant = Restaurant.find(params[:id])
+    if @restaurant.aware_employees.length == 0
+      @notice = "Because you have not added any Aware Employees, your restaurant cannot be added to our searchable database.  Please add at least one."
+    end
     @states = []  
     @type = ['ServSafe Allergens Online Course', 'AllerTrain']
     Cuisine.all.each do |x|
@@ -94,7 +96,8 @@ class RestaurantsController < ApplicationController
       
     if @restaurant.update_attributes(restaurant_params)
       edit_nests
-      redirect_to edit_user_restaurant_path, notice: 'Thanks' 
+     
+      redirect_to edit_user_restaurant_path, notice: "Thanks for updating your restaurant, #{current_user.name}"
     else 
     render json: @restaurant.errors 
     end

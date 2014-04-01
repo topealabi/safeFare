@@ -1,4 +1,5 @@
 <div class="about-section">
+	<div class="alert notice"><%= notice %><%= alert %></div> 
 	<div class="section-wrapper">
 		<ul class="safe-fare-breadcrumb">
 			  <li><a href="/">Home > </a></li>
@@ -30,13 +31,15 @@
 						<div class="form-row col-sm-12">
 							<div class="no-label-wrap">
 								<%= f.submit 'LOG IN', class: 'login' %>
-								<h2 style='width:12%; text-align:center; margin-top:5px;' class='or left'>OR</h2>
-								<div class="nav-link signup orange"><a href="/users/sign_up">SIGN UP</a></div>
+								
 							</div>
 						</div>
 						<div class="form-row col-sm-12">
 							<div class="no-label-wrap">
 								<%= link_to "Forgot your password?", new_password_path(:user), class: "forgot-your-password" %>
+							</div>
+							<div class="no-label-wrap">
+								<a class='forgot-your-password' href="/users/sign_up">Sign Up</a>
 							</div>
 						</div>
 					<% end %>
@@ -52,7 +55,7 @@
 			</ul>
 		</div>
 		<div class="col-sm-4 col-xs-12">
-			<h1>Resource Library</h1>
+			<h1 style='text-align:center;'>Resource Library</h1>
 			<ul class="link-list">
 				<li><a href="http://www.foodallergy.org/managing-food-allergies-at/dining-out/training-for-restaurant-employees" title="http://www.foodallergy.org/managing-food-allergies-at/dining-out/training-for-restaurant-employees" rel="external">Allergen Training for Restaurant Staff</a></li>
 				<li><a href="http://www.foodallergy.org/managing-food-allergies-at/dining-out/before-you-go" title="http://www.foodallergy.org/managing-food-allergies-at/dining-out/before-you-go" rel="external">Before You Go</a></li>
@@ -61,7 +64,7 @@
 				<li><a href="http://www.foodallergy.org/managing-food-allergies-at/dining-out/insiders-guide" title="http://www.foodallergy.org/managing-food-allergies-at/dining-out/insiders-guide" rel="external">&#8220;Insider&#8217;s Guide to Dining Out&#8221; by Chef Joel Schaefer</a></li>
 				<li><a href="http://www.foodallergy.org/document.doc?id=219" title="http://www.foodallergy.org/document.doc?id=219" rel="external">Sample chef card</a></li>
 			</ul>
-			<div class="nav-link signup orange"><a href="/users/sign_up">SIGN UP</a></div>
+			<div class="nav-link signup orange" style='margin:auto;'><a href="/users/sign_up">SIGN UP</a></div>
 		</div>
 	</div>
 </div>

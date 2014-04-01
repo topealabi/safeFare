@@ -9,7 +9,7 @@ class Restaurant < ActiveRecord::Base
   #  	# end
   scope :pending, where(approved:false)
 	validates_presence_of :name, :address, :city, :zip
-
+  validates_length_of :phone, :minimum => 10,:allow_nil => true, :allow_blank => true, :message => "Your phone number should be at least ten digits."
  
   # validates_inclusion_of :state,
   #   in: VALID_STATES

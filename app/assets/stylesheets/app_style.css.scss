@@ -109,10 +109,7 @@ a.nav-link, .nav-link, form input[type="submit"] {
 	font-size:17px;
 	letter-spacing: 0.05em;
 	margin-top:15px;
-	 -webkit-transition: background .5s ease;  /* Chrome 1-25, Safari 3.2+ */
-     -moz-transition: background .5 ease;  /* Firefox 4-15 */
-       -o-transition: background .5 ease;  /* Opera 10.50–12.00 */
-          transition: background .5 ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+	@include transition(all, 0.5s, ease); 
 	padding: 0;
 	div {
 		padding: 7px 0px;
@@ -217,7 +214,9 @@ a.nav-link, form input[type="submit"] { padding: 7px 0; }
 		background-position: 0px 0px;
 	}
 	input#submit-search:hover{
-		background-position: 0px 44px;
+		background-image: image-url("search.gif");
+		background-position: 0px 44px !important;
+
 	}
 }
 .nav-full-bar{
@@ -230,7 +229,7 @@ a.nav-link, form input[type="submit"] { padding: 7px 0; }
 		li{
 			width:20%;
 			float:left;
-			transition: background 0.5s ease;
+			@include transition(background, .5s, ease); 
 			text-align: center;
 			color:white;
 			list-style: none;
@@ -300,7 +299,8 @@ nav#main-nav{margin-bottom:0px;}
 		margin:auto;
 		padding:10px 0px !important;
 		margin-top:0px;	
-		margin-bottom:15px;	
+		margin-bottom:15px;
+		@include transition(all, 0.5s, ease); 	
 		cursor:pointer;
 		font-family:'proxima-nova-condensed';		
 		a, p, div, span{
@@ -426,34 +426,23 @@ padding-bottom:5px;
 	height:300px;
 }
 
-div.alert{
-	text-align:center;
-	padding:0px;
-	border-radius:0px;
-	border:0px solid white;
-	width:0%;
-	opacity:0;
-	height:0px;
-	background:#120503;
-	position: absolute;
-	top:0px;
-	right:0px;
-	color:white;
-	background-image: image-url("flag.png");
-	background-position: 0px 0px;
-	background-size: 16px;
-	background-position: 15px 0px;
-	background-repeat: no-repeat;
-	-webkit-transition: all .3s ease;
-		   -moz-transition: all 1s ease;  /* Firefox 4-15 */
-	         -o-transition: all 1s ease;  /* Opera 10.50–12.00 */
-	            transition: all 1s ease;
-
+.alert {
+position:absolute;
+ -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=0);
+  -moz-opacity: 0;
+  -khtml-opacity: 0;
+  opacity: 0;
+  display:none;
 }
-div.alert.active{
-height:65px;
-width:100%;
-opacity:.8;
+#alert_modal{
+	width:600px;
+	margin:auto;
+	position:fixed;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
 }
 input[type="file"] {
 	display: inline-block;
@@ -590,4 +579,30 @@ background: white;
 .no-padding{
 	padding:0px;
 }
-.chosen-choices{padding:7px !important}
+
+.for_diners{
+	width:100%;
+	display:block;
+	margin:auto;
+	height:140px;
+	-webkit-transition: background-position .3s ease;
+		   -moz-transition: background-position .3s ease;  /* Firefox 4-15 */
+	         -o-transition: background-position .3s ease;  /* Opera 10.50–12.00 */
+	            transition: background-position .3s ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+		
+		background-image: image-url("food-resources.png");
+		background-position: 15px 140px;
+	}
+	.for_diners:hover{
+	
+		background-position: 15px 0px !important;
+}
+.chosen-container-multi .chosen-choices li.search-field input[type="text"]{
+	height:29px;
+}
+.kids input{
+	margin-top:0px;
+}
+#state_search, #within{
+	width:15% !important;
+}

@@ -1,10 +1,6 @@
 var marker;
 var map;
-
 var titles =[];
-
-
-
 function getRestaurant(restaurant_id, restaurant_user, callback){
   $(function(){
         $.ajax({
@@ -21,6 +17,7 @@ function getRestaurant(restaurant_id, restaurant_user, callback){
 function populateModal(data){
    var roles = ''  
    var cuisines = ''
+
    var percent = Math.round((data[3]/data[0].total_employees) * 100);
    $.each(data[1],function(){ cuisines += this.name + ' ' });
    $.each(data[2],function(){ roles += this + ' ' });
@@ -43,7 +40,7 @@ function populateModal(data){
    modalContainer += "</div>";
    modalContainer += "<div class='col-xs-12 col-sm-7'>";
    modalContainer += "<div class='row'>";
-   modalContainer += 		"<h1>"+data[0].name+"</h1>";
+   modalContainer += 		"<a style='text-decoration:none' href='/restaurants/"+data[0].url+"'><h1>"+data[0].name+"</h1></a>";
    modalContainer +=  "<address class='col-sm-6'>";
    modalContainer += 		"<div>"+data[0].address+"</div>";
    modalContainer += 		"<div>"+data[0].city+', '+data[0].state+' '+data[0].zip+"</div>";
@@ -258,12 +255,12 @@ var checkLength = function(value) {
   	})
 
 $(document).ready(function(){
-  if($('.alert').html() != ''){
-    $('.alert').addClass('active');
-  }
-  $('.alert.active').click(function(){
-    $('.alert').removeClass('active');
-  })
+debugger;
+if(!($('.alert').html() == '' || $('.alert').html() == undefined)){
+  $('#alert_modal .modal-body').append($('.alert').html());
+  $('#alert_modal').modal('show');
+}
+
 
 	 $('.modalOpen').on('click', function(e){
     width = document.body.clientWidth;

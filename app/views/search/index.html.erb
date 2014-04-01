@@ -45,16 +45,25 @@
               </div>
                <div class="col-xs-12 form-row clearfix validate name">
                 <p class='form-label'>Within</p>
-               <%= select_tag(:within, "<option>&nbsp;</option><option>5 miles</option><option>10 miles</option><option>15 miles</option>".html_safe,class: "req input") %>
+               <%= select_tag(:within, "<option>&nbsp;</option><option>5 miles</option><option>10 miles</option><option>20 miles</option><option>40 miles</option>".html_safe,class: "req input") %>
               </div>
-          
-             
-            
               <div class="col-xs-12 form-row clearfix validate name check">
                   <p class='form-label'>Kid Friendly</p>
-                  <%= check_box_tag :for_kids %>
+                  <div class="role-container">
+                    <div class="role-group kids">
+                      <%= radio_button_tag :for_kids, true %>
+                      <%= label_tag "Yes" %>
+                    </div>
+                    <div class="role-group kids">
+                      <%= radio_button_tag :for_kids, false %>
+                      <%= label_tag "No" %>
+                    </div>
+                    <div class="role-group kids">
+                      <%= radio_button_tag :for_kids, "don't care" %>
+                      <%= label_tag "Don't Care" %>
+                    </div>
+                  </div>
               </div>
-             
             <div class="col-sm-12 form-row clearfix">
               <p class='form-label no-padding-top'>Trained<br> Employee Role</p>
               <div class="role-container">
@@ -84,17 +93,15 @@
           <input type="submit" name="nil" style='display:block'data-role='none'id='submit-search' value='SUBMIT' >
         </form>
   </div>
- 
-</div>
-           
+</div>        
     </div>
     <div class="col-sm-4 right-side">
-      <a href="/for-diners"><%= image_tag("food-resources.png", :alt => "temp thumbnail") %></a>
+      <a href="/for-diners" class='for_diners'></a>
         <div class="col-md-12 margin-top"> 
-          <h2 class="orange-header" style='text-align:center'>
+          <h2 class="orange-header" style='text-align:center; padding-bottom:5px;'>
             For Restaurants</h2>
             <p style='text-align:left;'>Have you completed the ServSafe® Allergens Online Course or AllerTrain™?  Add your restaurant to our searchable database by setting up a free account here.</p>
-              <div class="nav-link signup orange"><a href="/users/sign_up">SIGN UP</a></div>
+              <div class="nav-link signup orange" style='margin:auto'><a href="/users/sign_up">SIGN UP</a></div>
               <p style='text-align:left;margin-top:15px;'>Learn more about the National Restaurant Association’s <a href='http://www.servsafe.com/allergens'>ServSafe Allergens® Online Course</a>
   Learn more about MenuTrinfo’s <a href='http://www.menutrinfo.com/allergy-training'>AllerTrain™ classes</a></p>
         </div>

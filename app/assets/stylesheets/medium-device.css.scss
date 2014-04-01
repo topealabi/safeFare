@@ -3,13 +3,18 @@ $border:#AD2D0A;
 $blue:#243772;
 $hover:#3a5ad8;
 @media screen and (max-width: 920px){
-	
+@mixin transition($property, $time, $ease) {
+  -webkit-transition: $property $time $ease;  /* Chrome 1-25, Safari 3.2+ */
+     -moz-transition: $property $time $ease;  /* Firefox 4-15 */
+       -o-transition: $property $time $ease;  /* Opera 10.50–12.00 */
+          transition: $property $time $ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+}	
 	input#submit-search{
 		float:right;
 		width:44px;
 		height:44px;
 		background:$blue;
-	-webkit-transition: all .3s ease;
+	@include transition(height, 1s, ease); 
 		width: 90% !important;
 		margin-top: 10px !important;
 		float:none !important;
