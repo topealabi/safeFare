@@ -46,7 +46,7 @@ SafeFare::Application.configure do
     :enable_starttls_auto => true,
     #:address => "smtp.gmail.com",
     :address => "6vdf-pwpq.accessdomain.com"
-    :port => 587,
+    :port => 587
     #:domain => "mydomain.com",
     :domain => 6vdf-pwpq.accessdomain.com
     #:authentication => :login,
