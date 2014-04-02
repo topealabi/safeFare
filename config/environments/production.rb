@@ -44,14 +44,12 @@ SafeFare::Application.configure do
  
   config.action_mailer.smtp_settings = {
     :enable_starttls_auto => true,
-    #:address => "smtp.gmail.com",
-    :address => "6vdf-pwpq.accessdomain.com",
+    :address => "smtp.gmail.com",
     :port => 587,
-    #:domain => "mydomain.com",
-    :domain => "6vdf-pwpq.accessdomain.com"
-    #:authentication => :login,
-    #:user_name => "safeFareTesting@gmail.com",
-    #:password => "linux*1989"
+    :domain => "mydomain.com",
+    :authentication => :login,
+    :user_name => "safeFareTesting@gmail.com",
+    :password => "linux*1989"
   }
    config.action_mailer.default_url_options = { :host => '6vdf-pwpq.accessdomain.com/' }
 
