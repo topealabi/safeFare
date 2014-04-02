@@ -34,6 +34,7 @@ class SearchController < ApplicationController
 		if params[:search].present?
 			@search  = Restaurant.solr_search do
 			with(:approved, :true)
+			with(:is_visible, :true)
 				fulltext params[:search]
 				order_by_geodist(:location, request.location.latitude, request.location.longitude)
 				paginate(:page => params[:page] || 1, :per_page => 10)
@@ -77,6 +78,7 @@ class SearchController < ApplicationController
 		elsif params[:cuisine_search].present?
 			@search  = Restaurant.solr_search do
 				with(:approved, :true)
+				with(:is_visible, :true)
 				order_by_geodist(:location, request.location.latitude, request.location.longitude)
 				paginate(:page => params[:page] || 1, :per_page => 10)
 				any_of do
@@ -120,6 +122,7 @@ class SearchController < ApplicationController
 				
 			@search  = Restaurant.solr_search do
 				with(:approved, :true)
+				with(:is_visible, :true)
 				with(:location).in_radius(*Geocoder.coordinates(whereat), howfar)
 				order_by_geodist(:location, request.location.latitude, request.location.longitude)
 				paginate(:page => params[:page] || 1, :per_page => 10)
@@ -154,6 +157,7 @@ class SearchController < ApplicationController
 		elsif params[:hood_search].present?
 			@search = Restaurant.solr_search do
 				with(:approved, :true)
+				with(:is_visible, :true)
 				any_of do
 					params[:hood_search].each do |tag|
 						with(:hood_name, tag)
@@ -182,6 +186,7 @@ class SearchController < ApplicationController
 		elsif (params[:within].present?)
 			@search  = Restaurant.solr_search do
 				with(:approved, :true)
+				with(:is_visible, :true)
 				with(:location).in_radius(request.location.latitude, request.location.longitude, howfar)
 				order_by_geodist(:location, request.location.latitude, request.location.longitude )
 				paginate(:page => params[:page] || 1, :per_page => 10)
@@ -203,6 +208,7 @@ class SearchController < ApplicationController
 		elsif (params[:worker_role].present?)
 			@search  = Restaurant.solr_search do
 				with(:approved, :true)
+				with(:is_visible, :true)
 				with(:worker, params[:worker_role])
 				order_by_geodist(:location, request.location.latitude, request.location.longitude)
 				paginate(:page => params[:page] || 1, :per_page => 10)
@@ -217,6 +223,7 @@ class SearchController < ApplicationController
 		elsif params[:for_kids].present?
 			@search  = Restaurant.solr_search do
 				with(:approved, :true)
+				with(:is_visible, :true)
 				
 				with(:kid_friendly, words_to_boolean(params[:for_kids]))
 
@@ -229,6 +236,7 @@ class SearchController < ApplicationController
 			#@restaurants = Restaurant.near([request.location.latitude, request.location.longitude], 50)
 			@search = Restaurant.solr_search do
 				with(:approved, :true)
+				with(:is_visible, :true)
 				order_by_geodist(:location, request.location.latitude, request.location.longitude)
 				paginate(:page => params[:page] || 1, :per_page => 10)
 			end

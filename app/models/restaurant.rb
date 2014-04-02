@@ -60,6 +60,7 @@ class Restaurant < ActiveRecord::Base
     text :description
     boolean :kid_friendly
     boolean :approved
+    boolean :is_visible
     double :latitude
     double :longitude
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
