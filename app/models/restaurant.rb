@@ -9,12 +9,18 @@ class Restaurant < ActiveRecord::Base
   #  	# end
   scope :pending, where(approved:false)
 	validates_presence_of :name, :address, :city, :zip
+  
   validates_length_of :phone, :minimum => 10,:allow_nil => true, :allow_blank => true, :message => "Your phone number should be at least ten digits."
- 
+
+  validates_format_of :website, with: URI::regexp(%w(http https)), :allow_blank => true, :allow_nil => true
   # validates_inclusion_of :state,
   #   in: VALID_STATES
+  
   validates_numericality_of :total_employees
- 	validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
+ 	
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
+  
+  validates_format_of :facebook_url, with: URI::regexp(%w(http https)), :allow_blank => true, :allow_nil => true
   
   validates :name, uniqueness: {scope: :user_id}, presence: true
  	belongs_to :user,

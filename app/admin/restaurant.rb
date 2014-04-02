@@ -61,7 +61,7 @@ ActiveAdmin.register Restaurant do
     end
     def update
       @restaurant = Restaurant.find(params[:id])
-
+      pre_update = @restaurant.approved
        if @restaurant.update_attributes(
         name: params[:restaurant][:name],
         user_id: params[:restaurant][:user_id],
@@ -82,8 +82,15 @@ ActiveAdmin.register Restaurant do
         total_employees:params[:restaurant][:total_employees],
         percent_aware:params[:restaurant][:percent_aware]
         )
+        post_update = @restaurant.approved
+        @user = User.find(params[:restaurant][:user_id])
 
-          redirect_to admin_restaurants_path(params[:restaurant_id]), notice: 'Thanks' 
+        if pre_update != post_update && post_update != false
+          RestaurantMailer.approve_email(@user, @restaurant).deliver
+          puts 'sent'
+          binding.pry
+        end
+        redirect_to admin_restaurants_path(params[:restaurant_id]), notice: 'Thanks' 
           admin_edit_restaurant_nests(@restaurant)
         else
           redirect_to :back

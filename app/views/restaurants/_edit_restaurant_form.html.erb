@@ -120,16 +120,19 @@
 			<p class='form-label'>Website</p>
 			<%= f.input :website, label: false, input_html: {placeholder: "http://www.YourGreatRestaurant.com"} %>
 			<div class='feedback'><div></div></div>
+			<p class="disclaim">Please include http://www.</p>
 		</div>
 		<div class="col-xs-12 form-row">
 			<p class='form-label'>Facebook</p>
 			<%= f.input :facebook_url, label: false, input_html: {placeholder: "http://www.facebook.com/YourGreatRestaurant.com"} %>
 			<div class='feedback'><div></div></div>
+			<p class="disclaim">Please include http://www.</p>
 		</div>
 		<div class="col-xs-12 form-row">
 			<p class='form-label'>Twitter</p>
 			<%= f.input :twitter_url, label: false, input_html: {placeholder: "@YourGreatRestaurant"} %>
 			<div class='feedback'><div></div></div>
+			<p class="disclaim">(@YourGreatRestaurant)</p>
 		</div>
 		<div class="col-xs-12 form-row">
 			<p class='form-label'>Allergy Eats</p>
