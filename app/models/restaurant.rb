@@ -17,7 +17,7 @@ class Restaurant < ActiveRecord::Base
   #   in: VALID_STATES
   
   validates_numericality_of :total_employees
- 	
+ 	validates_format_of :twitter_url, with: URI::regexp(%w(http https)), :allow_blank => true, :allow_nil => true
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
   
   validates_format_of :facebook_url, with: URI::regexp(%w(http https)), :allow_blank => true, :allow_nil => true

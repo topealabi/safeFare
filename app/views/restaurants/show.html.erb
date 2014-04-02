@@ -24,7 +24,7 @@
    <address class='col-xs-6'>
    <div><%=@restaurant.address %></div>
    <div><%=@restaurant.city %>, <%=@restaurant.state %> <%=@restaurant.zip %></div>
-   <div><%=@restaurant.phone %></div>
+   <div><%=number_to_phone(@restaurant.phone) %></div>
    </address>
 
 	<% if @restaurant.logo.url != '' %>
@@ -34,7 +34,7 @@
      <div class='white-space'></div>
 	<%end%>
    <div class='info col-xs-12'>
-	<% if @restaurant.description != '' %>
+	<% if @restaurant.description.present? %>
      <div class='description'>
      <div><%=@restaurant.description%></div>
      </div>
@@ -49,13 +49,13 @@
 	</div>
      </div>
    <% end %>
-	<% if @restaurant.hours != '' %>
+	<% if @restaurant.hours.present? %>
      <div class='form-row'>
      <div class='form-label'>Hours</div>
      <div class='input'><%=@restaurant.hours%></div>
      </div>
    <% end %>
-	<% if @restaurant.total_employees != '' %>
+	<% if @restaurant.total_employees.present? %>
      <div class='form-row'>
      <div class='form-label'>Number of Employees</div>
      <div class='input'><%=@restaurant.total_employees %></div>
@@ -77,37 +77,37 @@
      </div>
      </div>
    <% end %>
-	<% if @restaurant.email != '' %>
+	<% if @restaurant.email.present? %>
      <div class='form-row'>
      <div class='form-label'>Email</div>
      <div class='input'><a href='mailto:<%=@restaurant.email%>'><%=@restaurant.email%></a></div>
      </div>
    <% end %>
-	<% if @restaurant.website != '' %>
+	<% if @restaurant.website.present? %>
      <div class='form-row'>
      <div class='form-label'>Website</div>
      <div class='input'><a href='<%=@restaurant.website%>'><%=@restaurant.website%></a></div>
      </div>
    <% end %>
-	<% if @restaurant.facebook_url != '' || @restaurant.twitter_url != '' %>
+	<% if @restaurant.facebook_url.present? || @restaurant.twitter_url.present? %>
      <div class='form-row'>
      <div class='form-label'>Social Media Links</div>
      <div class='input'>
-     <% if @restaurant.facebook_url != '' %>
+     <% if @restaurant.facebook_url.present? %>
       <a href='<%=@restaurant.facebook_url%>'>Facebook</a>
     <%end%>
-    <% if @restaurant.facebook_url != '' && @restaurant.twitter_url != '' %>
+    <% if @restaurant.facebook_url.present? && @restaurant.twitter_url.present? %>
       , 
     <%end%>
-    <% if @restaurant.twitter_url != '' %>
+    <% if @restaurant.twitter_url.present? %>
       <a href='<%=@restaurant.twitter_url%>'>Twitter</a></div>
     <%end%>
      </div>
    <%end%>
-	<% if @restaurant.allergy_eats_url != '' %>
+	<% if @restaurant.allergy_eats_url.present? %>
      <div class='form-row'>
      <div class='form-label'>AllergyEats</div>
-     <a class='input'><%=@restaurant.allergy_eats_url%></a>
+     <a class='input' href='<%=@restaurant.allergy_eats_url%>'><%=@restaurant.allergy_eats_url%></a>
      </div>
    <% end %>
    </div>

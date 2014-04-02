@@ -88,7 +88,7 @@ ActiveAdmin.register Restaurant do
         if pre_update != post_update && post_update != false
           RestaurantMailer.approve_email(@user, @restaurant).deliver
           puts 'sent'
-          binding.pry
+      
         end
         redirect_to admin_restaurants_path(params[:restaurant_id]), notice: 'Thanks' 
           admin_edit_restaurant_nests(@restaurant)

@@ -39,7 +39,7 @@ class RestaurantsController < ApplicationController
 	 @user = current_user
    @restaurant = Restaurant.new(restaurant_params)
    @restaurant.user_id = current_user.id
- 
+   
     respond_to do |format|
       if @restaurant.save
         RestaurantMailer.create_email(@user, @restaurant).deliver
@@ -95,8 +95,9 @@ class RestaurantsController < ApplicationController
   end
   def update   
     @restaurant = Restaurant.find(params[:id])
-    
+  
     if @restaurant.update_attributes(restaurant_params)
+  
       edit_nests 
       redirect_to edit_user_restaurant_path, notice: "Thanks for updating your restaurant, #{current_user.name}"
     else 
@@ -105,10 +106,13 @@ class RestaurantsController < ApplicationController
   end
   
   def show
+
    if params[:url] == nil
     @restaurant = Restaurant.find(params[:id])
   else 
       @restaurant = Restaurant.find_by_url(params[:url])
+
+
   end
     @roles = []
 
