@@ -36,16 +36,18 @@ class RestaurantsController < ApplicationController
     	end
   end
 	def create
-	
+	 @user = current_user
    @restaurant = Restaurant.new(restaurant_params)
    @restaurant.user_id = current_user.id
- 
+   
     respond_to do |format|
       if @restaurant.save
+        RestaurantMailer.create_email(@user, @restaurant).deliver
+        AdminMailer.admin_create_email(@user, @restaurant).deliver
         save_url(@restaurant)
         save_nests(@restaurant)
         $old_form = ''
-        format.html { redirect_to current_user, notice: 'Thank you for providing information; will be reviewed by SafeFARE staff and you will receive a response within 48 hours.' }
+        format.html { redirect_to current_user, notice: 'Thank you for adding your restaurant to the SafeFARE database. The SafeFARE team will review the information you provided and will respond within two business days. If we need more information before approving your listing, you will receive a detailed email from our team.' }
         format.json { render action: 'show', status: :created, location: @restaurant }
       else
       $old_form = @restaurant
@@ -93,21 +95,24 @@ class RestaurantsController < ApplicationController
   end
   def update   
     @restaurant = Restaurant.find(params[:id])
-      
+  
     if @restaurant.update_attributes(restaurant_params)
-      edit_nests
-     
+  
+      edit_nests 
       redirect_to edit_user_restaurant_path, notice: "Thanks for updating your restaurant, #{current_user.name}"
     else 
-    render json: @restaurant.errors 
+    redirect_to edit_user_restaurant_path, notice: @restaurant.errors.full_messages 
     end
   end
   
   def show
+
    if params[:url] == nil
     @restaurant = Restaurant.find(params[:id])
   else 
       @restaurant = Restaurant.find_by_url(params[:url])
+
+
   end
     @roles = []
 

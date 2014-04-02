@@ -71,7 +71,7 @@
 			<p class='form-label'>Food Allergy Policies</p>
 			<%= f.input :description, label: false %>
 			<div class='feedback'><div></div></div>
-			 <p class="disclaim">Please describe your restaurant's allergen policies</p>
+			 <p class="disclaim">Please describe your policies (e.g., Please advise the hostess of your allergies and ask for Executive Chef Matt Smith).</p>
 		</div>
 		<div class="col-xs-12 form-row">
 			<p class='form-label'>Cuisine</p>
@@ -113,28 +113,32 @@
 		</div>		
 		<div class="col-xs-12 form-row">
 			<p class='form-label'>Phone</p>
-			<%= f.input :phone, label: false, input_html: {placeholder: "(888)-888-8888"} %>
+			<%= f.input :phone,as: :tel, label: false, input_html: {placeholder: "(888)-888-8888"} %>
 			<div class='feedback'><div></div></div>
 		</div>
 		<div class="col-xs-12 form-row">
 			<p class='form-label'>Website</p>
 			<%= f.input :website, label: false, input_html: {placeholder: "http://www.YourGreatRestaurant.com"} %>
 			<div class='feedback'><div></div></div>
+			<p class="disclaim">Please include http://www.</p>
 		</div>
 		<div class="col-xs-12 form-row">
 			<p class='form-label'>Facebook</p>
-			<%= f.input :facebook_url, label: false, input_html: {placeholder: "http://www.facebook.com/YourGreatRestaurant.com"} %>
+			<%= f.input :facebook_url, label: false, input_html: {placeholder: "http://www.facebook.com/YourGreatRestaurant"} %>
 			<div class='feedback'><div></div></div>
+			<p class="disclaim">Please include http://www.</p>
 		</div>
 		<div class="col-xs-12 form-row">
 			<p class='form-label'>Twitter</p>
-			<%= f.input :twitter_url, label: false, input_html: {placeholder: "@YourGreatRestaurant"} %>
+			<%= f.input :twitter_url, label: false, input_html: {placeholder: "http://www.twitter.com/YourGreatRestaurant"} %>
 			<div class='feedback'><div></div></div>
+			<p class="disclaim">Please include http://www.</p>
 		</div>
 		<div class="col-xs-12 form-row">
 			<p class='form-label'>Allergy Eats</p>
 			<%= f.input :allergy_eats_url, label: false %>
 			<div class='feedback'><div></div></div>
+			<p class='disclaim'>If your restaurant is listed on www.AllergyEats.com, please add the AllergyEats URL here.</p>
 		</div>
 
 		<div class="white-space"></div>

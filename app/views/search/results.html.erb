@@ -36,7 +36,7 @@
                   <p><%= restaurant.address %></p>
                 </td>
             
-                  <td class="center hide-on-small"><% restaurant.neighborhoods.each do |x| %>
+                  <td class="center hide-on-medium"><% restaurant.neighborhoods.each do |x| %>
                     <%= x.name+' ' %><br>
                     <%end%>
                   </td>
@@ -55,7 +55,7 @@
                       <%end%>  
                  </td>    
                 <td class="center hide-on-medium"><%= boolean_to_words(restaurant.kid_friendly?) %></td>
-                <td class="center"><a href="tel:<%= restaurant.phone %>"><%= restaurant.phone %></a></td>
+                <td class="center"><a href="tel:<%= restaurant.phone %>"><%= number_to_phone(restaurant.phone) %></a></td>
               </tr>
             <% end %>
           </tbody>
@@ -137,7 +137,18 @@
 
   $(document).ready(function(){
      show_initialize(); 
-
+     $('.modalOpen').on('click', function(e){
+    width = document.body.clientWidth;
+      if (width > 700){
+        e.preventDefault();
+        $('#restaurantModal').modal('show');
+        getRestaurant(this.classList[1], this.classList[2], function(data) { populateModal(data) })
+      }
+    })
+   $('#restaurantModal').on('hidden.bs.modal',function(){
+    modalContainer = ''
+    $('.modal-body').html('');
+   })
     $(".tablesorter").tablesorter(); 
     $('.map-trig').on('click',function(){
       $(this).css('visibility', 'hidden');
