@@ -48,7 +48,7 @@ SafeFare::Application.configure do
     :address => "6vdf-pwpq.accessdomain.com",
     :port => 587,
     #:domain => "mydomain.com",
-    :domain => 6vdf-pwpq.accessdomain.com,
+    :domain => "6vdf-pwpq.accessdomain.com"
     #:authentication => :login,
     #:user_name => "safeFareTesting@gmail.com",
     #:password => "linux*1989"
