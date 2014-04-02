@@ -158,6 +158,7 @@ class SearchController < ApplicationController
 			@search = Restaurant.solr_search do
 				with(:approved, :true)
 				with(:is_visible, :true)
+				paginate(:page => params[:page] || 1, :per_page => 10)
 				any_of do
 					params[:hood_search].each do |tag|
 						with(:hood_name, tag)
