@@ -6,6 +6,7 @@
 //
 // For example, to change the sidebar width:
 // $sidebar-width: 242px;
+$required-field-marker-color: red;
 
 // // Active Admin's got SASS!
 @import "active_admin/mixins";
@@ -15,6 +16,7 @@
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+
 
 
 
@@ -187,3 +189,5 @@ form input[type=submit]:hover{
 .padding-left{padding-left:15px;}
 
 h1, .orange-header{color:#EC4423;font-weight:300;font-size:28px;padding-bottom:20px;}
+
+form fieldset ol > li label[for=restaurant_approved] { color: #FA5328; font-size: 18px;}

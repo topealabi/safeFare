@@ -166,15 +166,15 @@ ActiveAdmin.register Restaurant do
       f.input :approved
       f.input :state, :as => :select, :collection => @states, :include_blank => false
       f.input :email
-      f.input :phone
-      f.input :hours
+      f.input :phone, placeholder: '(xxx-xxx-xxxx)' 
+      f.input :hours, hint: '(e.g., Mon-Fri: 11:30am–11pm; Sat-Sun: 12pm-10pm)'
       f.input :website
       f.input :facebook_url
       f.input :twitter_url
       f.input :allergy_eats_url
       f.input :zip
       f.input :total_employees
-      f.input :description
+      f.input :description, label: "Food Allergy Policies"
       
       f.has_many :areas, :allow_destroy => true, :heading => "Neighborhoods", :new_record => true do |cf|
            cf.input :neighborhood, :as=> :select, :member_label=>:name

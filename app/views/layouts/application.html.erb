@@ -62,10 +62,10 @@
 			<div class="safeFare-search right col-sm-6 col-xs-12" style='padding:0px;'>
 				<h2 class='small-thick'>Find a Restaurant</h2>
 				<p>Locate a food allergy aware restaurant near you.</p>
-				<form name="search" action="/results" method="get">
+				<form name="search" action="/results" method="get" id="form_search">
 					<input type="text" name="search" id='search' placeholder='Restaurant, Cuisine, etc.'>
 					<input type="text" name="address" id='address' placeholder='Address, ZIP, etc.'>
-					<input type="submit" name="nil" data-role='none'id='submit-search' value='' >
+					<input type="submit" name="nil" data-role='none'id='submit-search' value=''>
 				</form>
 				<div class="advanced-link"><a href="/find-a-restaurant">Use our advanced search tool</a></div>
 			</div>
@@ -140,5 +140,6 @@ $(document).ready(function(){
 	});
 });
 </script>
+
 </body>
 </html>

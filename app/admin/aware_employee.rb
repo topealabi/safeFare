@@ -66,8 +66,9 @@ form do |f|
       end
       f.inputs "Employee Roles" do
        f.has_many :restaurant_roles, :allow_destroy => true, :new_record => true do |cf|
-           cf.input :role, :as=> :select, :member_label=>:role
+           cf.input :role, :as=> :select, :member_label=>:role,  hint: 'To change an employee’s role, select “Delete” under the current role. Next, select “Add new restaurant role,” select the correct role from the drop-down box, and click on the “Update Aware Employee” button to save. You may choose more than one role per employee.'
         end
+
       end
       f.actions
     end

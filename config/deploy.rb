@@ -43,6 +43,11 @@ SSHKit.config.command_map[:rails] = "bundle exec rails"
 
 namespace :deploy do
 
+  desc "reload the database with seed data"
+  task :seed do
+    run "cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec rake db:seed"
+  end
+
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
