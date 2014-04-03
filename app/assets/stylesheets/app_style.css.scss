@@ -18,7 +18,7 @@ $hover:#3a5ad8;
           transition: $property $time $ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
 }
 
-
+.extra-padding{padding-top:10px}
 .no-padding-top{
 	padding-top:0px !important;
 	line-height: 17px !important;
@@ -95,7 +95,7 @@ a{text-decoration:none;color:inherit}
 .padding{padding:30px;}
 .no-padding{padding:0px;}
 .text-center{ text-align:center;}
-h1, .orange-header{color:$orange;font-weight:300;font-family:'proxima-nova'; font-size:28px;padding-bottom:20px;}
+h1, .orange-header{color:$orange;font-weight:300;font-family:'proxima-nova'; font-size:31px;padding-bottom:20px;}
 h2, .blue-header{color:$blue;font-weight:500;font-family:'proxima-nova'; font-size:20px;}
 hr { border-color: $blue;clear:both;@extend .clearfix; }
 a.nav-link, .nav-link, form input[type="submit"] {
@@ -204,18 +204,20 @@ a.nav-link, form input[type="submit"] { padding: 7px 0; }
 		float:right;
 		width:44px;
 		height:44px;
-		-webkit-transition: background-position .3s ease;
-		   -moz-transition: background-position .3s ease;  /* Firefox 4-15 */
-	         -o-transition: background-position .3s ease;  /* Opera 10.50–12.00 */
-	            transition: background-position .3s ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+		-webkit-transition: all .3s ease;
+		   -moz-transition: all .3s ease;  /* Firefox 4-15 */
+	         -o-transition: all .3s ease;  /* Opera 10.50–12.00 */
+	            transition: all .3s ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
 		margin:0px;
 		@include border-radius(0px);
-		background-image: image-url("search.gif");
+		background-color: $blue;
+		background-image: image-url("magnifyer-small.png");
 		background-position: 0px 0px;
 	}
 	input#submit-search:hover{
-		background-image: image-url("search.gif");
-		background-position: 0px 44px !important;
+		background-color: $hover;
+		background-image: image-url("magnifyer-small.png");
+	
 
 	}
 }
@@ -581,21 +583,26 @@ background: white;
 }
 
 .for_diners{
-	width:100%;
-	display:block;
-	margin:auto;
-	height:140px;
-	-webkit-transition: background-position .3s ease;
-		   -moz-transition: background-position .3s ease;  /* Firefox 4-15 */
-	         -o-transition: background-position .3s ease;  /* Opera 10.50–12.00 */
-	            transition: background-position .3s ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
-		
-		background-image: image-url("food-resources.png");
-		background-position: 15px 140px;
+		display: block;
+		width: 100%;
+		background: $blue;
+		text-align: center;
+		color: white !important;
+		margin-bottom: 20px;
+		padding: 20px;
+		font-size: 20px !important;
+		text-decoration: none !important;
+		font-weight: 100;
+		@include transition(all, 1s, ease);
+		text-transform: uppercase;
+		font-family:'proxima-nova-condensed';
+		letter-spacing: .1em;
+		margin:auto;
+	
 	}
 	.for_diners:hover{
-	
-		background-position: 15px 0px !important;
+		color: white !important;
+		background-color:$hover;
 }
 .chosen-container-multi .chosen-choices li.search-field input[type="text"]{
 	height:29px;

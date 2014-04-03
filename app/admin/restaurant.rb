@@ -8,7 +8,10 @@ ActiveAdmin.register Restaurant do
   filter :zip
   filter :approved
   filter :created_at
+  
+
   index do
+    para strong "To Approve Restaurants, visit their edit page and find and check the approve checkbox"
     column :name
     column :approved
     default_actions
@@ -19,6 +22,16 @@ ActiveAdmin.register Restaurant do
       row :email
       bool_row :approved
       bool_row :is_visible
+      row :city
+      row :state
+      row :zip
+      row :email
+      row :website
+      row :phone
+      row :hours
+      row :description
+      row :email
+      row :total_employees
     end
   end  
   sidebar "Restaurant Employees", only: [:show, :edit] do
@@ -158,23 +171,25 @@ ActiveAdmin.register Restaurant do
       State.all.each do |state|
         @states << state.abbreviation
       end
+      f.inputs "Approve This Restaurant" do
+       f.input :approved, hint: 'Check this Box to Approve this Restaurant'
+      end
       f.inputs "Details" do
-      f.input :user, :as => :select, :collection => User.all, :member_label => :email, :include_blank => false
-      f.input :name
-      f.input :address
-      f.input :city
-      f.input :approved
-      f.input :state, :as => :select, :collection => @states, :include_blank => false
-      f.input :email
-      f.input :phone, placeholder: '(xxx-xxx-xxxx)' 
-      f.input :hours, hint: '(e.g., Mon-Fri: 11:30am–11pm; Sat-Sun: 12pm-10pm)'
-      f.input :website
-      f.input :facebook_url
-      f.input :twitter_url
-      f.input :allergy_eats_url
-      f.input :zip
-      f.input :total_employees
-      f.input :description, label: "Food Allergy Policies"
+        f.input :user, :as => :select, :collection => User.all, :member_label => :email, :include_blank => false
+        f.input :name
+        f.input :address
+        f.input :city
+        f.input :state, :as => :select, :collection => @states, :include_blank => false
+        f.input :email
+        f.input :phone, placeholder: '(xxx-xxx-xxxx)' 
+        f.input :hours, hint: '(e.g., Mon-Fri: 11:30am–11pm; Sat-Sun: 12pm-10pm)'
+        f.input :website
+        f.input :facebook_url
+        f.input :twitter_url
+        f.input :allergy_eats_url
+        f.input :zip
+        f.input :total_employees
+        f.input :description, label: "Food Allergy Policies"
       
       f.has_many :areas, :allow_destroy => true, :heading => "Neighborhoods", :new_record => true do |cf|
            cf.input :neighborhood, :as=> :select, :member_label=>:name

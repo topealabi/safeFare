@@ -108,6 +108,26 @@ $highlight: #00b4e9;
 	.right-section {
 		margin-top: 50px;
 	}
+	.contact-link{
+		display: block;
+		width: 100%;
+		background: $blue;
+		text-align: center;
+		color: white;
+		margin-bottom: 20px;
+		padding: 20px;
+		font-size: 20px;
+		text-decoration: none;
+		font-weight: 100;
+		@include transition(all, 1s, ease);
+		text-transform: uppercase;
+		font-family:'proxima-nova-condensed';
+		letter-spacing: .1em;
+	}
+	.contact-link:hover{
+		background:$hover;
+
+	}
 	ul{
 		padding: 0 0 0 20px;
 		margin: 0 0 15px;
@@ -133,18 +153,20 @@ $highlight: #00b4e9;
 		margin-bottom: 45px;
 	}
 	.find-a-button, .resources-button {
-		background-image: url(../images/about-us-sprite-272x272.gif);
+		
 		height: 136px;
 		width: 136px;
-		@include transition(background-position, 0.5s, ease);
+		background-color:$blue;
+		@include transition(all, 0.5s, ease);
 	}
 	.find-a-button {
-		background-position: 0px 0px;
-		&:hover { background-position: 0px 136px; }
+		background-image: url(../images/magnifyer.png);
+		&:hover { background-color:$hover; }
 	}
 	.resources-button {
-		background-position: 136px 0px;
-		&:hover { background-position: 136px 136px; }
+		background-image: url(../images/page.png);
+		
+		&:hover { background-color:$hover; }
 	}
 }
 

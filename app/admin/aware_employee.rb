@@ -51,6 +51,9 @@ index do
   show do
     attributes_table do
       row :name
+      row :verification
+      row :cert_type
+      row :expiration
       bool_row :approved
      
     end

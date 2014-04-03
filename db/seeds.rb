@@ -7,6 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)require 'csv'
 require 'csv'
 AdminUser.create(email:'admin@safefare.org', password:'password123')
+AdminUser.create(email:'info@safefare.org', password:'password123')
 @deployer = User.new(email:'dhruv.mehrotra3@gmail.com' , password:'blue32blue32')
 @deployer.skip_confirmation!
 @deployer.save

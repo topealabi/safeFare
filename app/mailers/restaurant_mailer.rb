@@ -1,5 +1,5 @@
 class RestaurantMailer < ActionMailer::Base
-  default from: "Admin@SafeFare.org"
+  default from: "info@SafeFare.org"
   def create_email(user, restaurant)
   	@restaurant = restaurant
     @user = user

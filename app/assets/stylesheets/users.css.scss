@@ -54,21 +54,21 @@ $hover:#3a5ad8;
 		}
 	}
 	.edit-button {
-		background-image: url(../images/edit-sprite.png);
+		background-image: url(../images/pencil-45x45.png);
 		cursor: pointer;
 		display: inline-block;
 		height: 45px;
 		width: 45px;
-		-webkit-transition: background-position .3s ease;
-		   -moz-transition: background-position .3s ease;  /* Firefox 4-15 */
-	         -o-transition: background-position .3s ease;  /* Opera 10.50–12.00 */
-	            transition: background-position .3s ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+		-webkit-transition: all .3s ease;
+		   -moz-transition: all .3s ease;  /* Firefox 4-15 */
+	         -o-transition: all .3s ease;  /* Opera 10.50–12.00 */
+	            transition: all .3s ease;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
 		
 		
-		background-position: 0px 0px;
+		background-color: $blue;
 	}
 	.edit-button:hover{
-		background-position: 0px 45px;
+		background-color: $hover;
 	}
 	.approved {
 		background-image: url(../images/thumbs-up.jpg);

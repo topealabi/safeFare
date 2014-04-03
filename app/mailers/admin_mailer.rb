@@ -1,6 +1,6 @@
 class AdminMailer < ActionMailer::Base
   default to: Proc.new { AdminUser.pluck(:email) },
-          from: 'Admin@safefare.org'
+          from: 'info@safefare.org'
  
   def admin_create_email(user, restaurant)
   
