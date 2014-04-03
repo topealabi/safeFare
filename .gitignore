@@ -24,6 +24,8 @@ public/uploads/tmp/*
 #ignore solr files
 solr/development/
 solr/test/
+solr/pids
+solr/test
 
 # Ignore DS_Store
 .DS_Store
